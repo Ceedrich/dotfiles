@@ -1,5 +1,5 @@
 # Zsh
-alias reload="source ~/.zshrc"
+alias reload="source $ZDOTDIR/.zshrc"
 
 alias ls="eza"
 alias l="eza --icons --git -al"
@@ -41,10 +41,10 @@ fi
 # Utitlities
 cdd() {mkdir $1 && cd $1}
 alias open="gio open"
-alias ..="cd ../"
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../../"
+alias -g ..="../"
+alias -g ...="../.."
+alias -g ....="../../.."
+alias -g .....="../../../../"
 
 
 zshconfig() {
@@ -95,19 +95,3 @@ zshconfig() {
     fi
     nvim $file
 }
-
-_zshconfig() {
-    echo $ZSH_PLUGINS_CFG_DIR/$1.zsh
-    if [[ -z "$1" ]]; then
-        echo Home
-        nvim "$HOME/.zshrc"
-    elif [[ "$1" == plugins/* ]] && [[ -f "$ZSH_PLUGINS_CFG_DIR/$1.zsh" ]]; then
-        echo plugins
-        nvim "$ZSH_PLUGINS_CFG_DIR/$1.zsh"
-    elif [[ -f "$ZSH_CONFIG/$1.zsh" ]]; then
-        nvim "$ZSH_CONFIG/$1.zsh"
-    else
-        echo "File $ZSH_CONFIG/$1.zsh does not exist." # Create the file (y/n)?
-    fi
-}
-

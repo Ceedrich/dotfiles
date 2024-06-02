@@ -5,41 +5,34 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/.local/bin:$HOME/.cargo/bin/"
+
 # compinstall
 zstyle :compinstall filename "/home/ceedrich/.zshrc"
 autoload -Uz compinit
 compinit
 # end compinstall
 
+# Useful stuff
 source $ZDOTDIR/functions.zsh
 zsh_add_file options.zsh
 zsh_add_file aliases.zsh
 
-export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/.local/bin:$HOME/.cargo/bin/"
-export ZSH_CONFIG="$HOME/.config/zsh"
-export ZSH_PLUGINS_DIR="$ZSH_CONFIG/plugins"
-export ZSH_PLUGINS_CFG_DIR="$ZSH_PLUGINS_DIR/config"
-export ZSH_THEMES_DIR="$ZSH_CONFIG/themes"
-export ZSH_THEMES_CFG_DIR="$ZSH_THEMES_DIR/config"
-
 # Alacritty
-fpath+=$ZSH_CONFIG/.zsh_functions/
+fpath+=$ZDOTDIR/.zsh_functions/
 # LF
-source $ZSH_CONFIG/lf.zsh
+source $ZDOTDIR/lf.zsh
 
 # Default editor
 
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 
-# Functions
-
-zsh_add_file nnn.zsh
-
 # Plugins
 zsh_add_plugin zsh-users/zsh-autosuggestions
 zsh_add_plugin zsh-users/zsh-syntax-highlighting
 
+# Theme
 source "$ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme"
 source "$ZDOTDIR/p10k.zsh"
 
