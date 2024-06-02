@@ -11,6 +11,10 @@ autoload -Uz compinit
 compinit
 # end compinstall
 
+source $ZDOTDIR/functions.zsh
+zsh_add_file options.zsh
+zsh_add_file aliases.zsh
+
 export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/.local/bin:$HOME/.cargo/bin/"
 export ZSH_CONFIG="$HOME/.config/zsh"
 export ZSH_PLUGINS_DIR="$ZSH_CONFIG/plugins"
@@ -29,17 +33,15 @@ export EDITOR=nvim
 export VISUAL="$EDITOR"
 
 # Functions
-source $ZSH_CONFIG/functions.zsh
 
-zsh_add_file aliases.zsh
 zsh_add_file nnn.zsh
 
 # Plugins
 zsh_add_plugin zsh-users/zsh-autosuggestions
 zsh_add_plugin zsh-users/zsh-syntax-highlighting
 
-source "$ZSH_CONFIG/plugins/powerlevel10k/powerlevel10k.zsh-theme"
-source "$ZSH_CONFIG/p10k.zsh"
+source "$ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme"
+source "$ZDOTDIR/p10k.zsh"
 
 # zoxide
 eval "$(zoxide init --cmd cd zsh)"
@@ -56,7 +58,6 @@ esac
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
-setopt appendhistory
 
 # Setup fzf
 # ---------

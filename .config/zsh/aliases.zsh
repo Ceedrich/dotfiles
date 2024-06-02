@@ -72,13 +72,13 @@ zshconfig() {
         esac
     done
     if [[ "$dir" == "p" ]]; then
-        file="$ZSH_PLUGINS_CFG_DIR/$2.zsh"
+        file="$ZDOTDIR/plugins/$2.zsh"
     elif [[ "$dir" == "t" ]]; then
-        file="$ZSH_THEMES_CFG_DIR/$2.zsh"
+        file="$ZDOTDIR/config/$2.zsh"
     elif [[ -n "$1" ]]; then
-        file="$ZSH_CONFIG/$1.zsh"
+        file="$ZDOTDIR/$1.zsh"
     else
-        file="$HOME/.zshrc"
+        file="$ZDOTDIR/.zshrc"
     fi
     
     if ! [[ -f $file ]]; then
