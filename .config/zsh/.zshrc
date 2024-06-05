@@ -28,13 +28,14 @@ source $ZDOTDIR/lf.zsh
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 
+# Theme
+source "$ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme"
+source "$ZDOTDIR/p10k.zsh"
+source "$ZDOTDIR/themes/catppuccin-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh"
+
 # Plugins
 zsh_add_plugin zsh-users/zsh-autosuggestions
 zsh_add_plugin zsh-users/zsh-syntax-highlighting
-
-# Theme
-source "$ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme"
-source "$ZDOTDIR/p10k.zsh"
 
 # zoxide
 eval "$(zoxide init --cmd cd zsh)"
