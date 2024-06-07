@@ -8,20 +8,21 @@ return {
 		"folke/todo-comments.nvim",
 	},
 	config = function()
+		-- local builtin = require("telescope.builtin")
 		local telescope = require("telescope")
+		local config = require("telescope.config")
+
+		local vimgrep_arguments = { unpack(config.values.vimgrep_arguments) }
+
+		table.insert(vimgrep_arguments, "--hidden")
+		table.insert(vimgrep_arguments, "--glob")
+		table.insert(vimgrep_arguments, "!**/.git/*")
+
 		local actions = require("telescope.actions")
 
 		telescope.setup({
+			vimgrep_arguments = vimgrep_arguments,
 			defaults = {
-				vimgrep_arguments = {
-					"rg",
-					"--no-heading",
-					"--with-filename",
-					"--line-number",
-					"--column",
-					"--smart-case",
-					"--hidden",
-				},
 				path_display = { "smart" },
 				mappings = {
 					i = {
@@ -29,6 +30,12 @@ return {
 						["<C-j>"] = actions.move_selection_next,
 						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 					},
+				},
+			},
+			pickers = {
+				find_files = {
+					-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
 				},
 			},
 		})
