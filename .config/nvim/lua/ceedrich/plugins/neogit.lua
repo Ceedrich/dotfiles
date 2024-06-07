@@ -13,5 +13,8 @@ return {
 		neogit.setup({
 			kind = "tab",
 		})
+
+		local keymap = vim.keymap
+		keymap.set("n", "<leader>g", "<cmd>Neogit<cr>", { desc = "Open Neogit window" })
 	end,
 }
