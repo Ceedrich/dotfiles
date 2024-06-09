@@ -33,10 +33,22 @@ final_space = true
     style = "plain"
     background = "transparent"
     foreground = "#aaaaaa"
-    template = """{{ .HEAD }}\
-      {{ if or (.Working.Changed) (.Staging.Changed) }}*{{end}}\
-      {{ if gt .Behind 0 }}⇣{{end}}\
-      {{ if gt .Ahead 0 }}⇡4{{end}}"""
+    template = """{{if .HEAD }}\
+      {{ .UpstreamIcon }}{{ .HEAD }}\
+      {{ if or (.Working.Changed) (.Staging.Changed) }}* {{end}}\
+      <green>\
+      {{ if gt .Staging.Modified 0 }}+{{ .Staging.Modified }}{{end}}\
+      {{ if gt .Working.Modified 0 }}!{{ .Working.Modified }}{{end}}\
+      </>\
+      <red>\
+      {{ if gt .Working.Untracked 0 }} ?{{ .Working.Untracked }}{{end}}\
+      </>\
+      <green>\
+      {{ if or (gt .Behind 0) (gt .Ahead 0)}} {{end}}\
+      {{ if gt .Behind 0 }}⇣{{.Behind}}{{end}}\
+      {{ if gt .Ahead 0 }}⇡{{.Ahead}}{{end}}\
+      </>\
+    {{end}}"""
 
     [blocks.segments.properties]
       fetch_status = true
