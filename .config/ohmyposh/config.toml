@@ -75,13 +75,19 @@ final_space = true
   type = "rprompt"
   overflow = "hidden"
 
-  
+  [[blocks.segments]]
+    type = "cmake"
+    style = "plain"
+    background = "transparent"
+    foreground = "blue"
+    template = "  "
+    
   [[blocks.segments]]
   type = "executiontime"
   style = "plain"
   foreground = "yellow"
   background = "transparent"
-  template = "{{ .FormattedMs }}"
+  template = "{{ .FormattedMs }} "
     [blocks.segments.properties]
       style = "round"
       threshold = "5000"
@@ -91,7 +97,9 @@ final_space = true
   style = "plain"
   foreground = "red"
   background = "transparent"
-  template = """{{ if .Error }}{{ if eq .Code 0 }}INT{{else}}ERR{{end}} {{.Code}}{{end}}"""
+  template = """{{ if .Error }}{{ if eq .Code 0 }}INT{{else}}ERR{{end}} {{.Code}}{{end}} """
+
+
 
 [secondary_prompt]
   style = "plain"
