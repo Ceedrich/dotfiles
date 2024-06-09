@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/.local/bin:$HOME/.cargo/bin/"
 
 # compinstall
@@ -29,9 +22,7 @@ export EDITOR=nvim
 export VISUAL="$EDITOR"
 
 # Theme
-source "$ZDOTDIR/themes/powerlevel10k/powerlevel10k.zsh-theme"
-source "$ZDOTDIR/p10k.zsh"
-source "$ZDOTDIR/themes/catppuccin-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
 
 # Plugins
 zsh_add_plugin zsh-users/zsh-autosuggestions
