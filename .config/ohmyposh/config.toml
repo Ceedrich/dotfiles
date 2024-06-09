@@ -35,8 +35,9 @@ final_space = true
     foreground = "#aaaaaa"
     template = """{{if .HEAD }}\
       {{ .UpstreamIcon }}{{ .HEAD }}\
-      {{ if or (.Working.Changed) (.Staging.Changed) }}* {{end}}\
+      {{ if or (.Working.Changed) (.Staging.Changed) }}*{{end}}\
       <green>\
+      {{ if or (gt .Staging.Modified 0) (gt .Working.Modified 0)}} {{end}}\
       {{ if gt .Staging.Modified 0 }}+{{ .Staging.Modified }}{{end}}\
       {{ if gt .Working.Modified 0 }}!{{ .Working.Modified }}{{end}}\
       </>\
