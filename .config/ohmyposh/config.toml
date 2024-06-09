@@ -1,0 +1,87 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+final_space = true
+
+[[blocks]]
+  type = "prompt"
+  alignment = "left"
+
+  [[blocks.segments]]
+    type = "os"
+    style = "plain"
+    foreground = "blue"
+    template = "{{ .Icon }} "
+
+
+  [[blocks.segments]]
+    type = "path"
+    style = "plain"
+    background = "transparent"
+    foreground = "blue"
+    template = "{{ path .Path .Location }} "
+
+    [blocks.segments.properties]
+      style = "full"
+      home_icon = "󰋜"
+      folder_icon = "󰉋"
+      [blocks.segments.properties.mapped_locations]
+      "~/Downloads" = "󰉍/"
+
+  [[blocks.segments]]
+    type = "git"
+    style = "plain"
+    background = "transparent"
+    foreground = "#aaaaaa"
+    template = """{{ .HEAD }}\
+      {{ if or (.Working.Changed) (.Staging.Changed) }}*{{end}}\
+      {{ if gt .Behind 0 }}⇣{{end}}\
+      {{ if gt .Ahead 0 }}⇡4{{end}}"""
+
+    [blocks.segments.properties]
+      fetch_status = true
+      commit_icon = "@"
+
+  [[blocks.segments]]
+    type = "text"
+    style = "plain"
+    foreground = "magenta"
+    template = "{{if .Env.TMUX }}  {{end}}"
+  
+  [[blocks.segments]]
+    type = "text"
+    style = "plain"
+    foreground_templates = [
+      "{{if gt .Code 0}}red{{end}}",
+      "{{if eq .Code 0}}magenta{{end}}"
+    ]
+    background = "transparent"
+    template = "❯"
+
+[[blocks]]
+  type = "rprompt"
+  overflow = "hidden"
+
+  
+  [[blocks.segments]]
+  type = "executiontime"
+  style = "plain"
+  foreground = "yellow"
+  background = "transparent"
+  template = "{{ .FormattedMs }}"
+    [blocks.segments.properties]
+      style = "round"
+      threshold = "5000"
+
+  [[blocks.segments]]
+  type = "status"
+  style = "plain"
+  foreground = "red"
+  background = "transparent"
+  template = """{{ if .Error }}{{ if eq .Code 0 }}INT{{else}}ERR{{end}} {{.Code}}{{end}}"""
+
+[secondary_prompt]
+  style = "plain"
+  foreground = "blue"
+  background = "transparent"
+  template = "❯❯ "
