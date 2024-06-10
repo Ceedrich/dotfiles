@@ -18,7 +18,9 @@ template = "{{ .Icon }} "
 type = "path"
 style = "plain"
 background = "transparent"
-foreground = "p.prompt"
+foreground_templates = [
+  "{{if .Writable}}p:prompt{{else}}p:warn{{end}}"
+]
 template = "{{ path .Path .Location }} "
 
 [blocks.segments.properties]
