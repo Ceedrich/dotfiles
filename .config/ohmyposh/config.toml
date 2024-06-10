@@ -61,7 +61,7 @@ template = """{{if .HEAD }}\
 type = "text"
 style = "plain"
 foreground = "p:tip"
-template = "{{if .Env.TMUX }}  {{end}}"
+template = "{{if .Env.TMUX }} {{end}}"
   
 [[blocks.segments]]
 type = "text"
