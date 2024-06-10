@@ -15,6 +15,6 @@ return {
 		})
 
 		local keymap = vim.keymap
-		keymap.set("n", "<leader>g", "<cmd>Neogit<cr>", { desc = "Open Neogit window" })
+		keymap.set("n", "<leader>G", "<cmd>Neogit<cr>", { desc = "Open Neogit window" })
 	end,
 }
