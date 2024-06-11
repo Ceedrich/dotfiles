@@ -39,13 +39,14 @@ template = """{{if .HEAD }}\
   {{ .UpstreamIcon }}{{ .HEAD }}\
   {{ if or (.Working.Changed) (.Staging.Changed) }}*{{end}}\
   <green>\
-  {{ if or (gt .Staging.Modified 0) (gt .Working.Modified 0)}} {{end}}\
-  {{ if gt (add .Staging.Modified .Staging.Deleted) 0 }}+{{ add .Staging.Modified .Staging.Deleted}}{{end}}\
+  {{ if or (.Staging.Changed) (.Working.Changed)}} {{end}}\
+  {{ if gt (add .Staging.Modified .Staging.Added .Staging.Deleted) 0 }}+{{ add .Staging.Modified .Staging.Added .Staging.Deleted }}{{end}}\
   {{ if gt .Working.Modified 0 }}!{{ .Working.Modified }}{{end}}\
   </>\
   <p:error>\
-  {{ if gt .Working.Untracked 0 }} ?{{ .Working.Untracked }}{{end}}\
-  {{ if gt .Working.Deleted 0 }} -{{ .Working.Deleted }}{{end}}\
+  {{ if or (gt .Working.Untracked 0) (gt .Working.Deleted 0)}} {{end}}\
+  {{ if gt .Working.Untracked 0 }}?{{ .Working.Untracked }}{{end}}\
+  {{ if gt .Working.Deleted 0 }}-{{ .Working.Deleted }}{{end}}\
   </>\
   <green>\
   {{ if or (gt .Behind 0) (gt .Ahead 0)}} {{end}}\
