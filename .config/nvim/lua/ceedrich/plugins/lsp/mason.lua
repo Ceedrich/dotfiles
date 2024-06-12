@@ -39,6 +39,7 @@ return {
 			ensure_installed = {
 				"prettier",
 				"stylua",
+				"clang-format",
 				"eslint_d",
 			},
 		})

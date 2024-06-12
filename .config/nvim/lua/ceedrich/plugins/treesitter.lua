@@ -22,8 +22,6 @@ return {
 				"html",
 				"css",
 				"prisma",
-				"markdown",
-				"markdown_inline",
 				"bash",
 				"lua",
 				"vim",
@@ -32,6 +30,7 @@ return {
 				"c",
 				"cpp",
 				"rust",
+				"tmux",
 			},
 		})
 	end,
