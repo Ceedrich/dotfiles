@@ -6,6 +6,8 @@ autoload -Uz compinit
 compinit
 # end compinstall
 
+bindkey -v
+
 # Useful stuff
 source $ZDOTDIR/functions.zsh
 zsh_add_file options.zsh
@@ -21,9 +23,9 @@ source $ZDOTDIR/lf.zsh
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 
-# Theme
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
-
+# Prompt
+#eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
+eval "$(starship init zsh)"
 # Plugins
 zsh_add_plugin zsh-users/zsh-autosuggestions
 zsh_add_plugin zsh-users/zsh-syntax-highlighting
