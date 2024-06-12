@@ -31,6 +31,7 @@ return {
 				"emmet_ls",
 				"prismals",
 				"clangd",
+				"cmake",
 				"rust_analyzer",
 			},
 		})
