@@ -39,7 +39,7 @@ template = """{{if .HEAD }}\
   {{ .UpstreamIcon }}{{ .HEAD }}\
   {{ if or (.Working.Changed) (.Staging.Changed) }}*{{end}}\
   <green>\
-  {{ if or (.Staging.Changed) (.Working.Changed)}} {{end}}\
+  {{ if gt (add .Staging.Modified .Staging.Added .Staging.Deleted .Working.Modified) 0}} {{end}}\
   {{ if gt (add .Staging.Modified .Staging.Added .Staging.Deleted) 0 }}+{{ add .Staging.Modified .Staging.Added .Staging.Deleted }}{{end}}\
   {{ if gt .Working.Modified 0 }}!{{ .Working.Modified }}{{end}}\
   </>\
