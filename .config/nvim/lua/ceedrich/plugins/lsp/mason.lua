@@ -33,6 +33,7 @@ return {
 				"clangd",
 				"cmake",
 				"rust_analyzer",
+				"bashls",
 			},
 		})
 

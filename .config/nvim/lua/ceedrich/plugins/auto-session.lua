@@ -9,6 +9,9 @@ return {
 				"~/",
 				"~/Downloads",
 			},
+			session_lens = {
+				previewer = true,
+			},
 		})
 
 		local keymap = vim.keymap
