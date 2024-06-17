@@ -24,8 +24,8 @@ export EDITOR=nvim
 export VISUAL="$EDITOR"
 
 # Prompt
-#eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
-eval "$(starship init zsh)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
+#eval "$(starship init zsh)"
 # Plugins
 zsh_add_plugin zsh-users/zsh-autosuggestions
 zsh_add_plugin zsh-users/zsh-syntax-highlighting
