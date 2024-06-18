@@ -31,8 +31,7 @@ map p paste
 map x cut
 map y copy
 map R reload
-map mf mkfile
-map md mkdir
+map a mkdir
 
 ## Favorite direcotries
 map gh cd ~

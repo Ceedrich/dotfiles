@@ -1,4 +1,4 @@
-.config/tmux/plugins
-.config/zsh/plugins
-.config/zsh/themes
-.config/zsh/.zcompdump
+tmux/.config/tmux/plugins
+zsh/.config/zsh/plugins
+zsh/.config/zsh/themes
+zsh/.config/zsh/.zcompdump
