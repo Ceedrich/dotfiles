@@ -1,0 +1,20 @@
+configuration{
+    modi: "run,window,combi";
+    // icon-theme: "Oranchelo";
+    font: "JetBrainsMonoNerdFont Mono 12";
+    show-icons: true;
+    terminal: "alacritty";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-combi: "Combi";
+    display-run: "Run";
+    display-drun: "Apps";
+    display-window: "Windows";
+    sidebar-mode: true;
+}
+
+@theme "catppuccin-mocha"
+
+/* vim: ft=sass
