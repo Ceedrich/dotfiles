@@ -7,18 +7,19 @@ theme="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/themes/powermenu-theme.rasi"
 shutdown=󰐥
 reboot=󰜉
 logout=󰍃
+suspend=󰏥
 yes=y
 no=n
 
 run_rofi() {
-  echo -e "$shutdown\n$reboot\n$logout" | rofi -dmenu -filter "" \
+  echo -e "$shutdown\n$reboot\n$suspend\n$logout" | rofi -dmenu -filter "" \
     -mesg "Power Menu (up $uptime)" \
     -theme "$theme"
 }
 
 confirm_exit() {
   echo -e "$yes\n$no" | rofi -dmenu \
-    -mesg "Are you sure ($1)" \
+    -mesg "Are you sure? ($1)" \
     -theme "$theme"
 }
 
@@ -31,6 +32,8 @@ run_cmd() {
       systemctl reboot
     elif [ "$1" == "Logout" ]; then
       i3-msg exit
+    elif [ "$1" == "Suspend" ]; then
+      systemctl suspend
     fi
   else
     exit 0
@@ -47,5 +50,8 @@ case "$chosen" in
     ;;
   "$logout")
     run_cmd Logout
+    ;;
+  "$suspend")
+    run_cmd Suspend
     ;;
 esac
