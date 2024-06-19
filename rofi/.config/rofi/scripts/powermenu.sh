@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 uptime="$(uptime -p | sed -e 's/up //g')"
-theme="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/scripts/powermenu-theme.rasi"
+theme="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/themes/powermenu-theme.rasi"
 
 # Icons
 shutdown=󰐥
