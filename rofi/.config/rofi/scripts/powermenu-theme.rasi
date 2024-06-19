@@ -16,6 +16,7 @@ configuration {
 
 window {
   width: 45%;
+  border: 0.1em;
   border-color: @border-col;
   background-color: @bg-col;
 }
