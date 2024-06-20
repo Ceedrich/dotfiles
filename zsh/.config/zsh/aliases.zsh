@@ -1,22 +1,30 @@
 # Zsh
 alias reload="source $ZDOTDIR/.zshrc"
 
-alias ls="eza"
-alias l="eza --icons --git -al"
+if cmd_exists eza; then
+  alias ls="eza"
+  alias l="eza --icons --git -al"
+fi
 
 # Pyhton
-alias py="python3"
-alias python="python3"
+if cmd_exists python3; then
+  alias py="python3"
+  alias python="python3"
+fi
 
 # Vim
-alias vim="nvim"
-alias vi="nvim"
-alias view="nvim -R"
+if cmd_exists nvim; then
+  alias vim="nvim"
+  alias vi="nvim"
+  alias view="nvim -R"
+fi
 
 # Bat
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
-alias cat="bat --paging=never"
+if cmd_exists bat; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+  alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+  alias cat="bat --paging=never"
+fi
 
 # Git
 alias gd="git diff --name-only --relative --diff-filter=d | xargs bat --diff"
@@ -26,7 +34,9 @@ alias gp="git push"
 alias gc="git commit"
 
 # Zoxide
-alias zstats="zoxide query -las | less"
+if cmd_exists zoxide; then
+  alias zstats="zoxide query -las | less"
+fi
 
 # Colors
 if [ -x /usr/bin/dircolors ]; then

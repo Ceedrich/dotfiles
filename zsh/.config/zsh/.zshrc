@@ -1,7 +1,7 @@
 export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/.local/bin:$HOME/.cargo/bin/"
 
 # compinstall
-zstyle :compinstall filename "/home/ceedrich/.zshrc"
+zstyle :compinstall filename "$ZDOTDIR/.zshrc"
 autoload -Uz compinit
 compinit
 # end compinstall
@@ -15,31 +15,42 @@ zsh_add_file aliases.zsh
 
 # Alacritty
 fpath+=$ZDOTDIR/.zsh_functions/
-# LF
-source $ZDOTDIR/lf.zsh
+# LF Icons
+if cmd_exists lf; then
+  source $ZDOTDIR/lf.zsh
+fi
 
 # Default editor
-
-export EDITOR=nvim
-export VISUAL="$EDITOR"
+if cmd_exists nvim; then
+  export EDITOR=nvim
+  export VISUAL="$EDITOR"
+fi
 
 # Prompt
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
+if cmd_exists oh-my-posh; then
+  eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
+fi
 #eval "$(starship init zsh)"
 # Plugins
 zsh_add_plugin zsh-users/zsh-autosuggestions
 zsh_add_plugin zsh-users/zsh-syntax-highlighting
 
 # zoxide
-eval "$(zoxide init --cmd cd zsh)"
+if cmd_exists zoxide; then
+  eval "$(zoxide init --cmd cd zsh)"
+fi
 # zoxide end
 
 # pnpm
-export PNPM_HOME="/home/ceedrich/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
+if cmd_exists pnpm; then
+  export PNPM_HOME="/home/ceedrich/.local/share/pnpm"
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*)
+      ;;
+    *) export PATH="$PNPM_HOME:$PATH"
+      ;;
+  esac
+fi
 # pnpm end
 
 HISTFILE="$HOME/.zsh_history"
