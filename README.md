@@ -40,26 +40,34 @@ List of all packages:
 - starship
 - [tmux](#tmux)
 - [zsh](#zsh)
+- picom
 
 Dependencies:
 
-- [picom](#picom)
 - feh
-- [polybar](#polybar)
-- alacritty
-- [rofi](#rofi)
+
+### i3
+
+If picom is not working, remove the --experimental-backends flag from i3 config
 
 ### nvim
 
 Dependencies (for plugins):
 
 - npm
+- fzf
+- ripgrep
+- fd
 
 ### ohmyposh
 
 Install from their [website](https://ohmyposh.dev)
 
 ### polybar
+
+Dependencies:
+
+- xrandr (xorg-xrandr)
 
 <!-- TODO: add more information -->
 
@@ -98,3 +106,9 @@ if [[ -d "$XDG_CONFIG_HOME" ]]; then
 	export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 fi
 ```
+
+## Additional software
+
+- eza (instead of ls)
+- zoxide (instead of cd)
+- python3
