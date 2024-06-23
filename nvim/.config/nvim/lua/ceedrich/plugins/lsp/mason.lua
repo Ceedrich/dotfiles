@@ -34,6 +34,7 @@ return {
 				"cmake",
 				"rust_analyzer",
 				"bashls",
+				"taplo",
 			},
 		})
 
