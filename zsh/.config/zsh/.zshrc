@@ -42,15 +42,11 @@ fi
 # zoxide end
 
 # pnpm
-if cmd_exists pnpm; then
-  export PNPM_HOME="/home/ceedrich/.local/share/pnpm"
-  case ":$PATH:" in
-    *":$PNPM_HOME:"*)
-      ;;
-    *) export PATH="$PNPM_HOME:$PATH"
-      ;;
-  esac
-fi
+export PNPM_HOME="/home/ceedrich/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 # pnpm end
 
 HISTFILE="$HOME/.zsh_history"
