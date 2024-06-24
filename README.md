@@ -41,6 +41,7 @@ List of all packages:
 - [tmux](#tmux)
 - [zsh](#zsh)
 - picom
+- profile
 
 Dependencies:
 
