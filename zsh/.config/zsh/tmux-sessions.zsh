@@ -14,7 +14,7 @@ tms () {
 }
 
 __tms_pnpm() {
-  tmux new-session \; \
+  tmux new-session -s $(basename $PWD)\; \
     send-keys "vim" C-m \; \
     split-window -v \; \
     resize-pane -y 5 \; \
@@ -23,7 +23,7 @@ __tms_pnpm() {
 }
 
 __tms_config() {
-  tmux new-session \; \
+  tmux new-session -s $(basename $PWD)\; \
     send-keys "vim" C-m \; \
     split-window -h \;
 }
