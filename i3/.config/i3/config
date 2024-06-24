@@ -167,6 +167,8 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q exec --no-startup-id "${XDG_CONFIG_HOME:-$HOME/.config}/rofi/scripts/powermenu.sh"
+# Bluetooth Settings
+bindsym $mod+Shift+b exec --no-startup-id "${XDG_CONFIG_HOME:-$HOME/.config}/rofi/scripts/bluetooth.sh"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
