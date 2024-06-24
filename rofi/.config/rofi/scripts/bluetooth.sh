@@ -73,7 +73,9 @@ device_menu() {
       toggle_connection "$mac"
       device_menu
       ;;
-
+    ""|Exit)
+      return 0
+      ;;
     "Back")
       show_menu
       ;;
@@ -104,6 +106,9 @@ show_menu() {
     "$scan")
       toggle_scan
       show_menu
+      ;;
+    ""|Exit)
+      return 0
       ;;
     *)
       device=$(bluetoothctl devices | grep "$chosen")
