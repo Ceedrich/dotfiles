@@ -112,4 +112,11 @@ show_menu() {
   esac
 }
 
-show_menu
+case $1 in
+  "--status")
+    echo "Bluetooth"
+    ;;
+  *)
+    show_menu
+    ;;
+esac
