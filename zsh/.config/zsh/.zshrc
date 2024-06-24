@@ -2,8 +2,9 @@ export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/.local/bin:$HOME/.cargo/bin/"
 
 # compinstall
 zstyle :compinstall filename "$ZDOTDIR/.zshrc"
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 
+zstyle ':completion:*' menu select
 # end compinstall
 
 bindkey -v
