@@ -25,5 +25,6 @@ __tms_pnpm() {
 __tms_config() {
   tmux new-session -s $(basename $PWD)\; \
     send-keys "vim" C-m \; \
-    split-window -h \;
+    split-window -h \; \
+    select-pane -t 1 \;
 }
