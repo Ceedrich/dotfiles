@@ -1,0 +1,115 @@
+#!/bin/bash
+
+rofi_cmd="rofi -dmenu -p" 
+
+is_power_on() {
+  if bluetoothctl show | grep -q "Powered: yes"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+is_scan_on() {
+  if bluetoothctl show | grep "Discovering: yes"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+is_connected() {
+  if bluetoothctl info "$1" | grep -q "Connected: yes"; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+toggle_connection() {
+  if is_connected "$1"; then
+    bluetoothctl disconnect "$1"
+  else
+    bluetoothctl connect "$1"
+  fi
+}
+
+toggle_power() {
+  if is_power_on; then
+    bluetoothctl power off
+  else
+    bluetoothctl power on
+  fi
+}
+
+toggle_scan() {
+  if is_scan_on; then
+    bluetoothctl scan off
+    pgrep -f "bluetoothctl scan on" | xargs kill
+  else
+    echo "Scanning..."
+    bluetoothctl scan on &
+    sleep 4
+  fi
+}
+
+device_menu() {
+  device=$1
+  device_name="$(echo "$device" | cut -d " " -f 3-)"
+  mac="$(echo "$device" | cut -d " " -f 2)"
+
+  if is_connected "$mac"; then
+    connected="Connected: yes"
+  else
+    connected="Connected: no"
+  fi
+
+  options="$connected\nBack\nExit"
+
+  chosen=$(echo -e "$options" | $rofi_cmd "$device_name")
+
+  case "$chosen" in
+    "$connected")
+      toggle_connection "$mac"
+      device_menu
+      ;;
+
+    "Back")
+      show_menu
+      ;;
+
+  esac
+}
+
+show_menu() {
+  if is_power_on; then
+    power="Power: on"
+    devices=$(bluetoothctl devices | grep Device | cut -d " " -f 3-)
+
+    if is_scan_on; then scan="Scan: on"; else scan="Scan: off"; fi
+
+    options="$power\n$scan\n$devices\nExit"
+  else
+    power="Power: off"
+    options="$power\nExit"
+  fi
+
+  chosen=$(echo -e "$options" | $rofi_cmd "Bluetooth" )
+
+  case $chosen in 
+    "$power")
+      toggle_power
+      show_menu
+      ;;
+    "$scan")
+      toggle_scan
+      show_menu
+      ;;
+    *)
+      device=$(bluetoothctl devices | grep "$chosen")
+      if [[ $device ]]; then device_menu "$device"; fi
+      ;;
+  esac
+}
+
+show_menu
