@@ -12,6 +12,9 @@ bindkey -v
 source $ZDOTDIR/functions.zsh
 zsh_add_file options.zsh
 zsh_add_file aliases.zsh
+if cmd_exists tmux; then
+  zsh_add_file tmux-sessions.zsh
+fi
 
 # Alacritty
 fpath+=$ZDOTDIR/.zsh_functions/
