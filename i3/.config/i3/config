@@ -20,7 +20,7 @@ exec --no-startup-id feh --bg-scale ${XDG_CONFIG_HOME:-$HOME/.config}/i3/wallpap
 
 # kill any hanging polybar processes
 exec_always killall polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh "$HOME/.config/polybar/config.ini"
+exec_always --no-startup-id launch_polybar
 
 # Touchpad settings
 
@@ -166,9 +166,9 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+q exec --no-startup-id "${XDG_CONFIG_HOME:-$HOME/.config}/rofi/scripts/powermenu.sh"
+bindsym $mod+Shift+q exec --no-startup-id power_menu
 # Bluetooth Settings
-bindsym $mod+Shift+b exec --no-startup-id "${XDG_CONFIG_HOME:-$HOME/.config}/rofi/scripts/bluetooth.sh"
+bindsym $mod+Shift+b exec --no-startup-id bluetooth_menu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
