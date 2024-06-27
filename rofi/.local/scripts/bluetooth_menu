@@ -71,7 +71,7 @@ device_menu() {
   case "$chosen" in
     "$connected")
       toggle_connection "$mac"
-      device_menu
+      device_menu "$device"
       ;;
     ""|Exit)
       return 0
