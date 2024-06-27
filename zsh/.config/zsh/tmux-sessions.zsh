@@ -3,7 +3,7 @@ tms () {
     web|pnpm)
       __tms_pnpm
       ;;
-    conf|config)
+    ""|conf|config)
       __tms_config
       ;;
     *)
@@ -15,7 +15,7 @@ tms () {
 
 __tms_pnpm() {
   tmux new-session -s $(basename $PWD)\; \
-    send-keys "vim" C-m \; \
+    send-keys "nvim" C-m \; \
     split-window -v \; \
     resize-pane -y 5 \; \
     send-keys "pnpm dev" C-m \; \
@@ -24,7 +24,7 @@ __tms_pnpm() {
 
 __tms_config() {
   tmux new-session -s $(basename $PWD)\; \
-    send-keys "vim" C-m \; \
+    send-keys "nvim" C-m \; \
     split-window -h \; \
     select-pane -t 1 \;
 }
