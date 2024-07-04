@@ -1,4 +1,4 @@
-export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/.local/bin:$HOME/.cargo/bin/"
+export PATH="$PATH:/opt/nvim-linux64/bin:$HOME/.local/bin:$HOME/.cargo/bin/:$HOME/.deno/bin"
 
 # compinstall
 zstyle :compinstall filename "$ZDOTDIR/.zshrc"

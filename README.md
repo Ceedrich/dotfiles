@@ -59,6 +59,7 @@ Dependencies (for plugins):
 - fzf
 - ripgrep
 - fd
+- deno
 
 ### ohmyposh
 
