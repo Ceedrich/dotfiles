@@ -9,7 +9,10 @@ return {
 		local treesitter = require("nvim-treesitter.configs")
 
 		treesitter.setup({
-			highlight = { enable = true },
+			highlight = {
+				enable = true,
+				disable = { "latex" },
+			},
 			indent = { enable = true },
 			autotag = { enable = true },
 			ensure_installed = {

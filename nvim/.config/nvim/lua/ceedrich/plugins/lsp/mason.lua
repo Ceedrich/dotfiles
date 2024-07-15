@@ -23,18 +23,19 @@ return {
 
 		mason_lspconfig.setup({
 			ensure_installed = {
-				"tsserver",
-				"html",
-				"cssls",
-				"tailwindcss",
-				"lua_ls",
-				"emmet_ls",
-				"prismals",
-				"clangd",
-				"cmake",
-				"rust_analyzer",
-				"bashls",
-				"taplo",
+				"tsserver", -- Typescript
+				"html", -- HTML
+				"cssls", -- CSS
+				"tailwindcss", -- Tailwind
+				"lua_ls", -- Lua
+				"emmet_ls", -- HTML, CSS
+				"prismals", -- Prisma
+				"clangd", -- C++
+				"cmake", -- Cmake
+				"rust_analyzer", -- Rust
+				"bashls", -- bash
+				"taplo", -- TOML
+				"texlab", -- LaTeX
 			},
 		})
 
