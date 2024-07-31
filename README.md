@@ -43,7 +43,7 @@ List of all packages:
 - [zsh](#zsh)
 - picom
 - profile
-- [yazi](https://yazi-rs.github.io/)
+- [yazi](https://yazi-rs.github.io/) <!-- TODO: add configuration -->
 
 Dependencies:
 
