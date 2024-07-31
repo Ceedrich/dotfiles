@@ -19,6 +19,7 @@ __tms_pnpm() {
     split-window -v \; \
     resize-pane -y 5 \; \
     send-keys "pnpm dev" C-m \; \
+    split-window -h \;
     select-pane -t 1 \;
 }
 

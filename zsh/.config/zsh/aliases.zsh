@@ -6,6 +6,17 @@ if cmd_exists eza; then
   alias l="eza --icons --git -al"
 fi
 
+if cmd_exists yazi; then
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+fi
+
 # Pyhton
 if cmd_exists python3; then
   alias py="python3"

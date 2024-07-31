@@ -27,12 +27,13 @@ sudo pacman -S ttf-jetbrains-mono-nerd
 
 List of all packages:
 
-- alacritty
+- [alacritty](https://alacritty.org/) (deprecated, use kitty instead)
 - bat
 <!-- WARN: Git information should not be in a public repo -->
 - git
 - [i3](#i3)
-- lf
+- [kitty](https://sw.kovidgoyal.net/kitty/)
+- lf (deprecated, use yazi instead)
 - [nvim](#nvim)
 - [ohmyposh](#ohmyposh)
 - [polybar](#polybar)
@@ -42,6 +43,7 @@ List of all packages:
 - [zsh](#zsh)
 - picom
 - profile
+- [yazi](https://yazi-rs.github.io/)
 
 Dependencies:
 
