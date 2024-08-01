@@ -14,7 +14,7 @@ for_window [class="^.*"] border pixel 1
 set $mod Mod4
 
 exec --no-startup-id "picom --experimental-backends || picom"
-exec --no-startup-id feh --bg-scale ${XDG_CONFIG_HOME:-$HOME/.config}/i3/wallpaper.jpg
+exec_always --no-startup-id feh --bg-scale ${XDG_CONFIG_HOME:-$HOME/.config}/i3/wallpaper.jpg
 #exec --no-startup-id xrdb -merge ~/.Xresources
 #exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 
@@ -169,6 +169,8 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+q exec --no-startup-id power_menu
 # Bluetooth Settings
 bindsym $mod+Shift+b exec --no-startup-id bluetooth_menu
+# Screen Settings
+bindsym $mod+Shift+s exec --no-startup-id screens
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

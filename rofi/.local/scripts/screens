@@ -1,0 +1,87 @@
+#!/bin/env bash
+
+rofi_cmd="rofi -i -dmenu -p"
+
+internal="eDP-1"
+monitors=$(xrandr | grep "\bconnected" | awk '{print $1}')
+
+opt_back="Back"
+
+rotate_normal="Horizontal 󰍹"
+rotate_left="Vertical (left 󰑥)"
+rotate_right="Vertical (right 󰑧)"
+
+rotate_options="$rotate_normal\n$rotate_left\n$rotate_right\n$opt_back"
+
+rotate_monitor() {
+  opt=$(echo -e "$rotate_options" | $rofi_cmd "Rotate Monitor ($1)")
+  case $opt in
+    "$rotate_normal")
+      xrandr --output "$1" --rotate normal ;;
+    "$rotate_left")
+      xrandr --output "$1" --rotate left ;;
+    "$rotate_right")
+      xrandr --output "$1" --rotate right ;;
+    "$opt_back")
+    do_action "$1" ;;
+    *)
+      notify-send "Rotate $1" "Rotation '$opt' not known" ;;
+  esac
+}
+
+place_duplicate="Duplicate internal monitor"
+place_left="Left of internal monitor"
+place_right="Right of internal monitor"
+place_above="Above internal monitor"
+place_below="Below internal monitor"
+
+place_options="$place_duplicate\n$place_left\n$place_right\n$place_above\n$place_below\n$opt_back"
+
+place_monitor() {
+  opt=$(echo -e "$place_options" | $rofi_cmd "Place Monitor ($1)")
+  case $opt in
+    "$place_duplicate")
+      xrandr --output "$1" --same-as "$internal" ;;
+    "$place_left")
+      xrandr --output "$1" --left-of "$internal" ;;
+    "$place_right")
+      xrandr --output "$1" --right-of "$internal" ;;
+    "$place_above")
+      xrandr --output "$1" --above "$internal" ;;
+    "$place_below")
+      xrandr --output "$1" --below "$internal" ;;
+    "$opt_back")
+      do_action "$1" ;;
+  esac
+}
+
+get_monitor() {
+  echo -e "$monitors" | $rofi_cmd "Select Monitor"
+}
+
+action_place="Place Monitor"
+action_rotate="Rotate Monitor"
+
+action_options="$action_place\n$action_rotate\n$opt_back"
+
+do_action() {
+  opt=$(echo -e "$action_options" | $rofi_cmd "Select Action ($1)")
+  case $opt in
+    "$action_place")
+      place_monitor "$1" ;;
+    "$action_rotate")
+      rotate_monitor "$1" ;;
+    "$opt_back")
+      main
+  esac
+}
+
+main() {
+monitor=$(get_monitor)
+if [ -n "$monitor" ]; then
+  do_action "$monitor"
+fi
+}
+
+main
+
