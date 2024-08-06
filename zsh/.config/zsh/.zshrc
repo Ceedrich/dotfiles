@@ -19,10 +19,6 @@ fi
 
 # Alacritty
 fpath+=$ZDOTDIR/.zsh_functions/
-# LF Icons
-if cmd_exists lf; then
-  source $ZDOTDIR/lf.zsh
-fi
 
 # Default editor
 if cmd_exists nvim; then

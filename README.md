@@ -33,7 +33,6 @@ List of all packages:
 - git
 - [i3](#i3)
 - [kitty](https://sw.kovidgoyal.net/kitty/)
-- lf (deprecated, use yazi instead)
 - [nvim](#nvim)
 - [ohmyposh](#ohmyposh)
 - [polybar](#polybar)
