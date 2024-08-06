@@ -14,7 +14,7 @@ rotate_right="Vertical (right 󰑧)"
 rotate_options="$rotate_normal\n$rotate_left\n$rotate_right\n$opt_back"
 
 rotate_monitor() {
-  opt=$(echo -e "$rotate_options" | $rofi_cmd "Rotate Monitor ($1)")
+  opt=$(echo -e "$rotate_options" | $rofi_cmd "Set Monitor Rotation ($1)")
   case $opt in
     "$rotate_normal")
       xrandr --output "$1" --rotate normal ;;
@@ -60,7 +60,7 @@ get_monitor() {
 }
 
 action_place="Place Monitor"
-action_rotate="Rotate Monitor"
+action_rotate="Set Monitor Rotation"
 
 action_options="$action_place\n$action_rotate\n$opt_back"
 
