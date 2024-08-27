@@ -28,7 +28,7 @@ sudo pacman -S ttf-jetbrains-mono-nerd
 List of all packages:
 
 - [alacritty](https://alacritty.org/) (deprecated, use kitty instead)
-- bat
+- [bat](https://github.com/sharkdp/bat)
 <!-- WARN: Git information should not be in a public repo -->
 - git
 - [i3](#i3)
@@ -109,6 +109,11 @@ if [[ -d "$XDG_CONFIG_HOME" ]]; then
 	export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 fi
 ```
+
+Dependencies:
+
+- bat
+- [delta](https://github.com/dandavison/delta)
 
 ## Additional software
 
