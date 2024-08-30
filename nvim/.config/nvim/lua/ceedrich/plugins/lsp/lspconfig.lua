@@ -70,6 +70,17 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+			["taplo"] = function()
+				lspconfig.taplo.setup({
+					on_attach = function(client, bufnr)
+						local file_name = vim.api.nvim_buf_get_name(bufnr)
+						if file_name:match("Cargo.toml$") then
+							client.stop()
+						end
+					end,
+				})
+			end,
+			["rust_analyzer"] = function() end, -- Don't set up rust-analyzer as it is done by rust-tools
 			["emmet_ls"] = function()
 				-- configure emmet language server
 				lspconfig["emmet_ls"].setup({

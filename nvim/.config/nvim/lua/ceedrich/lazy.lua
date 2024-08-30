@@ -13,6 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{ import = "ceedrich.plugins" },
 	{ import = "ceedrich.plugins.lsp" },
+	{ import = "ceedrich.plugins.languages" },
 }, {
 	checker = {
 		enabled = true,

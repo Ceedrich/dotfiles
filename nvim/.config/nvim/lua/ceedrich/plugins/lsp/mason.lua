@@ -45,6 +45,7 @@ return {
 				"stylua",
 				"clang-format",
 				"eslint_d",
+				"codelldb",
 			},
 		})
 	end,
