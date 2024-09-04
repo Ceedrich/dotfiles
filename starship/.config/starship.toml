@@ -1,23 +1,28 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
-# $cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$gleam$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin$gradle\
-
-right_format = """$c$cmake\
-$nim\
+# $cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$gleam$golang$guix_shell$haskell$haxe$helm$java$julia$kotlin
+palette = "catppuccin_mocha"
+right_format = """\
+$docker_context\
+$c$cmake\
+$gradle\
 $nodejs\
+$rust\
+$python\
+$lua\
+$custom\
+$nim\
 $ocaml\
 $opa\
 $perl\
 $php\
 $pulumi\
 $purescript\
-$python\
 $quarto\
 $raku\
 $rlang\
 $red\
 $ruby\
-$rust\
 $scala\
 $solidity\
 $swift\
@@ -40,8 +45,6 @@ $nats\
 $direnv\
 $env_var\
 $crystal\
-$custom\
-$sudo\
 $cmd_duration\
 $line_break\
 $jobs\
@@ -51,15 +54,16 @@ $status\
 $os\
 $container\
 $shell\
-$lua\
 """
+
+# Missing: LaTeX, Minecraft
 
 format = """$username$hostname$localip\
 $singularity$kubernetes\
 $directory\
 $git_branch$git_commit$git_state$git_metrics$git_status\
-$docker_context\
 $package\
+$sudo\
 $character"""
 
 # Inserts a blank line between shell prompts
@@ -67,18 +71,21 @@ add_newline = false
 
 [directory]
 truncation_length = 5
-truncate_to_repo = false
+truncate_to_repo = true
+format = "[$path]($style)[$read_only]($read_only_style) "
 style = "blue"
-read_only = ""
+read_only = " "
 repo_root_style = "bold cyan"
 home_symbol = "󰋜"
 [directory.substitutions]
 "Downloads" = "󰉍"
+"Desktop" = "󰇄"
+"repos" = "󰳐"
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
 symbol = ""
-style = "#aaaaaa"
+style = "subtext0"
 
 [git_commit]
 tag_symbol = "󰓹"
@@ -108,12 +115,69 @@ format = "[$symbol( $version) \\(CMake\\)]($style)"
 style = "blue"
 symbol = " "
 
+[gradle]
+format = "[$symbol($version)]($style) "
+symbol = " "
+style = "sapphire"
+
+[python]
+format = "[${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
+symbol = " "
+style = "yellow"
+
+[rust]
+format = "[$symbol($version)]($style)"
+style = "peach"
+
+[docker_context]
+format = "[$symbol$context]($style) "
+symbol = "󰡨"
+
+[lua]
+format = "[$symbol($version)]($style) "
+symbol = "󰢱 "
+
+[nodejs]
+format = "[$symbol($version)]($style) "
+
 [cmd_duration]
 min_time = 5_000
 format = "[󰔟 $duration]($style)"
 
+[status]
+format = "[$symbol $status]($style) "
+disabled = false
+symbol = "ERR"
+not_executable_symbol = ""
+not_found_symbol = "󰍉"
+sigint_symbol = "INT"
 
-[character] 
+[sudo]
+disabled = false
+format = "[su $symbol ]($style)"
+symbol = "󰒓"
+style = "red"
+
+[custom.minecraft_resource]
+when = ''' test -f pack.mcmeta && test -d ./assets '''
+command = ''' cat pack.mcmeta | jq '.pack.pack_format' '''
+symbol = "󰍳 󰉼 "
+format = "[$symbol(v$output)]($style) "
+style = "green bold"
+
+[custom.minecraft_data]
+when = ''' test -f pack.mcmeta && test -d ./data '''
+command = ''' cat pack.mcmeta | jq '.pack.pack_format' '''
+symbol = "󰍳  "
+format = "[$symbol(v$output)]($style) "
+style = "green bold"
+
+[custom.latex]
+detect_extensions = ["tex"]
+symbol = "LaTeX "
+
+
+[character]
 success_symbol = "[❯](bold lavender)"
 error_symbol = "[❯](bold red)"
 vimcmd_symbol = "[❮](bold lavender)"
@@ -145,5 +209,3 @@ surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
-
-palette = "catppuccin_mocha"
