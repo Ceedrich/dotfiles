@@ -120,3 +120,7 @@ Dependencies:
 - eza (instead of ls)
 - zoxide (instead of cd)
 - python3
+
+## TODOS
+
+- Enable proper screenshot functionality
