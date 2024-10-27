@@ -22,3 +22,15 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 
 -- Go to previous buffer
 keymap.set("n", "<bs>", ":edit #<cr>", { silent = true })
+
+-- spell checking
+keymap.set("n", "<leader>Ss", ":set spell!<CR>", { desc = "Activate spell checking" })
+keymap.set("n", "<leader>Sd", ":set spelllang=de_ch<CR>", { desc = "Set spell checking language to german" })
+keymap.set("n", "<leader>Se", ":set spelllang=en_gb<CR>", { desc = "Set spell checking language to english (GB)" })
+keymap.set("n", "<leader>Sf", ":set spelllang=en_gb<CR>", { desc = "Set spell checking language to french" })
+keymap.set(
+	"n",
+	"<leader>Sm",
+	":set spelllang=en_gb,de_ch<CR>",
+	{ desc = "Set spell checking language to english (GB)" }
+)

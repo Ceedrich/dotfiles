@@ -36,3 +36,7 @@ opt.splitright = true
 opt.splitbelow = true
 
 vim.cmd.colorscheme = "catppuccin"
+
+-- spell checking
+opt.spelllang = "de_ch,en_gb"
+opt.spell = true
