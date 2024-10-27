@@ -4,6 +4,7 @@ return {
 	build = ":TSUpdate",
 	dependencies = {
 		"windwp/nvim-ts-autotag",
+		"tadmccorkle/markdown.nvim",
 	},
 	config = function()
 		local treesitter = require("nvim-treesitter.configs")
@@ -13,6 +14,7 @@ return {
 				enable = true,
 				disable = { "latex" },
 			},
+			markdown = { enable = true },
 			indent = { enable = true },
 			autotag = { enable = true },
 			ensure_installed = {
@@ -34,6 +36,8 @@ return {
 				"cpp",
 				"rust",
 				"tmux",
+				"markdown",
+				"markdown_inline",
 			},
 		})
 	end,
