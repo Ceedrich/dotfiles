@@ -3,9 +3,9 @@ vim.g.mapleader = " "
 local keymap = vim.keymap
 
 -- Use the system clipboard
-keymap.set("n", "<C-y>", '"+y')
-keymap.set("n", "<C-p>", '"+p')
-keymap.set("n", "<C-x>", '"+x')
+keymap.set({ "v", "n" }, "<C-y>", '"+y')
+keymap.set({ "v", "n" }, "<C-p>", '"+p')
+keymap.set({ "v", "n" }, "<C-x>", '"+x')
 
 -- Window management
 -- splits
