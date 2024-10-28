@@ -74,6 +74,7 @@ alias gst="git status"
 alias ga="git add"
 alias gp="git push"
 alias gc="git commit"
+alias gco="git checkout"
 
 # Zoxide
 if cmd_exists zoxide; then
