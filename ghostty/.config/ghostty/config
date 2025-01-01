@@ -1,0 +1,9 @@
+font-family = JetBrainsMono Nerd Font
+font-size = 16
+theme = catppuccin-mocha
+window-decoration = false
+confirm-close-surface = false
+title = "Ghostty"
+
+keybind = ctrl+shift+r=reload_config
+
