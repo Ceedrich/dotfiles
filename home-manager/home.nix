@@ -26,6 +26,8 @@
     dotDir = ".config/zsh";
     initExtra = ''
       setopt correct
+      setopt extendedglob
+      setopt nocaseglob
     '';
   };
   programs.zoxide = {
