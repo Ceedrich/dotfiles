@@ -6,7 +6,14 @@
   home.username = "ceedrich";
   home.homeDirectory = "/home/ceedrich";
 
-  home.packages = with pkgs; [];
+  home.packages = with pkgs; [
+    ghostty
+    tmux
+    yazi
+    delta
+    git
+    fd
+  ];
   home.shellAliases = {
     # Git Aliases
     gst = "git status";
@@ -16,6 +23,27 @@
     gp = "git push";
     gco = "git checkout";
   };
+
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+  };
+
+  programs.eza = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    icons = "auto";
+  };
+  home.shellAliases.ls = "eza";
+  home.shellAliases.l = "eza --icons --git -lah";
 
   programs.zsh = {
     enable = true;
