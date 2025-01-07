@@ -13,6 +13,7 @@
     delta
     git
     fd
+    rustup
   ];
   home.shellAliases = {
     # Git Aliases
@@ -54,8 +55,9 @@
     dotDir = ".config/zsh";
     initExtra = ''
       setopt correct
-      setopt extendedglob
-      setopt nocaseglob
+
+      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 
+      zstyle ':completion:*' menu select
     '';
   };
   programs.zoxide = {
