@@ -7,4 +7,5 @@ local keymap = vim.keymap
 keymap.set({ "v", "n" }, "<C-y>", '"+y')
 keymap.set({ "v", "n" }, "<C-p>", '"+p')
 keymap.set({ "v", "n" }, "<C-x>", '"+x')
+keymap.set("n", "<leader>e", ":Explore<CR>")
 
