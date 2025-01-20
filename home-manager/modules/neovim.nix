@@ -31,6 +31,7 @@
       render-markdown-nvim
       rustaceanvim
       vim-tmux-navigator
+      nvim-web-devicons
       plenary-nvim
       dropbar-nvim
       dressing-nvim
@@ -56,7 +57,7 @@
       }
       {
         plugin = oil-nvim;
-        config = fromLua /* lua */ ''require("oil").setup()'';
+        config = fromLuaFile ./neovim/plugin/oil.lua;
       }
       {
         plugin = gitsigns-nvim;
