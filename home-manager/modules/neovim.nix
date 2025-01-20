@@ -1,9 +1,4 @@
 { pkgs, lib, config, ...}: {
-  options = {
-    neovim.enable = lib.mkEnableOption "enables neovim";
-  };
-
-  config = {
   programs.neovim = let
     fromLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
     fromLua = str: "lua << EOF\n${str}\nEOF\n";
@@ -130,6 +125,5 @@
       ${builtins.readFile ./neovim/keymaps.lua}
     '';
   };
-};
 }
 

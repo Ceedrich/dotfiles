@@ -9,7 +9,7 @@ keymap.set({ "v", "n" }, "<C-p>", '"+p')
 keymap.set({ "v", "n" }, "<C-x>", '"+x')
 
 -- Explorer
-keymap.set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "open parent directory" })
+keymap.set("n", "<leader>e", "<cmd>Oil --float<cr>", { desc = "open parent directory" })
 
 -- Telescope
 do
