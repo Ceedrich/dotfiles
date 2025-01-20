@@ -24,80 +24,6 @@
     gp = "git push";
     gco = "git checkout";
   };
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-  };
-
-  # programs.neovim = let
-  #   fromLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
-  #   fromLua = str: "lua << EOF\n${str}\nEOF\n";
-  # in
-  # {
-  #   enable = true;
-  #   viAlias = true;
-  #   vimAlias = true;
-  #   vimdiffAlias = true;
-  #
-  #   plugins = with pkgs.vimPlugins; [
-  #     # {
-  #     #   plugin = nvim-lspconfig;
-  #     #   config = fromLuaFile ./neovim/plugin/lspconfig.lua
-  #     # }
-  #     {
-  #       plugin = catppuccin-nvim;
-  #       config = "colorscheme catppuccin-mocha";
-  #     }
-  #     {
-  #       plugin = lualine-nvim;
-  #       config = fromLuaFile ./neovim/plugin/lualine.lua;
-  #     }
-  #     {
-  #       plugin = comment-nvim;
-  #       config = fromLua "require(\"Comment\").setup()";
-  #     }
-  #     telescope-fzf-native-nvim
-  #     {
-  #       plugin = telescope-nvim;
-  #       config = fromLuaFile ./neovim/plugin/telescope.lua;
-  #     }
-  #     {
-  #       plugin = (nvim-treesitter.withPlugins (p: [
-  #         # Web dev
-  #         p.tree-sitter-html
-  #         p.tree-sitter-astro
-  #         p.tree-sitter-css
-  #         p.tree-sitter-typescript
-  #         p.tree-sitter-javascript
-  #
-  #         # Main Programming languages
-  #         p.tree-sitter-rust
-  #         p.tree-sitter-cpp
-  #         p.tree-sitter-java
-  #
-  #         # Scripting
-  #         p.tree-sitter-nix
-  #         p.tree-sitter-vim
-  #         p.tree-sitter-bash
-  #         p.tree-sitter-lua
-  #
-  #         # General purpose
-  #         p.tree-sitter-json
-  #         p.tree-sitter-toml
-  #         p.tree-sitter-yaml
-  #
-  #       ]));
-  #       config = fromLuaFile ./neovim/plugin/treesitter.lua;
-  #     }
-  #   ];
-  #
-  #   extraLuaConfig = ''
-  #   	${builtins.readFile ./neovim/options.lua}
-  #     ${builtins.readFile ./neovim/keymaps.lua}
-  #   '';
-  # };
 
   programs.fzf = {
     enable = true;
@@ -162,7 +88,6 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     TERMINAL = "ghostty";
-
   };
 
   # Let Home Manager install and manage itself.
