@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin-bat-repo = {
+      url = "github:catppuccin/bat";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:

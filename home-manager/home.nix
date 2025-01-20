@@ -47,7 +47,7 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     dotDir = ".config/zsh";
-    initExtra = ''
+    initExtra = /* sh */ ''
       setopt correct
 
       zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 
@@ -70,13 +70,7 @@
     enable = true;
     config.theme = "Catppuccin Mocha";
     themes."Catppuccin Mocha" = {
-      src = pkgs.fetchFromGitHub  {
-        owner = "catppuccin";
-	repo = "bat";
-	rev = "699f60f";
-	sha256 = "sha256-6fWoCH90IGumAMc4buLRWL0N61op+AuMNN9CAR9/OdI=";
-      };
-      file = "themes/Catppuccin Mocha.tmTheme";
+      src = "${inputs.catppuccin-bat-repo}/themes/Catppuccin Mocha.tmTheme";
     };
   };
 
