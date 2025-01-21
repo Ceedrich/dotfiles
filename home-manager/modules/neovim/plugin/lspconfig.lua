@@ -57,3 +57,6 @@ lspconfig.lua_ls.setup({
 })
 
 defaultSetup("nixd")
+defaultSetup("astro")
+defaultSetup("taplo")
+defaultSetup("ts_ls")

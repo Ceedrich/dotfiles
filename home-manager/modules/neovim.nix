@@ -13,6 +13,9 @@
       # LSP
       lua-language-server
       nixd
+      typescript-language-server
+      astro-language-server
+      taplo
       # Formatters
       nixpkgs-fmt
       prettierd
@@ -35,6 +38,10 @@
       plenary-nvim
       dropbar-nvim
       dressing-nvim
+      {
+        plugin = crates-nvim;
+        config = fromLua /* lua */ ''require("crates").setup()'';
+      }
       {
         plugin = none-ls-nvim;
         config = fromLuaFile ./neovim/plugin/none-ls.lua;
