@@ -12,7 +12,7 @@
     delta
     git
     fd
-    rustup
+    rust-with-analyzer
     pnpm
   ];
   home.shellAliases = {
