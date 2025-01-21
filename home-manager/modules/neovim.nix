@@ -10,8 +10,13 @@
     vimdiffAlias = true;
 
     extraPackages = with pkgs; [
+      # LSP
       lua-language-server
       nixd
+      # Formatters
+      nixpkgs-fmt
+      prettierd
+      stylua
     ];
 
     plugins = with pkgs.vimPlugins; [
@@ -30,6 +35,10 @@
       plenary-nvim
       dropbar-nvim
       dressing-nvim
+      {
+        plugin = none-ls-nvim;
+        config = fromLuaFile ./neovim/plugin/none-ls.lua;
+      }
       {
         plugin = todo-comments-nvim;
         config = fromLuaFile ./neovim/plugin/todo-comments.lua;

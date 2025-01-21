@@ -40,3 +40,5 @@ do
   vim.keymap.set("n", "<C-S-H>", function() harpoon:list():prev() end)
   vim.keymap.set("n", "<C-S-L>", function() harpoon:list():next() end)
 end
+
+keymap.set("n", "<leader>F", vim.lsp.buf.format, { desc = "Format buffer" })

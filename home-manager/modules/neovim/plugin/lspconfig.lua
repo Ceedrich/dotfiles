@@ -9,20 +9,20 @@ local on_attach = function(_, bufnr)
   opts.desc = "Show LSP definitions"
   keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
 
-  opts.desc = "Smart rename"
-  keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-
   opts.desc = "Show buffer diagnostics"
-  keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+  keymap.set("n", "<leader>lD", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
   opts.desc = "Show line diagnostics"
-  keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+  keymap.set("n", "<leader>ld", vim.diagnostic.open_float, opts)
 
   opts.desc = "Show documentation for what is under cursor"
   keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
-  opts.desc = "Format Buffer"
-  keymap.set("n", "<leader>F", vim.lsp.buf.format, opts)
+  opts.desc = "Code actinos"
+  keymap.set({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, opts)
+
+  opts.desc = "Rename symbol"
+  keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
 end
 
 
