@@ -66,13 +66,15 @@
     enableBashIntegration = true;
     enableZshIntegration = true;
   };
-  programs.bat = {
-    enable = true;
-    config.theme = "Catppuccin Mocha";
-    themes."Catppuccin Mocha" = {
-      src = "${inputs.catppuccin-bat-repo}/themes/Catppuccin Mocha.tmTheme";
+  programs.bat =
+    let
+      catppuccin-theme = "${inputs.catppuccin-bat-repo}/themes/Catppuccin Mocha.tmTheme";
+    in
+    {
+      enable = true;
+      config.theme = "Catppuccin Mocha";
+      themes."Catppuccin Mocha".src = catppuccin-theme;
     };
-  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
