@@ -22,8 +22,8 @@
   outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { 
-        inherit system; 
+      pkgs = import nixpkgs {
+        inherit system;
         overlays = [
           (import inputs.rust-overlay)
           (final: prev: {
@@ -33,7 +33,8 @@
           })
         ];
       };
-    in {
+    in
+    {
       homeConfigurations."ceedrich" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
