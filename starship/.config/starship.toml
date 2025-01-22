@@ -51,14 +51,11 @@ $jobs\
 $battery\
 $time\
 $status\
-$os\
 $container\
 $shell\
 """
 
-# Missing: LaTeX, Minecraft
-
-format = """$username$hostname$localip\
+format = """$os$username$hostname$localip\
 $singularity$kubernetes\
 $directory\
 $git_branch$git_commit$git_state$git_metrics$git_status\
@@ -72,10 +69,12 @@ add_newline = false
 [directory]
 truncation_length = 5
 truncate_to_repo = true
+truncation_symbol = "../"
 format = "[$path]($style)[$read_only]($read_only_style) "
+use_logical_path = false
 style = "blue"
 read_only = " "
-repo_root_style = "bold cyan"
+repo_root_style = "bold sapphire"
 home_symbol = "󰋜"
 [directory.substitutions]
 "Downloads" = "󰉍"
@@ -126,7 +125,7 @@ symbol = " "
 style = "yellow"
 
 [rust]
-format = "[$symbol($version)]($style)"
+format = "[$symbol($version)]($style) "
 style = "peach"
 
 [docker_context]
@@ -175,12 +174,13 @@ style = "green bold"
 [custom.latex]
 detect_extensions = ["tex"]
 symbol = "LaTeX "
+style = "mauve bold"
 
 
 [character]
 success_symbol = "[❯](bold lavender)"
 error_symbol = "[❯](bold red)"
-vimcmd_symbol = "[❮](bold lavender)"
+vimcmd_symbol = "[❮](bold green)"
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
@@ -209,3 +209,7 @@ surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
+
+[nix_shell]
+symbol = "❄️ "
+format = "\\([$symbol$name]($style)\\)"
