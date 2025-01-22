@@ -37,7 +37,6 @@ List of all packages:
 - [rofi](#rofi)
 - starship
 - [tmux](#tmux)
-- [zsh](#zsh)
 - picom
 - profile
 - [yazi](https://yazi-rs.github.io/) <!-- TODO: add configuration -->
@@ -73,31 +72,6 @@ git clone https://github.com/tmux-plugins/tpm $XDG_CONFIG_HOME/tmux/plugins/tpm
 ```
 
 Then, in tmux press `<leader>r` to reload the tmux configuration and `<leader>I` to install plugins
-
-### zsh
-
-<!-- TODO: This can't be that hard!!! -->
-
-To configure zsh, create a zshenv file in `/etc/zsh/` containing the following lines:
-
-```sh
-if [[ -z "$PATH" || "$PATH" == "/bin:/usr/bin" ]]; then
-	export PATH="/usr/local/bin:/usr/bin:/bin:/usr/games"
-fi
-
-if [[ -z "$XDG_CONFIG_HOME" ]]; then
-	export XDG_CONFIG_HOME="$HOME/.config"
-fi
-
-if [[ -d "$XDG_CONFIG_HOME" ]]; then
-	export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-fi
-```
-
-Dependencies:
-
-- bat
-- [delta](https://github.com/dandavison/delta)
 
 ## Additional software
 
