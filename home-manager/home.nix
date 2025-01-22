@@ -1,6 +1,10 @@
 { config, pkgs, inputs, ... }:
 
 {
+  imports = [
+    ./modules/neovim.nix
+    ./modules/tmux.nix
+  ];
   home.stateVersion = "24.11";
 
   home.username = "ceedrich";
@@ -8,7 +12,6 @@
 
   home.packages = with pkgs; [
     ghostty
-    tmux
     delta
     git
     fd
