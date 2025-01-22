@@ -1,9 +1,0 @@
-[user]
-	name = Ceedrich
-	email = cedric@lehr.ch
-[init]
-	defaultBranch = main
-[core]
-	editor = nvim
-[pull]
-	rebase = false

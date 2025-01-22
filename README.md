@@ -30,7 +30,6 @@ List of all packages:
 - [alacritty](https://alacritty.org/) (deprecated, use kitty instead)
 - [bat](https://github.com/sharkdp/bat)
 <!-- WARN: Git information should not be in a public repo -->
-- git
 - [i3](#i3)
 - [kitty](https://sw.kovidgoyal.net/kitty/)
 - [polybar](#polybar)
