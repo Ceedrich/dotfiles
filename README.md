@@ -35,7 +35,6 @@ List of all packages:
 - [kitty](https://sw.kovidgoyal.net/kitty/)
 - [polybar](#polybar)
 - [rofi](#rofi)
-- starship
 - picom
 - profile
 - [yazi](https://yazi-rs.github.io/) <!-- TODO: add configuration -->
