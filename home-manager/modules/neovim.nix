@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, ... }: {
   programs.neovim =
     let
       fromLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
@@ -24,21 +24,25 @@
       ];
 
       plugins = with pkgs.vimPlugins; [
-        cmp-nvim-lsp
-        vim-nix
-        otter-nvim
-        luasnip
-        diffview-nvim
-        lspkind-nvim
-        which-key-nvim
-        telescope-fzf-native-nvim
+        plenary-nvim
+        nvim-web-devicons
+
         render-markdown-nvim
         rustaceanvim
-        vim-tmux-navigator
-        nvim-web-devicons
-        plenary-nvim
+        vim-nix
+
+        cmp-nvim-lsp
+        luasnip
+        telescope-fzf-native-nvim
+
+        otter-nvim
+        diffview-nvim
+        lspkind-nvim
         dropbar-nvim
         dressing-nvim
+
+        vim-tmux-navigator
+        which-key-nvim
         {
           plugin = crates-nvim;
           config = fromLua /* lua */ ''require("crates").setup()'';

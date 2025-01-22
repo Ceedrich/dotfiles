@@ -14,6 +14,7 @@
     fd
     rust-with-analyzer
     pnpm
+    blesh
   ];
   home.shellAliases = {
     # Git Aliases
@@ -54,13 +55,21 @@
       zstyle ':completion:*' menu select
     '';
   };
+  programs.bash = {
+    enable = true;
+    enableCompletion = true;
+  };
   programs.zoxide = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
     options = [ "--cmd" "cd" ];
   };
-  programs.starship.enable = true;
+  programs.starship = {
+    enable = true; 
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+  };
   programs.yazi = {
     enable = true;
     enableBashIntegration = true;
