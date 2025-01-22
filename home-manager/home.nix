@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -21,41 +21,11 @@
     blesh
   ];
 
-  programs.fzf = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
-
-  programs.eza = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    icons = "auto";
-  };
-  home.shellAliases.ls = "eza";
-  home.shellAliases.l = "eza --icons --git -lah";
-
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    options = [ "--cmd" "cd" ];
-  };
   programs.yazi = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
   };
-  programs.bat =
-    let
-      catppuccin-theme = "${inputs.catppuccin-bat-repo}/themes/Catppuccin Mocha.tmTheme";
-    in
-    {
-      enable = true;
-      config.theme = "Catppuccin Mocha";
-      themes."Catppuccin Mocha".src = catppuccin-theme;
-    };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

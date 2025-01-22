@@ -1,37 +1,43 @@
 { config, lib, ... }: {
-  options = {
+  imports = [ ./shell/integrations.nix ];
+
+  options.shell = {
     zsh.enable = lib.mkEnableOption "enable zsh";
     bash.enable = lib.mkEnableOption "enable bash";
   };
-  config = {
-    programs.zsh = lib.mkIf config.zsh.enable {
-      enable = true;
-      enableCompletion = true;
-      autocd = true;
-      autosuggestion.enable = true;
-      syntaxHighlighting.enable = true;
-      historySubstringSearch.enable = true;
-      dotDir = ".config/zsh";
-      initExtra = /* sh */ ''
-        setopt correct
+  config =
+    let
+      shell = config.shell;
+    in
+    {
+      programs.zsh = lib.mkIf shell.zsh.enable {
+        enable = true;
+        enableCompletion = true;
+        autocd = true;
+        autosuggestion.enable = true;
+        syntaxHighlighting.enable = true;
+        historySubstringSearch.enable = true;
+        dotDir = ".config/zsh";
+        initExtra = /* sh */ ''
+          setopt correct
 
-        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 
-        zstyle ':completion:*' menu select
-      '';
-    };
-    programs.bash = lib.mkIf config.bash.enable {
-      enable = true;
-      enableCompletion = true;
-    };
+          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 
+          zstyle ':completion:*' menu select
+        '';
+      };
+      programs.bash = lib.mkIf shell.bash.enable {
+        enable = true;
+        enableCompletion = true;
+      };
 
-    programs.starship = {
-      enable = true;
-      enableZshIntegration = lib.mkIf config.zsh.enable true;
-      enableBashIntegration = lib.mkIf config.bash.enable true;
-      settings = builtins.fromTOML (builtins.readFile ./shell/starship.toml);
-    };
+      programs.starship = {
+        enable = true;
+        enableZshIntegration = lib.mkIf shell.zsh.enable true;
+        enableBashIntegration = lib.mkIf shell.bash.enable true;
+        settings = builtins.fromTOML (builtins.readFile ./shell/starship.toml);
+      };
 
-    # Defaults
-    zsh.enable = lib.mkDefault true;
-  };
+      # Defaults
+      shell.zsh.enable = lib.mkDefault true;
+    };
 }
