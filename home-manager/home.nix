@@ -47,6 +47,7 @@
     autocd = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    historySubstringSearch.enable = true;
     dotDir = ".config/zsh";
     initExtra = /* sh */ ''
       setopt correct
