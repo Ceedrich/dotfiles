@@ -4,6 +4,7 @@
   imports = [
     ./modules/neovim.nix
     ./modules/tmux.nix
+    ./modules/git.nix
   ];
   home.stateVersion = "24.11";
 
