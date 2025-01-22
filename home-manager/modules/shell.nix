@@ -28,6 +28,7 @@
       enable = true;
       enableZshIntegration = lib.mkIf config.zsh.enable true;
       enableBashIntegration = lib.mkIf config.bash.enable true;
+      settings = builtins.fromTOML (builtins.readFile ./shell/starship.toml);
     };
 
     # Defaults
