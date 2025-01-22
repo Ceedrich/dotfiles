@@ -33,7 +33,6 @@ List of all packages:
 - git
 - [i3](#i3)
 - [kitty](https://sw.kovidgoyal.net/kitty/)
-- [ohmyposh](#ohmyposh)
 - [polybar](#polybar)
 - [rofi](#rofi)
 - starship
@@ -50,10 +49,6 @@ Dependencies:
 ### i3
 
 If picom is not working, remove the --experimental-backends flag from i3 config
-
-### ohmyposh
-
-Install from their [website](https://ohmyposh.dev)
 
 ### polybar
 
