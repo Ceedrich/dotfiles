@@ -36,7 +36,6 @@ List of all packages:
 - [polybar](#polybar)
 - [rofi](#rofi)
 - starship
-- [tmux](#tmux)
 - picom
 - profile
 - [yazi](https://yazi-rs.github.io/) <!-- TODO: add configuration -->
@@ -62,16 +61,6 @@ In order to use "polybar" certain settings such as batteries and network adapter
 ### rofi
 
 This rofi config is a bit unstable and not guaranteed to work across systems.
-
-### tmux
-
-To finalize the tmux instalation, install [tpm](https://github.com/tmux-plugins/tpm):
-
-```sh
-git clone https://github.com/tmux-plugins/tpm $XDG_CONFIG_HOME/tmux/plugins/tpm
-```
-
-Then, in tmux press `<leader>r` to reload the tmux configuration and `<leader>I` to install plugins
 
 ## Additional software
 
