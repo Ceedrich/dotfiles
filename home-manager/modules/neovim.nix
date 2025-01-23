@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  home.shellAliases = { v = "nvim"; };
   programs.neovim =
     let
       fromLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
