@@ -2,10 +2,10 @@
 
 {
   imports = [
-    ./modules/neovim.nix
-    ./modules/tmux.nix
-    ./modules/git.nix
-    ./modules/shell.nix
+    ./modules/neovim
+    ./modules/tmux
+    ./modules/git
+    ./modules/shell
   ];
   home.stateVersion = "24.11";
 
@@ -18,7 +18,6 @@
     fd
     rust-with-analyzer
     pnpm
-    blesh
   ];
 
   programs.yazi = {

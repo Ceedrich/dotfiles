@@ -1,5 +1,5 @@
-{ config, lib, ... }: {
-  imports = [ ./shell/integrations.nix ];
+{ config, lib, pkgs, ... }: {
+  imports = [ ./integrations ];
 
   options.shell = {
     zsh.enable = lib.mkEnableOption "enable zsh";
@@ -10,6 +10,9 @@
       shell = config.shell;
     in
     {
+      home.packages = with pkgs;[ 
+        lib.mkif shell.bash.enable blesh 
+      ];
       programs.zsh = lib.mkIf shell.zsh.enable {
         enable = true;
         enableCompletion = true;
