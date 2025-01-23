@@ -37,6 +37,12 @@
         settings = builtins.fromTOML (builtins.readFile ./shell/starship.toml);
       };
 
+      home.shellAliases = {
+        "..." = "../..";
+        "...." = "../../..";
+        "....." = "../../../..";
+      };
+
       # Defaults
       shell.zsh.enable = lib.mkDefault true;
     };
