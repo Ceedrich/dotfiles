@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, ... }: {
   imports = [ ./integrations ];
 
   options.shell = {
@@ -10,9 +10,6 @@
       shell = config.shell;
     in
     {
-      home.packages = with pkgs;[ 
-        lib.mkif shell.bash.enable blesh 
-      ];
       programs.zsh = lib.mkIf shell.zsh.enable {
         enable = true;
         enableCompletion = true;
@@ -37,7 +34,7 @@
         enable = true;
         enableZshIntegration = lib.mkIf shell.zsh.enable true;
         enableBashIntegration = lib.mkIf shell.bash.enable true;
-        settings = builtins.fromTOML (builtins.readFile ./shell/starship.toml);
+        settings = builtins.fromTOML (builtins.readFile ./starship.toml);
       };
 
       home.shellAliases = {

@@ -50,11 +50,11 @@
         }
         {
           plugin = none-ls-nvim;
-          config = fromLuaFile ./neovim/plugin/none-ls.lua;
+          config = fromLuaFile ./plugin/none-ls.lua;
         }
         {
           plugin = todo-comments-nvim;
-          config = fromLuaFile ./neovim/plugin/todo-comments.lua;
+          config = fromLuaFile ./plugin/todo-comments.lua;
         }
         {
           plugin = nvim-surround;
@@ -66,7 +66,7 @@
         }
         {
           plugin = nvim-autopairs;
-          config = fromLuaFile ./neovim/plugin/auto-pairs.lua;
+          config = fromLuaFile ./plugin/auto-pairs.lua;
         }
         {
           plugin = harpoon2;
@@ -74,7 +74,7 @@
         }
         {
           plugin = oil-nvim;
-          config = fromLuaFile ./neovim/plugin/oil.lua;
+          config = fromLuaFile ./plugin/oil.lua;
         }
         {
           plugin = gitsigns-nvim;
@@ -82,19 +82,19 @@
         }
         {
           plugin = neogit;
-          config = fromLuaFile ./neovim/plugin/neogit.lua;
+          config = fromLuaFile ./plugin/neogit.lua;
         }
         {
           plugin = nvim-cmp;
-          config = fromLuaFile ./neovim/plugin/nvim-cmp.lua;
+          config = fromLuaFile ./plugin/nvim-cmp.lua;
         }
         {
           plugin = alpha-nvim;
-          config = fromLuaFile ./neovim/plugin/greeter.lua;
+          config = fromLuaFile ./plugin/greeter.lua;
         }
         {
           plugin = nvim-lspconfig;
-          config = fromLuaFile ./neovim/plugin/lspconfig.lua;
+          config = fromLuaFile ./plugin/lspconfig.lua;
         }
         {
           plugin = catppuccin-nvim;
@@ -102,7 +102,7 @@
         }
         {
           plugin = lualine-nvim;
-          config = fromLuaFile ./neovim/plugin/lualine.lua;
+          config = fromLuaFile ./plugin/lualine.lua;
         }
         {
           plugin = comment-nvim;
@@ -110,7 +110,7 @@
         }
         {
           plugin = telescope-nvim;
-          config = fromLuaFile ./neovim/plugin/telescope.lua;
+          config = fromLuaFile ./plugin/telescope.lua;
         }
         {
           plugin = (nvim-treesitter.withPlugins (p: [
@@ -138,13 +138,13 @@
             p.tree-sitter-yaml
 
           ]));
-          config = fromLuaFile ./neovim/plugin/treesitter.lua;
+          config = fromLuaFile ./plugin/treesitter.lua;
         }
       ];
 
       extraLuaConfig = ''
-        	${builtins.readFile ./neovim/options.lua}
-          ${builtins.readFile ./neovim/keymaps.lua}
+        	${builtins.readFile ./options.lua}
+          ${builtins.readFile ./keymaps.lua}
       '';
     };
 }
