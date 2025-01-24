@@ -18,6 +18,7 @@
     fd
     rust-with-analyzer
     pnpm
+    gcc
   ];
 
   programs.yazi = {
