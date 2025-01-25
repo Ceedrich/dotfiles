@@ -12,18 +12,11 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    catppuccin-bat-repo = {
-      url = "github:catppuccin/bat";
-      flake = false;
-    };
+    catppuccin.url = "github:catppuccin/nix";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, home-manager, catppuccin, ... }@inputs:
     let
-      catppuccin = {
-        bat = "${inputs.catppuccin-bat-repo}/themes/Catppuccin Mocha.tmTheme";
-      };
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
@@ -43,9 +36,9 @@
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
-        modules = [ ./home.nix ];
+        modules = [ ./home.nix catppuccin.homeManagerModules.catppuccin ];
 
-        extraSpecialArgs = { inherit inputs catppuccin; };
+        extraSpecialArgs = { inherit inputs; };
       };
     };
 }

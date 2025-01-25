@@ -1,4 +1,4 @@
-{ config, lib, catppuccin, ... }: {
+{ config, lib, ... }: {
   options.shell.integrations = {
     starship.enable = lib.mkEnableOption "enable starship";
     fzf.enable = lib.mkEnableOption "enable fzf";
@@ -34,12 +34,7 @@
         options = [ "--cmd" "cd" ];
       };
 
-      programs.bat =
-        lib.mkIf integrations.bat.enable {
-          enable = true;
-          config.theme = "Catppuccin Mocha";
-          themes."Catppuccin Mocha".src = catppuccin.bat;
-        };
+      programs.bat.enable = lib.mkIf integrations.bat.enable true;
 
       # Defaults
       shell.integrations = {

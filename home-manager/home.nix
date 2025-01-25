@@ -12,6 +12,15 @@
   home.username = "ceedrich";
   home.homeDirectory = "/home/ceedrich";
 
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    gtk = {
+      enable = true;
+      accent = "mauve";
+    };
+  };
+
   home.packages = with pkgs; [
     ghostty
     delta
