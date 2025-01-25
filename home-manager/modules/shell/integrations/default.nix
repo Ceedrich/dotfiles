@@ -1,4 +1,4 @@
-{ config, lib, inputs, ... }: {
+{ config, lib, catppuccin, ... }: {
   options.shell.integrations = {
     starship.enable = lib.mkEnableOption "enable starship";
     fzf.enable = lib.mkEnableOption "enable fzf";
@@ -35,13 +35,10 @@
       };
 
       programs.bat =
-        let
-          catppuccin-theme = "${inputs.catppuccin-bat-repo}/themes/Catppuccin Mocha.tmTheme";
-        in
         lib.mkIf integrations.bat.enable {
           enable = true;
           config.theme = "Catppuccin Mocha";
-          themes."Catppuccin Mocha".src = catppuccin-theme;
+          themes."Catppuccin Mocha".src = catppuccin.bat;
         };
 
       # Defaults

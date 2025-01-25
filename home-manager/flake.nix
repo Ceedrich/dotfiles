@@ -21,6 +21,9 @@
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
     let
+      catppuccin = {
+        bat = "${inputs.catppuccin-bat-repo}/themes/Catppuccin Mocha.tmTheme";
+      };
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
@@ -42,7 +45,7 @@
         # the path to your home.nix.
         modules = [ ./home.nix ];
 
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = { inherit inputs catppuccin; };
       };
     };
 }
