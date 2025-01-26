@@ -12,10 +12,16 @@
   home.username = "ceedrich";
   home.homeDirectory = "/home/ceedrich";
 
+  gtk.enable = true;
+
   catppuccin = {
+    enable = true;
     flavor = "mocha";
-    gtk.enable = true;
-    bat.enable = true;
+    zsh-syntax-highlighting.enable = false;
+    gtk = {
+      enable = true;
+      gnomeShellTheme = true;
+    };
   };
 
   home.packages = with pkgs; [
