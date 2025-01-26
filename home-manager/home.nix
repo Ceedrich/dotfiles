@@ -13,12 +13,9 @@
   home.homeDirectory = "/home/ceedrich";
 
   catppuccin = {
-    enable = true;
     flavor = "mocha";
-    gtk = {
-      enable = true;
-      accent = "mauve";
-    };
+    gtk.enable = true;
+    bat.enable = true;
   };
 
   home.packages = with pkgs; [
