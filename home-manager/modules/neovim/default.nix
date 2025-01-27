@@ -12,12 +12,19 @@
       vimdiffAlias = true;
 
       extraPackages = with pkgs; [
+        # Plugin dependencies
+        git
+        fd
+        ripgrep
+
         # LSP
         lua-language-server
         nixd
         typescript-language-server
         astro-language-server
         taplo
+        rust-with-analyzer
+
         # Formatters
         nixpkgs-fmt
         prettierd
@@ -29,7 +36,7 @@
         nvim-web-devicons
 
         render-markdown-nvim
-        rustaceanvim
+        rustaceanvim # Missing debugging features
         vim-nix
 
         cmp-nvim-lsp
@@ -85,6 +92,7 @@
           config = fromLuaFile ./plugin/neogit.lua;
         }
         {
+          # TODO: look at the dependencies
           plugin = nvim-cmp;
           config = fromLuaFile ./plugin/nvim-cmp.lua;
         }
