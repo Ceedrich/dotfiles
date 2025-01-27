@@ -105,10 +105,6 @@
           config = fromLuaFile ./plugin/lspconfig.lua;
         }
         {
-          plugin = catppuccin-nvim;
-          config = /* vim */ "colorscheme catppuccin-mocha";
-        }
-        {
           plugin = lualine-nvim;
           config = fromLuaFile ./plugin/lualine.lua;
         }
