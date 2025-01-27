@@ -1,10 +1,12 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./hyprland.nix
     ];
 
   # Bootloader.
@@ -20,6 +22,11 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
+
+  fonts.enableDefaultPackages = true;
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -49,7 +56,6 @@
     variant = "";
   };
 
-  # Configure console keymap
   console.keyMap = "sg";
 
   # Enable CUPS to print documents.
@@ -82,7 +88,6 @@
     isNormalUser = true;
     description = "Cedric";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
   };
 
   # Enable automatic login for the user.
@@ -97,7 +102,7 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.zsh.enable = true;
-  
+
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -116,7 +121,7 @@
     pnpm
     unzip
     gnutar
-    xclip
+    wofi
   ];
 
   system.stateVersion = "24.11"; # Did you read the comment?

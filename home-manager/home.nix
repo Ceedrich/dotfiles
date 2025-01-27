@@ -6,6 +6,7 @@
     ./modules/tmux
     ./modules/git
     ./modules/shell
+    ./modules/hyprland
   ];
   home.stateVersion = "24.11";
 
