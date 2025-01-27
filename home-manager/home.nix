@@ -28,6 +28,7 @@
     ghostty
     delta
     fd
+    ripgrep
     rust-with-analyzer
     pnpm
     gcc
