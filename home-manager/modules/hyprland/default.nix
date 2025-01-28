@@ -88,6 +88,14 @@
     extraConfig = lib.readFile ./hyprlock.conf;
   };
 
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = "${./wallpaper.jpg}";
+      wallpaper = ", ${./wallpaper.jpg}";
+    };
+  };
+
   programs.wofi = {
     enable = true;
     style = lib.readFile ./wofi.css;
