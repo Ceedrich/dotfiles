@@ -12,12 +12,19 @@
       vimdiffAlias = true;
 
       extraPackages = with pkgs; [
+        # Plugin dependencies
+        git
+        fd
+        ripgrep
+
         # LSP
         lua-language-server
         nixd
         typescript-language-server
         astro-language-server
         taplo
+        rust-with-analyzer
+
         # Formatters
         nixpkgs-fmt
         prettierd
@@ -29,7 +36,7 @@
         nvim-web-devicons
 
         render-markdown-nvim
-        rustaceanvim
+        rustaceanvim # Missing debugging features
         vim-nix
 
         cmp-nvim-lsp
@@ -85,6 +92,7 @@
           config = fromLuaFile ./plugin/neogit.lua;
         }
         {
+          # TODO: look at the dependencies
           plugin = nvim-cmp;
           config = fromLuaFile ./plugin/nvim-cmp.lua;
         }
@@ -95,10 +103,6 @@
         {
           plugin = nvim-lspconfig;
           config = fromLuaFile ./plugin/lspconfig.lua;
-        }
-        {
-          plugin = catppuccin-nvim;
-          config = /* vim */ "colorscheme catppuccin-mocha";
         }
         {
           plugin = lualine-nvim;
@@ -124,7 +128,10 @@
             # Main Programming languages
             p.tree-sitter-rust
             p.tree-sitter-cpp
+            p.tree-sitter-c
+            p.tree-sitter-cmake
             p.tree-sitter-java
+            p.tree-sitter-unison
 
             # Scripting
             p.tree-sitter-nix
@@ -132,10 +139,28 @@
             p.tree-sitter-bash
             p.tree-sitter-lua
 
+            # LaTeX related
+            p.tree-sitter-bibtex
+            p.tree-sitter-latex
+
+            # Git
+            p.tree-sitter-git_config
+            p.tree-sitter-git_rebase
+            p.tree-sitter-gitattributes
+            p.tree-sitter-gitcommit
+            p.tree-sitter-gitignore
+
             # General purpose
+            p.tree-sitter-markdown
+            p.tree-sitter-markdown-inline
             p.tree-sitter-json
+            p.tree-sitter-jsonc
             p.tree-sitter-toml
             p.tree-sitter-yaml
+            p.tree-sitter-csv
+            p.tree-sitter-diff
+            p.tree-sitter-dockerfile
+            p.tree-sitter-make
 
           ]));
           config = fromLuaFile ./plugin/treesitter.lua;
