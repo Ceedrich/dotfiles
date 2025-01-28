@@ -28,14 +28,22 @@
       bind = [
         "$mainMod, return, exec, $terminal"
         "$mainMod, Q, killactive,"
-        "$mainMod SHIFT, Q, exit,"
-        "$mainMod SHIFT, L, exec, hyprlock"
+
+        "$mainMod SHIFT, Q, exit," # TODO: add shutdown script
+
         "$mainMod, D, exec, $menu"
+        ", PRINT, exec, $screenshot -m region"
+        "SHIFT, PRINT, exec, $screenshot -m window"
 
         "$mainMod, h, movefocus, l"
         "$mainMod, l, movefocus, r"
         "$mainMod, k, movefocus, u"
         "$mainMod, j, movefocus, d"
+
+        "$mainMod SHIFT, h, movewindow, l"
+        "$mainMod SHIFT, l, movewindow, r"
+        "$mainMod SHIFT, k, movewindow, u"
+        "$mainMod SHIFT, j, movewindow, d"
 
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
