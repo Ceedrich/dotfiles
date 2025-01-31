@@ -26,6 +26,7 @@
 
   home.packages = with pkgs; [
     delta
+    jq
     fd
     ripgrep
     rust-with-analyzer
