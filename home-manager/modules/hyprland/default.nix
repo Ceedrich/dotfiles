@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     hyprshot
     swaynotificationcenter
+    wl-clipboard
   ];
   wayland.windowManager.hyprland = {
     enable = true;
