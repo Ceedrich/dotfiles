@@ -40,6 +40,9 @@
         vim-nix
 
         cmp-nvim-lsp
+        cmp-buffer
+        cmp-path
+        cmp_luasnip
         luasnip
         telescope-fzf-native-nvim
 
