@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -11,6 +11,11 @@
 
   home.username = "ceedrich";
   home.homeDirectory = "/home/ceedrich";
+
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "spotify"
+    ];
 
   gtk.enable = true;
 
@@ -33,6 +38,7 @@
     pnpm
     gcc
     gnome-mines
+    spotify
   ];
 
   programs.ghostty = {
