@@ -32,6 +32,7 @@
     rust-with-analyzer
     pnpm
     gcc
+    gnome-mines
   ];
 
   programs.ghostty = {

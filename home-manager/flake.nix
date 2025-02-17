@@ -13,6 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
+    gnome-mines-custom = {
+      url = "github:ceedrich/gnome-mines/vim-keys";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, home-manager, catppuccin, ... }@inputs:
@@ -25,6 +29,11 @@
           (final: prev: {
             rust-with-analyzer = prev.rust-bin.stable.latest.default.override {
               extensions = [ "rust-src" "rust-analyzer" ];
+            };
+          })
+          (final: prev: {
+            gnome-mines = prev.gnome-mines.overrideAttrs {
+              src = inputs.gnome-mines-custom;
             };
           })
         ];
