@@ -22,8 +22,12 @@
         nixd
         typescript-language-server
         astro-language-server
+        tailwindcss
+        tailwindcss-language-server
         taplo
         rust-with-analyzer
+        clang
+        clang-tools
 
         # Formatters
         nixpkgs-fmt
