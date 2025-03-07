@@ -39,6 +39,9 @@
     gcc
     gnome-mines
     spotify
+    gimp
+    inkscape
+    signal-desktop
   ];
 
   programs.btop = {
