@@ -92,7 +92,7 @@
         }
         {
           plugin = gitsigns-nvim;
-          config = fromLua /* lua */ ''require("gitsigns").setup()'';
+          config = fromLuaFile ./plugin/gitsigns.lua;
         }
         {
           plugin = neogit;
