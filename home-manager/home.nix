@@ -41,6 +41,11 @@
     spotify
   ];
 
+  programs.btop = {
+    enable = true;
+    settings.vim_keys = true;
+  };
+
   programs.ghostty = {
     enable = true;
     clearDefaultKeybinds = true;
