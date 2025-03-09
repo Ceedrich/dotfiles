@@ -12,6 +12,10 @@
   home.username = "ceedrich";
   home.homeDirectory = "/home/ceedrich";
 
+  home.shellAliases = {
+    "dev" = "nix develop -c zsh";
+  };
+
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [
       "spotify"
