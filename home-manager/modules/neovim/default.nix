@@ -28,6 +28,11 @@
         rust-with-analyzer
         clang
         clang-tools
+        (rWrapper.override {
+          packages = with rPackages; [
+            languageserver
+          ];
+        })
 
         # Formatters
         nixpkgs-fmt
@@ -169,6 +174,7 @@
             p.tree-sitter-dockerfile
             p.tree-sitter-make
 
+            p.tree-sitter-r
           ]));
           config = fromLuaFile ./plugin/treesitter.lua;
         }
