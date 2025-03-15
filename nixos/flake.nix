@@ -19,14 +19,15 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/fun-machine/configuration.nix
-          ./modules
+          ./nixosModules
         ];
       };
 
-      homeConfigurations.default = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."ceedrich" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         modules = [
+          ./users/ceedrich.nix
           ./homemanagerModules
         ];
       };
