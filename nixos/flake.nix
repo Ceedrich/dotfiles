@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,16 +18,16 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
-	inherit system;
-	overlays = [
-	(import inputs.rust-overlay)
-	(final: prev: {
-		rust-with-analyzer = prev.rust-bin.stable.latest.default.override {
-		extensions = [ "rust-src" "rust-analyzer" ];
-		};
-	})
-	];
-};
+        inherit system;
+        overlays = [
+          (import inputs.rust-overlay)
+          (final: prev: {
+            rust-with-analyzer = prev.rust-bin.stable.latest.default.override {
+              extensions = [ "rust-src" "rust-analyzer" ];
+            };
+          })
+        ];
+      };
     in
     {
       nixosConfigurations.fun-machine = nixpkgs.lib.nixosSystem {
@@ -41,6 +42,7 @@
         inherit pkgs;
 
         modules = [
+          inputs.catppuccin.homeManagerModules.catppuccin
           ./users/ceedrich.nix
           ./homemanagerModules
         ];
