@@ -7,12 +7,26 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+	inherit system;
+	overlays = [
+	(import inputs.rust-overlay)
+	(final: prev: {
+		rust-with-analyzer = prev.rust-bin.stable.latest.default.override {
+		extensions = [ "rust-src" "rust-analyzer" ];
+		};
+	})
+	];
+};
     in
     {
       nixosConfigurations.fun-machine = nixpkgs.lib.nixosSystem {

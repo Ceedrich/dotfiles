@@ -100,6 +100,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
+    ghostty
+    home-manager
     wget
   ];
 
