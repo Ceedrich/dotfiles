@@ -10,7 +10,7 @@
       # Global Variables
       "$terminal" = "ghostty";
       "$fileManager" = "nautilus";
-      "$menu" = "wofi --show drun";
+      "$menu" = "wofi --show drun --allow-images";
       "$screenshot" = "hyprshot -o ~/Pictures/Screenshots";
 
       # Autostart

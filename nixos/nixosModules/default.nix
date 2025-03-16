@@ -2,6 +2,7 @@
   imports = [
     ./kanata
     ./window-manager
+    ./fonts
     inputs.catppuccin.nixosModules.catppuccin
   ];
 

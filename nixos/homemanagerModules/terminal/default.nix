@@ -1,5 +1,5 @@
 { lib, config, ... }: {
-  ghostty.ghostty.enable = lib.mkEnableOption "enable ghostty";
+  options.ghostty.enable = lib.mkEnableOption "enable ghostty";
   config = {
     programs.ghostty = lib.mkIf config.ghostty.enable {
       enable = true;
