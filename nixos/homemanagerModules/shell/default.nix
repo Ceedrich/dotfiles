@@ -38,6 +38,7 @@
         "..." = "../..";
         "...." = "../../..";
         "....." = "../../../..";
+        dev = lib.mkIf config.zsh.enable "nix develop -c zsh";
       };
     };
 }

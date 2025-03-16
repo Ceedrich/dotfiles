@@ -1,5 +1,8 @@
 { pkgs, ... }: {
   home.shellAliases = { v = "nvim"; };
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
   programs.neovim =
     let
       fromLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
@@ -52,7 +55,6 @@
         cmp-buffer
         cmp-path
         cmp_luasnip
-        luasnip
         telescope-fzf-native-nvim
 
         otter-nvim
@@ -63,6 +65,10 @@
 
         vim-tmux-navigator
         which-key-nvim
+        {
+          plugin = luasnip;
+          config = fromLuaFile ./plugin/luasnip.lua;
+        }
         {
           plugin = crates-nvim;
           config = fromLua /* lua */ ''require("crates").setup()'';

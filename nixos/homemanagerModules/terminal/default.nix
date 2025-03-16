@@ -1,7 +1,13 @@
 { lib, config, ... }: {
-  options.ghostty.enable = lib.mkEnableOption "enable ghostty";
-  config = {
-    programs.ghostty = lib.mkIf config.ghostty.enable {
+  options = {
+    ghostty.enable = lib.mkEnableOption "enable ghostty";
+  };
+
+  config = lib.mkIf config.ghostty.enable {
+    home.sessionVariables = {
+      TERMINAL = "ghostty";
+    };
+    programs.ghostty = {
       enable = true;
       clearDefaultKeybinds = true;
       settings = {
