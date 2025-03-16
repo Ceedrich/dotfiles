@@ -50,6 +50,7 @@
     {
       nixosConfigurations = generateNixosConfigs [
         "fun-machine"
+      	"gaming"
       ];
 
       homeConfigurations = generateHomemanagerConfigs [
