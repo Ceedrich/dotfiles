@@ -3,6 +3,7 @@
     ./kanata
     ./window-manager
     ./fonts
+    ./steam
     inputs.catppuccin.nixosModules.catppuccin
   ];
 

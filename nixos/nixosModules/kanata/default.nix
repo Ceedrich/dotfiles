@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let 
+  notify-send = "${pkgs.libnotify}/bin/notify-send";
+in
 {
   hardware.uinput.enable = true;
   services.kanata = {
@@ -36,13 +39,13 @@
         )
 
         (deflayer base
-          esc (multi @switch-to-none (cmd notify-send "Keyboard" "Using default keybinds"))
+          esc (multi @switch-to-none (cmd ${notify-send} "Keyboard" "Using default keybinds"))
           @a @s @d @f @j @k @l @;
           XX XX XX XX XX XX XX XX  
         )
 
         (deflayer none
-          esc (multi @switch-to-base (cmd notify-send "Keyboard" "Using home-row-mods"))
+          esc (multi @switch-to-base (cmd ${notify-send} "Keyboard" "Using home-row-mods"))
           a s d f j k l ;
           lmet lalt lsft lctl rctl rsft ralt rmet
         )
