@@ -4,5 +4,7 @@
 
   catppuccin.zsh-syntax-highlighting.enable = false;
 
+  hyprland.enable = false;
+
   home.stateVersion = "24.11";
 }

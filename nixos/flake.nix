@@ -16,6 +16,7 @@
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
     let
+      utils = import ./utils.nix { };
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
@@ -28,24 +29,32 @@
           })
         ];
       };
-    in
-    {
-      nixosConfigurations.fun-machine = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/fun-machine/configuration.nix
-          ./nixosModules
-        ];
-      };
 
-      homeConfigurations."ceedrich" = home-manager.lib.homeManagerConfiguration {
+      generateHomemanagerConfigs = utils.generateConfigs (name: home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-
         modules = [
           inputs.catppuccin.homeManagerModules.catppuccin
-          ./users/ceedrich.nix
+          ./users/${name}.nix
           ./homemanagerModules
         ];
-      };
+      });
+
+      generateNixosConfigs = utils.generateConfigs (host: nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/${host}/configuration.nix
+          ./nixosModules
+        ];
+      });
+    in
+    {
+      nixosConfigurations = generateNixosConfigs [
+        "fun-machine"
+      ];
+
+      homeConfigurations = generateHomemanagerConfigs [
+        "ceedrich"
+        "ubuntu"
+      ];
     };
 }
