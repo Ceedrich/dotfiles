@@ -5,10 +5,12 @@
     ./neovim
     ./shell
     ./terminal
+    ./browser
     ./spotify
     ./btop
     ./yazi
     ./tmux
+    ./modrinth
   ];
 
   catppuccin.flavor = lib.mkDefault "mocha";
@@ -25,10 +27,14 @@
 
   tmux.enable = lib.mkDefault true;
 
+  brave.enable = lib.mkDefault true;
+
   zsh.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
 
   hyprland.enable = lib.mkDefault true;
+
+  modrinth.enable = lib.mkDefault true;
 
   programs.home-manager.enable = lib.mkDefault true;
 }

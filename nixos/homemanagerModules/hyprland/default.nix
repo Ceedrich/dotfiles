@@ -7,6 +7,7 @@
       hyprshot
       swaynotificationcenter
       wl-clipboard
+      networkmanagerapplet
     ];
     wayland.windowManager.hyprland = {
       enable = true;
@@ -18,7 +19,7 @@
         "$screenshot" = "hyprshot -o ~/Pictures/Screenshots";
 
         # Autostart
-        exec-once = "waybar & swaync";
+        exec-once = "waybar & swaync & nm-applet --indicator & dunst";
 
         # Input
         input = {
