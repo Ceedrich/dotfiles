@@ -32,7 +32,11 @@
             touchpad.natural_scroll = false;
           };
 
-          animations.enabled = false;
+          animation = [
+            "workspaces, 1, 0.5, default"
+            "windows, 1, 0.1, default"
+            "fade, 1, 0.1, default"
+          ];
 
           "$mainMod" = "SUPER";
           bind = [
