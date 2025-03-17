@@ -10,7 +10,7 @@
 
   environment.systemPackages = with pkgs; [
     libnotify
-    dunst
+    swaynotificationcenter
     (waybar.overrideAttrs (oldAttrs: {
       mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
     }))
