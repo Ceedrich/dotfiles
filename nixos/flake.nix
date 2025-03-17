@@ -34,6 +34,7 @@
         inherit pkgs;
         modules = [
           inputs.catppuccin.homeManagerModules.catppuccin
+          ./nixpkgs-issue-55674.nix
           ./users/${name}.nix
           ./homemanagerModules
         ];

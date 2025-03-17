@@ -5,7 +5,7 @@
   config = lib.mkIf config.spotify-unfree.enable
     /* lib.warn "Using unfree software spotify" */
     {
-      nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      allowedUnfree = [
         "spotify"
       ];
       home.packages = with pkgs; [
