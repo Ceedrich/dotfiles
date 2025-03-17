@@ -16,7 +16,7 @@
     },
     "scroll-step": 3,
     "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
-    "ignored-sinks": ["Easy Effects Sink"]
+    "on-click-right": "pavucontrol"
   },
   "tray": {
     "icon-size": 21,

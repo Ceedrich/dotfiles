@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 
 {
   options = {
@@ -19,38 +19,48 @@
       inherit (lib) mkIf;
     in
     mkIf wb.enable {
+      home.packages = with pkgs; [ pavucontrol ];
+
       programs.waybar = {
         enable = true;
         style = lib.readFile ./style.css;
-        settings = {
-          position = "top";
-          modules-left = [ "hyprland/workspces" ];
-          modules-center = [ "hyprland/window" ];
-          modules-right = [
-            (mkIf audio "pulseaudio")
-            (mkIf tray "tray")
-            (mkIf clock "clock")
-          ];
-
-          pulseaudio = mkIf audio {
-            format = "{volume}% {icon}";
-            format-bluetooth = "{volume}% {icon}";
-            format-muted = "{volume}% 󰝟";
-            format-icons.default = [ "󰖀" "󰕾" ];
-            scroll-step = 3;
-            on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
-          };
-
-          tray = mkIf tray {
-            icon-size = 21;
-            spacing = 10;
-          };
-
-          clock = mkIf clock {
-            format = "  {:%a %d %H:%M}";
-            tooltip-format = "<tt><small>{calendar}</small></tt>";
-          };
-        };
       };
+      # TODO: This should be in programs.waybar.settings but it does not work yet
+      home.file.".config/waybar/config.jsonc".source = ./config.json;
+
+
+      # programs.waybar = {
+      #   enable = true;
+      #   style = lib.readFile ./style.css;
+      #   settings = {
+      #     position = "top";
+      #     modules-left = [ "hyprland/workspces" ];
+      #     modules-center = [ "hyprland/window" ];
+      #     modules-right = [
+      #       (mkIf audio "pulseaudio")
+      #       (mkIf tray "tray")
+      #       (mkIf clock "clock")
+      #     ];
+      #
+      #     pulseaudio = mkIf audio {
+      #       format = "{volume}% {icon}";
+      #       format-bluetooth = "{volume}% {icon}";
+      #       format-muted = "{volume}% 󰝟";
+      #       format-icons.default = [ "󰖀" "󰕾" ];
+      #       scroll-step = 3;
+      #       on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
+      #     };
+      #
+      #     tray = mkIf tray {
+      #       icon-size = 21;
+      #       spacing = 10;
+      #     };
+      #
+      #     clock = mkIf clock {
+      #       format = "  {:%a %d %H:%M}";
+      #       tooltip-format = "<tt><small>{calendar}</small></tt>";
+      #     };
+      #   };
+      # };
     };
 }
