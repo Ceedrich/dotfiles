@@ -8,6 +8,7 @@
     programs.rofi = {
       enable = true;
       plugins = with pkgs; [ rofi-emoji-wayland ];
+      terminal = "${pkgs.ghostty}/bin/ghostty";
       extraConfig = {
         kb-row-down = "Control+j";
         kb-row-up = "Control+k";
