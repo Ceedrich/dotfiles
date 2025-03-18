@@ -17,39 +17,12 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Zurich";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "de_CH.UTF-8";
-    LC_IDENTIFICATION = "de_CH.UTF-8";
-    LC_MEASUREMENT = "de_CH.UTF-8";
-    LC_MONETARY = "de_CH.UTF-8";
-    LC_NAME = "de_CH.UTF-8";
-    LC_NUMERIC = "de_CH.UTF-8";
-    LC_PAPER = "de_CH.UTF-8";
-    LC_TELEPHONE = "de_CH.UTF-8";
-    LC_TIME = "de_CH.UTF-8";
-  };
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "ch";
-    variant = "";
-  };
-
-  # Configure console keymap
-  console.keyMap = "sg";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
