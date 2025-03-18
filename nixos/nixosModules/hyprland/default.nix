@@ -8,17 +8,6 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  environment.systemPackages = with pkgs; [
-    libnotify
-    swaynotificationcenter
-    (waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    }))
-    hyprlock
-    hyprpaper 
-    wofi
-  ];
-
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
