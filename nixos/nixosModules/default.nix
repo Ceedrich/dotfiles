@@ -1,7 +1,7 @@
 { inputs, lib, ... }: {
   imports = [
     ./kanata
-    ./window-manager
+    ./hyprland
     ./fonts
     ./steam
     inputs.catppuccin.nixosModules.catppuccin
