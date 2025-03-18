@@ -15,9 +15,9 @@
         let
           # TODO: those are defined elsewhere and thus dependent on other stuff
           terminal = "${pkgs.ghostty}/bin/ghostty";
-          menu = "${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons";
           waybar = "${pkgs.waybar}/bin/waybar";
           powermenu = (import ./rofi/power-menu.nix { inherit pkgs lib; logoutCommand = "hyprctl dispatch exit"; });
+          menu = "rofi -show drun -show-icons";
           emoji-picker = "rofi -modi emoji -show emoji";
 
           swaync = "${pkgs.swaynotificationcenter}/bin/swaync";

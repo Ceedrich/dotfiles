@@ -15,6 +15,8 @@
         kb-remove-to-eol = "";
         kb-accept-entry = "Return";
         display-drun = "Applications";
+        modi = "drun,emoji";
+        display-emoji = "Emoji";
         hide-scrollbar = true;
       };
 
