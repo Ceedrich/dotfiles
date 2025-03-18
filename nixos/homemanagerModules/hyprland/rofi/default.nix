@@ -26,6 +26,7 @@
             selected-normal-background = lit "@mauve";
             font = "JetBrains Mono Nerd Font 14";
           };
+          entry.placeholder = "";
           prompt = {
             text-style = lit "bold";
           };
