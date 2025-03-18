@@ -7,7 +7,7 @@
   config = lib.mkIf config.rofi.enable {
     programs.rofi = {
       enable = true;
-      plugins = with pkgs; [ rofi-emoji-wayland ];
+      plugins = with pkgs; [ rofi-emoji ];
       terminal = "${pkgs.ghostty}/bin/ghostty";
       extraConfig = {
         kb-row-down = "Control+j";

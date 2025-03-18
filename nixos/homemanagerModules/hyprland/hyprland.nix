@@ -18,6 +18,7 @@
           menu = "${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons";
           waybar = "${pkgs.waybar}/bin/waybar";
           powermenu = (import ./rofi/power-menu.nix { inherit pkgs lib; logoutCommand = "hyprctl dispatch exit"; });
+          emoji-picker = "rofi -modi emoji -show emoji";
 
           swaync = "${pkgs.swaynotificationcenter}/bin/swaync";
           nm-applet = "${pkgs.networkmanagerapplet}/bin/nm-applet";
@@ -48,6 +49,7 @@
             "$mainMod, return, exec, ${terminal}"
             "$mainMod, Q, killactive,"
             "$mainMod SHIFT, Q, exec, ${powermenu}"
+            "$mainMod, period, exec, ${emoji-picker}"
 
             "$mainMod, D, exec, ${menu}"
             ", PRINT, exec, $screenshot -m region"
