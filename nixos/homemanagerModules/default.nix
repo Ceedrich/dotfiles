@@ -11,6 +11,7 @@
     ./yazi
     ./tmux
     ./modrinth
+    ./minesweeper
   ];
 
   catppuccin.flavor = lib.mkDefault "mocha";

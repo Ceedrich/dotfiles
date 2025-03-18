@@ -18,6 +18,23 @@
         "type": "github"
       }
     },
+    "gnome-mines-custom": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739819402,
+        "narHash": "sha256-itd+7apouyneSghpSFM64bhbFrQ4y3Mh6tQUiXUecOs=",
+        "owner": "ceedrich",
+        "repo": "gnome-mines",
+        "rev": "f30d36b016fd857dfe1aaaeb5bd5ff03e391e606",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ceedrich",
+        "ref": "vim-keys",
+        "repo": "gnome-mines",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -74,6 +91,7 @@
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
+        "gnome-mines-custom": "gnome-mines-custom",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
         "rust-overlay": "rust-overlay"

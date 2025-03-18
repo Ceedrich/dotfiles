@@ -12,6 +12,10 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    gnome-mines-custom = {
+      url = "github:ceedrich/gnome-mines/vim-keys";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
@@ -32,6 +36,8 @@
 
       generateHomemanagerConfigs = utils.generateConfigs (name: home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
+
         modules = [
           inputs.catppuccin.homeManagerModules.catppuccin
           ./nixpkgs-issue-55674.nix
@@ -51,7 +57,7 @@
     {
       nixosConfigurations = generateNixosConfigs [
         "fun-machine"
-      	"gaming"
+        "gaming"
       ];
 
       homeConfigurations = generateHomemanagerConfigs [
