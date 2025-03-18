@@ -2,9 +2,10 @@
   home.username = "ceedrich";
   home.homeDirectory = "/home/ceedrich";
 
-  catppuccin.zsh-syntax-highlighting.enable = false;
-
   hyprland.enable = false;
+  modrinth.enable = false;
+
+  minesweeper.enable = true;
 
   home.stateVersion = "24.11";
 }
