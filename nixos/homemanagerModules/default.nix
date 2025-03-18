@@ -12,6 +12,7 @@
     ./tmux
     ./modrinth
     ./minesweeper
+    ./discord
   ];
 
   catppuccin.flavor = lib.mkDefault "mocha";
@@ -20,6 +21,7 @@
 
   ghostty.enable = lib.mkDefault true;
 
+  discord-unfree.enable = lib.mkDefault true;
   spotify-unfree.enable = lib.mkDefault true;
 
   yazi.enable = lib.mkDefault true;
