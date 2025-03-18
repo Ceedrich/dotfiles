@@ -1,4 +1,8 @@
-{ pkgs, lib, config, ... }:
+{ pkgs
+, lib
+, config
+, ...
+}:
 
 {
   options = {
@@ -9,17 +13,17 @@
       enable = true;
       settings =
         let
-          ghostty = "${pkgs.ghostty}/bin/ghostty";
-          wofi = "${pkgs.wofi}/bin/wofi";
-          hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
+          # TODO: those are defined elsewhere and thus dependent on other stuff
+          terminal = "${pkgs.ghostty}/bin/ghostty";
+          menu = "${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons";
+          waybar = "${pkgs.waybar}/bin/waybar";
+
           swaync = "${pkgs.swaynotificationcenter}/bin/swaync";
           nm-applet = "${pkgs.networkmanagerapplet}/bin/nm-applet";
-          waybar = "${pkgs.waybar}/bin/waybar";
+          hyprshot = "${pkgs.hyprshot}/bin/hyprshot";
         in
         {
           # Global Variables
-          "$terminal" = "${ghostty}";
-          "$menu" = "${wofi} --show drun --allow-images";
           "$screenshot" = "${hyprshot} -o ~/Pictures/Screenshots";
 
           # Autostart
@@ -40,12 +44,12 @@
 
           "$mainMod" = "SUPER";
           bind = [
-            "$mainMod, return, exec, $terminal"
+            "$mainMod, return, exec, ${terminal}"
             "$mainMod, Q, killactive,"
 
             "$mainMod SHIFT, Q, exit," # TODO: add shutdown script
 
-            "$mainMod, D, exec, $menu"
+            "$mainMod, D, exec, ${menu}"
             ", PRINT, exec, $screenshot -m region"
             "SHIFT, PRINT, exec, $screenshot -m window"
 
