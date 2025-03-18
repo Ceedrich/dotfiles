@@ -1,11 +1,11 @@
 { pkgs ? import <nixpkgs> { }
 , lib ? pkgs.lib
-, dmenuCommand ? "${pkgs.rofi-wayland}/bin/rofi -dmenu -i -l 5"
+, dmenuCommand ? "${pkgs.rofi-wayland}/bin/rofi -dmenu -i -l 5 -p \"Power Menu\""
 , lockCommand ? "loginctl lock-session"
 , logoutCommand ? "loginctl kill-session"
 , shutdownCommand ? "systemctl poweroff"
 , rebootCommand ? "systemctl reboot"
-, suspendCommand ? "systemctl suspend" 
+, suspendCommand ? "systemctl suspend"
 , ...
 }:
 let
