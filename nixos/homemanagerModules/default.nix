@@ -30,6 +30,8 @@
 
   brave.enable = lib.mkDefault true;
 
+  neovim.enable = lib.mkDefault true;
+
   zsh.enable = lib.mkDefault true;
   git.enable = lib.mkDefault true;
 
