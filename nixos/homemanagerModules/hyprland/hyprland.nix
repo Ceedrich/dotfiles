@@ -38,9 +38,9 @@
           };
 
           animation = [
-            "workspaces, 1, 0.5, default"
-            "windows, 1, 0.1, default"
-            "fade, 1, 0.1, default"
+            "workspaces, 1, 2, default"
+            "windows, 1, 0.5, default"
+            "fade, 1, 0.5, default"
           ];
 
           "$mainMod" = "SUPER";
