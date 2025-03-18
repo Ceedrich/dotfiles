@@ -1,11 +1,11 @@
 { pkgs ? import <nixpkgs> { }
 , lib ? pkgs.lib
 , dmenuCommand ? "${pkgs.rofi-wayland}/bin/rofi -dmenu -i"
-, lockCommand ? "${pkgs.hyprlock}/bin/hyprlock"
-, logoutCommand ? "${pkgs.hyprland}/bin/hyprctl dispatch exit"
-, shutdownCommand ? "poweroff"
-, rebootCommand ? "reboot"
-, suspendCommand ? "systemctl suspend"
+, lockCommand ? "loginctl lock-session"
+, logoutCommand ? "loginctl kill-session"
+, shutdownCommand ? "systemctl poweroff"
+, rebootCommand ? "systemctl reboot"
+, suspendCommand ? "systemctl suspend" 
 , ...
 }:
 let

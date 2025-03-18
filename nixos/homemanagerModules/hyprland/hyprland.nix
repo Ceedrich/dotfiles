@@ -17,6 +17,7 @@
           terminal = "${pkgs.ghostty}/bin/ghostty";
           menu = "${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons";
           waybar = "${pkgs.waybar}/bin/waybar";
+          powermenu = (import ./rofi/power-menu.nix { inherit pkgs lib; logoutCommand = "hyprctl dispatch exit"; });
 
           swaync = "${pkgs.swaynotificationcenter}/bin/swaync";
           nm-applet = "${pkgs.networkmanagerapplet}/bin/nm-applet";
@@ -46,8 +47,7 @@
           bind = [
             "$mainMod, return, exec, ${terminal}"
             "$mainMod, Q, killactive,"
-
-            "$mainMod SHIFT, Q, exit," # TODO: add shutdown script
+            "$mainMod SHIFT, Q, exec, ${powermenu}"
 
             "$mainMod, D, exec, ${menu}"
             ", PRINT, exec, $screenshot -m region"
