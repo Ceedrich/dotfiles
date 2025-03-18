@@ -4,8 +4,8 @@
     ./git
     ./neovim
     ./shell
-    ./terminal
-    ./browser
+    ./ghostty
+    ./brave
     ./spotify
     ./btop
     ./yazi
