@@ -12,6 +12,6 @@
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   hardware = {
-    opengl.enable = true;
+    graphics.enable = true;
   };
 }
