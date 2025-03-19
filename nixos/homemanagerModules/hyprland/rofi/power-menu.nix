@@ -27,10 +27,13 @@ let
     '')
     options);
 in
-pkgs.writeShellScript "power-menu" ''
-  chosen=$(echo -e "${optionList}" | ${dmenuCommand})
+pkgs.writeShellApplication {
+  name = "power-menu";
+  text = ''
+    chosen=$(echo -e "${optionList}" | ${dmenuCommand})
 
-  case "$chosen" in
-    ${optionCases}
-  esac
-''
+    case "$chosen" in
+      ${optionCases}
+    esac
+  '';
+} 
