@@ -47,10 +47,6 @@
     vim
   ];
 
-  hardware.opengl.extraPackages = with pkgs; [
-    rocmPackages.rocm-smi
-  ];
-
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
