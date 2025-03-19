@@ -2,9 +2,9 @@
 
 {
   options = {
-    modrinth.enable = lib.mkEnableOption "enable modrinth";
+    modrinth-unfree.enable = lib.mkEnableOption "enable modrinth";
   };
-  config = lib.mkIf config.modrinth.enable {
+  config = lib.mkIf config.modrinth-unfree.enable {
     allowedUnfree = [
       "modrinth-app"
       "modrinth-app-unwrapped"

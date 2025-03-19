@@ -3,7 +3,8 @@
   home.homeDirectory = "/home/ceedrich";
 
   hyprland.enable = false;
-  modrinth.enable = false;
+
+  spotify-unfree.enable = true;
 
   minesweeper.enable = true;
 

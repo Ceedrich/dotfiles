@@ -21,8 +21,9 @@
 
   ghostty.enable = lib.mkDefault true;
 
-  discord-unfree.enable = lib.mkDefault true;
-  spotify-unfree.enable = lib.mkDefault true;
+  # discord-unfree.enable = lib.mkDefault false;
+  # spotify-unfree.enable = lib.mkDefault false;
+  # modrinth-unfree.enable = lib.mkDefault false;
 
   yazi.enable = lib.mkDefault true;
 
@@ -38,8 +39,6 @@
   git.enable = lib.mkDefault true;
 
   hyprland.enable = lib.mkDefault true;
-
-  modrinth.enable = lib.mkDefault true;
 
   programs.home-manager.enable = lib.mkDefault true;
 }
