@@ -15,7 +15,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  steam.enable = true;
+  steam-unfree.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   networking.hostName = "gaming"; # Define your hostname.

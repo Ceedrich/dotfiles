@@ -1,8 +1,8 @@
 { pkgs, lib, config, ... }: {
   options = {
-    steam.enable = lib.mkEnableOption "enable steam";
+    steam-unfree.enable = lib.mkEnableOption "enable steam";
   };
-  config = lib.mkIf config.steam.enable {
+  config = lib.mkIf config.steam-unfree.enable {
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
       "steam"
       "steam-original"
