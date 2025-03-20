@@ -21,6 +21,8 @@
         vimdiffAlias = true;
 
         extraPackages = with pkgs; [
+          wl-clipboard
+
           # Plugin dependencies
           git
           fd
