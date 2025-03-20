@@ -61,6 +61,7 @@
           cmp-buffer
           cmp-path
           cmp_luasnip
+          friendly-snippets
           telescope-fzf-native-nvim
 
           otter-nvim
