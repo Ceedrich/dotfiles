@@ -16,7 +16,9 @@
           # TODO: those are defined elsewhere and thus dependent on other stuff
           terminal = "${pkgs.ghostty}/bin/ghostty";
           waybar = "${pkgs.waybar}/bin/waybar";
-          powermenu = (import ./rofi/power-menu.nix { inherit pkgs lib; logoutCommand = "hyprctl dispatch exit"; });
+          powermenuPkg =
+            (import ./rofi/power-menu.nix { inherit pkgs lib; logoutCommand = " hyprctl dispatch exit "; });
+          powermenu = lib.getExe powermenuPkg;
           menu = "rofi -show drun -show-icons";
           emoji-picker = "rofi -modi emoji -show emoji";
 
