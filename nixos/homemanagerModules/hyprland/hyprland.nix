@@ -16,9 +16,8 @@
           # TODO: those are defined elsewhere and thus dependent on other stuff
           terminal = "${pkgs.ghostty}/bin/ghostty";
           waybar = "${pkgs.waybar}/bin/waybar";
-          powermenuPkg =
-            (import ./rofi/power-menu.nix { inherit pkgs lib; logoutCommand = " hyprctl dispatch exit "; });
-          powermenu = lib.getExe powermenuPkg;
+          powermenu =
+            lib.getExe (import ./rofi/power-menu.nix { inherit pkgs lib; logoutCommand = "hyprctl dispatch exit"; });
           menu = "rofi -show drun -show-icons";
           emoji-picker = "rofi -modi emoji -show emoji";
 
@@ -103,6 +102,7 @@
             "opacity 0.9 0.8, class:^com\\.mitchellh\\.ghostty"
             "suppressevent maximize, class:.*"
             "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+            "float, class:pavucontrol"
           ];
         };
     };
