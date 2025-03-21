@@ -7,7 +7,7 @@ local rep = extras.rep
 local fmt = require("luasnip.extras.fmt").fmt
 
 ls.add_snippets("nix", {
-  s("enable", fmt([[ {}.enable = lib.mkEnableOption "enable {}" ]], { i(1), rep(1) })),
+  s("enable", fmt([[ {}.enable = lib.mkEnableOption "enable {}"; ]], { i(1), rep(1) })),
   s(
     "mod",
     fmt(
