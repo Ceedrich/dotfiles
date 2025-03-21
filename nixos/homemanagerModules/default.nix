@@ -11,6 +11,7 @@
     ./yazi
     ./tmux
     ./modrinth
+    ./shortcuts
     ./minesweeper
     ./discord
   ];
@@ -18,6 +19,8 @@
   catppuccin.flavor = lib.mkDefault "mocha";
   catppuccin.enable = lib.mkDefault true;
   catppuccin.zsh-syntax-highlighting.enable = lib.mkDefault false;
+
+  shortcuts.enable = lib.mkDefault true;
 
   ghostty.enable = lib.mkDefault true;
 
