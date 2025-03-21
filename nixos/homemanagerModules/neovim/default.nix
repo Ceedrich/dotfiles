@@ -21,6 +21,8 @@
         vimdiffAlias = true;
 
         extraPackages = with pkgs; [
+          wl-clipboard
+
           # Plugin dependencies
           git
           fd
@@ -61,6 +63,7 @@
           cmp-buffer
           cmp-path
           cmp_luasnip
+          friendly-snippets
           telescope-fzf-native-nvim
 
           otter-nvim

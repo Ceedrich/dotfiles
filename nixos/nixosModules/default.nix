@@ -1,4 +1,4 @@
-{ inputs, lib, ... }: {
+{ pkgs, inputs, lib, ... }: {
   imports = [
     ./kanata
     ./hyprland
@@ -7,6 +7,8 @@
     ./locales
     inputs.catppuccin.nixosModules.catppuccin
   ];
+
+  environment.systemPackages = with pkgs; [ wl-clipboard ];
 
   catppuccin.flavor = lib.mkDefault "mocha";
   catppuccin.enable = lib.mkDefault true;
