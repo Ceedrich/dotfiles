@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ pkgs, lib, ... }: {
   imports = [
     ./hyprland
     ./git
@@ -15,6 +15,23 @@
     ./minesweeper
     ./discord
   ];
+
+  gtk = let key = "gtk-application-prefer-dark-theme"; in {
+    enable = true;
+    gtk3.extraConfig = {
+      ${key} = 1;
+    };
+    gtk4.extraConfig = {
+      ${key} = 1;
+    };
+    iconTheme = {
+      name = "Parirus-Dark";
+      package = pkgs.papirus-icon-theme;
+      # name = "Qogir";
+      # package = pkgs.qogir-icon-theme;
+    };
+  };
+  catppuccin.gtk.enable = true;
 
   catppuccin.flavor = lib.mkDefault "mocha";
   catppuccin.enable = lib.mkDefault true;
