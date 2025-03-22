@@ -10,8 +10,8 @@
       plugins = with pkgs; [ rofi-emoji ];
       terminal = "${pkgs.ghostty}/bin/ghostty";
       extraConfig = {
-        kb-row-down = "Control+j";
-        kb-row-up = "Control+k";
+        kb-row-down = "Down,Control+j";
+        kb-row-up = "Up,Control+k";
         kb-remove-to-eol = "";
         kb-accept-entry = "Return";
         display-drun = "Applications";
