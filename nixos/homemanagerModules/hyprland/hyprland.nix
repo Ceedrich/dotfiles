@@ -51,6 +51,8 @@
             "$mainMod, Q, killactive,"
             "$mainMod SHIFT, Q, exec, ${powermenu}"
             "$mainMod, period, exec, ${emoji-picker}"
+            "$mainMod, T, togglefloating"
+            "$mainMod, F, fullscreen"
 
             "$mainMod, D, exec, ${menu}"
             ", PRINT, exec, $screenshot -m region"
