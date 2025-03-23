@@ -8,6 +8,7 @@
     ./brave
     ./theming
     ./spotify
+    ./vlc
     ./signal
     ./btop
     ./yazi
@@ -20,7 +21,9 @@
 
   theming.enable = lib.mkDefault true;
 
-  signal.enable = true;
+  signal.enable = lib.mkDefault true;
+
+  vlc.enable = lib.mkDefault true;
 
   catppuccin.flavor = lib.mkDefault "mocha";
   catppuccin.enable = lib.mkDefault true;
