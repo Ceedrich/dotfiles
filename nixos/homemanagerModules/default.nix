@@ -8,6 +8,7 @@
     ./brave
     ./theming
     ./spotify
+    ./signal
     ./btop
     ./yazi
     ./tmux
@@ -18,6 +19,8 @@
   ];
 
   theming.enable = lib.mkDefault true;
+
+  signal.enable = true;
 
   catppuccin.flavor = lib.mkDefault "mocha";
   catppuccin.enable = lib.mkDefault true;
