@@ -7,58 +7,58 @@
       audio = lib.mkEnableOption "enable audio module";
       clock = lib.mkEnableOption "enable clock module";
       tray = lib.mkEnableOption "enable tray module";
+      powermenu = lib.mkEnableOption "enable powermenu";
     };
   };
   config =
     let
+      inherit (lib) mkIf;
       wb = config.waybar;
       m = wb.modules;
-      audio = m.audio.enable;
-      tray = m.tray.enable;
-      clock = m.clock.enable;
-      inherit (lib) mkIf;
+
+      powermenu-name = "group/powermenu";
     in
-    mkIf wb.enable {
-      programs.waybar = {
+    {
+      waybar.modules = {
+        audio = lib.mkDefault true;
+        clock = lib.mkDefault true;
+        tray = lib.mkDefault true;
+        powermenu = lib.mkDefault true;
+      };
+
+      programs.waybar = mkIf wb.enable {
         enable = true;
         style = lib.readFile ./style.css;
-      };
-      # TODO: This should be in programs.waybar.settings but it does not work yet
-      home.file.".config/waybar/config.jsonc".source = ./config.json;
-      home.packages = with pkgs; [ pavucontrol (import ../rofi/confirm-dialogue.nix { inherit pkgs; }) ];
+        settings.mainBar = {
+          position = "top";
+          modules-left = [ "hyprland/workspaces" ];
+          modules-center = [ "hyprland/window" ];
+          modules-right = [
+            (mkIf m.audio "pulseaudio")
+            (mkIf m.clock "clock")
+            (mkIf m.powermenu powermenu-name)
+            (mkIf m.tray "tray")
+          ];
 
-      # programs.waybar = {
-      #   enable = true;
-      #   style = lib.readFile ./style.css;
-      #   settings = {
-      #     position = "top";
-      #     modules-left = [ "hyprland/workspces" ];
-      #     modules-center = [ "hyprland/window" ];
-      #     modules-right = [
-      #       (mkIf audio "pulseaudio")
-      #       (mkIf tray "tray")
-      #       (mkIf clock "clock")
-      #     ];
-      #
-      #     pulseaudio = mkIf audio {
-      #       format = "{volume}% {icon}";
-      #       format-bluetooth = "{volume}% {icon}";
-      #       format-muted = "{volume}% 󰝟";
-      #       format-icons.default = [ "󰖀" "󰕾" ];
-      #       scroll-step = 3;
-      #       on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
-      #     };
-      #
-      #     tray = mkIf tray {
-      #       icon-size = 21;
-      #       spacing = 10;
-      #     };
-      #
-      #     clock = mkIf clock {
-      #       format = "  {:%a %d %H:%M}";
-      #       tooltip-format = "<tt><small>{calendar}</small></tt>";
-      #     };
-      #   };
-      # };
+          pulseaudio = mkIf m.audio {
+            format = "{volume}% {icon}";
+            format-bluetooth = "{volume}% {icon}";
+            format-muted = "{volume}% 󰝟";
+            format-icons.default = [ "󰖀" "󰕾" ];
+            scroll-step = 3;
+            on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
+            on-click-right = lib.getExe (pkgs.pavucontrol);
+          };
+          clock = mkIf m.clock {
+            format = "{:%d.%m. %H:%M}";
+          };
+
+          tray = mkIf m.tray { icon-size = 21; spacing = 10; };
+        } //
+        (import ./modules/powermenu.nix {
+          inherit pkgs;
+          name = powermenu-name;
+        });
+      };
     };
 }
