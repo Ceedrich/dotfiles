@@ -19,15 +19,13 @@
       inherit (lib) mkIf;
     in
     mkIf wb.enable {
-      home.packages = with pkgs; [ pavucontrol ];
-
       programs.waybar = {
         enable = true;
         style = lib.readFile ./style.css;
       };
       # TODO: This should be in programs.waybar.settings but it does not work yet
       home.file.".config/waybar/config.jsonc".source = ./config.json;
-
+      home.packages = with pkgs; [ pavucontrol (import ../rofi/confirm-dialogue.nix { inherit pkgs; }) ];
 
       # programs.waybar = {
       #   enable = true;

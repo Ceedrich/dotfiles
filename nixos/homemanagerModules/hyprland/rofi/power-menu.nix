@@ -12,19 +12,24 @@ let
   join = lib.strings.concatStringsSep;
 
   options = {
-    "󰌾 Lock" = lockCommand;
-    "󰍃 Logout" = logoutCommand;
-    "󰐥 Shutdown" = shutdownCommand;
-    "󰜉 Reboot" = rebootCommand;
-    "󰏥 Suspend" = suspendCommand;
+    "󰌾 Lock" = { cmd = lockCommand; confirm = false; };
+    "󰍃 Logout" = { cmd = logoutCommand; confirm = true; };
+    "󰐥 Shutdown" = { cmd = shutdownCommand; confirm = true; };
+    "󰜉 Reboot" = { cmd = rebootCommand; confirm = true; };
+    "󰏥 Suspend" = { cmd = suspendCommand; confirm = false; };
   };
 
   optionList = join "\\n" (builtins.attrNames options);
   optionCases = join "\n" (lib.attrsets.mapAttrsToList
-    (name: command: ''
-      "${name}")
-      ${command};;
-    '')
+    (name: { cmd, confirm }:
+      let
+        doConfirm = lib.getExe (import ./confirm-dialogue.nix { inherit pkgs; });
+        command = if confirm then "${doConfirm} \"${name}\" \"${cmd}\"" else "${cmd}";
+      in
+      ''
+        "${name}")
+        ${command};;
+      '')
     options);
 in
 pkgs.writeShellApplication {

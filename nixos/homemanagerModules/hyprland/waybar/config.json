@@ -30,7 +30,7 @@
   "custom/logout": {
     "format": "󰍃",
     "tooltip-format": "Logout",
-    "on-click": "hyprctl dispatch exit"
+    "on-click": "confirm-dialogue \"Logout\" \"hyprctl dispatch exit\""
   },
   "custom/lock": {
     "format": "󰌾",
@@ -40,12 +40,12 @@
   "custom/reboot": {
     "format": "󰜉",
     "tooltip-format": "Reboot",
-    "on-click": "reboot"
+    "on-click": "confirm-dialogue \"Reboot\" \"reboot\""
   },
   "custom/power": {
     "format": "󰐥",
     "tooltip-format": "Power Off",
-    "on-click": "shutdown now"
+    "on-click": "confirm-dialogue \"Power Off\" \"shutdown now\""
   },
   "tray": {
     "icon-size": 21,
