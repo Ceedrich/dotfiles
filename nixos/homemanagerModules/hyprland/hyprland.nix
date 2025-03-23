@@ -13,6 +13,8 @@
       enable = true;
       settings =
         let
+          join = lib.strings.concatStringsSep;
+
           # TODO: those are defined elsewhere and thus dependent on other stuff
           terminal = "${pkgs.ghostty}/bin/ghostty";
           waybar = "${pkgs.waybar}/bin/waybar";
@@ -100,12 +102,16 @@
             disable_hyprland_logo = true;
           };
           # No idea, the docs said it is good
-          windowrulev2 = [
-            "opacity 0.9 0.8, class:^com\\.mitchellh\\.ghostty"
-            "suppressevent maximize, class:.*"
-            "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-            "float, class:pavucontrol"
-          ];
+          windowrulev2 =
+            let
+              floating = [ "pavucontrol" ];
+            in
+            [
+              "opacity 0.9 0.8, class:^com\\.mitchellh\\.ghostty"
+              "suppressevent maximize, class:.*"
+              "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+              "float, class:(${join "|" floating })"
+            ];
         };
     };
   };
