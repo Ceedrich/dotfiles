@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ lib, ... }: {
   imports = [
     ./hyprland
     ./git
@@ -6,7 +6,10 @@
     ./shell
     ./ghostty
     ./brave
+    ./theming
     ./spotify
+    ./vlc
+    ./signal
     ./btop
     ./yazi
     ./tmux
@@ -16,22 +19,11 @@
     ./discord
   ];
 
-  gtk = let key = "gtk-application-prefer-dark-theme"; in {
-    enable = true;
-    gtk3.extraConfig = {
-      ${key} = 1;
-    };
-    gtk4.extraConfig = {
-      ${key} = 1;
-    };
-    iconTheme = {
-      name = "Parirus-Dark";
-      package = pkgs.papirus-icon-theme;
-      # name = "Qogir";
-      # package = pkgs.qogir-icon-theme;
-    };
-  };
-  catppuccin.gtk.enable = true;
+  theming.enable = lib.mkDefault true;
+
+  signal.enable = lib.mkDefault true;
+
+  vlc.enable = lib.mkDefault true;
 
   catppuccin.flavor = lib.mkDefault "mocha";
   catppuccin.enable = lib.mkDefault true;
