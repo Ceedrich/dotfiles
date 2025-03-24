@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs-unstable, pkgs, lib, config, ... }:
 
 {
   options = {
@@ -79,7 +79,7 @@
             config = fromLuaFile ./plugin/luasnip.lua;
           }
           {
-            plugin = crates-nvim;
+            plugin = pkgs-unstable.vimPlugins.crates-nvim;
             config = fromLua /* lua */ ''require("crates").setup()'';
           }
           {

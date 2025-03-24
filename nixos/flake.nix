@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +23,7 @@
     let
       utils = import ./utils.nix { };
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
+      makePkgs = npkgs: import npkgs {
         inherit system;
         overlays = [
           (import inputs.rust-overlay)
@@ -33,10 +34,12 @@
           })
         ];
       };
+      pkgs-unstable = makePkgs inputs.nixpkgs-unstable;
+      pkgs = makePkgs nixpkgs;
 
       generateHomemanagerConfigs = utils.generateConfigs (name: home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = { inherit inputs pkgs-unstable; };
 
         modules = [
           inputs.catppuccin.homeManagerModules.catppuccin
