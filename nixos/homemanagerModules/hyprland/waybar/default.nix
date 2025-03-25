@@ -31,11 +31,15 @@
         style = lib.readFile ./style.css;
         settings.mainBar = {
           position = "top";
-          modules-left = [ "hyprland/workspaces" ];
-          modules-center = [ "hyprland/window" ];
-          modules-right = [
-            (mkIf m.audio "pulseaudio")
+          modules-left = [
+            "hyprland/window"
+          ];
+          modules-center = [
             (mkIf m.clock "clock")
+          ];
+          modules-right = [
+            "hyprland/workspaces"
+            (mkIf m.audio "pulseaudio")
             (mkIf m.powermenu powermenu-name)
             (mkIf m.tray "tray")
           ];
