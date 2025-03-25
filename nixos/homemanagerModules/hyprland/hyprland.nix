@@ -56,7 +56,7 @@
             "$mainMod, T, togglefloating"
             "$mainMod, F, fullscreen"
 
-            "$mainMod, D, exec, ${menu}"
+            "$mainMod, Space, exec, ${menu}"
             ", PRINT, exec, $screenshot -m region"
             "SHIFT, PRINT, exec, $screenshot -m window"
 
