@@ -57,10 +57,14 @@
             on-click-right = lib.getExe (pkgs.pavucontrol);
           };
           clock = mkIf m.clock {
+            tooltip = false;
             format = "{:%H:%M}";
+            format-alt = "{:%a %d.%m.%Y %H:%M:%S}";
+            interval = 1;
           };
           "clock#date" = mkIf m.date {
             format = "{:%d.%m.}";
+            tooltip = false;
           };
 
           tray = mkIf m.tray { icon-size = 21; spacing = 10; };
