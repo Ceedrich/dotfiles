@@ -49,10 +49,13 @@
         ];
       });
 
-      generateNixosConfigs = utils.generateConfigs (host: nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+      generateNixosConfigs = utils.generateConfigs (hostname: nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          meta = { inherit hostname; };
+        };
         modules = [
-          ./hosts/${host}/configuration.nix
+          ./hosts/${hostname}/configuration.nix
           ./nixosModules
         ];
       });
