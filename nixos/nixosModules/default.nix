@@ -13,6 +13,7 @@
   ];
 
   bootloader.enable = lib.mkDefault true;
+  networking.enable = lib.mkDefault true;
 
   environment.systemPackages = with pkgs; [ wl-clipboard ];
 
