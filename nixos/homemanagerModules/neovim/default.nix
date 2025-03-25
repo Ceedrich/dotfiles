@@ -6,9 +6,6 @@
   };
   config = lib.mkIf config.neovim.enable {
     home.shellAliases = { v = "nvim"; };
-    home.sessionVariables = {
-      EDITOR = "nvim";
-    };
     programs.neovim =
       let
         fromLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
@@ -19,6 +16,7 @@
         viAlias = true;
         vimAlias = true;
         vimdiffAlias = true;
+        defaultEditor = true;
 
         extraPackages = with pkgs; [
           wl-clipboard
