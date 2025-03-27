@@ -22,6 +22,8 @@
           "ctrl+shift+r=reload_config"
           "ctrl+shift+v=paste_from_clipboard"
           "ctrl+shift+c=copy_to_clipboard"
+          "page_up=scroll_page_up"
+          "page_down=scroll_page_down"
         ];
       };
     };
