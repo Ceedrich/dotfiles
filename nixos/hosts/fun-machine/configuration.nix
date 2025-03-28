@@ -3,7 +3,20 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
-  services.xserver.desktopManager.gnome.enable = true; # TODO: remove gnome
+  hyprland.enable = false;
+
+  services.tailscale.enable = true;
+
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+    settings = {
+      PasswordAuthentication = true;
+      AllowUsers = null;
+    };
+  };
+
+  networking.firewall.allowedTCPPorts = [ 22 ];
 
   environment.systemPackages = with pkgs; [
     vim
