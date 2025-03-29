@@ -34,7 +34,6 @@ List of all packages:
 - [polybar](#polybar)
 - [rofi](#rofi)
 - picom
-- profile
 - [yazi](https://yazi-rs.github.io/) <!-- TODO: add configuration -->
 
 Dependencies:
@@ -68,3 +67,4 @@ This rofi config is a bit unstable and not guaranteed to work across systems.
 ## TODOS
 
 - Enable proper screenshot functionality
+- Add cc to nix

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 uptime="$(uptime -p | sed -e 's/up //g')"
-theme="${XDG_CONFIG_HOME:-$HOME/.config}/rofi/themes/powermenu-theme.rasi"
 
 # Icons
 shutdown=󰐥
@@ -13,14 +12,12 @@ no=n
 
 run_rofi() {
   echo -e "$shutdown\n$reboot\n$suspend\n$logout" | rofi -dmenu -filter "" \
-    -mesg "Power Menu (up $uptime)" \
-    -theme "$theme"
+    -mesg "Power Menu (up $uptime)"
 }
 
 confirm_exit() {
   echo -e "$yes\n$no" | rofi -dmenu \
-    -mesg "Are you sure? ($1)" \
-    -theme "$theme"
+    -mesg "Are you sure? ($1)"
 }
 
 run_cmd() {

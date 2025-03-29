@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, config, ... }: {
   imports = [
     ./hyprland
     ./git
@@ -19,38 +19,38 @@
     ./discord
   ];
 
-  theming.enable = lib.mkDefault true;
+  options = { minimal = lib.mkEnableOption "minimal config"; };
 
-  signal.enable = lib.mkDefault true;
+  config = let extra = lib.mkIf config.minimal; in {
+    theming.enable = extra lib.mkDefault true;
 
-  vlc.enable = lib.mkDefault true;
+    signal.enable = extra lib.mkDefault true;
 
-  catppuccin.flavor = lib.mkDefault "mocha";
-  catppuccin.enable = lib.mkDefault true;
-  catppuccin.zsh-syntax-highlighting.enable = lib.mkDefault false;
+    vlc.enable = extra lib.mkDefault true;
 
-  shortcuts.enable = lib.mkDefault true;
+    shortcuts.enable = extra lib.mkDefault true;
 
-  ghostty.enable = lib.mkDefault true;
+    ghostty.enable = lib.mkDefault true;
 
-  # discord-unfree.enable = lib.mkDefault false;
-  # spotify-unfree.enable = lib.mkDefault false;
-  # modrinth-unfree.enable = lib.mkDefault false;
+    # discord-unfree.enable = lib.mkDefault false;
+    # spotify-unfree.enable = lib.mkDefault false;
+    # modrinth-unfree.enable = lib.mkDefault false;
 
-  yazi.enable = lib.mkDefault true;
+    yazi.enable = extra lib.mkDefault true;
 
-  btop.enable = lib.mkDefault true;
+    btop.enable = lib.mkDefault true;
 
-  tmux.enable = lib.mkDefault true;
+    tmux.enable = lib.mkDefault true;
 
-  brave.enable = lib.mkDefault true;
+    brave.enable = lib.mkDefault true;
 
-  neovim.enable = lib.mkDefault true;
+    neovim.enable = lib.mkDefault true;
 
-  zsh.enable = lib.mkDefault true;
-  git.enable = lib.mkDefault true;
+    zsh.enable = lib.mkDefault true;
+    git.enable = lib.mkDefault true;
 
-  hyprland.enable = lib.mkDefault true;
+    hyprland.enable = extra lib.mkDefault true;
 
-  programs.home-manager.enable = lib.mkDefault true;
+    programs.home-manager.enable = lib.mkDefault true;
+  };
 }
