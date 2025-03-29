@@ -23,7 +23,7 @@
 
   config =
     let
-      extra = x: lib.mkIf config.minimal x;
+      extra = x: lib.mkIf (! config.minimal) x;
     in
     {
       theming.enable = extra (lib.mkDefault true);
