@@ -69,6 +69,7 @@
       homeConfigurations = generateHomemanagerConfigs [
         "ceedrich"
         "ubuntu"
+        "minimal"
       ];
     };
 }
