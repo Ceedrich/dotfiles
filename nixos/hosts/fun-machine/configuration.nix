@@ -47,6 +47,14 @@
     ];
   };
 
+  systemd.tmpfiles.rules = [ 
+    "d /home/arm 1777 arm arm" 
+    "d /home/arm/music 1777 arm arm" 
+    "d /home/arm/logs 1777 arm arm" 
+    "d /home/arm/media 1777 arm arm" 
+    "d /home/arm/config 1777 arm arm" 
+  ];
+
   services.jellyfin = {
     enable = true;
     openFirewall = true;
