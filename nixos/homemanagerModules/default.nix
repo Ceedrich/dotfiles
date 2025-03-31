@@ -8,6 +8,7 @@
     ./brave
     ./theming
     ./spotify
+    ./mangohud
     ./vlc
     ./signal
     ./btop
@@ -26,6 +27,7 @@
       extra = x: lib.mkIf (! config.minimal) x;
     in
     {
+      mangohud.enable = extra (lib.mkDefault true);
       theming.enable = extra (lib.mkDefault true);
 
       signal.enable = extra (lib.mkDefault true);

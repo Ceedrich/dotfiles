@@ -10,6 +10,16 @@
     vim
   ];
 
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+    settings = {
+      PasswordAuthentication = false;
+      AllowUsers = null;
+    };
+  };
+
+  networking.firewall.allowedTCPPorts = [ 22 ];
 
   services.tailscale.enable = true;
 

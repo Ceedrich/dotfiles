@@ -20,7 +20,11 @@
         # package = pkgs.qogir-icon-theme;
       };
     };
-    catppuccin.gtk.enable = true;
+
+    catppuccin.flavor = lib.mkDefault "mocha";
+    catppuccin.enable = lib.mkDefault true;
+    catppuccin.zsh-syntax-highlighting.enable = lib.mkDefault false;
+    catppuccin.gtk.enable = lib.mkDefault true;
 
     qt = {
       enable = true;
