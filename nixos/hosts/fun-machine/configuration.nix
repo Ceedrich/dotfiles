@@ -38,7 +38,7 @@
       "/home/arm:/home/arm"
       "/home/arm/music:/home/arm/music"
       "/home/arm/logs:/home/arm/logs"
-      "/home/arm/media:/home/arm/media"
+      "/media-server:/home/arm/media"
       "/home/arm/config:/etc/arm/config"
     ];
     extraOptions = [
@@ -48,6 +48,7 @@
   };
 
   systemd.tmpfiles.rules = [ 
+    "d /media-server 1777 arm arm"
     "d /home/arm 1777 arm arm" 
     "d /home/arm/music 1777 arm arm" 
     "d /home/arm/logs 1777 arm arm" 
