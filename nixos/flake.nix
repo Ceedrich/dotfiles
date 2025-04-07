@@ -51,7 +51,7 @@
 
       generateNixosConfigs = utils.generateConfigs (hostname: nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs;
+          inherit inputs pkgs-unstable;
           meta = { inherit hostname; };
         };
         modules = [
