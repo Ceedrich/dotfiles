@@ -142,54 +142,7 @@
             config = fromLuaFile ./plugin/telescope.lua;
           }
           {
-            plugin = (nvim-treesitter.withPlugins (p: [
-              # Web dev
-              p.tree-sitter-html
-              p.tree-sitter-astro
-              p.tree-sitter-css
-              p.tree-sitter-typescript
-              p.tree-sitter-javascript
-
-              # Main Programming languages
-              p.tree-sitter-rust
-              p.tree-sitter-cpp
-              p.tree-sitter-c
-              p.tree-sitter-cmake
-              p.tree-sitter-java
-              p.tree-sitter-unison
-
-              # Scripting
-              p.tree-sitter-nix
-              p.tree-sitter-vim
-              p.tree-sitter-bash
-              p.tree-sitter-lua
-              p.tree-sitter-python
-
-              # LaTeX related
-              p.tree-sitter-bibtex
-              p.tree-sitter-latex
-
-              # Git
-              p.tree-sitter-git_config
-              p.tree-sitter-git_rebase
-              p.tree-sitter-gitattributes
-              p.tree-sitter-gitcommit
-              p.tree-sitter-gitignore
-
-              # General purpose
-              p.tree-sitter-markdown
-              p.tree-sitter-markdown-inline
-              p.tree-sitter-json
-              p.tree-sitter-jsonc
-              p.tree-sitter-toml
-              p.tree-sitter-yaml
-              p.tree-sitter-csv
-              p.tree-sitter-diff
-              p.tree-sitter-dockerfile
-              p.tree-sitter-make
-
-              p.tree-sitter-r
-            ]));
+            plugin = nvim-treesitter.withAllGrammars;
             config = fromLuaFile ./plugin/treesitter.lua;
           }
         ];
