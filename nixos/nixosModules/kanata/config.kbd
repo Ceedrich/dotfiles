@@ -1,0 +1,82 @@
+(defvar
+  tap-time 200
+  hold-time 150
+)
+
+(defalias
+  ;; home-row mods
+  a (tap-hold $tap-time $hold-time a lmet)
+  s (tap-hold $tap-time $hold-time s lalt)
+  d (tap-hold $tap-time $hold-time d lsft)
+  f (tap-hold $tap-time $hold-time f lctl)
+  j (tap-hold $tap-time $hold-time j rctl)
+  k (tap-hold $tap-time $hold-time k rsft)
+  l (tap-hold $tap-time $hold-time l ralt)
+
+  ö (tap-hold $tap-time $hold-time (fork (unicode "ö") (unicode "Ö") (lsft rsft)) rmet)
+
+  ;; empty key
+  nop XX
+
+  ;; layer switches
+  lay-1 (layer-while-held layer1)
+
+  ä (fork (unicode "ä") (unicode "Ä") (lsft rsft))
+  ü (fork (unicode "ü") (unicode "Ü") (lsft rsft))
+
+  sp1 Backquote
+  sp2 (fork S-1 RA-2 (lsft rshft))
+  sp3 (fork S-2 Minus (lsft rshft))
+  sp4 (fork S-3 RA-3 (lsft rshft))
+  sp5 (fork S-4 XX (lsft rshft))
+  sp6 (fork S-5 XX (lsft rshft))
+
+  sp7 (fork S-6 RA-6 (lsft rshft))
+  sp8 (fork S-7 RA-IntlBackslash (lsft rshft))
+  sp9 (fork S-0 RA-8 (lsft rshft))
+  sp10 (fork S-Equal S-BracketRight (lsft rshft))
+  sp11 (fork Equal RA-Equal (lsft rshft))
+  sp12 (fork S-Equal XX (lsft rshft))
+
+  com (fork (unicode ",") (unicode ";") (lsft rshft))
+  per (fork (unicode ".") (unicode ":") (lsft rshft))
+  min (fork (unicode "-") (unicode "_") (lsft rshft))
+  dol (fork (unicode "$") (unicode "£") (lsft rshft))
+
+  bak (fork Backspace Delete (lsft rshft))
+)
+
+(defsrc
+  Escape               F1    F2    F3     F4     F5     F6     F7     F8     F9     F10     F11     F12  Insert  PrintScreen  Delete
+  Backquote             Digit1  Digit2  Digit3  Digit4  Digit5  Digit6  Digit7  Digit8  Digit9  Digit0  Minus  Equal  Backspace     
+  Tab                    KeyQ    KeyW    KeyE    KeyR    KeyT    KeyY    KeyU    KeyI    KeyO    KeyP    BracketLeft  BracketRight  Enter
+  CapsLock                KeyA    KeyS    KeyD    KeyF    KeyG    KeyH    KeyJ    KeyK    KeyL    Semicolon    Quote    Backslash
+  ShiftLeft IntlBackslash  KeyZ    KeyX    KeyC    KeyV    KeyB    KeyN    KeyM    Comma   Period  Slash   ShiftRight                     
+  ControlLeft            MetaLeft  AltLeft                   Space                 AltRight ControlRight 
+               ArrowUp              
+  ArrowLeft    ArrowDown   ArrowRight
+)
+
+(deflayer base
+  XX                   XX    XX    XX     XX     XX     XX     XX     XX     XX     XX      XX      XX   XX      XX           XX    
+  @sp1                  @sp2    @sp3    @sp4    @sp5    @sp6    @sp7    @sp8    @sp9    @sp10   @sp11   @sp12  XX     XX            
+  Tab                    q       w       e       r       t       y       u       i       o       p       @ü           XX            XX      
+  Escape                  @a      @s      @d      @f      g       h       @j      @k      @l      @ö           @ä       XX          
+  XX        @nop           z       x       c       v       b       n       m       Comma   Period  Slash   Backslash                   
+  XX                     @lay-1    @bak                      Space                 enter    @nop         
+               XX                   
+  XX           XX          XX          
+)
+
+
+(deflayer layer1
+  XX                   XX    XX    XX     XX     XX     XX     XX     XX     XX     XX      XX      XX   XX      XX           XX    
+  _                     _       _       _       _       _       _       _       _       _       _       _      XX     XX            
+  _                      _       _       _       _       _       _       7       8       9       _       _            XX            XX      
+  _                       _       _       _       _       _       _       4       5       6       _            _        XX          
+  XX        _              _       _       _       _       _       _       1       2       3       _       _                              
+  XX                     _         _                         _                     _        0            
+               XX                   
+  XX           XX          XX          
+)
+
