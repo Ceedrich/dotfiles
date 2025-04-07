@@ -57,11 +57,11 @@
 
 (deflayer base
   XX                   XX    XX    XX     XX     XX     XX     XX     XX     XX     XX      XX      XX   XX      XX           XX    
-  @nop                  @nop    @nop    @nop    @nop    @nop    @nop    @nop    @nop    @nop    @nop    @nop   XX     XX            
+  Backspace             S-1     S-2     S-3     S-4     S-5     S-6     S-7     S-8     S-9     S-0     Minus  XX     XX            
   Tab                    q       w       e       r       t       y       u       i       o       p       BracketLeft  XX            XX      
   Escape                  @a      @s      @d      @f      g       h       @j      @k      @l      @ö           Quote    XX          
   XX        @nop           z       x       c       v       b       n       m       Comma   Period  Slash   Backslash                   
-  XX                     @nop      @bak                      @space                enter    @nop         
+  XX                     @nop      @nop                      @space                @nop     @nop         
                XX                   
   XX           XX          XX          
 )
@@ -69,11 +69,11 @@
 
 (deflayer layer1
   XX                   XX    XX    XX     XX     XX     XX     XX     XX     XX     XX      XX      XX   XX      XX           XX    
-  _                     _       _       _       _       _       _       _       _       _       _       _      XX     XX            
-  _                      _       7       8       9       _       _       _       _       _       _       _            XX            XX      
+  _                     _       _       0       _       _       _       _       _       _       _       _      XX     XX            
+  _                      _       1       2       3       _       _       Enter   Backspace Delete _      _            XX            XX      
   _                       _       4       5       6       _       @left   @down   @up     @right  _            _        XX          
-  XX        _              _       1       2       3       _       _       _       _       _       _       _                              
-  XX                     _         0                         _                     _        _            
+  XX        _              _       7       8       9       _       _       _       _       _       _       _                              
+  XX                     _         _                         _                     _        _            
                XX                   
   XX           XX          XX          
 )
