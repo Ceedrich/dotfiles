@@ -4,6 +4,12 @@
 )
 
 (defalias
+  ;; empty key
+  nop XX
+
+  ;; layer switches
+  lay-1 (layer-while-held layer1)
+
   ;; home-row mods
   a (tap-hold $tap-time $hold-time a lmet)
   s (tap-hold $tap-time $hold-time s lalt)
@@ -12,17 +18,14 @@
   j (tap-hold $tap-time $hold-time j rctl)
   k (tap-hold $tap-time $hold-time k rsft)
   l (tap-hold $tap-time $hold-time l ralt)
+  ö (tap-hold $tap-time $hold-time Semicolon rmet)
 
-  ö (tap-hold $tap-time $hold-time (fork (unicode "ö") (unicode "Ö") (lsft rsft)) rmet)
+  space (tap-hold $tap-time $hold-time Space @lay-1)
 
-  ;; empty key
-  nop XX
-
-  ;; layer switches
-  lay-1 (layer-while-held layer1)
-
-  ä (fork (unicode "ä") (unicode "Ä") (lsft rsft))
-  ü (fork (unicode "ü") (unicode "Ü") (lsft rsft))
+  left ArrowLeft
+  down ArrowDown
+  up ArrowUp
+  right ArrowRight
 
   sp1 Backquote
   sp2 (fork S-1 RA-2 (lsft rshft))
@@ -37,11 +40,6 @@
   sp10 (fork S-Equal S-BracketRight (lsft rshft))
   sp11 (fork Equal RA-Equal (lsft rshft))
   sp12 (fork S-Equal XX (lsft rshft))
-
-  com (fork (unicode ",") (unicode ";") (lsft rshft))
-  per (fork (unicode ".") (unicode ":") (lsft rshft))
-  min (fork (unicode "-") (unicode "_") (lsft rshft))
-  dol (fork (unicode "$") (unicode "£") (lsft rshft))
 
   bak (fork Backspace Delete (lsft rshft))
 )
@@ -59,11 +57,11 @@
 
 (deflayer base
   XX                   XX    XX    XX     XX     XX     XX     XX     XX     XX     XX      XX      XX   XX      XX           XX    
-  @sp1                  @sp2    @sp3    @sp4    @sp5    @sp6    @sp7    @sp8    @sp9    @sp10   @sp11   @sp12  XX     XX            
-  Tab                    q       w       e       r       t       y       u       i       o       p       @ü           XX            XX      
-  Escape                  @a      @s      @d      @f      g       h       @j      @k      @l      @ö           @ä       XX          
+  @nop                  @nop    @nop    @nop    @nop    @nop    @nop    @nop    @nop    @nop    @nop    @nop   XX     XX            
+  Tab                    q       w       e       r       t       y       u       i       o       p       BracketLeft  XX            XX      
+  Escape                  @a      @s      @d      @f      g       h       @j      @k      @l      @ö           Quote    XX          
   XX        @nop           z       x       c       v       b       n       m       Comma   Period  Slash   Backslash                   
-  XX                     @lay-1    @bak                      Space                 enter    @nop         
+  XX                     @nop      @bak                      @space                enter    @nop         
                XX                   
   XX           XX          XX          
 )
@@ -72,10 +70,10 @@
 (deflayer layer1
   XX                   XX    XX    XX     XX     XX     XX     XX     XX     XX     XX      XX      XX   XX      XX           XX    
   _                     _       _       _       _       _       _       _       _       _       _       _      XX     XX            
-  _                      _       _       _       _       _       _       7       8       9       _       _            XX            XX      
-  _                       _       _       _       _       _       _       4       5       6       _            _        XX          
-  XX        _              _       _       _       _       _       _       1       2       3       _       _                              
-  XX                     _         _                         _                     _        0            
+  _                      _       7       8       9       _       _       _       _       _       _       _            XX            XX      
+  _                       _       4       5       6       _       @left   @down   @up     @right  _            _        XX          
+  XX        _              _       1       2       3       _       _       _       _       _       _       _                              
+  XX                     _         0                         _                     _        _            
                XX                   
   XX           XX          XX          
 )
