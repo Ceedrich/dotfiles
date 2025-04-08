@@ -1,11 +1,12 @@
 (defvar
   tap-time 200
-  hold-time 150
+  hold-time 140
+  chord-time 30
 )
 
 (defchordsv2
-  (KeyU KeyI) Backspace  100 all-released (default)
-  (KeyI KeyO) Enter     100 all-released (default)
+  (KeyU KeyI) Backspace  $chord-time all-released (default)
+  (KeyI KeyO) Enter      $chord-time all-released (default)
 )
 
 (defalias
