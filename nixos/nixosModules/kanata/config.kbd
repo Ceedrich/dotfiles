@@ -34,22 +34,6 @@
   down ArrowDown
   up ArrowUp
   right ArrowRight
-
-  sp1 Backquote
-  sp2 (fork S-1 RA-2 (lsft rshft))
-  sp3 (fork S-2 Minus (lsft rshft))
-  sp4 (fork S-3 RA-3 (lsft rshft))
-  sp5 (fork S-4 XX (lsft rshft))
-  sp6 (fork S-5 XX (lsft rshft))
-
-  sp7 (fork S-6 RA-6 (lsft rshft))
-  sp8 (fork S-7 RA-IntlBackslash (lsft rshft))
-  sp9 (fork S-0 RA-8 (lsft rshft))
-  sp10 (fork S-Equal S-BracketRight (lsft rshft))
-  sp11 (fork Equal RA-Equal (lsft rshft))
-  sp12 (fork S-Equal XX (lsft rshft))
-
-  bak (fork Backspace Delete (lsft rshft))
 )
 
 (defsrc
@@ -88,7 +72,7 @@
 (deflayer layer1
   XX                   XX    XX    XX     XX     XX     XX     XX     XX     XX     XX      XX      XX   XX      XX           XX    
   _                     RA-1    RA-2    RA-3    RA-4    RA-5    RA-6    RA-7    RA-8    RA-9    RA-0    _      XX     XX            
-  _                      _       4       5       6       _       _       _       _       _        _      _            XX            XX      
+  _                      _       4       5       6       _       RA-BracketLeft RA-BracketRight RA-Quote RA-Backslash _ _         XX            XX      
   _                       0       1       2       3       _       @left   @down   @up     @right  Backslash    _        XX          
   XX        _              _       7       8       9       _       _       _       _       _       _       _                              
   XX                     _         _                         _                     _        _            
