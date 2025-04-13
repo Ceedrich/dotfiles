@@ -38,7 +38,8 @@
 
             # Input
             input = {
-              kb_layout = "ch";
+              kb_layout = "us";
+              kb_variant = "altgr-intl";
               follow_mouse = 1;
               touchpad.natural_scroll = false;
             };
