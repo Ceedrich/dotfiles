@@ -19,7 +19,7 @@
   base (layer-switch base)
   default (layer-switch default)
 
-  ;; home-row mods
+  ;; home-row mods base
   a (tap-hold-release $tap-time $hold-time a lmet)
   s (tap-hold-release $tap-time $hold-time s lalt)
   d (tap-hold-release $tap-time $hold-time d lsft)
@@ -29,12 +29,21 @@
   l (tap-hold-release $tap-time $hold-time l ralt)
   ; (tap-hold-release $tap-time $hold-time Semicolon rmet)
 
-  space (tap-hold $tap-time $hold-time Space @lay-1)
+  ;; home-row mods layer1
+  4 (tap-hold-release $tap-time $hold-time 4 lalt)
+  5 (tap-hold-release $tap-time $hold-time 5 lsft)
+  6 (tap-hold-release $tap-time $hold-time 6 lctl)
+
+  down (tap-hold-release $tap-time $hold-time ArrowDown rctl)
+  up (tap-hold-release $tap-time $hold-time ArrowUp rsft)
+  right (tap-hold-release $tap-time $hold-time ArrowRight ralt)
+  ö (tap-hold-release $tap-time $hold-time RA-p rmet)
 
   left ArrowLeft
-  down ArrowDown
-  up ArrowUp
-  right ArrowRight
+
+  ;; space layer switch
+  space (tap-hold $tap-time $hold-time Space @lay-1)
+
 )
 
 (defsrc
@@ -74,7 +83,7 @@
   XX                   XX    XX    XX     XX     XX     XX     XX     XX     XX     XX      XX      XX   XX      XX           XX    
   _                     _       _       _       _       _       _       _       _       _       _        XX      XX           XX            
   _                      _       1       2       3       _       _       BracketLeft BracketRight S-BracketLeft S-BracketRight  RA-y   XX            XX      
-  _                       _       4       5       6       _       @left   @down   @up     @right  RA-p   RA-q     XX          
+  _                       _       @4      @5      @6      _       @left   @down   @up     @right  @ö     RA-q     XX          
   XX        _              _       7       8       9       _       _       _       _       _       _       _                              
   XX                     _         0                         _                     _        _            
                XX                   
