@@ -6,8 +6,6 @@
 
   spotify-unfree.enable = true;
 
-  minesweeper.enable = true;
-
   rofi.enable = true;
 
   home.packages = [
