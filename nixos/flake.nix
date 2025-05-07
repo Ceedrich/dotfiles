@@ -42,7 +42,7 @@
         extraSpecialArgs = { inherit inputs pkgs-unstable; };
 
         modules = [
-          inputs.catppuccin.homeManagerModules.catppuccin
+          inputs.catppuccin.homeModules.catppuccin
           ./nixpkgs-issue-55674.nix
           ./users/${name}.nix
           ./homemanagerModules
