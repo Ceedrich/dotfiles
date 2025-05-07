@@ -20,6 +20,10 @@
     ./discord
   ];
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
   options = { minimal = lib.mkEnableOption "minimal config"; };
 
   config =
@@ -27,6 +31,8 @@
       extra = x: lib.mkIf (! config.minimal) x;
     in
     {
+      home.packages = with pkgs; [ handbrake ];
+
       theming.enable = extra (lib.mkDefault true);
 
       signal.enable = extra (lib.mkDefault true);
