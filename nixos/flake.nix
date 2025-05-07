@@ -17,6 +17,10 @@
       url = "github:ceedrich/gnome-mines/vim-keys";
       flake = false;
     };
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
@@ -30,6 +34,7 @@
             extensions = [ "rust-src" "rust-analyzer" ];
           };
         })
+        inputs.nix-minecraft.overlay
       ];
       makePkgs = npkgs: import npkgs {
         inherit system overlays;
@@ -58,6 +63,7 @@
             };
           };
           modules = [
+            inputs.nix-minecraft.nixosModules.minecraft-servers
             ./nixpkgs-issue-55674.nix
             ./hosts/${hostname}/configuration.nix
             ./nixosModules
