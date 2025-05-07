@@ -1,4 +1,4 @@
-{ lib, config, ... }: {
+{ pkgs, lib, config, ... }: {
   imports = [
     ./hyprland
     ./git
@@ -19,6 +19,8 @@
     ./minesweeper
     ./discord
   ];
+
+  environment.systemPackages = with pkgs; [ handbrake ];
 
   options = { minimal = lib.mkEnableOption "minimal config"; };
 
