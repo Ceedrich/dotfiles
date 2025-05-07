@@ -72,8 +72,20 @@
             }
           ];
         });
+
+      generateMinecraftServerUpdater = utils.generateConfigs
+        (serverName:
+          let
+            server = import ./nixosModules/minecraft/servers/${serverName} { inherit pkgs; lib = pkgs.lib; };
+          in
+          pkgs.callPackage ./nixosModules/minecraft/modrinthPrefetch.nix { inherit (server) loader game_version mods; }
+        );
     in
     {
+      packages.${system}.generateMinecraft = generateMinecraftServerUpdater [
+        "vanilla"
+      ];
+
       nixosConfigurations = generateNixosConfigs [
         "fun-machine"
         "gaming"
