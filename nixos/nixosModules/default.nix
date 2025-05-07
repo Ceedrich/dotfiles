@@ -9,6 +9,7 @@
     ./networking
     ./users
     ./bootloader
+    ./minecraft
     inputs.catppuccin.nixosModules.catppuccin
   ];
 

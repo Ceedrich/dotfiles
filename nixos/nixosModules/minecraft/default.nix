@@ -5,21 +5,37 @@
     minecraft.enable = lib.mkEnableOption "enable minecraft";
   };
   config =
-    let
-      mkServer = import ./makeMinecraftServer.nix;
-    in
     lib.mkIf config.minecraft.enable {
       allowedUnfree = [ "minecraft-server" ];
       services.minecraft-servers = {
         enable = true;
         eula = true;
-        openFirewall = true;
-        servers.vanillaIsh = mkServer {
-          inherit pkgs;
-          mods = [ "beaconExtender" "bannerRetrieval" ];
-          game_version = "1.21.5";
-          loader = "fabric";
-        };
+
+        servers =
+          let
+            makeServer = name:
+              let
+                server = import ./servers/${name} { inherit pkgs lib; };
+                inherit (server) loader;
+                version = lib.replaceStrings [ "." ] [ "_" ] server.game_version;
+              in
+              {
+                enable = true;
+                package = pkgs."${loader}Servers"."${loader}-${version}";
+                symlinks = {
+                  mods = pkgs.linkFarmFromDrvs "mods" (
+                    builtins.attrValues (import ./servers/${name}/mods.nix { inherit (pkgs) fetchurl; })
+                  );
+                };
+              } // (if server ? attrs then server.attrs else { });
+          in
+          builtins.listToAttrs (builtins.map
+            (name: {
+              inherit name;
+              value = makeServer name;
+            })
+            (builtins.attrNames (builtins.readDir ./servers))
+          );
       };
     };
 }

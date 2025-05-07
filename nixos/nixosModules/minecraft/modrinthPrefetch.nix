@@ -1,5 +1,6 @@
 { loader
 , game_version
+, mods ? [ ]
 
 , writeShellScriptBin
 , curl
@@ -16,7 +17,7 @@ writeShellScriptBin "modrinth-prefetch" ''
     version=$1
     id=$(echo $version | ${jq}/bin/jq -r '.project_id' )
 
-    echo -n "$id = "
+    echo -n "\"$id\" = "
     echo $version \
     | ${jq}/bin/jq -c '.files | (.[] | select(.primary == true)) // .[0]  | {url: .url, sha512: .hashes.sha512}' \
     | ${gnused}/bin/sed 's/{"url":"\(.\+\)","sha512":"\(.\+\)"}/fetchurl { url = "\1"; sha512 = "\2"; };/'
@@ -29,7 +30,7 @@ writeShellScriptBin "modrinth-prefetch" ''
       return
     fi
 
-    version=$(${curl}/bin/curl -s "$MODRINTH_API/project/$identifier/version?loaders=%5B%22${loader}%22%5D&game_versions=%5B%22${game_version}%22%5D" | jq '.[0]')
+    version=$(${curl}/bin/curl -s "$MODRINTH_API/project/$identifier/version?loaders=%5B%22${loader}%22%5D&game_versions=%5B%22${game_version}%22%5D" | ${jq}/bin/jq -r '.[0]')
   
     if [[ "$version" == "null" ]]; then
       echo "WARNING: No compatible version found for $identifier" >&2
@@ -54,14 +55,8 @@ writeShellScriptBin "modrinth-prefetch" ''
     done
   }
 
-
-  if [[ $# -eq 0 ]]; then
-    echo "Usage: $0 [slug1 slug2 ...]"
-    exit 1
-  fi
-
   echo "{ fetchurl } : {"
-  for mod in "$@"; do
+  for mod in ${builtins.toString mods}; do
     fetch_mod "$mod"
   done
   echo "}"
