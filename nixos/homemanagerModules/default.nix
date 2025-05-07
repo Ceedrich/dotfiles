@@ -1,4 +1,4 @@
-{ lib, config, ... }: {
+{ pkgs, lib, config, ... }: {
   imports = [
     ./hyprland
     ./git
@@ -20,10 +20,6 @@
     ./discord
   ];
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
   options = { minimal = lib.mkEnableOption "minimal config"; };
 
   config =
