@@ -23,16 +23,16 @@
     let
       utils = import ./utils.nix { };
       system = "x86_64-linux";
+      overlays = [
+        (import inputs.rust-overlay)
+        (final: prev: {
+          rust-with-analyzer = prev.rust-bin.stable.latest.default.override {
+            extensions = [ "rust-src" "rust-analyzer" ];
+          };
+        })
+      ];
       makePkgs = npkgs: import npkgs {
-        inherit system;
-        overlays = [
-          (import inputs.rust-overlay)
-          (final: prev: {
-            rust-with-analyzer = prev.rust-bin.stable.latest.default.override {
-              extensions = [ "rust-src" "rust-analyzer" ];
-            };
-          })
-        ];
+        inherit system overlays;
       };
       pkgs-unstable = makePkgs inputs.nixpkgs-unstable;
       pkgs = makePkgs nixpkgs;
@@ -49,16 +49,23 @@
         ];
       });
 
-      generateNixosConfigs = utils.generateConfigs (hostname: nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs pkgs-unstable;
-          meta = { inherit hostname; };
-        };
-        modules = [
-          ./hosts/${hostname}/configuration.nix
-          ./nixosModules
-        ];
-      });
+      generateNixosConfigs = utils.generateConfigs
+        (hostname: nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs pkgs-unstable;
+            meta = {
+              inherit hostname;
+            };
+          };
+          modules = [
+            ./nixpkgs-issue-55674.nix
+            ./hosts/${hostname}/configuration.nix
+            ./nixosModules
+            {
+              nixpkgs.overlays = overlays;
+            }
+          ];
+        });
     in
     {
       nixosConfigurations = generateNixosConfigs [
