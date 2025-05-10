@@ -94,9 +94,7 @@
       "inputs": {
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1746583312,
@@ -110,6 +108,26 @@
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
         "type": "github"
+      }
+    },
+    "nix-modpacks": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1746868088,
+        "narHash": "sha256-6cOU3nCe+UJQJ17RPO6k8u1LZbZg16vaw4HxESLg7hw=",
+        "ref": "refs/heads/main",
+        "rev": "344a0a1348dcace2ea93b25292fc4e6ecc33b5ca",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/Ceedrich/nix-modpacks.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/Ceedrich/nix-modpacks.git"
       }
     },
     "nixpkgs": {
@@ -146,6 +164,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1746663147,
+        "narHash": "sha256-Ua0drDHawlzNqJnclTJGf87dBmaO/tn7iZ+TCkTRpRc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "dda3dcd3fe03e991015e9a74b22d35950f264a54",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1746557022,
         "narHash": "sha256-QkNoyEf6TbaTW5UZYX0OkwIJ/ZMeKSSoOMnSDPQuol0=",
         "owner": "NixOS",
@@ -166,7 +200,8 @@
         "gnome-mines-custom": "gnome-mines-custom",
         "home-manager": "home-manager",
         "nix-minecraft": "nix-minecraft",
-        "nixpkgs": "nixpkgs_2",
+        "nix-modpacks": "nix-modpacks",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "rust-overlay": "rust-overlay"
       }
