@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 let
   inherit (inputs.nix-minecraft.lib) collectFilesAt;
   modpack = pkgs.stdenvNoCC.mkDerivation {
@@ -23,12 +23,16 @@ in
   game_version = "1.21.4";
   attrs = {
     package = pkgs.writeShellApplication {
-      runtimeInputs = with pkgs;[ openjdk21_headless];
+      runtimeInputs = with pkgs;[ openjdk21_headless ];
       name = "start-server";
-      text = ''
-      cd ${modpack}
-      ./start.sh
-      '';
+      text =
+        let
+          dataDir = config.services.minecraft-servers.dataDir;
+        in
+        ''
+          cd "${dataDir}/ozone-skyblock"
+          sh ./start.sh
+        '';
     };
     jvmOpts = "";
     operators = {
