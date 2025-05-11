@@ -20,10 +20,6 @@
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
     };
-    nix-modpacks = {
-      url = "git+ssh://git@github.com/Ceedrich/nix-modpacks.git";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs:
@@ -62,7 +58,7 @@
           specialArgs = {
             inherit inputs pkgs-unstable;
             meta = {
-              inherit hostname;
+              inherit system hostname;
             };
           };
           modules = [

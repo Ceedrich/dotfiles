@@ -110,26 +110,6 @@
         "type": "github"
       }
     },
-    "nix-modpacks": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1746868088,
-        "narHash": "sha256-6cOU3nCe+UJQJ17RPO6k8u1LZbZg16vaw4HxESLg7hw=",
-        "ref": "refs/heads/main",
-        "rev": "344a0a1348dcace2ea93b25292fc4e6ecc33b5ca",
-        "revCount": 1,
-        "type": "git",
-        "url": "ssh://git@github.com/Ceedrich/nix-modpacks.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/Ceedrich/nix-modpacks.git"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1744463964,
@@ -200,7 +180,6 @@
         "gnome-mines-custom": "gnome-mines-custom",
         "home-manager": "home-manager",
         "nix-minecraft": "nix-minecraft",
-        "nix-modpacks": "nix-modpacks",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "rust-overlay": "rust-overlay"
