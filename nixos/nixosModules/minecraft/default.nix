@@ -1,5 +1,4 @@
-{ pkgs, lib, config, ... }:
-
+{ pkgs, lib, config, ... }@args:
 {
   options = {
     minecraft.enable = lib.mkEnableOption "enable minecraft";
@@ -15,7 +14,7 @@
           let
             makeServer = name:
               let
-                server = import ./servers/${name} { inherit pkgs lib; };
+                server = import ./servers/${name} args;
                 inherit (server) loader;
                 version = lib.replaceStrings [ "." ] [ "_" ] server.game_version;
               in
