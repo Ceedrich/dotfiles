@@ -21,11 +21,9 @@
               {
                 enable = true;
                 package = pkgs."${loader}Servers"."${loader}-${version}";
-                symlinks = {
-                  mods = pkgs.linkFarmFromDrvs "mods" (
-                    builtins.attrValues (import ./servers/${name}/mods.nix { inherit (pkgs) fetchurl; })
-                  );
-                };
+                symlinks."mods" = lib.mkIf (server ? mods) (pkgs.linkFarmFromDrvs "mods" (
+                  builtins.attrValues (import ./servers/${name}/mods.nix { inherit (pkgs) fetchurl; })
+                ));
               } // (if server ? attrs then server.attrs else { });
           in
           builtins.listToAttrs (builtins.map
