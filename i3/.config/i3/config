@@ -17,7 +17,7 @@ set $mod Mod4
 exec --no-startup-id "picom --experimental-backends || picom"
 exec_always --no-startup-id feh --bg-scale ${XDG_CONFIG_HOME:-$HOME/.config}/i3/wallpaper.jpg
 #exec --no-startup-id xrdb -merge ~/.Xresources
-#exec_always --no-startup-id setxkbmap -option ctrl:nocaps
+exec_always --no-startup-id setxkbmap -layout us -variant altgr-intl -option nodeadkeys
 
 # kill any hanging polybar processes
 exec_always --no-startup-id $HOME/.local/scripts/launch_polybar
@@ -25,9 +25,6 @@ exec_always --no-startup-id $HOME/.local/scripts/launch_polybar
 # Touchpad settings
 exec_always --no-startup-id xinput set-prop $(xinput list | grep -i "touchpad" | grep -o "id=[0-9]*" | grep -o "[0-9]*") "libinput Natural Scrolling Enabled" 1
 exec_always --no-startup-id xinput set-prop $(xinput list | grep -i "touchpad" | grep -o "id=[0-9]*" | grep -o "[0-9]*") "libinput Tapping Enabled" 1
-
-exec_always killall notify-battery
-exec_always --no-startup-id notify-battery &
 
 ## Screenshots
 bindsym $mod+Print exec "maim -losc 1,1,1,0.2 | xclip -selection clipboard -t image/png"
