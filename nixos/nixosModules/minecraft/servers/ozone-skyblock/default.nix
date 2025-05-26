@@ -1,5 +1,6 @@
 { config, pkgs, inputs, ... }:
 let
+  port = 25566;
   inherit (inputs.nix-minecraft.lib) collectFilesAt;
   modpack = pkgs.stdenvNoCC.mkDerivation {
     name = "ozone-skyblock-reborn";
@@ -16,43 +17,50 @@ let
       mkdir -p $out
       cp -r zipout/*/* $out
     '';
+    postInstall = ''
+      sed -i 's/^server-port=.*/server-port=${toString port}/' $out/default-server.properties
+      sed -i 's/^query\.port=.*/query.port=${toString port}/' $out/default-server.properties
+    '';
   };
 in
 {
   loader = "fabric";
   game_version = "1.21.4";
   attrs = {
-    package = pkgs.writeShellApplication {
-      runtimeInputs = with pkgs;[ openjdk21_headless ];
-      name = "start-server";
-      text =
-        let
-          dataDir = config.services.minecraft-servers.dataDir;
-        in
-        ''
-          cd "${dataDir}/ozone-skyblock"
-          sh ./start.sh
+    extraStartPre = ''
+      echo "started at $(date)" >> minecraft-server.log
+    '';
+    package =
+      pkgs.writeShellApplication {
+        name = "start-server";
+        runtimeInputs = with pkgs; [ jdk21 bash ];
+        text = ''
+          set -euo pipefail
+          echo "start-server at $(date)"; ls -lah libraries/net/minecraftforge/forge/1.20.1-47.4.0/ >> minecraft-server.log
+          exec >> minecraft-server.log 2>&1
+          sh run.sh
         '';
-    };
-    jvmOpts = "";
-    operators = {
-      "Ceedrich" = "1764144b-fec5-4dbd-bd93-2b9e2530fa05";
+      };
+
+    serverProperties = {
+      server-port = 25566;
+      difficulty = 3;
     };
     symlinks = collectFilesAt modpack "mods" // { };
-    files = collectFilesAt modpack "config" // {
+    files = (collectFilesAt modpack "config") // {
       "config/packmode-common.toml".value = {
-        "Pack Mode" = "Expert";
+        "Pack Mode" = "Normal";
         "Valid PackModes" = [ "Normal" "Expert" ];
-      } //
-      collectFilesAt modpack "defaultconfigs" //
-      collectFilesAt modpack "kubejs" //
-      collectFilesAt modpack "libraries" //
-      collectFilesAt modpack "scripts" // {
-        "default-server.properties" = "${modpack}/default-server.properties";
-        "eula.txt" = "${modpack}/eula.txt";
-        "user_jvm_args.txt".value = "-Xmx6G";
-        "run.sh" = "${modpack}/run.sh";
       };
+    } //
+      (collectFilesAt modpack "defaultconfigs") //
+      (collectFilesAt modpack "kubejs") //
+      (collectFilesAt modpack "libraries") //
+      (collectFilesAt modpack "scripts") // {
+      "default-server.properties" = "${modpack}/default-server.properties";
+      "eula.txt" = "${modpack}/eula.txt";
+      "user_jvm_args.txt" = "${modpack}/user_jvm_args.txt";
+      "run.sh" = "${modpack}/run.sh";
     };
   };
 }
