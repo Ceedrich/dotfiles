@@ -12,11 +12,16 @@
     inputs.catppuccin.nixosModules.catppuccin
   ];
 
+
   bootloader.enable = lib.mkDefault true;
   networking.enable = lib.mkDefault true;
 
   hyprland.enable = lib.mkDefault true;
-  environment.systemPackages = with pkgs; [ wl-clipboard ];
+
+  environment.systemPackages = with pkgs; [
+    wl-clipboard
+    (callPackage ../packages/update_system.nix { })
+  ];
 
   catppuccin.flavor = lib.mkDefault "mocha";
   catppuccin.enable = lib.mkDefault true;

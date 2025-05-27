@@ -9,7 +9,7 @@
   discord-unfree.enable = true;
 
   allowedUnfree = [ "aseprite" ];
-  home.packages = with pkgs; [ aseprite ];
+  home.packages = with pkgs; [ aseprite ldtk ];
 
   home.stateVersion = "24.11";
 }
