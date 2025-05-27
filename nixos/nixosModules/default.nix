@@ -20,6 +20,9 @@
 
   environment.systemPackages = with pkgs; [
     wl-clipboard
+    unzip
+    gnutar
+    jq
     (callPackage ../packages/rebuild_system.nix { })
   ];
 
