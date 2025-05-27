@@ -20,7 +20,7 @@
 
   environment.systemPackages = with pkgs; [
     wl-clipboard
-    (callPackage ../packages/update_system.nix { })
+    (callPackage ../packages/rebuild_system.nix { })
   ];
 
   catppuccin.flavor = lib.mkDefault "mocha";
