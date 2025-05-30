@@ -49,7 +49,7 @@ in
           {
             "Automatic Ripping Machine" = {
               description = "Automatically Digitizes DVD'S";
-              href = "http://${meta.hostname}:{toString ports.arm}";
+              href = "http://${meta.hostname}:${toString ports.arm}";
               icon = "mdi-disc-player";
             };
           }
