@@ -24,6 +24,65 @@
     oci-containers.backend = "docker";
   };
 
+  services.homepage-dashboard = {
+    enable = true;
+    services = [
+      {
+        "Media" = [
+          {
+            "Automatic Ripping Machine" = {
+              description = "Automatically Digitizes DVD'S";
+              href = "http://fun-machine:8080";
+              icon = "mdi-disc-player";
+            };
+          }
+          {
+            "Jellyfin" = {
+              icon = "jellyfin.png";
+              description = "Media Server to watch movies and TV shows";
+              href = "http://fun-machine:8096";
+            };
+          }
+        ];
+      }
+    ];
+
+    widgets = [
+      {
+        resources = {
+          cpu = true;
+          cputemp = true;
+          memory = true;
+          disk = "/";
+          units = "metric";
+        };
+      }
+    ];
+
+    #
+
+    settings = {
+      title = "Ceedrich's HomeLab";
+      layout = {
+        "Media" = { style = "row"; header = true; columns = 4; };
+      };
+    };
+
+    # services = {
+    #   "Media" = [
+    #     {
+    #       "Automatic Ripping Machine" = {
+    #         description = "Automatically Digitizes DVDS";
+    #         href = "http://fun-machine:8080";
+    #       };
+    #       "Jellyfin" = {
+    #       };
+    #     }
+    #   ];
+    # };
+
+  };
+
   virtualisation.oci-containers.containers."arm-rippers" = {
     autoStart = true;
     image = "automaticrippingmachine/automatic-ripping-machine:latest";
@@ -47,13 +106,13 @@
     ];
   };
 
-  systemd.tmpfiles.rules = [ 
+  systemd.tmpfiles.rules = [
     "d /media-server 1777 arm arm"
-    "d /home/arm 1777 arm arm" 
-    "d /home/arm/music 1777 arm arm" 
-    "d /home/arm/logs 1777 arm arm" 
-    "d /home/arm/media 1777 arm arm" 
-    "d /home/arm/config 1777 arm arm" 
+    "d /home/arm 1777 arm arm"
+    "d /home/arm/music 1777 arm arm"
+    "d /home/arm/logs 1777 arm arm"
+    "d /home/arm/media 1777 arm arm"
+    "d /home/arm/config 1777 arm arm"
   ];
 
   services.jellyfin = {
