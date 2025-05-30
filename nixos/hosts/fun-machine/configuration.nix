@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, meta, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ];
@@ -28,6 +28,8 @@
 
   services.homepage-dashboard = {
     enable = true;
+    allowedHosts = "localhost,127.0.0.1,${meta.hostname}";
+    listenPort = 80;
     services = [
       {
         "Media" = [
