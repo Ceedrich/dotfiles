@@ -11,13 +11,9 @@ in
 
   services.nginx = {
     enable = true;
-    virtualHosts."${meta.hostname}" = {
-      locations = {
-        "/".proxyPass = "http://localhost:${toString ports.homepage}/";
-        "/jellyfin".proxyPass = "http://localhost:${toString ports.jellyfin}/";
-        "/arm".proxyPass = "http://localhost:${toString ports.arm}/";
-      };
-    };
+    virtualHosts."${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.homepage}/";
+    virtualHosts."jellyfin.${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.jellyfin}/";
+    virtualHosts."arm.${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.arm}/";
   };
 
   hyprland.enable = false;
@@ -53,7 +49,7 @@ in
           {
             "Automatic Ripping Machine" = {
               description = "Automatically Digitizes DVD'S";
-              href = "/arm";
+              href = "http://arm.${meta.hostname}";
               icon = "mdi-disc-player";
             };
           }
@@ -61,7 +57,7 @@ in
             "Jellyfin" = {
               icon = "jellyfin.png";
               description = "Media Server to watch movies and TV shows";
-              href = "/jellyfin";
+              href = "http://jellyfin.${meta.hostname}";
             };
           }
         ];
@@ -88,19 +84,6 @@ in
         "Media" = { style = "row"; header = true; columns = 4; };
       };
     };
-
-    # services = {
-    #   "Media" = [
-    #     {
-    #       "Automatic Ripping Machine" = {
-    #         description = "Automatically Digitizes DVDS";
-    #         href = "http://fun-machine:8080";
-    #       };
-    #       "Jellyfin" = {
-    #       };
-    #     }
-    #   ];
-    # };
 
   };
 
