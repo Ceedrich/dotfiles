@@ -13,9 +13,9 @@ in
     enable = true;
     virtualHosts."${meta.hostname}" = {
       locations = {
-        "/".proxyPass = "http://localhost:${toString ports.homepage}";
-        "/jellyfin".proxyPass = "http://localhost:${toString ports.jellyfin}";
-        "/arm".proxyPass = "http://localhost:${toString ports.arm}";
+        "/".proxyPass = "http://localhost:${toString ports.homepage}/";
+        "/jellyfin".proxyPass = "http://localhost:${toString ports.jellyfin}/";
+        "/arm".proxyPass = "http://localhost:${toString ports.arm}/";
       };
     };
   };
