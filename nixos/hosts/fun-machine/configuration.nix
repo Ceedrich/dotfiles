@@ -133,7 +133,7 @@ in
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 80 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 8080 8096 ];
 
   environment.systemPackages = with pkgs; [
     vim
