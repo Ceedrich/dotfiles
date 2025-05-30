@@ -12,8 +12,8 @@ in
   services.nginx = {
     enable = true;
     virtualHosts."${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.homepage}/";
-    virtualHosts."jellyfin.${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.jellyfin}/";
-    virtualHosts."arm.${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.arm}/";
+    # virtualHosts."jellyfin.${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.jellyfin}/";
+    # virtualHosts."arm.${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.arm}/";
   };
 
   hyprland.enable = false;
@@ -49,7 +49,7 @@ in
           {
             "Automatic Ripping Machine" = {
               description = "Automatically Digitizes DVD'S";
-              href = "http://arm.${meta.hostname}";
+              href = "http://${meta.hostname}:{toString ports.arm}";
               icon = "mdi-disc-player";
             };
           }
@@ -57,7 +57,7 @@ in
             "Jellyfin" = {
               icon = "jellyfin.png";
               description = "Media Server to watch movies and TV shows";
-              href = "http://jellyfin.${meta.hostname}";
+              href = "http://${meta.hostname}:${toString ports.jellyfin}";
             };
           }
         ];
