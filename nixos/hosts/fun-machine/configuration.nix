@@ -1,7 +1,24 @@
 { pkgs, meta, ... }:
-
+let
+  ports = {
+    arm = 8080;
+    jellyfin = 8096;
+    homepage = 3000;
+  };
+in
 {
   imports = [ ./hardware-configuration.nix ];
+
+  services.nginx = {
+    enable = true;
+    virtualHosts."${meta.hostname}" = {
+      locations = {
+        "/".proxyPass = "http://localhost:${toString ports.homepage}";
+        "/jellyfin".proxyPass = "http://localhost:${toString ports.jellyfin}";
+        "/arm".proxyPass = "http://localhost:${toString ports.arm}";
+      };
+    };
+  };
 
   hyprland.enable = false;
 
@@ -29,14 +46,14 @@
   services.homepage-dashboard = {
     enable = true;
     allowedHosts = "localhost,127.0.0.1,${meta.hostname}";
-    listenPort = 80;
+    listenPort = ports.homepage;
     services = [
       {
         "Media" = [
           {
             "Automatic Ripping Machine" = {
               description = "Automatically Digitizes DVD'S";
-              href = "http://fun-machine:8080";
+              href = "/arm";
               icon = "mdi-disc-player";
             };
           }
@@ -44,7 +61,7 @@
             "Jellyfin" = {
               icon = "jellyfin.png";
               description = "Media Server to watch movies and TV shows";
-              href = "http://fun-machine:8096";
+              href = "/jellyfin";
             };
           }
         ];
@@ -90,7 +107,7 @@
   virtualisation.oci-containers.containers."arm-rippers" = {
     autoStart = true;
     image = "automaticrippingmachine/automatic-ripping-machine:latest";
-    ports = [ "8080:8080" ];
+    ports = [ "${toString ports.arm}:8080" ];
 
     environment = {
       ARM_UID = "1001";
@@ -133,7 +150,7 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 8080 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 ];
 
   environment.systemPackages = with pkgs; [
     vim
