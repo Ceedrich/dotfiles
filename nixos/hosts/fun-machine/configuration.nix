@@ -24,6 +24,8 @@
     oci-containers.backend = "docker";
   };
 
+  services.kanata.enable = true;
+
   services.homepage-dashboard = {
     enable = true;
     services = [
