@@ -6,6 +6,7 @@
   config = lib.mkIf config.git.enable {
     programs.git = {
       enable = true;
+      lfs.enable = true;
       userName = "Cedric Lehr";
       userEmail = "info@ceedri.ch";
       extraConfig = {

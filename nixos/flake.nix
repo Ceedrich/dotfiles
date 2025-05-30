@@ -2,10 +2,10 @@
   description = "nixos flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
@@ -29,7 +29,7 @@
           (import inputs.rust-overlay)
           (final: prev: {
             rust-with-analyzer = prev.rust-bin.stable.latest.default.override {
-              extensions = [ "rust-src" "rust-analyzer" ];
+              extensions = [ "rust-src" "rust-analyzer" "clippy" ];
             };
           })
         ];
@@ -42,7 +42,7 @@
         extraSpecialArgs = { inherit inputs pkgs-unstable; };
 
         modules = [
-          inputs.catppuccin.homeManagerModules.catppuccin
+          inputs.catppuccin.homeModules.catppuccin
           ./nixpkgs-issue-55674.nix
           ./users/${name}.nix
           ./homemanagerModules
@@ -51,7 +51,7 @@
 
       generateNixosConfigs = utils.generateConfigs (hostname: nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs;
+          inherit inputs pkgs-unstable;
           meta = { inherit hostname; };
         };
         modules = [

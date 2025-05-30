@@ -26,6 +26,10 @@
     catppuccin.zsh-syntax-highlighting.enable = lib.mkDefault false;
     catppuccin.gtk.enable = lib.mkDefault true;
 
+    catppuccin = {
+      mako.enable = false;
+    };
+
     qt = {
       enable = true;
       style.name = "kvantum";

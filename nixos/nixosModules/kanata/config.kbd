@@ -1,0 +1,133 @@
+(defvar
+  tap-time 200
+  hold-time 160
+  chord-time 30
+)
+
+(defalias
+  ;; empty key
+  nop XX
+
+  ;; layer switches
+  L_MEDIA (layer-while-held media)
+  L_SYMBOL (layer-while-held symbol)
+  L_SPC (tap-hold $tap-time $hold-time Space (layer-while-held layer1))
+  
+  T_BASE (layer-switch base)
+  T_GAMING (layer-switch gaming)
+
+  ;; home-row mods base
+  HRM_A (tap-hold-release $tap-time $hold-time a lmet)
+  HRM_S (tap-hold-release $tap-time $hold-time s lalt)
+  HRM_D (tap-hold-release $tap-time $hold-time d lsft)
+  HRM_F (tap-hold-release $tap-time $hold-time f lctl)
+
+  HRM_J (tap-hold-release $tap-time $hold-time j rctl)
+  HRM_K (tap-hold-release $tap-time $hold-time k rsft)
+  HRM_L (tap-hold-release $tap-time $hold-time l ralt)
+  HRM_SCLN (tap-hold-release $tap-time $hold-time Semicolon rmet)
+
+  ;; home-row mods layer1
+  HRM_4 (tap-hold-release $tap-time $hold-time 4 lalt)
+  HRM_5 (tap-hold-release $tap-time $hold-time 5 lsft)
+  HRM_6 (tap-hold-release $tap-time $hold-time 6 lctl)
+
+  HRM_DOWN (tap-hold-release $tap-time $hold-time ArrowDown rctl)
+  HRM_UP (tap-hold-release $tap-time $hold-time ArrowUp rsft)
+  HRM_RGHT (tap-hold-release $tap-time $hold-time ArrowRight ralt)
+
+  A_GRV (macro AG-Backquote a)
+  E_GRV (macro AG-Backquote e)
+
+  ;; space layer switch
+
+)
+
+(defsrc
+  Escape
+  Backquote             Digit1  Digit2  Digit3  Digit4  Digit5  Digit6  Digit7  Digit8  Digit9  Digit0  Minus 
+  Tab                    KeyQ    KeyW    KeyE    KeyR    KeyT    KeyY    KeyU    KeyI    KeyO    KeyP    BracketLeft
+  CapsLock                KeyA    KeyS    KeyD    KeyF    KeyG    KeyH    KeyJ    KeyK    KeyL    Semicolon    Quote
+  IntlBackslash  KeyZ    KeyX    KeyC    KeyV    KeyB    KeyN    KeyM    Comma   Period  Slash   ShiftRight
+                             MetaLeft  AltLeft                   Space                 AltRight
+)
+
+(deflayer base
+  @T_GAMING
+  ;;┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+    Backquote Digit1   Digit2   Digit3   Digit4   Digit5                              Digit6   Digit7   Digit8   Digit9   Digit0   Minus      
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     Tab      KeyQ     KeyW     KeyE     KeyR     KeyT                                KeyZ     KeyU     KeyI     KeyO     KeyP     Equal    
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     Escape   @HRM_A   @HRM_S   @HRM_D   @HRM_F   KeyG                                KeyH     @HRM_J   @HRM_K   @HRM_L  @HRM_SCLN Quote
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     XX       KeyY     KeyX     KeyC     KeyV     KeyB                                KeyN     KeyM     Comma    Period   Slash    Backslash
+  ;;└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                             @L_MEDIA  @L_SYMBOL                 @L_SPC   XX                  
+                                ;; └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+)
+
+(deflayer gaming
+  @T_BASE
+  ;;┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+     Escape   Digit1   Digit2   Digit3   Digit4   Digit5                              Digit6   Digit7   Digit8   Digit9   Digit0   Minus      
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     Tab      KeyQ     KeyW     KeyE     KeyR     KeyT                                KeyZ     KeyU     KeyI     KeyO     KeyP     Equal    
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+    ShiftLeft KeyA     KeyS     KeyD     KeyF     KeyG                                KeyH     KeyJ     KeyK     KeyL    Semicolon Quote
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+  ControlLeft KeyY     KeyX     KeyC     KeyV     KeyB                                KeyN     KeyM     Comma    Period   Slash    Backslash
+  ;;└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                             XX       XX                         Space    XX                  
+                                ;; └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+)
+
+
+(deflayer layer1
+  _      
+  ;;┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+     _        F1       F2       F3       F4       F5                                  F6       F7       F8       F9       F10      _          
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _        _        1        2        3        _                                   _       Backspace Enter    Delete   _        _        
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _        _        @HRM_4   @HRM_5   @HRM_6   _                                 ArrowLeft @HRM_DOWN @HRM_UP @HRM_RGHT _       _      
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     _        _        7        8        9        _                                   _        _        _        _        _        _        
+  ;;└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                             _        _                          _        _                      
+                                ;; └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+) 
+ 
+(deflayer symbol
+  _      
+  ;;┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+     _        _        _        _        _        _                                   _        _        _        _        _        _          
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     RA-grv   RA-Comma @A_GRV   @E_GRV   RA-e     _                                   _        S-9      S-0      S-Comma  S-Period _        
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+    RA-Quote RA-S-Quote RA-q    RA-y     RA-p     _                                   S-Minus  lbrc     rbrc     S-lbrc   S-rbrc   _      
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     _        _        _        _        _        _                                   _        _        _        _        _        _        
+  ;;└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                             _        _                          _        _                      
+                                ;; └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+) 
+
+
+(deflayer media
+  _      
+  ;;┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+     _        _        _        _        _        _                                   _        _        _        _        _        _          
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _        _        mute     vold     volu     _                                   _        _        _        _        _        _        
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _        _        _        _        _        _                                   _        _        _        _        _        _     
+  ;;├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     _        _        _        _        _        _                                   _        _        _        _        _        _        
+  ;;└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                             _        _                          _        _                      
+                                ;; └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+) 
+ 
+
+

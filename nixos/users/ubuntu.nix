@@ -6,12 +6,18 @@
 
   spotify-unfree.enable = true;
 
-  minesweeper.enable = true;
-
   rofi.enable = true;
 
   home.packages = [
-    (import ../homemanagerModules/hyprland/rofi/power-menu.nix { inherit pkgs; })
+    (import ../homemanagerModules/hyprland/rofi/power-menu.nix {
+      inherit pkgs;
+
+      lockCommand = "i3lock -e -c \"#1e1e2e\"";
+      logoutCommand = "/bin/loginctl kill-session self";
+      shutdownCommand = "/bin/systemctl poweroff";
+      rebootCommand = "/bin/systemctl reboot";
+      suspendCommand = "/bin/systemctl suspend";
+    })
   ];
 
 

@@ -5,7 +5,18 @@
     audio.enable = lib.mkEnableOption "enable audio";
   };
   config = lib.mkIf config.audio.enable {
-    hardware.pulseaudio.enable = false;
+    hardware.bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+        };
+      };
+    };
+
+    services.blueman.enable = true;
+
+    services.pulseaudio.enable = false;
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
