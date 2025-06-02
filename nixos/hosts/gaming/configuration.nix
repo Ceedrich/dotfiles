@@ -4,18 +4,11 @@
   imports = [ ./hardware-configuration.nix ];
 
   steam-unfree.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu-pro" ];
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   environment.systemPackages = with pkgs; [
     vim
   ];
-
-  allowedUnfree = [ "amf" "amdenc" ];
-
-  hardware.graphics = {
-    enable32Bit = true;
-    extraPackages = with pkgs; [ libva libva-utils vaapiVdpau amdvlk amf ];
-  };
 
   services.openssh = {
     enable = true;
