@@ -4,7 +4,7 @@
   imports = [ ./hardware-configuration.nix ];
 
   steam-unfree.enable = true;
-  services.xserver.videoDrivers = [ "modesetting" ];
+  services.xserver.videoDrivers = [ "amdgpu-pro" ];
 
   allowedUnfree = [ "amf" "amdenc" ];
 
