@@ -10,6 +10,11 @@
     vim
   ];
 
+  hardware.graphics = {
+    enable32Bit = true;
+    extraPackages = with pkgs; [ libva libva-utils vaapiVdpau amdvlk ];
+  };
+
   services.openssh = {
     enable = true;
     ports = [ 22 ];
