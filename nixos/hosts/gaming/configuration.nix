@@ -4,7 +4,7 @@
   imports = [ ./hardware-configuration.nix ];
 
   steam-unfree.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu-pro" ];
 
   environment.systemPackages = with pkgs; [
     vim
