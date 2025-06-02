@@ -3,7 +3,7 @@
     steam-unfree.enable = lib.mkEnableOption "enable steam";
   };
   config = lib.mkIf config.steam-unfree.enable {
-    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    allowedUnfree = [
       "steam"
       "steam-original"
       "steam-unwrapped"

@@ -10,9 +10,11 @@
     vim
   ];
 
+  allowedUnfree = [ "amf" "amdenc" ];
+
   hardware.graphics = {
     enable32Bit = true;
-    extraPackages = with pkgs; [ libva libva-utils vaapiVdpau amdvlk ];
+    extraPackages = with pkgs; [ libva libva-utils vaapiVdpau amdvlk amf ];
   };
 
   services.openssh = {

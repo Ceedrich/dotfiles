@@ -55,6 +55,7 @@
           meta = { inherit hostname; };
         };
         modules = [
+          ./nixpkgs-issue-55674.nix
           ./hosts/${hostname}/configuration.nix
           ./nixosModules
         ];
