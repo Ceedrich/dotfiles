@@ -6,6 +6,12 @@
   steam-unfree.enable = true;
   services.xserver.videoDrivers = [ "modesetting" ];
 
+  allowedUnfree = [ "amf" "amdenc" ];
+
+  hardware.graphics = {
+    extraPackages = with pkgs; [ amf libva libva-utils ];
+  };
+
   environment.systemPackages = with pkgs; [
     vim
   ];
