@@ -4,24 +4,10 @@
   imports = [ ./hardware-configuration.nix ];
 
   steam-unfree.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu-pro" ];
-
-  allowedUnfree = [ "amf" "amdenc" ];
 
   hardware.graphics = {
     enable32Bit = true;
-    extraPackages32 = with pkgs.driversi686Linux; [
-      amdvlk
-    ];
-    extraPackages = with pkgs; [
-      mesa
-      amf
-      amdvlk
-      libva
-      libva-utils
-      rocmPackages.clr.icd
-      clinfo
-    ];
+    enable = true;
   };
 
   environment.systemPackages = with pkgs; [
