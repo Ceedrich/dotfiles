@@ -1,7 +1,20 @@
-{ pkgs, ... }:
-
+{ pkgs, meta, ... }:
+let
+  ports = {
+    arm = 8080;
+    jellyfin = 8096;
+    homepage = 3000;
+  };
+in
 {
   imports = [ ./hardware-configuration.nix ];
+
+  services.nginx = {
+    enable = true;
+    virtualHosts."${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.homepage}/";
+    # virtualHosts."jellyfin.${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.jellyfin}/";
+    # virtualHosts."arm.${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.arm}/";
+  };
 
   hyprland.enable = false;
 
@@ -24,10 +37,60 @@
     oci-containers.backend = "docker";
   };
 
+  services.kanata.enable = true;
+
+  services.homepage-dashboard = {
+    enable = true;
+    allowedHosts = "localhost,127.0.0.1,${meta.hostname}";
+    listenPort = ports.homepage;
+    services = [
+      {
+        "Media" = [
+          {
+            "Automatic Ripping Machine" = {
+              description = "Automatically Digitizes DVD'S";
+              href = "http://${meta.hostname}:${toString ports.arm}";
+              icon = "mdi-disc-player";
+            };
+          }
+          {
+            "Jellyfin" = {
+              icon = "jellyfin.png";
+              description = "Media Server to watch movies and TV shows";
+              href = "http://${meta.hostname}:${toString ports.jellyfin}";
+            };
+          }
+        ];
+      }
+    ];
+
+    widgets = [
+      {
+        resources = {
+          cpu = true;
+          cputemp = true;
+          memory = true;
+          disk = "/";
+          units = "metric";
+        };
+      }
+    ];
+
+    #
+
+    settings = {
+      title = "Ceedrich's HomeLab";
+      layout = {
+        "Media" = { style = "row"; header = true; columns = 4; };
+      };
+    };
+
+  };
+
   virtualisation.oci-containers.containers."arm-rippers" = {
     autoStart = true;
     image = "automaticrippingmachine/automatic-ripping-machine:latest";
-    ports = [ "8080:8080" ];
+    ports = [ "${toString ports.arm}:8080" ];
 
     environment = {
       ARM_UID = "1001";
@@ -47,13 +110,13 @@
     ];
   };
 
-  systemd.tmpfiles.rules = [ 
+  systemd.tmpfiles.rules = [
     "d /media-server 1777 arm arm"
-    "d /home/arm 1777 arm arm" 
-    "d /home/arm/music 1777 arm arm" 
-    "d /home/arm/logs 1777 arm arm" 
-    "d /home/arm/media 1777 arm arm" 
-    "d /home/arm/config 1777 arm arm" 
+    "d /home/arm 1777 arm arm"
+    "d /home/arm/music 1777 arm arm"
+    "d /home/arm/logs 1777 arm arm"
+    "d /home/arm/media 1777 arm arm"
+    "d /home/arm/config 1777 arm arm"
   ];
 
   services.jellyfin = {
@@ -70,7 +133,7 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 8080 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 8080 8096 ];
 
   environment.systemPackages = with pkgs; [
     vim
