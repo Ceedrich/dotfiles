@@ -9,12 +9,27 @@
   allowedUnfree = [ "amf" "amdenc" ];
 
   hardware.graphics = {
-    extraPackages = with pkgs; [ amf libva libva-utils ];
+    enable32Bit = true;
+    extraPackages32 = with pkgs.driversi686Linux; [
+      amdvlk
+    ];
+    extraPackages = with pkgs; [
+      amf
+      amdvlk
+      libva
+      libva-utils
+      rocmPackages.clr.icd
+      clinfo
+    ];
   };
 
   environment.systemPackages = with pkgs; [
     vim
+    lact
   ];
+
+  systemd.packages = with pkgs; [ lact ];
+  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
   services.openssh = {
     enable = true;
