@@ -14,6 +14,7 @@
       amdvlk
     ];
     extraPackages = with pkgs; [
+      mesa
       amf
       amdvlk
       libva
