@@ -8,7 +8,10 @@
 
   rofi.enable = true;
 
+  allowedUnfree = [ "aseprite" ];
+
   home.packages = [
+    pkgs.aseprite
     (import ../homemanagerModules/hyprland/rofi/power-menu.nix {
       inherit pkgs;
 

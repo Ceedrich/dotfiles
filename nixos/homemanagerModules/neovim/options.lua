@@ -1,5 +1,10 @@
 local opt = vim.opt
 
+vim.diagnostic.config({
+  virtual_text = true;
+  -- virtual_lines = true;
+})
+
 opt.relativenumber = true
 opt.number = true
 

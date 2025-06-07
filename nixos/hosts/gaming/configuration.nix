@@ -4,10 +4,15 @@
   imports = [ ./hardware-configuration.nix ];
 
   steam-unfree.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
+
+  hardware.graphics = {
+    enable32Bit = true;
+    enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     vim
+    lact
   ];
 
   minecraft.enable = true;
@@ -20,6 +25,8 @@
       AllowUsers = null;
     };
   };
+
+  programs.coolercontrol.enable = true;
 
   networking.firewall.allowedTCPPorts = [ 22 ];
 

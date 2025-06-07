@@ -34,7 +34,7 @@
           tailwindcss
           tailwindcss-language-server
           taplo
-          rust-with-analyzer
+          # rust-with-analyzer
           clang
           clang-tools
           (rWrapper.override {

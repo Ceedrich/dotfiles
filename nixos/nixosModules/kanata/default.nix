@@ -7,7 +7,7 @@ in
   environment.systemPackages = with pkgs; [ libnotify ];
   services.kanata =
     {
-      enable = false;
+      enable = lib.mkDefault false;
 
       package = pkgs-unstable.kanata-with-cmd;
 
