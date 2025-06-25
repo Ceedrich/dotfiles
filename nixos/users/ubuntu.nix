@@ -1,6 +1,19 @@
-{ pkgs, ... }: {
+{ pkgs, config, nixgl, ... }:
+let
+  nixglWrap = config.lib.nixGL.wrap;
+  noSandboxWrap = pkg: pkg.overrideAttrs (old: rec {
+    inherit (old) pname;
+    installPhase = old.installPhase + ''
+      wrapProgram $out/bin/${pname} \
+        --add-flags "--no-sandbox"
+    '';
+  });
+in
+{
   home.username = "ceedrich";
   home.homeDirectory = "/home/ceedrich";
+
+  nixGL.packages = nixgl.packages;
 
   hyprland.enable = false;
 
@@ -10,18 +23,19 @@
 
   allowedUnfree = [ "aseprite" ];
 
-  home.packages = [
-    pkgs.aseprite
-    (import ../homemanagerModules/hyprland/rofi/power-menu.nix {
-      inherit pkgs;
+  programs.ghostty.package = nixglWrap pkgs.ghostty;
+  programs.brave.package = noSandboxWrap pkgs.brave;
+
+  home.packages =
 
       lockCommand = "i3lock -e -c \"#1e1e2e\"";
       logoutCommand = "/bin/loginctl kill-session self";
-      shutdownCommand = "/bin/systemctl poweroff";
-      rebootCommand = "/bin/systemctl reboot";
-      suspendCommand = "/bin/systemctl suspend";
+    [
+      pkgs.pdfgrep
+      pkgs.aseprite
     })
   ];
+    ];
 
 
   home.stateVersion = "24.11";
