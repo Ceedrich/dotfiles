@@ -5,6 +5,7 @@
     shortcuts.enable = lib.mkEnableOption "enable shortcuts";
     shortcuts = {
       moodle.enable = lib.mkEnableOption "enable moodle shortcut";
+      jellyfin.enable = lib.mkEnableOption "enable jellyfin shortcut";
     };
   };
   config =
@@ -24,8 +25,13 @@
           url = "https://moodle.epfl.ch";
           icon = ./assets/EPFL.png;
         };
+        jellyfin = mkShortcut "jellyfin" {
+          name = "Jellyfin";
+          url = "http://fun-machine";
+        };
       };
 
       shortcuts.moodle.enable = lib.mkDefault true;
+      shortcuts.jellyfin.enable = lib.mkDefault true;
     };
 }
