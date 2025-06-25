@@ -27,14 +27,21 @@ in
   programs.brave.package = noSandboxWrap pkgs.brave;
 
   home.packages =
-
-      lockCommand = "i3lock -e -c \"#1e1e2e\"";
-      logoutCommand = "/bin/loginctl kill-session self";
+    let
+      i3lock = "i3lock -f -e -c \"#1e1e2e\"";
+    in
     [
       pkgs.pdfgrep
       pkgs.aseprite
-    })
-  ];
+      (import ../homemanagerModules/hyprland/rofi/power-menu.nix {
+        inherit pkgs;
+
+        lockCommand = i3lock;
+        logoutCommand = "/bin/loginctl kill-session self";
+        shutdownCommand = "/bin/systemctl poweroff";
+        rebootCommand = "/bin/systemctl reboot";
+        suspendCommand = "${i3lock} && /bin/systemctl suspend";
+      })
     ];
 
 
