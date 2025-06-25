@@ -22,6 +22,8 @@
     wl-clipboard
     unzip
     gnutar
+    pdfgrep
+    gnugrep
     jq
     (callPackage ../packages/rebuild_system.nix { })
   ];
