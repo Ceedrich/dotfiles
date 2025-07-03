@@ -11,7 +11,7 @@ let
     )
     gen=$(nixos-rebuild list-generations | grep current)
     git add .
-    git commit -m "$(hostname): $gen"
+    git commit -em "$(hostname): $gen"
     popd
   '';
 in
