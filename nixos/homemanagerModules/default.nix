@@ -38,6 +38,8 @@
       shortcuts.enable = extra (lib.mkDefault true);
 
       ghostty.enable = lib.mkDefault true;
+      
+      services.blueman-applet.enable = lib.mkDefault true;
 
       # discord-unfree.enable = lib.mkDefault false;
       # spotify-unfree.enable = lib.mkDefault false;
