@@ -10,7 +10,8 @@ let
       cat nixos-switch.log | grep --color error && false
     )
     gen=$(nixos-rebuild list-generations | grep current)
-    git commit -am "$(hostname): $gen"
+    git add .
+    git commit -m "$(hostname): $gen"
     popd
   '';
 in
