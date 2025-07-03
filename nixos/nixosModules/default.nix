@@ -12,6 +12,7 @@
     inputs.catppuccin.nixosModules.catppuccin
   ];
 
+  services.blueman.enable = true;
 
   bootloader.enable = lib.mkDefault true;
   networking.enable = lib.mkDefault true;
