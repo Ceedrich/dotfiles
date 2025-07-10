@@ -40,8 +40,6 @@ in
     oci-containers.backend = "docker";
   };
 
-  services.kanata.enable = true;
-
   services.homepage-dashboard = {
     enable = true;
     allowedHosts = "localhost,127.0.0.1,${meta.hostname}";
