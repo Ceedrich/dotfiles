@@ -76,7 +76,7 @@ in
           cpu = true;
           cputemp = true;
           memory = true;
-          disk = "/";
+          disk = "/media-server";
           units = "metric";
         };
       }
