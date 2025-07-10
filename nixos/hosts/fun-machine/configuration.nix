@@ -1,4 +1,4 @@
-{ pkgs, meta, ... }:
+{ pkgs, meta, inputs, ... }:
 let
   ports = {
     arm = 8080;
@@ -7,9 +7,10 @@ let
   };
 in
 {
-  imports = [ 
-    ./hardware-configuration.nix 
+  imports = [
+    ./hardware-configuration.nix
     ./disko.nix
+    inputs.disko.nixosModules.disko
   ];
 
   services.nginx = {
@@ -26,19 +27,19 @@ in
   services.udev.enable = true;
   boot.kernelModules = [ "sg" ];
 
-  users.users.arm = {
-    isNormalUser = true;
-    description = "arm";
-    group = "arm";
-    extraGroups = [ "arm" "cdrom" "video" "render" "docker" ];
-  };
-
-  users.groups.arm = { };
-
-  virtualisation = {
-    docker.enable = true;
-    oci-containers.backend = "docker";
-  };
+  # users.users.arm = {
+  #   isNormalUser = true;
+  #   description = "arm";
+  #   group = "arm";
+  #   extraGroups = [ "arm" "cdrom" "video" "render" "docker" ];
+  # };
+  #
+  # users.groups.arm = { };
+  #
+  # virtualisation = {
+  #   docker.enable = true;
+  #   oci-containers.backend = "docker";
+  # };
 
   services.homepage-dashboard = {
     enable = true;
@@ -47,13 +48,13 @@ in
     services = [
       {
         "Media" = [
-          {
-            "Automatic Ripping Machine" = {
-              description = "Automatically Digitizes DVD'S";
-              href = "http://${meta.hostname}:${toString ports.arm}";
-              icon = "mdi-disc-player";
-            };
-          }
+          # {
+          #   "Automatic Ripping Machine" = {
+          #     description = "Automatically Digitizes DVD'S";
+          #     href = "http://${meta.hostname}:${toString ports.arm}";
+          #     icon = "mdi-disc-player";
+          #   };
+          # }
           {
             "Jellyfin" = {
               icon = "jellyfin.png";
@@ -88,37 +89,37 @@ in
 
   };
 
-  virtualisation.oci-containers.containers."arm-rippers" = {
-    autoStart = true;
-    image = "automaticrippingmachine/automatic-ripping-machine:latest";
-    ports = [ "${toString ports.arm}:8080" ];
-
-    environment = {
-      ARM_UID = "1001";
-      ARM_GID = "985";
-    };
-
-    volumes = [
-      "/home/arm:/home/arm"
-      "/home/arm/music:/home/arm/music"
-      "/home/arm/logs:/home/arm/logs"
-      "/media-server:/home/arm/media"
-      "/home/arm/config:/etc/arm/config"
-    ];
-    extraOptions = [
-      "--device=/dev/sr0:/dev/sr0"
-      "--privileged"
-    ];
-  };
-
-  systemd.tmpfiles.rules = [
-    "d /media-server 1777 arm arm"
-    "d /home/arm 1777 arm arm"
-    "d /home/arm/music 1777 arm arm"
-    "d /home/arm/logs 1777 arm arm"
-    "d /home/arm/media 1777 arm arm"
-    "d /home/arm/config 1777 arm arm"
-  ];
+  # virtualisation.oci-containers.containers."arm-rippers" = {
+  #   autoStart = true;
+  #   image = "automaticrippingmachine/automatic-ripping-machine:latest";
+  #   ports = [ "${toString ports.arm}:8080" ];
+  #
+  #   environment = {
+  #     ARM_UID = "1001";
+  #     ARM_GID = "985";
+  #   };
+  #
+  #   volumes = [
+  #     "/home/arm:/home/arm"
+  #     "/home/arm/music:/home/arm/music"
+  #     "/home/arm/logs:/home/arm/logs"
+  #     "/media-server:/home/arm/media"
+  #     "/home/arm/config:/etc/arm/config"
+  #   ];
+  #   extraOptions = [
+  #     "--device=/dev/sr0:/dev/sr0"
+  #     "--privileged"
+  #   ];
+  # };
+  #
+  # systemd.tmpfiles.rules = [
+  #   "d /media-server 1777 arm arm"
+  #   "d /home/arm 1777 arm arm"
+  #   "d /home/arm/music 1777 arm arm"
+  #   "d /home/arm/logs 1777 arm arm"
+  #   "d /home/arm/media 1777 arm arm"
+  #   "d /home/arm/config 1777 arm arm"
+  # ];
 
   services.jellyfin = {
     enable = true;
