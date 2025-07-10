@@ -11,6 +11,12 @@ in
     ./hardware-configuration.nix
   ];
 
+  fileSystems."/media-server" =
+    {
+      device = "/dev/disk/by-label/drive1";
+      fsType = "ext4";
+    };
+
   services.nginx = {
     enable = true;
     virtualHosts."${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.homepage}/";
