@@ -1,4 +1,4 @@
-{ pkgs, meta, inputs, ... }:
+{ pkgs, meta, ... }:
 let
   ports = {
     arm = 8080;
@@ -9,8 +9,6 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    ./disko.nix
-    inputs.disko.nixosModules.disko
   ];
 
   services.nginx = {
