@@ -7,7 +7,10 @@ let
   };
 in
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ 
+    ./hardware-configuration.nix 
+    ./disko.nix
+  ];
 
   services.nginx = {
     enable = true;
