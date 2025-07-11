@@ -24,8 +24,6 @@ in
     # virtualHosts."arm.${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.arm}/";
   };
 
-  hyprland.enable = false;
-
   services.tailscale.enable = true;
 
   systemd.services.hd-idle = {

@@ -1,8 +1,12 @@
-{ pkgs, lib, config, ... }: {
-  options = {
-    steam-unfree.enable = lib.mkEnableOption "enable steam";
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.applications.steam;
+in
+{
+  options.applications.steam = {
+    enable = lib.mkEnableOption "enable ";
   };
-  config = lib.mkIf config.steam-unfree.enable {
+  config = lib.mkIf cfg.enable {
     allowedUnfree = [
       "steam"
       "steam-original"

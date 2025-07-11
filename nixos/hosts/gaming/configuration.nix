@@ -1,9 +1,17 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/steam.nix
+    ../../modules/bluetooth.nix
+    ../../modules/hyprland.nix
+  ];
 
-  steam-unfree.enable = true;
+  applications.steam.enable = true;
+  applications.hyprland.enable = true;
+
+  settings.bluetooth.enable = true;
 
   hardware.graphics = {
     enable32Bit = true;

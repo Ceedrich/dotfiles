@@ -1,9 +1,12 @@
-{ pkgs, lib, config, ... }: {
-  options = {
-    hyprland.enable = lib.mkEnableOption "enable hyprland";
+{ lib, config, pkgs, ... }:
+let
+  cfg = config.applications.hyprland;
+in
+{
+  options.applications.hyprland = {
+    enable = lib.mkEnableOption "enable hyprland";
   };
-
-  config = lib.mkIf config.hyprland.enable {
+  config = lib.mkIf cfg.enable {
     services.xserver.enable = true;
     services.xserver.displayManager.gdm.enable = true;
 

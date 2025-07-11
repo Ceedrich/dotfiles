@@ -64,8 +64,9 @@
         };
         modules = [
           ./nixpkgs-issue-55674.nix
+          ./hosts/_common
           ./hosts/${hostname}/configuration.nix
-          ./nixosModules
+          ./users/ceedrich
         ];
       });
     in
