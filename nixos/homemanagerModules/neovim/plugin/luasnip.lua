@@ -13,12 +13,14 @@ ls.add_snippets("nix", {
     fmt(
       [[
       {{ lib, config, ... }}:
-
+      let
+        cfg = config.{};
+      in
       {{
-        options = {{
-          {}.enable = lib.mkEnableOption "enable {}";
+        options.{} = {{
+          enable = lib.mkEnableOption "enable {}";
         }};
-        config = lib.mkIf config.{}.enable {{
+        config = lib.mkIf cfg.enable {{
           {}
         }};
       }}
@@ -26,8 +28,8 @@ ls.add_snippets("nix", {
       {
         i(1),
         rep(1),
-        rep(1),
         i(2),
+        i(3),
       }
     )
   ),
