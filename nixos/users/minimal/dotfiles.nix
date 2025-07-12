@@ -5,6 +5,11 @@
     yazi.enable = true;
     tmux.enable = true;
 
+    zsh = {
+      enable = true;
+      integrations.enable = true;
+    };
+
     git = {
       enable = true;
       userName = "Cedric Lehr";

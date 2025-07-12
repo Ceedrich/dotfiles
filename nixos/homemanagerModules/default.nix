@@ -1,14 +1,9 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: {
+{lib, ...}: {
   imports = [
     ./hyprland # TODO
     ./git
     ./neovim
-    ./shell # TODO
+    ./shell
     ./ghostty
     ./theming # TODO
     ./spotify
@@ -22,17 +17,9 @@
     ./discord
   ];
 
-  options = {minimal = lib.mkEnableOption "minimal config";};
+  theming.enable = lib.mkDefault true;
 
-  config = let
-    extra = x: lib.mkIf (! config.minimal) x;
-  in {
-    theming.enable = extra (lib.mkDefault true);
+  hyprland.enable = lib.mkDefault false;
 
-    zsh.enable = lib.mkDefault true;
-
-    hyprland.enable = extra (lib.mkDefault false);
-
-    programs.home-manager.enable = lib.mkDefault true;
-  };
+  programs.home-manager.enable = lib.mkDefault true;
 }

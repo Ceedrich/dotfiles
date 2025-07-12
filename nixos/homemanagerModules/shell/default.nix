@@ -1,17 +1,18 @@
 {
-  config,
   lib,
+  config,
   ...
-}: {
-  imports = [./integrations];
+}: let
+  zsh = config.programs.zsh;
+  bash = config.programs.bash;
 
-  options = {
-    zsh.enable = lib.mkEnableOption "enable zsh";
-    bash.enable = lib.mkEnableOption "enable bash";
-  };
+  inherit (lib) mkIf;
+in {
+  imports = [
+    ./integrations
+  ];
   config = {
-    programs.zsh = lib.mkIf config.zsh.enable {
-      enable = true;
+    programs.zsh = mkIf zsh.enable {
       enableCompletion = true;
       autocd = true;
       autosuggestion.enable = true;
@@ -30,23 +31,9 @@
           zstyle ':completion:*' menu select
         '';
     };
-    programs.bash = lib.mkIf config.bash.enable {
-      enable = true;
+
+    programs.bash = mkIf bash.enable {
       enableCompletion = true;
-    };
-
-    programs.starship = {
-      enable = true;
-      enableZshIntegration = lib.mkIf config.zsh.enable true;
-      enableBashIntegration = lib.mkIf config.bash.enable true;
-      settings = builtins.fromTOML (builtins.readFile ./starship.toml);
-    };
-
-    home.shellAliases = {
-      "..." = "../..";
-      "...." = "../../..";
-      "....." = "../../../..";
-      dev = lib.mkIf config.zsh.enable "nix develop -c zsh";
     };
   };
 }

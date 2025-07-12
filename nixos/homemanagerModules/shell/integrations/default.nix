@@ -1,49 +1,62 @@
 {
-  config,
   lib,
+  config,
   ...
-}: {
-  options.shell-integrations = {
-    starship.enable = lib.mkEnableOption "enable starship";
-    fzf.enable = lib.mkEnableOption "enable fzf";
-    eza.enable = lib.mkEnableOption "enable eza";
-    zoxide.enable = lib.mkEnableOption "enable zoxide";
-    bat.enable = lib.mkEnableOption "enable bat";
+}: let
+  cfg = config.programs.zsh.integrations;
+in {
+  options.programs.zsh.integrations = {
+    enable = lib.mkEnableOption "enable all Integrations";
+    starship = lib.mkEnableOption "enable starship";
+    fzf = lib.mkEnableOption "enable fzf";
+    eza = lib.mkEnableOption "enable eza";
+    zoxide = lib.mkEnableOption "enable zoxide";
+    bat = lib.mkEnableOption "enable bat";
   };
-
   config = let
-    integrations = config.shell-integrations;
+    inherit (lib) mkIf mkDefault;
+    zsh_enabled = config.programs.zsh.enable;
+    bash_enabled = config.programs.bash.enable;
   in {
-    programs.fzf = lib.mkIf integrations.fzf.enable {
-      enable = true;
-      enableBashIntegration = lib.mkIf config.bash.enable true;
-      enableZshIntegration = lib.mkIf config.zsh.enable true;
+    programs.starship = mkIf cfg.starship {
+      enable = mkDefault true;
+      enableZshIntegration = mkIf zsh_enabled true;
+      enableBashIntegration = mkIf bash_enabled true;
+      settings = builtins.fromTOML (builtins.readFile ./starship.toml);
     };
-    programs.eza = lib.mkIf integrations.eza.enable {
-      enable = true;
-      enableBashIntegration = lib.mkIf config.bash.enable true;
-      enableZshIntegration = lib.mkIf config.zsh.enable true;
+
+    programs.fzf = lib.mkIf cfg.fzf {
+      enable = mkDefault true;
+      enableZshIntegration = mkIf zsh_enabled true;
+      enableBashIntegration = mkIf bash_enabled true;
+    };
+
+    programs.eza = lib.mkIf cfg.eza {
+      enable = mkDefault true;
+      enableZshIntegration = mkIf zsh_enabled true;
+      enableBashIntegration = mkIf bash_enabled true;
       icons = "auto";
     };
-    home.shellAliases.ls = lib.mkIf integrations.eza.enable "eza";
-    home.shellAliases.l = lib.mkIf integrations.eza.enable "eza --icons --git -lah";
+    home.shellAliases.ls = mkIf cfg.eza "eza";
+    home.shellAliases.l = mkIf cfg.eza "eza --icons --git -lah";
 
-    programs.zoxide = lib.mkIf integrations.zoxide.enable {
-      enable = true;
-      enableBashIntegration = lib.mkIf config.bash.enable true;
-      enableZshIntegration = lib.mkIf config.zsh.enable true;
+    programs.zoxide = mkIf cfg.zoxide {
+      enable = mkDefault true;
+      enableZshIntegration = mkIf zsh_enabled true;
+      enableBashIntegration = mkIf bash_enabled true;
       options = ["--cmd" "cd"];
     };
 
-    programs.bat.enable = lib.mkIf integrations.bat.enable true;
+    programs.bat = mkIf cfg.bat {
+      enable = mkDefault true;
+    };
 
-    # Defaults
-    shell-integrations = {
-      starship.enable = lib.mkDefault true;
-      fzf.enable = lib.mkDefault true;
-      eza.enable = lib.mkDefault true;
-      zoxide.enable = lib.mkDefault true;
-      bat.enable = lib.mkDefault true;
+    programs.zsh.integrations = mkIf cfg.enable {
+      starship = mkDefault true;
+      fzf = mkDefault true;
+      eza = mkDefault true;
+      zoxide = mkDefault true;
+      bat = mkDefault true;
     };
   };
 }
