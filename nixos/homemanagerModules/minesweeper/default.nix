@@ -1,10 +1,17 @@
-{ pkgs, inputs, lib, config, ... }:
-
+# ERROR: Currently broken
 {
-  options = {
-    minesweeper.enable = lib.mkEnableOption "enable minesweeper";
+  pkgs,
+  inputs,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.programs.minesweeper;
+in {
+  options.programs.minesweeper = {
+    enable = lib.mkEnableOption "enable Minesweeper";
   };
-  config = lib.mkIf config.minesweeper.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = [
       (pkgs.gnome-mines.overrideAttrs {
         src = inputs.gnome-mines-custom;

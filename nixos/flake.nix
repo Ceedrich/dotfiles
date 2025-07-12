@@ -28,60 +28,96 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixgl, ... }@inputs:
-    let
-      utils = import ./utils.nix { };
-      system = "x86_64-linux";
-      makePkgs = npkgs: import npkgs {
+  outputs = {
+    nixpkgs,
+    home-manager,
+    nixgl,
+    ...
+  } @ inputs: let
+    utils = import ./utils.nix {};
+    system = "x86_64-linux";
+    makePkgs = npkgs:
+      import npkgs {
         inherit system;
         overlays = [
           (import inputs.rust-overlay)
           (final: prev: {
             rust-with-analyzer = prev.rust-bin.stable.latest.default.override {
-              extensions = [ "rust-src" "rust-analyzer" "clippy" ];
+              extensions = ["rust-src" "rust-analyzer" "clippy"];
             };
             ceedrichVim = inputs.ceedrichVim.packages.${system}.neovim;
           })
         ];
       };
-      pkgs-unstable = makePkgs inputs.nixpkgs-unstable;
-      pkgs = makePkgs nixpkgs;
+    pkgs-unstable = makePkgs inputs.nixpkgs-unstable;
+    pkgs = makePkgs nixpkgs;
 
-      generateHomemanagerConfigs = utils.generateConfigs (name: home-manager.lib.homeManagerConfiguration {
+    hm-modules = [
+      ./nixpkgs-issue-55674.nix
+      ./homemanagerModules
+      inputs.catppuccin.homeModules.catppuccin
+      inputs.ceedrichVim.homeModules.${system}.default
+    ];
+
+    mkHomeManager = user: dir:
+      home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs pkgs-unstable nixgl; };
+        extraSpecialArgs = {inherit inputs pkgs-unstable nixgl;};
 
-        modules = [
-          inputs.catppuccin.homeModules.catppuccin
-          ./nixpkgs-issue-55674.nix
-          ./users/${name}.nix
-          ./homemanagerModules
-        ];
-      });
+        modules =
+          [
+            {
+              home.username = user;
+              home.homeDirectory = "/home/${user}";
+              home.stateVersion = "24.11";
+            }
+            ./users/${dir}/dotfiles.nix
+          ]
+          ++ hm-modules;
+      };
 
-      generateNixosConfigs = utils.generateConfigs (hostname: nixpkgs.lib.nixosSystem {
+    mkNixos = hostname: users:
+      nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs pkgs-unstable;
-          meta = { inherit hostname; };
+          meta = {inherit hostname;};
         };
         modules = [
           ./nixpkgs-issue-55674.nix
           ./hosts/_common
           ./hosts/${hostname}/configuration.nix
           ./users/ceedrich
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = false;
+            home-manager.useUserPackages = true;
+            home-manager.users =
+              pkgs.lib.mapAttrs (user: dir: {
+                imports =
+                  [
+                    {
+                      home.username = user;
+                      home.homeDirectory = "/home/${user}";
+                      home.stateVersion = "24.11";
+                    }
+                    ./users/${dir}/dotfiles.nix
+                  ]
+                  ++ hm-modules;
+              })
+              users;
+          }
         ];
-      });
-    in
-    {
-      nixosConfigurations = generateNixosConfigs [
-        "fun-machine"
-        "gaming"
-      ];
-
-      homeConfigurations = generateHomemanagerConfigs [
-        "ceedrich"
-        "ubuntu"
-        "minimal"
-      ];
+      };
+  in {
+    nixosConfigurations = {
+      fun-machine = mkNixos "fun-machine" {"ceedrich" = "minimal";};
+      gaming = mkNixos "gaming" {"ceedrich" = "ceedrich";};
     };
+
+    homeConfigurations = {
+      "ceedrich" = mkHomeManager "ceedrich" "ceedrich";
+      "ubuntu" = mkHomeManager "ceedrich" "ubuntu";
+      "minimal" = mkHomeManager "ceedrich" "minimal";
+    };
+  };
 }

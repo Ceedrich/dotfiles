@@ -1,12 +1,15 @@
-{ config, lib, ... }: {
-  options = {
-    yazi.enable = lib.mkEnableOption "enable yazi";
-  };
-  config = lib.mkIf config.yazi.enable {
+{
+  config,
+  lib,
+  ...
+}: let
+  programs = config.programs;
+  cfg = programs.yazi;
+in {
+  config = lib.mkIf cfg.enable {
     programs.yazi = {
-      enable = true;
-      enableBashIntegration = lib.mkIf config.bash.enable true;
-      enableZshIntegration = lib.mkIf config.zsh.enable true;
+      enableBashIntegration = lib.mkIf programs.bash.enable true;
+      enableZshIntegration = lib.mkIf programs.zsh.enable true;
     };
   };
 }

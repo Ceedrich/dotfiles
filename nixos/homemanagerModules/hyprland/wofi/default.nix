@@ -1,6 +1,8 @@
-{ lib, config, ... }:
-
 {
+  lib,
+  config,
+  ...
+}: {
   options = {
     wofi.enable = lib.mkEnableOption "enable wofi";
   };

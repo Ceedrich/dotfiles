@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.zsh.enable = true;
   users.users.ceedrich = {
     shell = pkgs.zsh;
@@ -12,7 +12,7 @@
     ];
     isNormalUser = true;
     description = "Cedric";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = [ ];
+    extraGroups = ["networkmanager" "wheel"];
+    packages = [];
   };
 }

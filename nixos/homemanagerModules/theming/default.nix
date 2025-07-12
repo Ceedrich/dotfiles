@@ -1,11 +1,16 @@
-{ pkgs, lib, config, ... }:
-
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     theming.enable = lib.mkEnableOption "enable theming";
   };
   config = lib.mkIf config.theming.enable {
-    gtk = let key = "gtk-application-prefer-dark-theme"; in {
+    gtk = let
+      key = "gtk-application-prefer-dark-theme";
+    in {
       enable = true;
       gtk3.extraConfig = {
         ${key} = 1;
@@ -35,6 +40,5 @@
       style.name = "kvantum";
       platformTheme.name = "kvantum";
     };
-
   };
 }

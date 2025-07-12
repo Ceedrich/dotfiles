@@ -1,5 +1,4 @@
-{ writeShellScriptBin }:
-let
+{writeShellScriptBin}: let
   rebuild_system = writeShellScriptBin "rebuild-system" ''
     set -e
     pushd ~/dotfiles/nixos/
@@ -15,4 +14,4 @@ let
     popd
   '';
 in
-rebuild_system
+  rebuild_system

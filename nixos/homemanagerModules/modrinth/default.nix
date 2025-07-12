@@ -1,14 +1,19 @@
-{ pkgs, lib, config, ... }:
-
 {
-  options = {
-    modrinth-unfree.enable = lib.mkEnableOption "enable modrinth";
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.programs.modrinth;
+in {
+  options.programs.modrinth = {
+    enable = lib.mkEnableOption "enable Modrinth";
   };
-  config = lib.mkIf config.modrinth-unfree.enable {
+  config = lib.mkIf cfg.enable {
     allowedUnfree = [
       "modrinth-app"
       "modrinth-app-unwrapped"
     ];
-    home.packages = with pkgs; [ modrinth-app ];
+    home.packages = with pkgs; [modrinth-app];
   };
 }

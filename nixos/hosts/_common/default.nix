@@ -1,6 +1,9 @@
-{ meta, pkgs, inputs, ... }:
-
 {
+  meta,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
   ];
@@ -12,7 +15,7 @@
     pdfgrep
     gnugrep
     jq
-    (callPackage ../../packages/rebuild_system.nix { })
+    (callPackage ../../packages/rebuild_system.nix {})
   ];
 
   # Theming
@@ -29,7 +32,7 @@
   networking.hostName = meta.hostname; # Define your hostname.
   networking.networkmanager.enable = true;
 
-  # Audio 
+  # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -74,6 +77,5 @@
   console.keyMap = "sg";
 
   # Nix settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 }

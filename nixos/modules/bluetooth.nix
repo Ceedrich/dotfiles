@@ -1,9 +1,10 @@
-{ lib, config, ... }:
-let
-  cfg = config.settings.bluetooth;
-in
-
 {
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.settings.bluetooth;
+in {
   options.settings.bluetooth = {
     enable = lib.mkEnableOption "enable bluetooth";
   };

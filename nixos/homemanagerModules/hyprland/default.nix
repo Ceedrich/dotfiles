@@ -1,4 +1,8 @@
-{ lib, config, ... }: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./hyprland.nix
     ./hypridle
@@ -16,6 +20,5 @@
     hypridle.enable = lib.mkDefault true;
     wofi.enable = lib.mkDefault false;
     rofi.enable = lib.mkDefault true;
-
   };
 }

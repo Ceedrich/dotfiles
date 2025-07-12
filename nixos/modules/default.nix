@@ -1,12 +1,10 @@
-{ ... }:
-
-{
+{...}: {
   imports = [
     ./hyprland.nix
     ./bluetooth.nix
   ];
 
-  options = { };
+  options = {};
 
-  config = { };
+  config = {};
 }
