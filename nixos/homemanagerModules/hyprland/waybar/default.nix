@@ -1,6 +1,9 @@
-{ pkgs, lib, config, ... }:
-
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options = {
     waybar.enable = lib.mkEnableOption "enable waybar";
     waybar.modules = {
@@ -11,27 +14,26 @@
       powermenu = lib.mkEnableOption "enable powermenu";
     };
   };
-  config =
-    let
-      inherit (lib) mkIf;
-      wb = config.waybar;
-      m = wb.modules;
+  config = let
+    inherit (lib) mkIf;
+    wb = config.waybar;
+    m = wb.modules;
 
-      powermenu-name = "group/powermenu";
-    in
-    {
-      waybar.modules = {
-        audio = lib.mkDefault true;
-        clock = lib.mkDefault true;
-        date = lib.mkDefault true;
-        tray = lib.mkDefault true;
-        powermenu = lib.mkDefault true;
-      };
+    powermenu-name = "group/powermenu";
+  in {
+    waybar.modules = {
+      audio = lib.mkDefault true;
+      clock = lib.mkDefault true;
+      date = lib.mkDefault true;
+      tray = lib.mkDefault true;
+      powermenu = lib.mkDefault true;
+    };
 
-      programs.waybar = mkIf wb.enable {
-        enable = true;
-        style = lib.readFile ./style.css;
-        settings.mainBar = {
+    programs.waybar = mkIf wb.enable {
+      enable = true;
+      style = lib.readFile ./style.css;
+      settings.mainBar =
+        {
           position = "top";
           modules-left = [
             (mkIf m.date "clock#date")
@@ -51,7 +53,7 @@
             format = "{volume}% {icon}";
             format-bluetooth = "{volume}% {icon}";
             format-muted = "{volume}% 󰝟";
-            format-icons.default = [ "󰖀" "󰕾" ];
+            format-icons.default = ["󰖀" "󰕾"];
             scroll-step = 3;
             on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
             on-click-right = lib.getExe (pkgs.pavucontrol);
@@ -67,12 +69,15 @@
             tooltip = false;
           };
 
-          tray = mkIf m.tray { icon-size = 21; spacing = 10; };
-        } //
-        (import ./modules/powermenu.nix {
+          tray = mkIf m.tray {
+            icon-size = 21;
+            spacing = 10;
+          };
+        }
+        // (import ./modules/powermenu.nix {
           inherit pkgs;
           name = powermenu-name;
         });
-      };
     };
+  };
 }

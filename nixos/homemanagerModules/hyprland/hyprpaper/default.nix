@@ -1,6 +1,8 @@
-{ lib, config, ... }:
-
 {
+  lib,
+  config,
+  ...
+}: {
   options = {
     hyprpaper.enable = lib.mkEnableOption "enable hyprpaper";
   };

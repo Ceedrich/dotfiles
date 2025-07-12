@@ -7,7 +7,7 @@
   imports = [
     ./hyprland # TODO
     ./git
-    ./neovim 
+    ./neovim
     ./shell # TODO
     ./ghostty
     ./theming # TODO

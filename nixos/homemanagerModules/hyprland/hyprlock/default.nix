@@ -1,6 +1,8 @@
-{ lib, config, ... }:
-
 {
+  lib,
+  config,
+  ...
+}: {
   options = {
     hyprlock.enable = lib.mkEnableOption "enable hyprlock";
   };
@@ -13,13 +15,15 @@
           disable_loading_bar = true;
           hide_cursor = true;
         };
-        background = [{
-          monitor = "";
-          path = "${../hyprpaper/wallpaper.jpg}";
-          blur_passes = 3;
-          brightness = 0.5;
-          color = "$base";
-        }];
+        background = [
+          {
+            monitor = "";
+            path = "${../hyprpaper/wallpaper.jpg}";
+            blur_passes = 3;
+            brightness = 0.5;
+            color = "$base";
+          }
+        ];
         label = [
           # Time
           {
@@ -46,27 +50,29 @@
           }
         ];
 
-        input-field = [{
-          monitor = "";
-          size = "300, 60";
-          outline_thickness = 4;
-          dots_size = 0.2;
-          dots_spacing = 0.2;
-          dots_center = true;
-          outer_color = "$accent";
-          inner_color = "$surface0";
-          font_color = "$text";
-          fade_on_empty = false;
-          placeholder_text = ''<span foreground="##$textAlpha"><i>󰌾 Logged in as </i><span foreground="##$accentAlpha">$USER</span></span>'';
-          hide_input = false;
-          check_color = "$accent";
-          fail_color = "$red";
-          fail_text = ''<i>$FAIL <b>($ATTEMPTS)</b></i>'';
-          capslock_color = "$yellow";
-          position = "0, -35";
-          halign = "center";
-          valign = "center";
-        }];
+        input-field = [
+          {
+            monitor = "";
+            size = "300, 60";
+            outline_thickness = 4;
+            dots_size = 0.2;
+            dots_spacing = 0.2;
+            dots_center = true;
+            outer_color = "$accent";
+            inner_color = "$surface0";
+            font_color = "$text";
+            fade_on_empty = false;
+            placeholder_text = ''<span foreground="##$textAlpha"><i>󰌾 Logged in as </i><span foreground="##$accentAlpha">$USER</span></span>'';
+            hide_input = false;
+            check_color = "$accent";
+            fail_color = "$red";
+            fail_text = ''<i>$FAIL <b>($ATTEMPTS)</b></i>'';
+            capslock_color = "$yellow";
+            position = "0, -35";
+            halign = "center";
+            valign = "center";
+          }
+        ];
       };
     };
   };

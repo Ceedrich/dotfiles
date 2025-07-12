@@ -1,23 +1,22 @@
-{ pkgs ? import <nixpkgs>
-, lib ? pkgs.lib
-, name ? "group/powermenu"
-}:
-let
+{
+  pkgs ? import <nixpkgs>,
+  lib ? pkgs.lib,
+  name ? "group/powermenu",
+}: let
   poweroff = "custom/poweroff";
   logout = "custom/logout";
   lock = "custom/lock";
   reboot = "custom/reboot";
 
-  doConfirm = lib.getExe (import ../../rofi/confirm-dialogue.nix { inherit pkgs; });
-in
-{
+  doConfirm = lib.getExe (import ../../rofi/confirm-dialogue.nix {inherit pkgs;});
+in {
   ${name} = {
     orientation = "inherit";
     drawer = {
       transition-duration = 500;
       children-class = "not-power";
     };
-    modules = [ poweroff logout lock reboot ];
+    modules = [poweroff logout lock reboot];
   };
 
   ${poweroff} = {

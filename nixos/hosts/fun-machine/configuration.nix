@@ -1,21 +1,22 @@
-{ pkgs, meta, ... }:
-let
+{
+  pkgs,
+  meta,
+  ...
+}: let
   ports = {
     arm = 8080;
     jellyfin = 8096;
     homepage = 3000;
   };
-in
-{
+in {
   imports = [
     ./hardware-configuration.nix
   ];
 
-  fileSystems."/media-server" =
-    {
-      device = "/dev/disk/by-label/drive1";
-      fsType = "ext4";
-    };
+  fileSystems."/media-server" = {
+    device = "/dev/disk/by-label/drive1";
+    fsType = "ext4";
+  };
 
   services.nginx = {
     enable = true;
@@ -28,15 +29,14 @@ in
 
   systemd.services.hd-idle = {
     description = "External HD spin down daemon";
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
       ExecStart = "${pkgs.hd-idle}/bin/hd-idle -i 0 -a /dev/disk/by-label/drive1 -i 300";
     };
   };
 
-
   services.udev.enable = true;
-  boot.kernelModules = [ "sg" ];
+  boot.kernelModules = ["sg"];
 
   # users.users.arm = {
   #   isNormalUser = true;
@@ -94,10 +94,13 @@ in
     settings = {
       title = "Ceedrich's HomeLab";
       layout = {
-        "Media" = { style = "row"; header = true; columns = 4; };
+        "Media" = {
+          style = "row";
+          header = true;
+          columns = 4;
+        };
       };
     };
-
   };
 
   # virtualisation.oci-containers.containers."arm-rippers" = {
@@ -139,14 +142,14 @@ in
 
   services.openssh = {
     enable = true;
-    ports = [ 22 ];
+    ports = [22];
     settings = {
       PasswordAuthentication = false;
       AllowUsers = null;
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 80 8080 8096 ];
+  networking.firewall.allowedTCPPorts = [22 80 8080 8096];
 
   environment.systemPackages = with pkgs; [
     vim
@@ -159,5 +162,4 @@ in
   services.printing.enable = true;
 
   system.stateVersion = "24.11";
-
 }

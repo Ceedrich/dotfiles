@@ -28,28 +28,34 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nixgl, ... }@inputs:
-    let
-      utils = import ./utils.nix { };
-      system = "x86_64-linux";
-      makePkgs = npkgs: import npkgs {
+  outputs = {
+    nixpkgs,
+    home-manager,
+    nixgl,
+    ...
+  } @ inputs: let
+    utils = import ./utils.nix {};
+    system = "x86_64-linux";
+    makePkgs = npkgs:
+      import npkgs {
         inherit system;
         overlays = [
           (import inputs.rust-overlay)
           (final: prev: {
             rust-with-analyzer = prev.rust-bin.stable.latest.default.override {
-              extensions = [ "rust-src" "rust-analyzer" "clippy" ];
+              extensions = ["rust-src" "rust-analyzer" "clippy"];
             };
             ceedrichVim = inputs.ceedrichVim.packages.${system}.neovim;
           })
         ];
       };
-      pkgs-unstable = makePkgs inputs.nixpkgs-unstable;
-      pkgs = makePkgs nixpkgs;
+    pkgs-unstable = makePkgs inputs.nixpkgs-unstable;
+    pkgs = makePkgs nixpkgs;
 
-      generateHomemanagerConfigs = utils.generateConfigs (name: home-manager.lib.homeManagerConfiguration {
+    generateHomemanagerConfigs = utils.generateConfigs (name:
+      home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        extraSpecialArgs = { inherit inputs pkgs-unstable nixgl; };
+        extraSpecialArgs = {inherit inputs pkgs-unstable nixgl;};
 
         modules = [
           inputs.catppuccin.homeModules.catppuccin
@@ -60,10 +66,11 @@
         ];
       });
 
-      generateNixosConfigs = utils.generateConfigs (hostname: nixpkgs.lib.nixosSystem {
+    generateNixosConfigs = utils.generateConfigs (hostname:
+      nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs pkgs-unstable;
-          meta = { inherit hostname; };
+          meta = {inherit hostname;};
         };
         modules = [
           ./nixpkgs-issue-55674.nix
@@ -72,17 +79,16 @@
           ./users/ceedrich
         ];
       });
-    in
-    {
-      nixosConfigurations = generateNixosConfigs [
-        "fun-machine"
-        "gaming"
-      ];
+  in {
+    nixosConfigurations = generateNixosConfigs [
+      "fun-machine"
+      "gaming"
+    ];
 
-      homeConfigurations = generateHomemanagerConfigs [
-        "ceedrich"
-        "ubuntu"
-        "minimal"
-      ];
-    };
+    homeConfigurations = generateHomemanagerConfigs [
+      "ceedrich"
+      "ubuntu"
+      "minimal"
+    ];
+  };
 }

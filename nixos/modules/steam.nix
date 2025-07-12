@@ -1,8 +1,11 @@
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.applications.steam;
-in
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.applications.steam;
+in {
   options.applications.steam = {
     enable = lib.mkEnableOption "enable ";
   };

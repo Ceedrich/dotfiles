@@ -1,8 +1,11 @@
-{ lib, config, pkgs, ... }:
-let
-  cfg = config.applications.hyprland;
-in
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.applications.hyprland;
+in {
   options.applications.hyprland = {
     enable = lib.mkEnableOption "enable hyprland";
   };
@@ -20,7 +23,7 @@ in
     };
 
     xdg.portal.enable = true;
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
     hardware = {
       graphics.enable = true;

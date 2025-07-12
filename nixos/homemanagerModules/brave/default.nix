@@ -1,6 +1,8 @@
-{ lib, config, ... }:
-
 {
+  lib,
+  config,
+  ...
+}: {
   options = {
     brave.enable = lib.mkEnableOption "enable brave";
   };
