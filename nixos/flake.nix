@@ -59,19 +59,24 @@
       inputs.ceedrichVim.homeModules.${system}.default
     ];
 
-    generateHomemanagerConfigs = utils.generateConfigs (name:
+    mkHomeManager = user: dir:
       home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {inherit inputs pkgs-unstable nixgl;};
 
         modules =
           [
-            ./users/${name}/dotfiles.nix
+            {
+              home.username = user;
+              home.homeDirectory = "/home/${user}";
+              home.stateVersion = "24.11";
+            }
+            ./users/${dir}/dotfiles.nix
           ]
           ++ hm-modules;
-      });
+      };
 
-    generateNixosConfigs = utils.generateConfigs (hostname:
+    mkNixos = hostname: users:
       nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs pkgs-unstable;
@@ -83,34 +88,36 @@
           ./hosts/${hostname}/configuration.nix
           ./users/ceedrich
           home-manager.nixosModules.home-manager
-          (let
-            user = "ceedrich";
-          in {
+          {
             home-manager.useGlobalPkgs = false;
             home-manager.useUserPackages = true;
-            home-manager.users."${user}" = {
-              imports =
-                [
-                  {
-                    config.nixpkgs.config.allowUnfreePredicate = _: true;
-                  }
-                  ./users/${user}/dotfiles.nix
-                ]
-                ++ hm-modules;
-            };
-          })
+            home-manager.users =
+              pkgs.lib.mapAttrs (user: dir: {
+                imports =
+                  [
+                    {
+                      home.username = user;
+                      home.homeDirectory = "/home/${user}";
+                      home.stateVersion = "24.11";
+                    }
+                    ./users/${dir}/dotfiles.nix
+                  ]
+                  ++ hm-modules;
+              })
+              users;
+          }
         ];
-      });
+      };
   in {
-    nixosConfigurations = generateNixosConfigs [
-      "fun-machine"
-      "gaming"
-    ];
+    nixosConfigurations = {
+      fun-machine = mkNixos "fun-machine" {"ceedrich" = "minimal";};
+      gaming = mkNixos "gaming" {"ceedrich" = "ceedrich";};
+    };
 
-    homeConfigurations = generateHomemanagerConfigs [
-      "ceedrich"
-      "ubuntu"
-      "minimal"
-    ];
+    homeConfigurations = {
+      "ceedrich" = mkHomeManager "ceedrich" "ceedrich";
+      "ubuntu" = mkHomeManager "ceedrich" "ubuntu";
+      "minimal" = mkHomeManager "ceedrich" "minimal";
+    };
   };
 }

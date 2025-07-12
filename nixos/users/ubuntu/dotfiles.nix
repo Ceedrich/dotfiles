@@ -16,9 +16,9 @@
         '';
     });
 in {
-  home.username = "ceedrich";
-  home.homeDirectory = "/home/ceedrich";
-
+  imports = [
+    ../minimal/dotfiles.nix
+  ];
   nixGL.packages = nixgl.packages;
 
   shortcuts = {
@@ -27,24 +27,14 @@ in {
   };
 
   programs = {
-    neovim.enable = true;
     brave.enable = true;
     ghostty.enable = true;
     spotify.enable = true;
-    btop.enable = true;
-    yazi.enable = true;
-    tmux.enable = true;
     # minesweeper.enable = true;
     # discord.enable = true;
 
     ghostty.package = nixglWrap pkgs.ghostty;
     brave.package = noSandboxWrap pkgs.brave;
-
-    git = {
-      enable = true;
-      userName = "Cedric Lehr";
-      userEmail = "info@ceedri.ch";
-    };
   };
 
   rofi.enable = true;
@@ -64,6 +54,4 @@ in {
       suspendCommand = "${lockCommand} && /bin/systemctl suspend";
     })
   ];
-
-  home.stateVersion = "24.11";
 }
