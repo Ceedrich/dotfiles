@@ -52,18 +52,23 @@
     pkgs-unstable = makePkgs inputs.nixpkgs-unstable;
     pkgs = makePkgs nixpkgs;
 
+    hm-modules = [
+      ./nixpkgs-issue-55674.nix
+      ./homemanagerModules
+      inputs.catppuccin.homeModules.catppuccin
+      inputs.ceedrichVim.homeModules.${system}.default
+    ];
+
     generateHomemanagerConfigs = utils.generateConfigs (name:
       home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {inherit inputs pkgs-unstable nixgl;};
 
-        modules = [
-          inputs.catppuccin.homeModules.catppuccin
-          inputs.ceedrichVim.homeModules.${system}.default
-          ./nixpkgs-issue-55674.nix
-          ./users/${name}/dotfiles.nix
-          ./homemanagerModules
-        ];
+        modules =
+          [
+            ./users/${name}/dotfiles.nix
+          ]
+          ++ hm-modules;
       });
 
     generateNixosConfigs = utils.generateConfigs (hostname:
@@ -77,6 +82,23 @@
           ./hosts/_common
           ./hosts/${hostname}/configuration.nix
           ./users/ceedrich
+          home-manager.nixosModules.home-manager
+          (let
+            user = "ceedrich";
+          in {
+            home-manager.useGlobalPkgs = false;
+            home-manager.useUserPackages = true;
+            home-manager.users."${user}" = {
+              imports =
+                [
+                  {
+                    config.nixpkgs.config.allowUnfreePredicate = _: true;
+                  }
+                  ./users/${user}/dotfiles.nix
+                ]
+                ++ hm-modules;
+            };
+          })
         ];
       });
   in {
