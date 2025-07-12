@@ -1,14 +1,13 @@
-{ lib, config, ... }: {
-  options = {
-    git.enable = lib.mkEnableOption "enable git configuration";
-  };
-
-  config = lib.mkIf config.git.enable {
-    programs.git = {
-      enable = true;
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.programs.git;
+in {
+  config = lib.mkIf cfg.enable {
+    programs.git = lib.mkDefault {
       lfs.enable = true;
-      userName = "Cedric Lehr";
-      userEmail = "info@ceedri.ch";
       extraConfig = {
         core.editor = "nvim";
         init.defaultBranch = "main";

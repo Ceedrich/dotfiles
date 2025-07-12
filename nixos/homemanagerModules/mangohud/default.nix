@@ -1,12 +1,12 @@
-{ lib, config, ... }:
-
 {
-  options = {
-    mangohud.enable = lib.mkEnableOption "enable mangohud";
-  };
-  config = lib.mkIf config.mangohud.enable {
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.programs.mangohud;
+in {
+  config = lib.mkIf cfg.enable {
     programs.mangohud = {
-      enable = true;
       settings = {
         "fps_metric" = "avg,0.01";
         "font_scale" = 0.8;

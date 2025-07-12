@@ -1,31 +1,24 @@
-{ lib, config, ... }: {
-  options = {
-    ghostty.enable = lib.mkEnableOption "enable ghostty";
-  };
+{...}: {
+  # home.sessionVariables = {
+  #   TERMINAL = "ghostty";
+  # };
+  programs.ghostty = {
+    clearDefaultKeybinds = true;
+    settings = {
+      font-family = "JetBrainsMono Nerd Font";
+      font-size = 16;
+      theme = "catppuccin-mocha";
+      window-decoration = false;
+      confirm-close-surface = false;
+      title = "Ghostty";
 
-  config = lib.mkIf config.ghostty.enable {
-    home.sessionVariables = {
-      TERMINAL = "ghostty";
-    };
-    programs.ghostty = {
-      enable = true;
-      clearDefaultKeybinds = true;
-      settings = {
-        font-family = "JetBrainsMono Nerd Font";
-        font-size = 16;
-        theme = "catppuccin-mocha";
-        window-decoration = false;
-        confirm-close-surface = false;
-        title = "Ghostty";
-
-        keybind = [
-          "ctrl+shift+r=reload_config"
-          "ctrl+shift+v=paste_from_clipboard"
-          "ctrl+shift+c=copy_to_clipboard"
-          "page_up=scroll_page_up"
-          "page_down=scroll_page_down"
-        ];
-      };
+      keybind = [
+        "ctrl+shift+r=reload_config"
+        "ctrl+shift+v=paste_from_clipboard"
+        "ctrl+shift+c=copy_to_clipboard"
+        "page_up=scroll_page_up"
+        "page_down=scroll_page_down"
+      ];
     };
   };
 }

@@ -53,8 +53,9 @@
 
         modules = [
           inputs.catppuccin.homeModules.catppuccin
+          inputs.ceedrichVim.homeModules.${system}.default
           ./nixpkgs-issue-55674.nix
-          ./users/${name}.nix
+          ./users/${name}/dotfiles.nix
           ./homemanagerModules
         ];
       });

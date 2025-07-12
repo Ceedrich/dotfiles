@@ -1,11 +1,14 @@
-{ pkgs, lib, config, ... }: {
-  options = {
-    btop.enable = lib.mkEnableOption "enable btop";
-  };
-  config = lib.mkIf config.btop.enable {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.programs.btop;
+in {
+  config = lib.mkIf cfg.enable {
     programs.btop = {
-      package = (pkgs.btop.override { rocmSupport = true; });
-      enable = true;
+      package = pkgs.btop.override {rocmSupport = true;};
       settings.vim_keys = true;
     };
   };

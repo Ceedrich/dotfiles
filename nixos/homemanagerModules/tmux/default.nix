@@ -1,12 +1,13 @@
-{ pkgs, lib, config, ... }:
-
 {
-  options = {
-    tmux.enable = lib.mkEnableOption "enable tmux";
-  };
-  config = lib.mkIf config.tmux.enable {
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.programs.tmux;
+in {
+  config = lib.mkIf cfg.enable {
     programs.tmux = {
-      enable = true;
       clock24 = true;
       baseIndex = 1;
       prefix = "C-space";

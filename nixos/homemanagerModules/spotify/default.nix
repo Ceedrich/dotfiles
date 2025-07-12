@@ -1,16 +1,20 @@
-{ pkgs, lib, config, ... }: {
-  options = {
-    spotify-unfree.enable = lib.mkEnableOption "enable spotify";
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  cfg = config.programs.spotify;
+in {
+  options.programs.spotify = {
+    enable = lib.mkEnableOption "enable Spotify";
   };
-  config = lib.mkIf config.spotify-unfree.enable
-    /* lib.warn "Using unfree software spotify" */
-    {
-      allowedUnfree = [
-        "spotify"
-      ];
-      home.packages = with pkgs; [
-        spotify
-      ];
-
-    };
+  config = lib.mkIf cfg.enable {
+    allowedUnfree = [
+      "spotify"
+    ];
+    home.packages = with pkgs; [
+      spotify
+    ];
+  };
 }
