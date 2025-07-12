@@ -31,7 +31,7 @@
 
     zsh.enable = lib.mkDefault true;
 
-    hyprland.enable = extra (lib.mkDefault true);
+    hyprland.enable = extra (lib.mkDefault false);
 
     programs.home-manager.enable = lib.mkDefault true;
   };
