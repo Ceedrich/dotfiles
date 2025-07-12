@@ -3,13 +3,11 @@
   lib,
   config,
   ...
-}: {
-  options = {
-    rofi.enable = lib.mkEnableOption "enable rofi";
-  };
-  config = lib.mkIf config.rofi.enable {
-    programs.rofi = {
-      enable = true;
+}: let
+  cfg = config.programs.rofi;
+in {
+  config = {
+    programs.rofi = lib.mkIf cfg.enable {
       plugins = with pkgs; [rofi-emoji];
       terminal = "${pkgs.ghostty}/bin/ghostty";
       extraConfig = {

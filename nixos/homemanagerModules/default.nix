@@ -1,6 +1,6 @@
 {lib, ...}: {
   imports = [
-    ./hyprland # TODO
+    ./hyprland
     ./git
     ./neovim
     ./shell
@@ -18,8 +18,6 @@
   ];
 
   theming.enable = lib.mkDefault true;
-
-  hyprland.enable = lib.mkDefault false;
 
   programs.home-manager.enable = lib.mkDefault true;
 }

@@ -2,23 +2,30 @@
   lib,
   config,
   ...
-}: {
+}: let
+  cfg = config.settings.hyprland;
+  inherit (lib) mkEnableOption mkDefault mkIf;
+in {
+  options.settings.hyprland = {
+    enable = mkEnableOption "enable hyprland config";
+  };
   imports = [
     ./hyprland.nix
     ./hypridle
     ./hyprpaper
     ./hyprlock
-    ./wofi
     ./rofi
     ./waybar
   ];
-  config = lib.mkIf config.hyprland.enable {
-    waybar.enable = lib.mkDefault true;
-
-    hyprlock.enable = lib.mkDefault true;
-    hyprpaper.enable = lib.mkDefault true;
-    hypridle.enable = lib.mkDefault true;
-    wofi.enable = lib.mkDefault false;
-    rofi.enable = lib.mkDefault true;
+  config = {
+    programs = mkIf cfg.enable {
+      waybar.enable = mkDefault true;
+      hyprlock.enable = mkDefault true;
+      rofi.enable = mkDefault true;
+    };
+    services = {
+      hyprpaper.enable = mkDefault true;
+      hypridle.enable = mkDefault true;
+    };
   };
 }
