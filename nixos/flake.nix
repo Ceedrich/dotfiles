@@ -84,6 +84,7 @@
         };
         modules = [
           ./nixpkgs-issue-55674.nix
+          ./nixosModules
           ./hosts/_common
           ./hosts/${hostname}/configuration.nix
           ./users/ceedrich

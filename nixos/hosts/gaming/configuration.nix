@@ -1,10 +1,5 @@
 {pkgs, ...}: {
-  imports = [
-    ./hardware-configuration.nix
-    ../../modules/steam.nix
-    ../../modules/bluetooth.nix
-    ../../modules/hyprland.nix
-  ];
+  imports = [./hardware-configuration.nix];
 
   applications.steam.enable = true;
   applications.hyprland.enable = true;
