@@ -16,6 +16,7 @@
         historySubstringSearch.enable = true;
         dotDir = ".config/zsh";
         initExtra = /* sh */ ''
+          bindkey -v
           setopt correct
 
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' 
