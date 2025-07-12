@@ -1,11 +1,11 @@
 {lib, ...}: {
   imports = [
-    ./hyprland # TODO
+    ./hyprland
     ./git
     ./neovim
     ./shell
     ./ghostty
-    ./theming # TODO
+    ./theming
     ./spotify
     ./mangohud
     ./btop
@@ -16,10 +16,6 @@
     ./minesweeper # ERROR: Broken
     ./discord
   ];
-
-  theming.enable = lib.mkDefault true;
-
-  hyprland.enable = lib.mkDefault false;
 
   programs.home-manager.enable = lib.mkDefault true;
 }

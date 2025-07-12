@@ -4,33 +4,28 @@
   config,
   ...
 }: {
-  options = {
-    waybar.enable = lib.mkEnableOption "enable waybar";
-    waybar.modules = {
-      audio = lib.mkEnableOption "enable audio module";
-      clock = lib.mkEnableOption "enable clock module";
-      date = lib.mkEnableOption "enable date module";
-      tray = lib.mkEnableOption "enable tray module";
-      powermenu = lib.mkEnableOption "enable powermenu";
-    };
+  options.programs.waybar.modules = {
+    audio = lib.mkEnableOption "enable audio module";
+    clock = lib.mkEnableOption "enable clock module";
+    date = lib.mkEnableOption "enable date module";
+    tray = lib.mkEnableOption "enable tray module";
+    powermenu = lib.mkEnableOption "enable powermenu";
   };
   config = let
     inherit (lib) mkIf;
-    wb = config.waybar;
+    wb = config.programs.waybar;
     m = wb.modules;
 
     powermenu-name = "group/powermenu";
   in {
-    waybar.modules = {
-      audio = lib.mkDefault true;
-      clock = lib.mkDefault true;
-      date = lib.mkDefault true;
-      tray = lib.mkDefault true;
-      powermenu = lib.mkDefault true;
-    };
-
     programs.waybar = mkIf wb.enable {
-      enable = true;
+      modules = {
+        audio = lib.mkDefault true;
+        clock = lib.mkDefault true;
+        date = lib.mkDefault true;
+        tray = lib.mkDefault true;
+        powermenu = lib.mkDefault true;
+      };
       style = lib.readFile ./style.css;
       settings.mainBar =
         {

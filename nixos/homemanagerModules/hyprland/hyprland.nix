@@ -3,12 +3,16 @@
   lib,
   config,
   ...
-}: {
-  options = {
-    hyprland.enable = lib.mkEnableOption "enable hyprland";
-  };
-  config = lib.mkIf config.hyprland.enable {
-    home.packages = with pkgs; [networkmanagerapplet hyprshot swaynotificationcenter libnotify];
+}: let
+  cfg = config.settings.hyprland;
+in {
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      networkmanagerapplet
+      hyprshot
+      swaynotificationcenter
+      libnotify
+    ];
     wayland.windowManager.hyprland = {
       enable = true;
       settings = let

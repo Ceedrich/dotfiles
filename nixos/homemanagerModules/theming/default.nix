@@ -3,11 +3,13 @@
   lib,
   config,
   ...
-}: {
-  options = {
-    theming.enable = lib.mkEnableOption "enable theming";
+}: let
+  cfg = config.settings.theming;
+in {
+  options.settings.theming = {
+    enable = lib.mkEnableOption "enable theming";
   };
-  config = lib.mkIf config.theming.enable {
+  config = lib.mkIf cfg.enable {
     gtk = let
       key = "gtk-application-prefer-dark-theme";
     in {

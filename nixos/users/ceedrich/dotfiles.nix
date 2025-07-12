@@ -2,6 +2,9 @@
   imports = [
     ../minimal/dotfiles.nix
   ];
+  settings = {
+    hyprland.enable = true;
+  };
   home.packages = with pkgs; [
     signal-desktop
     vlc

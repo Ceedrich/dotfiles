@@ -19,7 +19,7 @@ in {
       syntaxHighlighting.enable = true;
       historySubstringSearch.enable = true;
       dotDir = ".config/zsh";
-      initExtra =
+      initContent =
         /*
         sh
         */
