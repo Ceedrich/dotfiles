@@ -5,7 +5,7 @@
     ./neovim
     ./shell
     ./ghostty
-    ./theming # TODO
+    ./theming
     ./spotify
     ./mangohud
     ./btop
@@ -16,8 +16,6 @@
     ./minesweeper # ERROR: Broken
     ./discord
   ];
-
-  theming.enable = lib.mkDefault true;
 
   programs.home-manager.enable = lib.mkDefault true;
 }

@@ -1,4 +1,5 @@
 {...}: {
+  settings.theming.enable = true;
   programs = {
     neovim.enable = true;
     btop.enable = true;
