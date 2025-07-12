@@ -2,6 +2,7 @@
   description = "nixos flake";
 
   inputs = {
+    ceedrichVim.url = "github:Ceedrich/neovim-config";
     # disko = {
     #   url = "github:nix-community/disko";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -39,6 +40,7 @@
             rust-with-analyzer = prev.rust-bin.stable.latest.default.override {
               extensions = [ "rust-src" "rust-analyzer" "clippy" ];
             };
+            ceedrichVim = inputs.ceedrichVim.packages.${system}.neovim;
           })
         ];
       };
