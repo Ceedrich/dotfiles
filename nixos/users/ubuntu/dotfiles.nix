@@ -37,7 +37,7 @@ in {
     brave.package = noSandboxWrap pkgs.brave;
   };
 
-  rofi.enable = true;
+  programs.rofi.enable = true;
 
   allowedUnfree = ["aseprite"];
 

@@ -59,7 +59,7 @@
       inputs.ceedrichVim.homeModules.${system}.default
     ];
 
-    mkHomeManager = user: dir:
+    mkHomeManager = dir: user:
       home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {inherit inputs pkgs-unstable nixgl;};
@@ -110,15 +110,15 @@
         ];
       };
   in {
-    nixosConfigurations = {
-      fun-machine = mkNixos "fun-machine" {"ceedrich" = "minimal";};
-      gaming = mkNixos "gaming" {"ceedrich" = "ceedrich";};
+    nixosConfigurations = utils.generateConfigs mkNixos {
+      fun-machine = {"ceedrich" = "minimal";};
+      gaming = {"ceedrich" = "ceedrich";};
     };
 
-    homeConfigurations = {
-      "ceedrich" = mkHomeManager "ceedrich" "ceedrich";
-      "ubuntu" = mkHomeManager "ceedrich" "ubuntu";
-      "minimal" = mkHomeManager "ceedrich" "minimal";
+    homeConfigurations = utils.generateConfigs mkHomeManager {
+      "ceedrich" = "ceedrich";
+      "ubuntu" = "ceedrich";
+      "minimal" = "ceedrich";
     };
   };
 }

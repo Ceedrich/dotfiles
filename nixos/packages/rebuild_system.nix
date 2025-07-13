@@ -6,7 +6,7 @@
     echo "Nixos Rebuilding..."
     sudo nixos-rebuild switch --flake . &>nixos-switch.log || (
       echo hello &&
-      cat nixos-switch.log | grep --color error && false
+      cat nixos-switch.log | grep --color -C 3 -E "error|warning" && false
     )
     gen=$(nixos-rebuild list-generations | grep current)
     git add .
