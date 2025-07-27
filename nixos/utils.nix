@@ -1,15 +1,5 @@
 {}: {
-  generateConfigs = func: names:
-    builtins.listToAttrs (
-      builtins.map
-      (
-        name: {
-          inherit name;
-          value = func name;
-        }
-      )
-      names
-    );
+  generateConfigs = mkConfig: set: builtins.mapAttrs (name: value: (mkConfig name value)) set;
   warnIfUnfree = pkg:
     if (pkg.meta.licence.free or true == false)
     then
