@@ -31,7 +31,7 @@ in {
     description = "External HD spin down daemon";
     wantedBy = ["multi-user.target"];
     serviceConfig = {
-      ExecStart = "${pkgs.hd-idle}/bin/hd-idle -i 0 -a /dev/disk/by-label/drive1 -i 300";
+      ExecStart = "${pkgs.hd-idle}/bin/hd-idle -i 0 -a /dev/disk/by-label/drive1 -i 900";
     };
   };
 
