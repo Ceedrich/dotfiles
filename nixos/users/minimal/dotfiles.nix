@@ -1,5 +1,9 @@
-{...}: {
+{pkgs, ...}: {
   settings.theming.enable = true;
+  home.packages = with pkgs; [
+    just
+  ];
+  home.shellAliases.dev = "nix develop --command zsh";
   programs = {
     neovim.enable = true;
     btop.enable = true;
