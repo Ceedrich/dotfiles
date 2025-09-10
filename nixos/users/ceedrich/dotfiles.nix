@@ -14,6 +14,7 @@
     handbrake
     ldtk
     aseprite
+    tiled
   ];
   # Custom HM modules
   # settings = {};
