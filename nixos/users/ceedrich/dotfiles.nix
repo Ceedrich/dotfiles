@@ -15,6 +15,7 @@
     ldtk
     aseprite
     tiled
+    audacity
   ];
   # Custom HM modules
   # settings = {};
