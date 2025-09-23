@@ -53,5 +53,6 @@ in {
       rebootCommand = "/bin/systemctl reboot";
       suspendCommand = "${lockCommand} && /bin/systemctl suspend";
     })
+    (pkgs.callPackage ../../packages/space.nix {})
   ];
 }
