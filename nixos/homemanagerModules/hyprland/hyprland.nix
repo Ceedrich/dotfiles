@@ -36,7 +36,7 @@ in {
         "$screenshot" = "${hyprshot} -o ~/Pictures/Screenshots";
 
         # Autostart
-        exec-once = "${waybar} & ${swaync} & ${nm-applet} --indicator &";
+        exec-once = "${waybar} & ${swaync} & ${nm-applet} --indicator & blueman-applet &";
 
         # Input
         input = {
