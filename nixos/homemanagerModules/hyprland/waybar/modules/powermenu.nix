@@ -15,6 +15,9 @@ in {
     drawer = {
       transition-duration = 500;
       children-class = "not-power";
+      # BUG: See https://github.com/Alexays/Waybar/issues/4382
+      on-scroll-up = "true";
+      on-scroll-down = "true";
     };
     modules = [poweroff logout lock reboot];
   };
