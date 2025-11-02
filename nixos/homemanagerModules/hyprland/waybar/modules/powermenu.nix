@@ -26,20 +26,32 @@ in {
     format = "󰐥";
     tooltip-format = "Logout";
     on-click = "${doConfirm} \"Logout\" \"hyprctl dispatch exit\"";
+    # BUG: See https://github.com/Alexays/Waybar/issues/4382
+    on-scroll-up = "true";
+    on-scroll-down = "true";
   };
   ${logout} = {
     format = "󰍃";
     tooltip-format = "Logout";
     on-click = "${doConfirm} \"Logout\" \"hyprctl dispatch exit\"";
+    # BUG: See https://github.com/Alexays/Waybar/issues/4382
+    on-scroll-up = "true";
+    on-scroll-down = "true";
   };
   ${lock} = {
     format = "󰌾";
     tooltip-format = "Lock";
     on-click = "hyprlock";
+    # BUG: See https://github.com/Alexays/Waybar/issues/4382
+    on-scroll-up = "true";
+    on-scroll-down = "true";
   };
   ${reboot} = {
     format = "󰜉";
     tooltip-format = "Reboot";
     on-click = "${doConfirm} \"Reboot\" \"reboot\"";
+    # BUG: See https://github.com/Alexays/Waybar/issues/4382
+    on-scroll-up = "true";
+    on-scroll-down = "true";
   };
 }
