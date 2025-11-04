@@ -5,8 +5,8 @@
 }: let
   cfg = config.programs.hyprlock;
 in {
+  catppuccin.hyprlock.useDefaultConfig = false;
   programs.hyprlock = lib.mkIf cfg.enable {
-    # extraConfig = lib.readFile ./hyprlock.conf;
     settings = {
       general = {
         disable_loading_bar = true;
