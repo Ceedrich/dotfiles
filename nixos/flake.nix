@@ -18,7 +18,9 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin = {url = "github:catppuccin/nix/release-25.05";
+    inputs.nixpkgs.follows = "nixpkgs";
+    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";

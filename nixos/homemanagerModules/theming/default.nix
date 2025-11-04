@@ -20,18 +20,13 @@ in {
       gtk4.extraConfig = {
         ${key} = 1;
       };
-      iconTheme = {
-        name = "Parirus-Dark";
-        package = pkgs.papirus-icon-theme;
-        # name = "Qogir";
-        # package = pkgs.qogir-icon-theme;
-      };
     };
 
     catppuccin.flavor = lib.mkDefault "mocha";
     catppuccin.enable = lib.mkDefault true;
     catppuccin.zsh-syntax-highlighting.enable = lib.mkDefault false;
-    catppuccin.gtk.enable = lib.mkDefault true;
+    # catppuccin.gtk.enable = lib.mkDefault true;
+    home.packages = [pkgs.catppuccin-gtk];
 
     catppuccin = {
       mako.enable = false;

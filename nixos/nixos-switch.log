@@ -1,17 +1,15 @@
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
 building the system configuration...
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
-evaluation warning: buildRustPackage: `useFetchCargoVendor` is non‐optional and enabled by default as of 25.05, remove it
-evaluation warning: buildRustPackage: `useFetchCargoVendor` is non‐optional and enabled by default as of 25.05, remove it
-evaluation warning: buildRustPackage: `useFetchCargoVendor` is non‐optional and enabled by default as of 25.05, remove it
-evaluation warning: buildRustPackage: `useFetchCargoVendor` is non‐optional and enabled by default as of 25.05, remove it
-evaluation warning: ceedrich profile: `gtk.catppuccin.enable` and `gtk.catppuccin.gnomeShellTheme` are deprecated and will be removed in a future release.
-
-                    The upstream port has been archived and support will no longer be provided.
-                    Please see https://github.com/catppuccin/gtk/issues/262
+stopping the following units: accounts-daemon.service, audit.service, coolercontrol-liqctld.service, coolercontrold.service, kmod-static-nodes.service, lactd.service, logrotate-checkconf.service, mount-pstore.service, network-setup.service, NetworkManager.service, nscd.service, resolvconf.service, rtkit-daemon.service, systemd-machined.service, systemd-modules-load.service, systemd-oomd.service, systemd-oomd.socket, systemd-sysctl.service, systemd-timesyncd.service, systemd-tmpfiles-resetup.service, systemd-vconsole-setup.service, wpa_supplicant.service
+NOT restarting the following changed units: bluetooth.service, display-manager.service, getty@tty1.service, systemd-fsck@dev-disk-by\x2duuid-77C8\x2d0648.service, systemd-journal-flush.service, systemd-logind.service, systemd-random-seed.service, systemd-remount-fs.service, systemd-update-utmp.service, systemd-user-sessions.service, user-runtime-dir@1000.service, user@1000.service
 activating the configuration...
 setting up /etc...
+restarting systemd...
 reloading user units for ceedrich...
 restarting sysinit-reactivation.target
-the following new units were started: NetworkManager-dispatcher.service
-Done. The new configuration is /nix/store/cq46ann3jxxsqi7ikcdk4sv2mq7ndfnf-nixos-system-gaming-25.05.20251026.78e34d1
+reloading the following units: dbus.service, firewall.service, reload-systemd-vconsole-setup.service
+restarting the following units: nix-daemon.service, polkit.service, sshd.service, systemd-journald.service, systemd-udevd.service, tailscaled.service
+starting the following units: accounts-daemon.service, audit.service, coolercontrol-liqctld.service, coolercontrold.service, kmod-static-nodes.service, lactd.service, logrotate-checkconf.service, mount-pstore.service, network-setup.service, NetworkManager.service, nscd.service, resolvconf.service, rtkit-daemon.service, systemd-machined.service, systemd-modules-load.service, systemd-oomd.socket, systemd-sysctl.service, systemd-timesyncd.service, systemd-tmpfiles-resetup.service, systemd-vconsole-setup.service, wpa_supplicant.service
+the following new units were started: NetworkManager-dispatcher.service, systemd-hostnamed.service
+Done. The new configuration is /nix/store/01p1flhzlpk6jbw095xx157v145jl1v9-nixos-system-gaming-25.05.20251101.3de8f8d
