@@ -25,7 +25,7 @@ in {
     };
     launcher = lib.mkOption {
       type = types.str;
-      default = "${pkgs.rofi-wayland}/bin/rofi -show drun -show-icons";
+      default = "rofi -show drun -show-icons";
     };
     screenshot = lib.mkOption {
       type = types.str;
@@ -49,7 +49,7 @@ in {
     };
     emoji-picker = lib.mkOption {
       type = types.str;
-      default = "${pkgs.rofi-wayland}/bin/rofi -modi emoji -show emoji";
+      default = "rofi/bin/rofi -modi emoji -show emoji";
     };
   };
 
