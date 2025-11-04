@@ -6,6 +6,7 @@
 }: let
   cfg = config.applications.steam;
 in {
+  # TODO: rename/use programs.steam
   options.applications.steam = {
     enable = lib.mkEnableOption "enable ";
   };

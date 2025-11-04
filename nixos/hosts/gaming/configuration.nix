@@ -2,7 +2,7 @@
   imports = [./hardware-configuration.nix];
 
   applications.steam.enable = true;
-  applications.hyprland.enable = true;
+  programs.hyprland.enable = true;
 
   settings.bluetooth.enable = true;
 

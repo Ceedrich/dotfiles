@@ -6,15 +6,14 @@
   inputs,
   ...
 }: let
-  cfg = config.applications.hyprland;
+  cfg = config.programs.hyprland;
   hyprpkgs = inputs.hyprland.packages.${meta.system};
 in {
   imports = [inputs.hyprland.nixosModules.default];
 
-  options.applications.hyprland = let
+  options.programs.hyprland = let
     types = lib.types;
   in {
-    enable = lib.mkEnableOption "enable hyprland";
     mainMod = lib.mkOption {
       type = types.str;
       default = "SUPER";
@@ -92,7 +91,6 @@ in {
       };
 
       programs.hyprland = {
-        enable = true;
         package = hyprpkgs.hyprland;
         portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
         xwayland.enable = true;
