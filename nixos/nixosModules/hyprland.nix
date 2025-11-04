@@ -54,140 +54,154 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    services.xserver.enable = true;
-    services.xserver.displayManager.gdm.enable = true;
+  config = let
+    variables = builtins.concatStringsSep " " [
+      "DISPLAY"
+      "HYPRLAND_INSTANCE_SIGNATURE"
+      "WAYLAND_DISPLAY"
+      "XDG_CURRENT_DESKTOP"
+    ];
+    extraCommands = builtins.concatStringsSep " " (map (f: "&& ${f}") [
+      "systemctl --user stop hyprland-session.target"
+      "systemctl --user start hyprland-session.target"
+    ]);
+    systemdActivation = "exec-once = ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd ${variables} ${extraCommands}";
+  in
+    lib.mkIf cfg.enable {
+      services.xserver.enable = true;
+      services.xserver.displayManager.gdm.enable = true;
 
-    environment.systemPackages = [pkgs.networkmanagerapplet];
+      environment.systemPackages = [pkgs.networkmanagerapplet];
 
-    programs.hyprland = {
-      enable = true;
-      package = hyprpkgs.hyprland;
-      portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
-      xwayland.enable = true;
+      # From https://github.com/nix-community/home-manager/blob/3b955f5f0a942f9f60cdc9cacb7844335d0f21c3/modules/services/window-managers/hyprland.nix#L330-L340
+      # and https://github.com/nix-community/home-manager/blob/3b955f5f0a942f9f60cdc9cacb7844335d0f21c3/modules/services/window-managers/hyprland.nix
+      # See also UWSM
+      systemd.user.targets.hyprland-session = {
+        enable = true;
+        description = "Hyprland compositor session";
+        documentation = ["man:systemd.special(7)"];
+        bindsTo = ["graphical-session.target"];
+        wants = ["graphical-session-pre.target"];
+        after = ["graphical-session-pre.target"];
+      };
 
-      settings = let
-        inherit
-          (cfg)
-          mainMod
-          terminal
-          launcher
-          autostart
-          screenshot
-          powermenu
-          emoji-picker
-          ;
-      in {
-        # Autostart
-        exec-once = "${lib.strings.concatStringsSep "&" autostart} &";
+      programs.hyprland = {
+        enable = true;
+        package = hyprpkgs.hyprland;
+        portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
+        xwayland.enable = true;
 
-        # Bindings
-        bind = [
-          "${mainMod}, return, exec, ${terminal}"
-          "${mainMod}, Q, killactive"
-          "${mainMod} SHIFT, Q, exec, ${powermenu}"
+        settings = let
+          inherit
+            (cfg)
+            mainMod
+            terminal
+            launcher
+            autostart
+            screenshot
+            powermenu
+            emoji-picker
+            ;
+        in {
+          # Autostart
+          exec-once = [systemdActivation] ++ autostart;
 
-          "${mainMod}, period, exec, ${emoji-picker}"
-          "${mainMod}, T, togglefloating"
-          "${mainMod}, F, fullscreen"
+          # Bindings
+          bind = [
+            "${mainMod}, return, exec, ${terminal}"
+            "${mainMod}, Q, killactive"
+            "${mainMod} SHIFT, Q, exec, ${powermenu}"
 
-          "${mainMod}, Space, exec, ${launcher}"
-          ", PRINT, exec, ${screenshot} -m region"
-          "SHIFT, PRINT, exec, ${screenshot} -m window"
+            "${mainMod}, period, exec, ${emoji-picker}"
+            "${mainMod}, T, togglefloating"
+            "${mainMod}, F, fullscreen"
 
-          "${mainMod}, h, movefocus, l"
-          "${mainMod}, l, movefocus, r"
-          "${mainMod}, k, movefocus, u"
-          "${mainMod}, j, movefocus, d"
+            "${mainMod}, Space, exec, ${launcher}"
+            ", PRINT, exec, ${screenshot} -m region"
+            "SHIFT, PRINT, exec, ${screenshot} -m window"
 
-          "${mainMod} SHIFT, h, movewindow, l"
-          "${mainMod} SHIFT, l, movewindow, r"
-          "${mainMod} SHIFT, k, movewindow, u"
-          "${mainMod} SHIFT, j, movewindow, d"
+            "${mainMod}, h, movefocus, l"
+            "${mainMod}, l, movefocus, r"
+            "${mainMod}, k, movefocus, u"
+            "${mainMod}, j, movefocus, d"
 
-          "${mainMod}, 1, workspace, 1"
-          "${mainMod}, 2, workspace, 2"
-          "${mainMod}, 3, workspace, 3"
-          "${mainMod}, 4, workspace, 4"
-          "${mainMod}, 5, workspace, 5"
-          "${mainMod}, 6, workspace, 6"
-          "${mainMod}, 7, workspace, 7"
-          "${mainMod}, 8, workspace, 8"
-          "${mainMod}, 9, workspace, 9"
-          "${mainMod}, 0, workspace, 10"
+            "${mainMod} SHIFT, h, movewindow, l"
+            "${mainMod} SHIFT, l, movewindow, r"
+            "${mainMod} SHIFT, k, movewindow, u"
+            "${mainMod} SHIFT, j, movewindow, d"
 
-          "${mainMod} SHIFT, 1, movetoworkspace, 1"
-          "${mainMod} SHIFT, 2, movetoworkspace, 2"
-          "${mainMod} SHIFT, 3, movetoworkspace, 3"
-          "${mainMod} SHIFT, 4, movetoworkspace, 4"
-          "${mainMod} SHIFT, 5, movetoworkspace, 5"
-          "${mainMod} SHIFT, 6, movetoworkspace, 6"
-          "${mainMod} SHIFT, 7, movetoworkspace, 7"
-          "${mainMod} SHIFT, 8, movetoworkspace, 8"
-          "${mainMod} SHIFT, 9, movetoworkspace, 9"
-          "${mainMod} SHIFT, 0, movetoworkspace, 10"
-        ];
+            "${mainMod}, 1, workspace, 1"
+            "${mainMod}, 2, workspace, 2"
+            "${mainMod}, 3, workspace, 3"
+            "${mainMod}, 4, workspace, 4"
+            "${mainMod}, 5, workspace, 5"
+            "${mainMod}, 6, workspace, 6"
+            "${mainMod}, 7, workspace, 7"
+            "${mainMod}, 8, workspace, 8"
+            "${mainMod}, 9, workspace, 9"
+            "${mainMod}, 0, workspace, 10"
 
-        bindm = [
-          "${mainMod}, mouse:272, movewindow"
-          "${mainMod}, mouse:273, resizewindow"
-        ];
-
-        # Input
-        input = {
-          kb_layout = "us";
-          kb_variant = "altgr-intl";
-          follow_mouse = 1;
-          touchpad.natural_scroll = false;
-        };
-
-        # Animation
-        animation = [
-          "workspaces, 1, 2, default"
-          "windows, 1, 0.5, default"
-          "fade, 1, 0.5, default"
-        ];
-
-        misc = {
-          force_default_wallpaper = false;
-          disable_hyprland_logo = true;
-        };
-
-        windowrulev2 = let
-          floating = [
-            "org.pulseaudio.pavucontrol"
-            ".blueman-manager-wrapped"
+            "${mainMod} SHIFT, 1, movetoworkspace, 1"
+            "${mainMod} SHIFT, 2, movetoworkspace, 2"
+            "${mainMod} SHIFT, 3, movetoworkspace, 3"
+            "${mainMod} SHIFT, 4, movetoworkspace, 4"
+            "${mainMod} SHIFT, 5, movetoworkspace, 5"
+            "${mainMod} SHIFT, 6, movetoworkspace, 6"
+            "${mainMod} SHIFT, 7, movetoworkspace, 7"
+            "${mainMod} SHIFT, 8, movetoworkspace, 8"
+            "${mainMod} SHIFT, 9, movetoworkspace, 9"
+            "${mainMod} SHIFT, 0, movetoworkspace, 10"
           ];
-        in [
-          "opacity 0.9 0.8, class:^com\\.mitchellh\\.ghostty"
-          "suppressevent maximize, class:.*"
-          "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-          "float, class:(${lib.strings.concatStringsSep "|" floating})"
-        ];
+
+          bindm = [
+            "${mainMod}, mouse:272, movewindow"
+            "${mainMod}, mouse:273, resizewindow"
+          ];
+
+          # Input
+          input = {
+            kb_layout = "us";
+            kb_variant = "altgr-intl";
+            follow_mouse = 1;
+            touchpad.natural_scroll = false;
+          };
+
+          # Animation
+          animation = [
+            "workspaces, 1, 2, default"
+            "windows, 1, 0.5, default"
+            "fade, 1, 0.5, default"
+          ];
+
+          misc = {
+            force_default_wallpaper = false;
+            disable_hyprland_logo = true;
+          };
+
+          windowrulev2 = let
+            floating = [
+              "org.pulseaudio.pavucontrol"
+              ".blueman-manager-wrapped"
+            ];
+          in [
+            "opacity 0.9 0.8, class:^com\\.mitchellh\\.ghostty"
+            "suppressevent maximize, class:.*"
+            "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+            "float, class:(${lib.strings.concatStringsSep "|" floating})"
+          ];
+        };
+      };
+
+      environment.sessionVariables = {
+        WLR_NO_HARDWARE_CURSORS = "1";
+        NIXOS_OZONE_WL = "1";
+      };
+
+      xdg.portal.enable = true;
+      xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+
+      hardware = {
+        graphics.enable = true;
       };
     };
-
-    environment.sessionVariables = {
-      WLR_NO_HARDWARE_CURSORS = "1";
-      NIXOS_OZONE_WL = "1";
-    };
-
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
-
-    hardware = {
-      graphics.enable = true;
-    };
-
-    # From https://github.com/nix-community/home-manager/blob/3b955f5f0a942f9f60cdc9cacb7844335d0f21c3/modules/services/window-managers/hyprland.nix#L330-L340
-    # See also UWSM
-    systemd.user.targets.hyprland-session = {
-      enable = true;
-      description = "Hyprland compositor session";
-      documentation = ["man:systemd.special(7)"];
-      bindsTo = ["graphical-session.target"];
-      wants = ["graphical-session-pre.target"];
-      after = ["graphical-session-pre.target"];
-    };
-  };
 }
