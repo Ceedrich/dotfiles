@@ -7,6 +7,7 @@
     #   url = "github:nix-community/disko";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    hyprland.url = "github:hyprwm/Hyprland";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixgl = {
@@ -80,7 +81,7 @@
       nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs pkgs-unstable;
-          meta = {inherit hostname;};
+          meta = {inherit hostname system;};
         };
         modules = [
           ./nixpkgs-issue-55674.nix
