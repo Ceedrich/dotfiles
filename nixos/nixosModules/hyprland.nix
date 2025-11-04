@@ -178,5 +178,16 @@ in {
     hardware = {
       graphics.enable = true;
     };
+
+    # From https://github.com/nix-community/home-manager/blob/3b955f5f0a942f9f60cdc9cacb7844335d0f21c3/modules/services/window-managers/hyprland.nix#L330-L340
+    # See also UWSM
+    systemd.user.targets.hyprland-session = {
+      enable = true;
+      description = "Hyprland compositor session";
+      documentation = ["man:systemd.special(7)"];
+      bindsTo = ["graphical-session.target"];
+      wants = ["graphical-session-pre.target"];
+      after = ["graphical-session-pre.target"];
+    };
   };
 }
