@@ -57,6 +57,8 @@ in {
     services.xserver.enable = true;
     services.xserver.displayManager.gdm.enable = true;
 
+    environment.systemPackages = [ pkgs.networkmanagerapplet ];
+
     programs.hyprland = {
       enable = true;
       package = hyprpkgs.hyprland;
