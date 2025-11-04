@@ -8,6 +8,7 @@
 }: let
   cfg = config.applications.hyprland;
   hyprpkgs = inputs.hyprland.packages.${meta.system};
+  hyprplugins = inputs.hyprland-plugins.packages.${meta.system};
 in {
   imports = [inputs.hyprland.nixosModules.default];
 
@@ -57,13 +58,17 @@ in {
     services.xserver.enable = true;
     services.xserver.displayManager.gdm.enable = true;
 
-    environment.systemPackages = [ pkgs.networkmanagerapplet ];
+    environment.systemPackages = [pkgs.networkmanagerapplet];
 
     programs.hyprland = {
       enable = true;
       package = hyprpkgs.hyprland;
       portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
+
+      plugins = [
+        hyprplugins.hyprbars
+      ];
 
       settings = let
         inherit
@@ -77,6 +82,15 @@ in {
           emoji-picker
           ;
       in {
+        plugin = {
+          hyprbars = {
+            hyprbars-button = [
+              "rgb(f38ba8), 10, 󰖭, hyprctl dispatch killactive"
+              "rgb(f9e2af), 10, , hyprctl dispatch fullscreen 1"
+            ];
+          };
+        };
+
         # Autostart
         exec-once = "${lib.strings.concatStringsSep "&" autostart} &";
 
