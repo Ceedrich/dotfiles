@@ -8,7 +8,6 @@
 }: let
   cfg = config.applications.hyprland;
   hyprpkgs = inputs.hyprland.packages.${meta.system};
-  hyprplugins = inputs.hyprland-plugins.packages.${meta.system};
 in {
   imports = [inputs.hyprland.nixosModules.default];
 
@@ -66,10 +65,6 @@ in {
       portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
 
-      plugins = [
-        hyprplugins.hyprbars
-      ];
-
       settings = let
         inherit
           (cfg)
@@ -82,15 +77,6 @@ in {
           emoji-picker
           ;
       in {
-        plugin = {
-          hyprbars = {
-            hyprbars-button = [
-              "rgb(f38ba8), 10, 󰖭, hyprctl dispatch killactive"
-              "rgb(f9e2af), 10, , hyprctl dispatch fullscreen 1"
-            ];
-          };
-        };
-
         # Autostart
         exec-once = "${lib.strings.concatStringsSep "&" autostart} &";
 

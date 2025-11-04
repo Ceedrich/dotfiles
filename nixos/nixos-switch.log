@@ -1,4 +1,10 @@
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
+warning: updating lock file '"/home/ceedrich/dotfiles/nixos/flake.lock"':
+• Removed input 'hyprland-plugins'
+• Removed input 'hyprland-plugins/hyprland'
+• Removed input 'hyprland-plugins/nixpkgs'
+• Removed input 'hyprland-plugins/systems'
+warning: Git tree '/home/ceedrich/dotfiles' is dirty
 building the system configuration...
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
 evaluation warning: buildRustPackage: `useFetchCargoVendor` is non‐optional and enabled by default as of 25.05, remove it
@@ -9,18 +15,9 @@ evaluation warning: ceedrich profile: `gtk.catppuccin.enable` and `gtk.catppucci
 
                     The upstream port has been archived and support will no longer be provided.
                     Please see https://github.com/catppuccin/gtk/issues/262
-these 4 derivations will be built:
-  /nix/store/0x3y4niisfyi4vapm5k0jq0lk230bxfd-hyprbars-0.1.drv
-  /nix/store/zs660si17cah4y49m0fw46rfa3p47avr-etc-xdg-hypr-hyprland.conf.drv
-  /nix/store/n2gvpd6rqswyf71y5bnh60h7sn983v3f-etc.drv
-  /nix/store/5zplpfw7vqxlqyj5xwgkpnf4j8ladbi6-nixos-system-gaming-25.05.20251026.78e34d1.drv
-building '/nix/store/0x3y4niisfyi4vapm5k0jq0lk230bxfd-hyprbars-0.1.drv'...
-building '/nix/store/zs660si17cah4y49m0fw46rfa3p47avr-etc-xdg-hypr-hyprland.conf.drv'...
-building '/nix/store/n2gvpd6rqswyf71y5bnh60h7sn983v3f-etc.drv'...
-building '/nix/store/5zplpfw7vqxlqyj5xwgkpnf4j8ladbi6-nixos-system-gaming-25.05.20251026.78e34d1.drv'...
 activating the configuration...
 setting up /etc...
 reloading user units for ceedrich...
 restarting sysinit-reactivation.target
-the following new units were started: NetworkManager-dispatcher.service
-Done. The new configuration is /nix/store/4sm49cs85gl7f4byqlnw6crr18md109r-nixos-system-gaming-25.05.20251026.78e34d1
+the following new units were started: NetworkManager-dispatcher.service, sysinit-reactivation.target, systemd-tmpfiles-resetup.service
+Done. The new configuration is /nix/store/d7cd035k4p2xda7b3krpli7zqjcrhlb8-nixos-system-gaming-25.05.20251026.78e34d1
