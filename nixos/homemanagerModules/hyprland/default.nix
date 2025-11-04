@@ -18,7 +18,7 @@ in {
     ./waybar
   ];
   config = {
-    wayland.windowManager.hyprland.enable = true;
+    wayland.windowManager.hyprland.systemd.enable = true;
 
     programs = mkIf cfg.enable {
       waybar.enable = mkDefault true;
