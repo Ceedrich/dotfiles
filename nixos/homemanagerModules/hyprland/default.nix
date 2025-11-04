@@ -10,7 +10,6 @@ in {
     enable = mkEnableOption "enable hyprland config";
   };
   imports = [
-    # ./hyprland.nix
     ./hypridle
     ./hyprpaper
     ./hyprlock

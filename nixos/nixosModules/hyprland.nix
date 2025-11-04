@@ -34,7 +34,6 @@ in {
     autostart = lib.mkOption {
       type = types.listOf types.str;
       default = [
-        "${pkgs.hyprpaper}/bin/hyprpaper"
         "${pkgs.waybar}/bin/waybar"
         "${pkgs.swaynotificationcenter}/bin/swaync"
         "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
@@ -51,6 +50,13 @@ in {
     emoji-picker = lib.mkOption {
       type = types.str;
       default = "rofi/bin/rofi -modi emoji -show emoji";
+    };
+    extra-packages = lib.mkOption {
+      type = types.listOf types.package;
+      default = with pkgs; [
+        networkmanagerapplet
+        libnotify
+      ];
     };
   };
 
@@ -71,7 +77,7 @@ in {
       services.xserver.enable = true;
       services.xserver.displayManager.gdm.enable = true;
 
-      environment.systemPackages = [pkgs.networkmanagerapplet];
+      environment.systemPackages = cfg.extra-packages;
 
       # From https://github.com/nix-community/home-manager/blob/3b955f5f0a942f9f60cdc9cacb7844335d0f21c3/modules/services/window-managers/hyprland.nix#L330-L340
       # and https://github.com/nix-community/home-manager/blob/3b955f5f0a942f9f60cdc9cacb7844335d0f21c3/modules/services/window-managers/hyprland.nix
