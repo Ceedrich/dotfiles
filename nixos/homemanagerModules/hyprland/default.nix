@@ -18,6 +18,8 @@ in {
     ./waybar
   ];
   config = {
+    wayland.windowManager.hyprland.enable = true;
+
     programs = mkIf cfg.enable {
       waybar.enable = mkDefault true;
       hyprlock.enable = mkDefault true;
