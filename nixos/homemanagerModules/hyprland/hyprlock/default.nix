@@ -9,9 +9,11 @@ in {
   programs.hyprlock = lib.mkIf cfg.enable {
     settings = {
       general = {
-        disable_loading_bar = true;
+        ignore_empty_input = true;
         hide_cursor = true;
+        fail_timeout = 800;
       };
+      # TODO: look into authenticaton methods
       background = [
         {
           monitor = "";
