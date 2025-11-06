@@ -4,12 +4,8 @@
   pkgs,
   ...
 }: let
-  cfg = config.applications.steam;
+  cfg = config.programs.steam;
 in {
-  # TODO: rename/use programs.steam
-  options.programs.steam = {
-    enable = lib.mkEnableOption "enable ";
-  };
   config = lib.mkIf cfg.enable {
     allowedUnfree = [
       "steam"
@@ -18,7 +14,6 @@ in {
       "steam-run"
     ];
     programs.steam = {
-      enable = true;
       gamescopeSession.enable = true;
     };
     programs.gamemode.enable = true;

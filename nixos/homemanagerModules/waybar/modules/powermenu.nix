@@ -7,7 +7,7 @@
   lock = "custom/lock";
   reboot = "custom/reboot";
 
-  confirm-dialogue = callPackage ../../rofi/confirm-dialogue.nix {};
+  confirm-dialogue = callPackage ../../hyprland/rofi/confirm-dialogue.nix {};
   doConfirm = lib.getExe confirm-dialogue;
 in rec {
   name = "group/powermenu";
@@ -52,9 +52,6 @@ in rec {
       format = "󰜉";
       tooltip-format = "Reboot";
       on-click = "${doConfirm} \"Reboot\" \"reboot\"";
-      # BUG: See https://github.com/Alexays/Waybar/issues/4382
-      on-scroll-up = "true";
-      on-scroll-down = "true";
     };
   };
   style =

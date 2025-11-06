@@ -14,7 +14,6 @@ in {
     ./hyprpaper
     ./hyprlock
     ./rofi
-    ./waybar
   ];
 
   config = {

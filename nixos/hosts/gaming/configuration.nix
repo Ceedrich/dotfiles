@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [./hardware-configuration.nix];
 
-  applications.steam.enable = true;
+  programs.steam.enable = true;
   programs.hyprland.enable = true;
 
   settings.bluetooth.enable = true;
