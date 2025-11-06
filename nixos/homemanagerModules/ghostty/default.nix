@@ -1,8 +1,11 @@
-{...}: {
-  # home.sessionVariables = {
-  #   TERMINAL = "ghostty";
-  # };
-  programs.ghostty = {
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.programs.ghostty;
+in {
+  config.programs.ghostty = lib.mkIf cfg.enable {
     clearDefaultKeybinds = true;
     settings = {
       font-family = "JetBrainsMono Nerd Font";

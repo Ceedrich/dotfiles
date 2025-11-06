@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+ospkgs, ...}: {
   imports = [
     ../minimal/dotfiles.nix
   ];

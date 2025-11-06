@@ -28,10 +28,6 @@ in {
     # catppuccin.gtk.enable = lib.mkDefault true;
     home.packages = [pkgs.catppuccin-gtk];
 
-    catppuccin = {
-      mako.enable = false;
-    };
-
     qt = {
       enable = true;
       style.name = "kvantum";

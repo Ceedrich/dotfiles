@@ -7,7 +7,7 @@
   cfg = config.applications.steam;
 in {
   # TODO: rename/use programs.steam
-  options.applications.steam = {
+  options.programs.steam = {
     enable = lib.mkEnableOption "enable ";
   };
   config = lib.mkIf cfg.enable {
