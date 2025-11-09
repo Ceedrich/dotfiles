@@ -1,29 +1,38 @@
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
 building the system configuration...
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
-error:
-       … while calling the 'head' builtin
-         at /nix/store/2mi16w3dcvymsa4lqgygfhcqrjid4ml9-source/lib/attrsets.nix:1571:13:
-         1570|           if length values == 1 || pred here (elemAt values 1) (head values) then
-         1571|             head values
-             |             ^
-         1572|           else
-
-       … while evaluating the attribute 'value'
-         at /nix/store/2mi16w3dcvymsa4lqgygfhcqrjid4ml9-source/lib/modules.nix:1083:7:
-         1082|     // {
-         1083|       value = addErrorContext "while evaluating the option `${showOption loc}':" value;
-             |       ^
-         1084|       inherit (res.defsFinal') highestPrio;
-
-       … while evaluating the option `system.build.toplevel':
-
-       … while evaluating definitions from `/nix/store/2mi16w3dcvymsa4lqgygfhcqrjid4ml9-source/nixos/modules/system/activation/top-level.nix':
-
-       … while evaluating the option `assertions':
-
-       … while evaluating definitions from `/nix/store/a4la088hi5id7sw77gy9zdvwn83dgczz-source/nixos/common.nix':
-
-       (stack trace truncated; use '--show-trace' to show the full, detailed trace)
-
-       error: path '/nix/store/8yl371phggsv3hvg064rbzd9jwimyrw3-source/nixos/homemanagerModules/vpn' does not exist
+these 12 derivations will be built:
+  /nix/store/lc7z3hwkjwzvkssai7lazmia0sm4q3m2-system-path.drv
+  /nix/store/gbxr5l0asnr84spn1jv51bhmqhnha604-X-Restart-Triggers-polkit.drv
+  /nix/store/qq3bxr215fg86l8z86sm43mmvazgskbr-unit-polkit.service.drv
+  /nix/store/gcgzp58sm997b5f33nkkcd8q53ma1fpk-dbus-1.drv
+  /nix/store/pshph9c5cp530i8hi9whd83h8clch9vi-X-Restart-Triggers-dbus.drv
+  /nix/store/w0ykkbrccj7zzs9pbzgn5ir331pkixg4-unit-dbus.service.drv
+  /nix/store/yvd19y6z3kc4c8h0m3wcz13kdrga8lyg-unit-accounts-daemon.service.drv
+  /nix/store/38c5s7mjbdx1qxlvhbbyyfcvgd6145h9-system-units.drv
+  /nix/store/9hk0pcyfql3x67aa8z05iyr8kb2wy9i0-unit-dbus.service.drv
+  /nix/store/9g083a6kf2p9i4wsi4fkiqhrc4ps0fzk-user-units.drv
+  /nix/store/w14n7j68p51wv6861i7kxi1kx7drbj0n-etc.drv
+  /nix/store/3zhhb193wrl4v5apbgsw4ka0qlq92j99-nixos-system-gaming-25.05.20251101.3de8f8d.drv
+building '/nix/store/lc7z3hwkjwzvkssai7lazmia0sm4q3m2-system-path.drv'...
+building '/nix/store/gbxr5l0asnr84spn1jv51bhmqhnha604-X-Restart-Triggers-polkit.drv'...
+building '/nix/store/gcgzp58sm997b5f33nkkcd8q53ma1fpk-dbus-1.drv'...
+building '/nix/store/yvd19y6z3kc4c8h0m3wcz13kdrga8lyg-unit-accounts-daemon.service.drv'...
+building '/nix/store/pshph9c5cp530i8hi9whd83h8clch9vi-X-Restart-Triggers-dbus.drv'...
+building '/nix/store/qq3bxr215fg86l8z86sm43mmvazgskbr-unit-polkit.service.drv'...
+building '/nix/store/9hk0pcyfql3x67aa8z05iyr8kb2wy9i0-unit-dbus.service.drv'...
+building '/nix/store/w0ykkbrccj7zzs9pbzgn5ir331pkixg4-unit-dbus.service.drv'...
+building '/nix/store/9g083a6kf2p9i4wsi4fkiqhrc4ps0fzk-user-units.drv'...
+building '/nix/store/38c5s7mjbdx1qxlvhbbyyfcvgd6145h9-system-units.drv'...
+building '/nix/store/w14n7j68p51wv6861i7kxi1kx7drbj0n-etc.drv'...
+building '/nix/store/3zhhb193wrl4v5apbgsw4ka0qlq92j99-nixos-system-gaming-25.05.20251101.3de8f8d.drv'...
+stopping the following units: accounts-daemon.service
+activating the configuration...
+setting up /etc...
+reloading user units for ceedrich...
+restarting sysinit-reactivation.target
+reloading the following units: dbus.service
+restarting the following units: polkit.service
+starting the following units: accounts-daemon.service
+the following new units were started: NetworkManager-dispatcher.service
+Done. The new configuration is /nix/store/wjzxsaw9ry28877ml31i5p33h15ykyx6-nixos-system-gaming-25.05.20251101.3de8f8d
