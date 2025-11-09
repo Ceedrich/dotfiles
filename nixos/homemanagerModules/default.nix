@@ -15,6 +15,7 @@
     ./shortcuts
     ./minesweeper # ERROR: Broken
     ./discord
+    ./vpn
   ];
 
   programs.home-manager.enable = lib.mkDefault true;
