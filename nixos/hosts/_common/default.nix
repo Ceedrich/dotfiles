@@ -14,6 +14,7 @@
     gnutar
     pdfgrep
     gnugrep
+    gnupg
     jq
     (pass.withExtensions (ext: with ext; [pass-otp pass-update pass-audit]))
     (callPackage ../../packages/rebuild_system.nix {})
