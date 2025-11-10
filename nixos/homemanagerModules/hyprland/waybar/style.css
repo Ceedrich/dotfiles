@@ -56,6 +56,9 @@ button:hover {
 label.module {
   padding: 0 4px;
   margin: 2px 4px;
+}
+
+.modules-right label.module {
   background-color: lime;
 }
 
