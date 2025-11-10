@@ -48,6 +48,7 @@
             (mkIf m.powermenu powermenu-name)
             (mkIf m.tray "tray")
             (mkIf m.clock "clock")
+            "idle_inhibitor"
           ];
 
           pulseaudio = mkIf m.audio {
