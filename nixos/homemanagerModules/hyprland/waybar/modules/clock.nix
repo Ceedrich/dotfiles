@@ -16,11 +16,6 @@
         today = ''<span color="#cba6f7"><b>{}</b></span>'';
       };
     };
-    actions = {
-      on-click = "shift_reset";
-      on-scroll-up = "shift_up";
-      on-scroll-down = "shift_down";
-    };
   };
   style =
     #css
