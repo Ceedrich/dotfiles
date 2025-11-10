@@ -76,9 +76,8 @@
             interval = 10; # WARN: remove
             format = "{capacity}% {icon}";
             format-icons = {
-              discharging = ["󰁺" "󰁼" "󰁾" "󰂀" "󰂂" "󰁹"];
-              charging = [""];
-              default = ["󰂂"];
+              charging = ["󰢜" "󰂇" "󰢝" "󰢞" "󰂅"];
+              default = ["󰁺" "󰁼" "󰁾" "󰂀" "󰂂" "󰁹"];
             };
             states = {
               thirty = 30;
