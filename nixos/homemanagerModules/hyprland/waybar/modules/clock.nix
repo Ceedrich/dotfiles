@@ -13,7 +13,7 @@
         weeks = "{}";
         weekdays = "<b>{}</b>";
         days = "<b>{}</b>";
-        today = ''<span bgcolor="#eba0ac"><b><u>{}</u></b></span>'';
+        today = ''<span color="#cba6f7"><b><u>{}</u></b></span>'';
       };
     };
     actions = {
