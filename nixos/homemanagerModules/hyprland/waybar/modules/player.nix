@@ -36,7 +36,8 @@ in rec {
       format = "{icon}";
       format-icons = "󰒭";
       interval = 5;
-      tooltip = false;
+      tooltip = true;
+      tooltip-format = "Next";
       escape = true;
       max-length = 50;
       on-click = "${playerctl}/bin/playerctl next";
