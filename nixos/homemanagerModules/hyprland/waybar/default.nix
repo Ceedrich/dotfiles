@@ -18,7 +18,7 @@
     wb = config.programs.waybar;
     m = wb.modules;
 
-    music = pkgs.callPackage ./modules/music.nix {};
+    player = pkgs.callPackage ./modules/music.nix {};
 
     powermenu-name = "group/powermenu";
   in {
@@ -32,7 +32,7 @@
         battery = lib.mkDefault true;
         player = lib.mkDefault true;
       };
-      style = (lib.readFile ./style.css) + music.style;
+      style = (lib.readFile ./style.css) + player.style;
       settings.mainBar =
         {
           position = "top";
@@ -41,8 +41,7 @@
             "hyprland/window"
           ];
           modules-center = [
-            # (mkIf m.player player)
-            (mkIf m.player music.name)
+            (mkIf m.player player.name)
           ];
           modules-right = [
             "hyprland/workspaces"
@@ -79,7 +78,6 @@
           };
 
           battery = mkIf m.battery {
-            interval = 10; # WARN: remove
             format = "{capacity}% {icon}";
             format-icons = {
               charging = ["󰢜" "󰂇" "󰢝" "󰢞" "󰂅"];
@@ -97,7 +95,7 @@
           inherit pkgs;
           name = powermenu-name;
         })
-        // music.settings;
+        // player.settings;
     };
   };
 }
