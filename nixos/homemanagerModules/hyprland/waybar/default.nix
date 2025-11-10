@@ -19,6 +19,7 @@
     m = wb.modules;
 
     powermenu-name = "group/powermenu";
+    player = "group/player";
   in {
     programs.waybar = mkIf wb.enable {
       modules = {
@@ -39,8 +40,7 @@
             "hyprland/window"
           ];
           modules-center = [
-            # (mkIf m.player "custom/player")
-            "group/blub"
+            (mkIf m.player player)
           ];
           modules-right = [
             "hyprland/workspaces"
@@ -90,14 +90,6 @@
             tooltip = true;
             tooltip-format = "{timeTo}";
           };
-
-          "group/blub" = {
-            orientation = "orthogonal";
-            modules = ["cpu" "memory"];
-            drawer = {
-              transition-duration= 500;
-            };
-          };
         }
         // (import ./modules/powermenu.nix {
           inherit pkgs;
@@ -105,7 +97,7 @@
         })
         // (import ./modules/player.nix) {
           inherit pkgs;
-          name = "custom/player";
+          name = player;
         };
     };
   };
