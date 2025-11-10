@@ -2,8 +2,7 @@
   pkgs ? import <nixpkgs>,
   lib ? pkgs.lib,
   name ? "custom/player",
-}: let
-in {
+}: {
   ${name} = {
     orientation = "inherit";
     format = "  {}";

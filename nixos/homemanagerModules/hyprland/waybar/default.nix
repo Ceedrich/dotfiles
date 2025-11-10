@@ -39,7 +39,6 @@
             "hyprland/window"
           ];
           modules-center = [
-            (mkIf m.clock "clock")
             (mkIf m.player "custom/player")
           ];
           modules-right = [
@@ -48,6 +47,7 @@
             (mkIf m.battery "battery")
             (mkIf m.powermenu powermenu-name)
             (mkIf m.tray "tray")
+            (mkIf m.clock "clock")
           ];
 
           pulseaudio = mkIf m.audio {
