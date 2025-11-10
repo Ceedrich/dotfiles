@@ -22,8 +22,15 @@
     player = pkgs.callPackage ./modules/player.nix {};
     battery = pkgs.callPackage ./modules/battery.nix {};
     powermenu = pkgs.callPackage ./modules/powermenu.nix {};
-  in {
-    programs.waybar = mkIf wb.enable {
+
+    modules = [clock player battery powermenu];
+
+    moduleConfig = {
+      style = (lib.readFile ./style.css) + (lib.strings.concatStrings (builtins.map (m: m.style) modules));
+      settings = lib.attrsets.mergeAttrsList (builtins.map (m: m.settings) modules);
+    };
+
+    wb-config = {
       modules = {
         audio = lib.mkDefault true;
         clock = lib.mkDefault true;
@@ -33,54 +40,46 @@
         battery = lib.mkDefault true;
         player = lib.mkDefault true;
       };
-      style =
-        (lib.readFile ./style.css)
-        + player.style
-        + battery.style
-        + powermenu.style
-        + clock.style;
-      settings.mainBar =
-        {
-          position = "top";
-          modules-left = [
-            (mkIf m.date "clock#date")
-            "hyprland/window"
-          ];
-          modules-center = [
-            (mkIf m.player player.name)
-          ];
-          modules-right = [
-            "hyprland/workspaces"
-            (mkIf m.audio "pulseaudio")
-            (mkIf m.battery battery.name)
-            (mkIf m.clock clock.name)
-            (mkIf m.powermenu powermenu.name)
-            (mkIf m.tray "tray")
-          ];
+      settings.mainBar = {
+        position = "top";
+        modules-left = [
+          (mkIf m.date "clock#date")
+          "hyprland/window"
+        ];
+        modules-center = [
+          (mkIf m.player player.name)
+        ];
+        modules-right = [
+          "hyprland/workspaces"
+          (mkIf m.audio "pulseaudio")
+          (mkIf m.battery battery.name)
+          (mkIf m.clock clock.name)
+          (mkIf m.powermenu powermenu.name)
+          (mkIf m.tray "tray")
+        ];
 
-          pulseaudio = mkIf m.audio {
-            format = "{volume}% {icon}";
-            format-bluetooth = "{volume}% {icon}";
-            format-muted = "{volume}% 󰝟";
-            format-icons.default = ["󰖀" "󰕾"];
-            scroll-step = 3;
-            on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
-            on-click-right = lib.getExe (pkgs.pavucontrol);
-          };
-          "clock#date" = mkIf m.date {
-            format = "{:%d.%m.}";
-            tooltip = false;
-          };
+        pulseaudio = mkIf m.audio {
+          format = "{volume}% {icon}";
+          format-bluetooth = "{volume}% {icon}";
+          format-muted = "{volume}% 󰝟";
+          format-icons.default = ["󰖀" "󰕾"];
+          scroll-step = 3;
+          on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
+          on-click-right = lib.getExe (pkgs.pavucontrol);
+        };
+        "clock#date" = mkIf m.date {
+          format = "{:%d.%m.}";
+          tooltip = false;
+        };
 
-          tray = mkIf m.tray {
-            icon-size = 21;
-            spacing = 10;
-          };
-        }
-        // clock.settings
-        // powermenu.settings
-        // player.settings
-        // battery.settings;
+        tray = mkIf m.tray {
+          icon-size = 21;
+          spacing = 10;
+        };
+      };
     };
+  in {
+    programs.waybar =
+      mkIf wb.enable (moduleConfig // wb-config);
   };
 }
