@@ -26,8 +26,8 @@ in rec {
 
     ${poweroff} = {
       format = "󰐥";
-      tooltip-format = "Logout";
-      on-click = "${doConfirm} \"Logout\" \"hyprctl dispatch exit\"";
+      tooltip-format = "Poweroff";
+      on-click = "${doConfirm} \"Shutdown\" \"systemctl poweroff\"";
       # BUG: See https://github.com/Alexays/Waybar/issues/4382
       on-scroll-up = "true";
       on-scroll-down = "true";
