@@ -1,13 +1,14 @@
 {
-  pkgs ? import <nixpkgs> {},
-  lib ? pkgs.lib,
-  dmenuCommand ? "${pkgs.rofi-wayland}/bin/rofi -dmenu -i -l 5 -p \"Power Menu\"",
+  dmenuCommand ? "${lib.getExe rofi-wayland} -dmenu -i -l 5 -p \"Power Menu\"",
   lockCommand ? "loginctl lock-session self",
   logoutCommand ? "loginctl kill-session self",
   shutdownCommand ? "systemctl poweroff",
   rebootCommand ? "systemctl reboot",
   suspendCommand ? "systemctl suspend",
-  ...
+  lib,
+  callPackage,
+  writeShellApplication,
+  rofi-wayland,
 }: let
   join = lib.strings.concatStringsSep;
 
@@ -40,7 +41,7 @@
       cmd,
       confirm,
     }: let
-      doConfirm = lib.getExe (import ./confirm-dialogue.nix {inherit pkgs;});
+      doConfirm = lib.getExe (callPackage ./confirm-dialogue.nix {});
       command =
         if confirm
         then "${doConfirm} \"${name}\" \"${cmd}\""
@@ -51,7 +52,7 @@
     '')
     options);
 in
-  pkgs.writeShellApplication {
+  writeShellApplication {
     name = "power-menu";
     text = ''
       chosen=$(echo -e "${optionList}" | ${dmenuCommand})

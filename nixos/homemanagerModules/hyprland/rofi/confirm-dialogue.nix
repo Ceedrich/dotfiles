@@ -1,8 +1,11 @@
-{pkgs ? import <nixpkgs>}: let
+{
+  rofi-wayland,
+  writeShellApplication,
+}: let
   name = "confirm-dialogue";
-  dmenuCommand = "${pkgs.rofi-wayland}/bin/rofi -dmenu -i -l 2 -p";
+  dmenuCommand = "${rofi-wayland}/bin/rofi -dmenu -i -l 2 -p";
 in
-  pkgs.writeShellApplication {
+  writeShellApplication {
     inherit name;
     text = ''
       if [ $# -ne 2 ]; then

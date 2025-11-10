@@ -20,8 +20,7 @@
 
     player = pkgs.callPackage ./modules/music.nix {};
     battery = pkgs.callPackage ./modules/battery.nix {};
-
-    powermenu-name = "group/powermenu";
+    powermenu = pkgs.callPackage ./modules/powermenu.nix {};
   in {
     programs.waybar = mkIf wb.enable {
       modules = {
@@ -33,7 +32,7 @@
         battery = lib.mkDefault true;
         player = lib.mkDefault true;
       };
-      style = (lib.readFile ./style.css) + player.style;
+      style = (lib.readFile ./style.css) + player.style + battery.style + powermenu.style;
       settings.mainBar =
         {
           position = "top";
@@ -48,7 +47,7 @@
             "hyprland/workspaces"
             (mkIf m.audio "pulseaudio")
             (mkIf m.battery battery.name)
-            (mkIf m.powermenu powermenu-name)
+            (mkIf m.powermenu powermenu.name)
             (mkIf m.tray "tray")
             (mkIf m.clock "clock")
           ];
@@ -78,10 +77,7 @@
             spacing = 10;
           };
         }
-        // (import ./modules/powermenu.nix {
-          inherit pkgs;
-          name = powermenu-name;
-        })
+        // powermenu.settings
         // player.settings
         // battery.settings;
     };

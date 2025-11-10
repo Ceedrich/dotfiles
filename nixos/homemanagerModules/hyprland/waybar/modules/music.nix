@@ -1,7 +1,4 @@
-{
-  playerctl,
-  lib,
-}: let
+{playerctl}: let
   prev = "custom/music-player-prev";
   main = "custom/music-player-main";
   next = "custom/music-player-next";

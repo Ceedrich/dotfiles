@@ -41,10 +41,11 @@ in {
     };
     powermenu = lib.mkOption {
       type = types.str;
-      default = "${lib.getExe (import ../homemanagerModules/hyprland/rofi/power-menu.nix {
-        inherit pkgs lib;
-        logoutCommand = "hyprctl dispatch exit";
-      })}";
+      default = let
+        power-menu = pkgs.callPackage ../homemanagerModules/hyprland/rofi/power-menu.nix {
+          logoutCommand = "hyprctl dispatch exit";
+        };
+      in "${lib.getExe power-menu}";
     };
     emoji-picker = lib.mkOption {
       type = types.str;
