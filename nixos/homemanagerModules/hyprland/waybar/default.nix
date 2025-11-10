@@ -75,7 +75,10 @@
           battery = mkIf m.battery {
             interval = 10; # WARN: remove
             format = "{capacity}% {icon}";
-            format-icons = ["󰁺" "󰁼" "󰁾" "󰂀" "󰂂"];
+            format-icons = {
+              discharging = ["󰁺" "󰁼" "󰁾" "󰂀" "󰂂"];
+              default = ["󰂂"];
+            };
             states = {
               warning = 30;
               critical = 15;
