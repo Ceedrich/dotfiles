@@ -1,5 +1,5 @@
 {}: rec {
-  name = {};
+  name = "clock";
   settings.${name} = {
     format = "{=%H=%M}  ";
     tooltip-format = "{=%A; %B %d; %Y (%R)}<br><tt><small>{calendar}</small></tt>";

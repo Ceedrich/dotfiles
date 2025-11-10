@@ -18,6 +18,7 @@
     wb = config.programs.waybar;
     m = wb.modules;
 
+    clock = pkgs.callPackage ./modules/clock.nix {};
     player = pkgs.callPackage ./modules/player.nix {};
     battery = pkgs.callPackage ./modules/battery.nix {};
     powermenu = pkgs.callPackage ./modules/powermenu.nix {};
@@ -49,7 +50,7 @@
             (mkIf m.battery battery.name)
             (mkIf m.powermenu powermenu.name)
             (mkIf m.tray "tray")
-            (mkIf m.clock "clock")
+            (mkIf m.clock clock.name)
           ];
 
           pulseaudio = mkIf m.audio {
@@ -61,12 +62,6 @@
             on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
             on-click-right = lib.getExe (pkgs.pavucontrol);
           };
-          clock = mkIf m.clock {
-            tooltip = false;
-            format = "{:%H:%M}";
-            format-alt = "{:%a %d.%m.%Y %H:%M:%S}";
-            interval = 1;
-          };
           "clock#date" = mkIf m.date {
             format = "{:%d.%m.}";
             tooltip = false;
@@ -77,6 +72,7 @@
             spacing = 10;
           };
         }
+        // clock.settings
         // powermenu.settings
         // player.settings
         // battery.settings;
