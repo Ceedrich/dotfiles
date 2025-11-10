@@ -54,15 +54,8 @@ button:hover {
 }
 
 label.module {
-  padding: 0 8px;
-}
-box.module {
-  margin-top: 2px;
-  margin-bottom: 2px;
-  margin-left: 4px;
-  margin-right: 4px;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding: 0 4px;
+  margin: 2px 4px;
 }
 
 #clock {
