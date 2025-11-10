@@ -21,7 +21,6 @@
     music = pkgs.callPackage ./modules/music.nix {};
 
     powermenu-name = "group/powermenu";
-    player = "group/player";
   in {
     programs.waybar = mkIf wb.enable {
       modules = {
@@ -98,10 +97,6 @@
           inherit pkgs;
           name = powermenu-name;
         })
-        // (import ./modules/player.nix) {
-          inherit pkgs;
-          name = player;
-        }
         // music.settings;
     };
   };
