@@ -58,11 +58,11 @@ label.module {
   margin: 2px 4px;
 }
 
-.modules-right label.module {
+.modules-right label.module:nth-child(even) {
   background-color: lime;
 }
 
-.modules-right label.module:nth-child(2n) {
+.modules-right label.module:nth-child(odd) {
   background-color: red;
 }
 
