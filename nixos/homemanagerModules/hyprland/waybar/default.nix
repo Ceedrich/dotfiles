@@ -71,6 +71,11 @@
             icon-size = 21;
             spacing = 10;
           };
+
+          battery = mkIf m.battery {
+            format = "{capacity}% {icon}";
+            format-icons = ["󰁺" "󰁼" "󰁾" "󰂀" "󰂂"];
+          };
         }
         // (import ./modules/powermenu.nix {
           inherit pkgs;
