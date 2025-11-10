@@ -10,7 +10,7 @@
     #css
     ''
       #tray {
-          padding: 8px;
+          padding: 0px 8px;
       }
     '';
 }
