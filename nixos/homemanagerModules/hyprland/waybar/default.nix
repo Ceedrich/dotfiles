@@ -75,6 +75,10 @@
           battery = mkIf m.battery {
             format = "{capacity}% {icon}";
             format-icons = ["󰁺" "󰁼" "󰁾" "󰂀" "󰂂"];
+            states = {
+              warning = 30;
+              critical = 15;
+            };
           };
         }
         // (import ./modules/powermenu.nix {

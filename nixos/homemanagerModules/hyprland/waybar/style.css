@@ -120,8 +120,18 @@ button:hover {
 }
 
 #battery {
-  color: @green;
   border-bottom: 2px solid @green;
+}
+
+#battery.charging {
+  color: @green;
+}
+
+#battery.discharging.warning {
+  color: @yellow;
+}
+#battery.discharging.critical {
+  color: @red;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
