@@ -59,11 +59,13 @@ label.module {
 }
 
 .modules-right :nth-child(even) label.module {
-  background-color: lime;
+  color: @blue;
+  border-color: @blue;
 }
 
 .modules-right :nth-child(odd) label.module {
-  background-color: red;
+  color: @mauve;
+  border-color: @mauve;
 }
 
 #clock.date {
@@ -72,8 +74,7 @@ label.module {
 }
 
 #pulseaudio {
-  color: @blue;
-  border-bottom: 2px solid @blue;
+  border-bottom: 2px solid;
 }
 
 #pulseaudio.muted {
