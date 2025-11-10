@@ -5,6 +5,7 @@
   settings = {
     hyprland.enable = true;
   };
+  programs.waybar.modules.battery = false;
 
   allowedUnfree = ["aseprite"];
 
