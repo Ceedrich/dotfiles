@@ -33,7 +33,12 @@
         battery = lib.mkDefault true;
         player = lib.mkDefault true;
       };
-      style = (lib.readFile ./style.css) + player.style + battery.style + powermenu.style;
+      style =
+        (lib.readFile ./style.css)
+        + player.style
+        + battery.style
+        + powermenu.style
+        + clock.style;
       settings.mainBar =
         {
           position = "top";
