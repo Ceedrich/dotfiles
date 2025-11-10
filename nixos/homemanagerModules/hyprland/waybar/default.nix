@@ -18,7 +18,7 @@
     wb = config.programs.waybar;
     m = wb.modules;
 
-    player = pkgs.callPackage ./modules/music.nix {};
+    player = pkgs.callPackage ./modules/player.nix {};
     battery = pkgs.callPackage ./modules/battery.nix {};
     powermenu = pkgs.callPackage ./modules/powermenu.nix {};
   in {
