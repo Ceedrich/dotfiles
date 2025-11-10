@@ -27,7 +27,7 @@
 
     moduleConfig = {
       style = (lib.readFile ./style.css) + (lib.strings.concatStrings (builtins.map (m: m.style) modules));
-      settings = lib.foldl' lib.recursiveUpdate {} (builtins.map (m: m.settings) modules);
+      settings = lib.foldl' (a: b: a // b) {} (builtins.map (m: m.settings) modules);
     };
 
     wb-config = {
@@ -79,6 +79,6 @@
       };
     };
   in {
-    programs.waybar =mkIf wb.enable (moduleConfig // wb-config);
+    programs.waybar = mkIf wb.enable (moduleConfig // wb-config);
   };
 }
