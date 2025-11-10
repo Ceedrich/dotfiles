@@ -39,7 +39,8 @@
             "hyprland/window"
           ];
           modules-center = [
-            (mkIf m.player "custom/player")
+            # (mkIf m.player "custom/player")
+            "group/blub"
           ];
           modules-right = [
             "hyprland/workspaces"
@@ -88,6 +89,14 @@
             };
             tooltip = true;
             tooltip-format = "{timeTo}";
+          };
+
+          "group/blub" = {
+            orientation = "orthogonal";
+            modules = ["cpu" "memory"];
+            drawer = {
+              transition-duration= 500;
+            };
           };
         }
         // (import ./modules/powermenu.nix {
