@@ -82,7 +82,7 @@ button:hover {
 #custom-logout,
 #custom-lock,
 #custom-reboot {
-  color: @lavender;
+  color: @blue;
 }
 
 #clock {

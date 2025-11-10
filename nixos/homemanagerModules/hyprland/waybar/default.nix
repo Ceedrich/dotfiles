@@ -83,6 +83,8 @@
               warning = 30;
               critical = 15;
             };
+            tooltip = true;
+            tooltip-format = "{timeTo}";
           };
         }
         // (import ./modules/powermenu.nix {
