@@ -11,6 +11,7 @@
     tray = lib.mkEnableOption "enable tray module";
     powermenu = lib.mkEnableOption "enable powermenu";
     battery = lib.mkEnableOption "enable battery";
+    player = lib.mkEnableOption "enable music player";
   };
   config = let
     inherit (lib) mkIf;
@@ -27,6 +28,7 @@
         tray = lib.mkDefault true;
         powermenu = lib.mkDefault true;
         battery = lib.mkDefault true;
+        player = lib.mkDefault true;
       };
       style = lib.readFile ./style.css;
       settings.mainBar =
@@ -38,6 +40,7 @@
           ];
           modules-center = [
             (mkIf m.clock "clock")
+            (mkIf m.player "custom/player")
           ];
           modules-right = [
             "hyprland/workspaces"
@@ -90,7 +93,11 @@
         // (import ./modules/powermenu.nix {
           inherit pkgs;
           name = powermenu-name;
-        });
+        })
+        // (import ./modules/player.nix) {
+          inherit pkgs;
+          name = "custom/player";
+        };
     };
   };
 }
