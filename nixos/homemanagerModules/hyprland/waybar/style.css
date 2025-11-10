@@ -56,7 +56,7 @@ button:hover {
 label.module {
   padding: 0 4px;
   margin: 2px 4px;
-  background-color: lime !important;
+  background-color: lime;
 }
 
 #clock.date {
