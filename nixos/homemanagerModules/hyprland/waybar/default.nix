@@ -30,7 +30,45 @@
       settings = lib.foldl lib.recursiveUpdate {} (builtins.map (m: m.settings) modules);
     };
 
-    wb-config = {
+    mainBar = {
+      position = "top";
+      modules-left = [
+        (mkIf m.date "clock#date")
+        "hyprland/window"
+      ];
+      modules-center = [
+        (mkIf m.player player.name)
+      ];
+      modules-right = [
+        "hyprland/workspaces"
+        (mkIf m.audio "pulseaudio")
+        (mkIf m.battery battery.name)
+        (mkIf m.clock clock.name)
+        (mkIf m.powermenu powermenu.name)
+        (mkIf m.tray "tray")
+      ];
+
+      pulseaudio = mkIf m.audio {
+        format = "{volume}% {icon}";
+        format-bluetooth = "{volume}% {icon}";
+        format-muted = "{volume}% 󰝟";
+        format-icons.default = ["󰖀" "󰕾"];
+        scroll-step = 3;
+        on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
+        on-click-right = lib.getExe (pkgs.pavucontrol);
+      };
+      "clock#date" = mkIf m.date {
+        format = "{:%d.%m.}";
+        tooltip = false;
+      };
+
+      tray = mkIf m.tray {
+        icon-size = 21;
+        spacing = 10;
+      };
+    };
+  in {
+    programs.waybar = mkIf wb.enable {
       modules = {
         audio = lib.mkDefault true;
         clock = lib.mkDefault true;
@@ -40,45 +78,8 @@
         battery = lib.mkDefault true;
         player = lib.mkDefault true;
       };
-      settings.mainBar = {
-        position = "top";
-        modules-left = [
-          (mkIf m.date "clock#date")
-          "hyprland/window"
-        ];
-        modules-center = [
-          (mkIf m.player player.name)
-        ];
-        modules-right = [
-          "hyprland/workspaces"
-          (mkIf m.audio "pulseaudio")
-          (mkIf m.battery battery.name)
-          (mkIf m.clock clock.name)
-          (mkIf m.powermenu powermenu.name)
-          (mkIf m.tray "tray")
-        ];
-
-        pulseaudio = mkIf m.audio {
-          format = "{volume}% {icon}";
-          format-bluetooth = "{volume}% {icon}";
-          format-muted = "{volume}% 󰝟";
-          format-icons.default = ["󰖀" "󰕾"];
-          scroll-step = 3;
-          on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
-          on-click-right = lib.getExe (pkgs.pavucontrol);
-        };
-        "clock#date" = mkIf m.date {
-          format = "{:%d.%m.}";
-          tooltip = false;
-        };
-
-        tray = mkIf m.tray {
-          icon-size = 21;
-          spacing = 10;
-        };
-      };
+      style = moduleConfig.style;
+      settings.mainBar = lib.recursiveUpdate mainBar moduleConfig.settings;
     };
-  in {
-    programs.waybar = mkIf wb.enable (moduleConfig // wb-config);
   };
 }
