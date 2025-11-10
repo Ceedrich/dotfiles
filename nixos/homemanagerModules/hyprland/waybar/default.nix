@@ -76,7 +76,6 @@
             interval = 10; # WARN: remove
             format = "{capacity}% {icon}";
             format-icons = ["󰁺" "󰁼" "󰁾" "󰂀" "󰂂"];
-            rotate = 3;
             states = {
               warning = 30;
               critical = 15;
