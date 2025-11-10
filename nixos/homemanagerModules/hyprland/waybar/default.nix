@@ -76,6 +76,14 @@
             spacing = 10;
           };
 
+          idle_inhibitor = {
+            format = "{icon}";
+            format-icons = {
+              activated = "";
+              deactivated = "";
+            };
+          };
+
           battery = mkIf m.battery {
             interval = 10; # WARN: remove
             format = "{capacity}% {icon}";
