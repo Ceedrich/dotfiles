@@ -3,7 +3,7 @@
   settings.${name} = {
     format = "{:%H:%M}";
     interval = 1;
-    tooltip-format = "{:%a, :%d :%m :%y, :%H:%M:%S}\n<tt><small>{calendar}</small></tt>";
+    tooltip-format = "<tt><small>{:%a, %d/%m/%y %H:%M:%S}\n{calendar}</small></tt>";
     calendar = {
       mode = "month";
       weeks-pos = "left";
