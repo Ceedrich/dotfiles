@@ -53,9 +53,9 @@
             "hyprland/workspaces"
             (mkIf m.audio "pulseaudio")
             (mkIf m.battery battery.name)
+            (mkIf m.clock clock.name)
             (mkIf m.powermenu powermenu.name)
             (mkIf m.tray "tray")
-            (mkIf m.clock clock.name)
           ];
 
           pulseaudio = mkIf m.audio {
