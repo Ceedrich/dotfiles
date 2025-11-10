@@ -5,6 +5,7 @@
     #css
     ''
       #workspaces button {
+        color: @overlay0;
         padding: 0px 4px;
         margin: 2px 4px;
         border-bottom: 2px solid;
