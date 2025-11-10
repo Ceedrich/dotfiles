@@ -120,8 +120,8 @@ button:hover {
 }
 
 #battery {
-  color: @text;
-  border-bottom: 2px solid @text;
+  color: @mauve;
+  border-bottom: 2px solid @mauve;
 }
 
 #battery.charging {
