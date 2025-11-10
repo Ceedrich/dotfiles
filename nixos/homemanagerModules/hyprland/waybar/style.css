@@ -53,19 +53,7 @@ button:hover {
   background-color: #eb4d4b;
 }
 
-#pulseaudio,
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#backlight,
-#wireplumber,
-#tray,
-#network,
-#mode,
-#scratchpad{
+box.module{
   margin-top: 2px;
   margin-bottom: 2px;
   margin-left: 4px;
