@@ -10,6 +10,7 @@
     date = lib.mkEnableOption "enable date module";
     tray = lib.mkEnableOption "enable tray module";
     powermenu = lib.mkEnableOption "enable powermenu";
+    battery = lib.mkEnableOption "enable battery";
   };
   config = let
     inherit (lib) mkIf;
@@ -25,6 +26,7 @@
         date = lib.mkDefault true;
         tray = lib.mkDefault true;
         powermenu = lib.mkDefault true;
+        battery = lib.mkDefault true;
       };
       style = lib.readFile ./style.css;
       settings.mainBar =
@@ -40,6 +42,7 @@
           modules-right = [
             "hyprland/workspaces"
             (mkIf m.audio "pulseaudio")
+            (mkIf m.battery "battery")
             (mkIf m.powermenu powermenu-name)
             (mkIf m.tray "tray")
           ];
