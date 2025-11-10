@@ -18,6 +18,7 @@
     wb = config.programs.waybar;
     m = wb.modules;
 
+    workspaces = pkgs.callPackage ./modules/workspaces.nix {};
     date = pkgs.callPackage ./modules/date.nix {};
     tray = pkgs.callPackage ./modules/tray.nix {};
     audio = pkgs.callPackage ./modules/audio.nix {};
@@ -26,7 +27,7 @@
     battery = pkgs.callPackage ./modules/battery.nix {};
     powermenu = pkgs.callPackage ./modules/powermenu.nix {};
 
-    modules = [date tray clock player battery powermenu audio];
+    modules = [workspaces date tray clock player battery powermenu audio];
 
     moduleConfig = {
       style = (lib.readFile ./style.css) + (lib.strings.concatStrings (builtins.map (m: m.style) modules));
@@ -43,7 +44,7 @@
         (mkIf m.player player.name)
       ];
       modules-right = [
-        "hyprland/workspaces"
+        workspaces.name
         (mkIf m.audio audio.name)
         (mkIf m.battery battery.name)
         (mkIf m.clock clock.name)
