@@ -5,44 +5,43 @@
 in rec {
   name = "group/music-player";
   settings = let
-    mkButton = {
-      icon ? "",
-      cmd,
-    }: {
-      format = "{icon}";
-      format-icons = icon;
-      interval = 5;
-      tooltip = false;
-      escape = true;
-      on-click = cmd;
-      max-length = 50;
-    };
   in {
     ${name} = {
       orientation = "inherit";
       modules = [prev main next];
     };
 
-    ${main} =
-      mkButton {
-        cmd = "${playerctl}/bin/playerctl play-pause";
-      }
-      // {
-        format = "{}";
-        exec = "${playerctl}/bin/playerctl metadata --format='{{ artist }} - {{ title }}'";
-      };
-    ${prev} =
-      mkButton {
-        icon = "󰒮";
-        cmd = "${playerctl}/bin/playerctl previous";
-      }
-      // {exec = "${playerctl}/bin/playerctl status";};
-    ${next} =
-      mkButton {
-        icon = "󰒭";
-        cmd = "${playerctl}/bin/playerctl next";
-      }
-      // {exec = "${playerctl}/bin/playerctl status";};
+    ${main} = {
+      format = "{}";
+      interval = 5;
+      tooltip = true;
+      tooltip-format = "Play/Pause";
+      escape = true;
+      on-click = "${playerctl}/bin/playerctl play-pause";
+      max-length = 50;
+      exec = "${playerctl}/bin/playerctl metadata --format='{{ artist }} - {{ title }}'";
+    };
+    ${prev} = {
+      format = "{icon}";
+      format-icons = "󰒮";
+      interval = 5;
+      tooltip = false;
+      tooltip-format = "Previous";
+      escape = true;
+      max-length = 50;
+      on-click = "${playerctl}/bin/playerctl previous";
+      exec = "${playerctl}/bin/playerctl status";
+    };
+    ${next} = {
+      format = "{icon}";
+      format-icons = "󰒭";
+      interval = 5;
+      tooltip = false;
+      escape = true;
+      max-length = 50;
+      on-click = "${playerctl}/bin/playerctl next";
+      exec = "${playerctl}/bin/playerctl status";
+    };
   };
   style =
     #css
