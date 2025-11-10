@@ -60,5 +60,12 @@ in rec {
   style =
     #css
     ''
+      #custom-poweroff,
+      #custom-logout,
+      #custom-lock,
+      #custom-reboot {
+        color: @blue;
+      }
+
     '';
 }
