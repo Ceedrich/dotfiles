@@ -80,7 +80,6 @@
               default = ["󰁺" "󰁼" "󰁾" "󰂀" "󰂂" "󰁹"];
             };
             states = {
-              thirty = 30;
               warning = 30;
               critical = 15;
             };
