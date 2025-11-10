@@ -14,10 +14,12 @@
         background-color: rgba(0, 0, 0, 0.3);
         color: @mauve;
         border-color: @mauve;
+        border-bottom: 2px solid;
       }
 
       #workspaces button.urgent {
         background-color: @red;
+        border-bottom: 2px solid;
       }
     '';
 }
