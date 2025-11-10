@@ -34,7 +34,7 @@ button:hover {
 
 label.module {
   padding: 0 4px;
-  margin: 2px 4px;
+  margin: 2px 2px;
 }
 
 .modules-right :nth-child(even) label.module {
