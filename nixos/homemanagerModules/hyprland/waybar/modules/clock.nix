@@ -10,7 +10,7 @@
       on-scroll = 1;
       format = {
         months = "<b>{}</b>";
-        weeks = "{}";
+        weeks = ''<span color="#6c7086">{}</span>'';
         weekdays = "<b>{}</b>";
         days = "<b>{}</b>";
         today = ''<span color="#cba6f7"><b>{}</b></span>'';
