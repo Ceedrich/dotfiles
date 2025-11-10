@@ -1,28 +1,50 @@
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
 building the system configuration...
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
-these 9 derivations will be built:
-  /nix/store/3cby01hcaz0cwvvq50y4n93zgp0g2aib-waybar-config.json.drv
-  /nix/store/qazp2ap02sc60c7dak52vd1akcidbh2k-waybar-style.css.drv
-  /nix/store/ibjnqww5frn9csmb4pyvz11alxki0dlj-home-manager-files.drv
-  /nix/store/yp476nvzysr2k1biiwnpkjp5b2ic3xgb-activation-script.drv
-  /nix/store/xjwwzl03fknkq3b0vigjsh4v69jdlsqw-home-manager-generation.drv
-  /nix/store/j1x8nc31lswqpq65y5sp058kd37517l1-unit-home-manager-ceedrich.service.drv
-  /nix/store/fbjc4856j1qs8ndv3ckfqlwv2886lmmy-system-units.drv
-  /nix/store/wks07z90kc301gp89px4v4m1nwf911yg-etc.drv
-  /nix/store/3i9ak9rzy2765c5qlsgvklrmkx2xk2cg-nixos-system-gaming-25.05.20251107.6faeb06.drv
-building '/nix/store/qazp2ap02sc60c7dak52vd1akcidbh2k-waybar-style.css.drv'...
-building '/nix/store/3cby01hcaz0cwvvq50y4n93zgp0g2aib-waybar-config.json.drv'...
-building '/nix/store/yp476nvzysr2k1biiwnpkjp5b2ic3xgb-activation-script.drv'...
-building '/nix/store/ibjnqww5frn9csmb4pyvz11alxki0dlj-home-manager-files.drv'...
-building '/nix/store/xjwwzl03fknkq3b0vigjsh4v69jdlsqw-home-manager-generation.drv'...
-building '/nix/store/j1x8nc31lswqpq65y5sp058kd37517l1-unit-home-manager-ceedrich.service.drv'...
-building '/nix/store/fbjc4856j1qs8ndv3ckfqlwv2886lmmy-system-units.drv'...
-building '/nix/store/wks07z90kc301gp89px4v4m1nwf911yg-etc.drv'...
-building '/nix/store/3i9ak9rzy2765c5qlsgvklrmkx2xk2cg-nixos-system-gaming-25.05.20251107.6faeb06.drv'...
-activating the configuration...
-setting up /etc...
-reloading user units for ceedrich...
-restarting sysinit-reactivation.target
-the following new units were started: NetworkManager-dispatcher.service
-Done. The new configuration is /nix/store/cpb64xdnmrnnq0zc9zngw960r1ifgy0w-nixos-system-gaming-25.05.20251107.6faeb06
+error:
+       … while calling the 'head' builtin
+         at /nix/store/g9863dnbpnfa7vz8c1s1idwbg7c5j0bb-source/lib/attrsets.nix:1571:13:
+         1570|           if length values == 1 || pred here (elemAt values 1) (head values) then
+         1571|             head values
+             |             ^
+         1572|           else
+
+       … while evaluating the attribute 'value'
+         at /nix/store/g9863dnbpnfa7vz8c1s1idwbg7c5j0bb-source/lib/modules.nix:1083:7:
+         1082|     // {
+         1083|       value = addErrorContext "while evaluating the option `${showOption loc}':" value;
+             |       ^
+         1084|       inherit (res.defsFinal') highestPrio;
+
+       … while evaluating the option `system.build.toplevel':
+
+       … while evaluating definitions from `/nix/store/g9863dnbpnfa7vz8c1s1idwbg7c5j0bb-source/nixos/modules/system/activation/top-level.nix':
+
+       … while evaluating the option `warnings':
+
+       … while evaluating definitions from `/nix/store/g9863dnbpnfa7vz8c1s1idwbg7c5j0bb-source/nixos/modules/system/boot/systemd.nix':
+
+       … while evaluating the option `systemd.services.home-manager-ceedrich.serviceConfig':
+
+       … while evaluating definitions from `/nix/store/a4la088hi5id7sw77gy9zdvwn83dgczz-source/nixos':
+
+       … while evaluating the option `home-manager.users.ceedrich.home.activation.checkFilesChanged.data':
+
+       … while evaluating definitions from `/nix/store/a4la088hi5id7sw77gy9zdvwn83dgczz-source/modules/files.nix':
+
+       … while evaluating the option `home-manager.users.ceedrich.home.file."/home/ceedrich/.config/waybar/config".source':
+
+       … while evaluating definitions from `/nix/store/a4la088hi5id7sw77gy9zdvwn83dgczz-source/modules/misc/xdg.nix':
+
+       … while evaluating the option `home-manager.users.ceedrich.xdg.configFile."waybar/config".source':
+
+       … while evaluating definitions from `/nix/store/fd608715a7a824lglwn4yi286x8xrll0-source/nixos/homemanagerModules/hyprland/waybar':
+
+       (stack trace truncated; use '--show-trace' to show the full, detailed trace)
+
+       error: infinite recursion encountered
+       at /nix/store/g9863dnbpnfa7vz8c1s1idwbg7c5j0bb-source/lib/attrsets.nix:1288:25:
+         1287|   */
+         1288|   isDerivation = value: value.type or null == "derivation";
+             |                         ^
+         1289|

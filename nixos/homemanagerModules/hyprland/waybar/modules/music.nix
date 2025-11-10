@@ -5,7 +5,7 @@
   prev = "custom/music-player-prev";
   main = "custom/music-player-main";
   next = "custom/music-player-next";
-  playerctl' = lib.getExe playerctl;
+  playerctl = lib.getExe playerctl;
 in rec {
   name = "group/music-player";
   settings = let
@@ -29,7 +29,7 @@ in rec {
 
     ${main} =
       mkButton {
-        cmd = "${playerctl'} play-pause";
+        cmd = "${playerctl} play-pause";
       }
       // {
         format = "  {}";
@@ -37,11 +37,11 @@ in rec {
       };
     ${prev} = mkButton {
       icon = "󰒮";
-      cmd = "${playerctl'} previous";
+      cmd = "${playerctl} previous";
     };
     ${next} = mkButton {
       icon = "";
-      cmd = "${playerctl'} next";
+      cmd = "${playerctl} next";
     };
   };
   style =
