@@ -39,7 +39,7 @@ in rec {
       cmd = "${playerctl}/bin/playerctl previous";
     };
     ${next} = mkButton {
-      icon = "";
+      icon = "󰒭";
       cmd = "${playerctl}/bin/playerctl next";
     };
   };
