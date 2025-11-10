@@ -62,6 +62,10 @@ label.module {
   background-color: lime;
 }
 
+.modules-right :nth-child(odd) label.module {
+  background-color: red;
+}
+
 #clock.date {
   color: @text;
   border: none;
