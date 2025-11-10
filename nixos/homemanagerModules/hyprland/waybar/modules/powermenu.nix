@@ -64,8 +64,7 @@ in rec {
       #custom-logout,
       #custom-lock,
       #custom-reboot {
-        color: @blue;
-        padding: 8px;
+        padding: 0px 8px;
       }
 
     '';
