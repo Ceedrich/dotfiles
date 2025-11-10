@@ -3,6 +3,7 @@
   lib ? pkgs.lib,
   name ? "group/player",
 }: let
+  playerctl = lib.getExe pkgs.playerctl;
   prev = "custom/player-prev";
   next = "custom/player-next";
   main = "custom/player-main";
@@ -16,8 +17,8 @@ in {
     tooltip = false;
     escape = true;
     format = "  {}";
-    exec = "playerctl metadata --format='{{ artist }} - {{ title }}'";
-    on-click = "playerctl play-pause";
+    exec = "${playerctl} metadata --format='{{ artist }} - {{ title }}'";
+    on-click = "${playerctl} play-pause";
     max-length = 50;
   };
   ${prev} = {
@@ -26,7 +27,7 @@ in {
     escape = true;
     format = "{icon}";
     format-icons = "󰒮";
-    on-click = "playerctl previous";
+    on-click = "${playerctl} previous";
     max-length = 50;
   };
   ${next} = {
@@ -35,7 +36,7 @@ in {
     escape = true;
     format = "{icon}";
     format-icons = "󰒭";
-    on-click = "playerctl next";
+    on-click = "${playerctl} next";
     max-length = 50;
   };
 }
