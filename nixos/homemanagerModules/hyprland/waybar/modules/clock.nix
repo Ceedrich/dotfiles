@@ -19,5 +19,11 @@
   };
   style =
     #css
-    '''';
+    ''
+      #clock {
+        color: @maroon;
+        border-bottom: 2px solid @maroon;
+        margin-right: 12px;
+      }
+    '';
 }

@@ -58,12 +58,6 @@ label.module {
   margin: 2px 4px;
 }
 
-#clock {
-  color: @maroon;
-  border-bottom: 2px solid @maroon;
-  margin-right: 12px;
-}
-
 #clock.date {
   color: @text;
   border: none;
