@@ -18,13 +18,15 @@
     wb = config.programs.waybar;
     m = wb.modules;
 
+    date = pkgs.callPackage ./modules/date.nix {};
+    tray = pkgs.callPackage ./modules/tray.nix {};
     audio = pkgs.callPackage ./modules/audio.nix {};
     clock = pkgs.callPackage ./modules/clock.nix {};
     player = pkgs.callPackage ./modules/player.nix {};
     battery = pkgs.callPackage ./modules/battery.nix {};
     powermenu = pkgs.callPackage ./modules/powermenu.nix {};
 
-    modules = [clock player battery powermenu audio];
+    modules = [date tray clock player battery powermenu audio];
 
     moduleConfig = {
       style = (lib.readFile ./style.css) + (lib.strings.concatStrings (builtins.map (m: m.style) modules));
@@ -34,7 +36,7 @@
     mainBar = {
       position = "top";
       modules-left = [
-        (mkIf m.date "clock#date")
+        (mkIf m.date date.name)
         "hyprland/window"
       ];
       modules-center = [
@@ -46,18 +48,8 @@
         (mkIf m.battery battery.name)
         (mkIf m.clock clock.name)
         (mkIf m.powermenu powermenu.name)
-        (mkIf m.tray "tray")
+        (mkIf m.tray tray.name)
       ];
-
-      "clock#date" = mkIf m.date {
-        format = "{:%d.%m.}";
-        tooltip = false;
-      };
-
-      tray = mkIf m.tray {
-        icon-size = 21;
-        spacing = 10;
-      };
     };
   in {
     programs.waybar = mkIf wb.enable {
