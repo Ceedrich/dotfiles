@@ -18,6 +18,8 @@
     wb = config.programs.waybar;
     m = wb.modules;
 
+    music = pkgs.callPackage ./modules/music.nix {};
+
     powermenu-name = "group/powermenu";
     player = "group/player";
   in {
@@ -31,7 +33,7 @@
         battery = lib.mkDefault true;
         player = lib.mkDefault true;
       };
-      style = lib.readFile ./style.css;
+      style = (lib.readFile ./style.css) + music.style;
       settings.mainBar =
         {
           position = "top";
@@ -40,7 +42,8 @@
             "hyprland/window"
           ];
           modules-center = [
-            (mkIf m.player player)
+            # (mkIf m.player player)
+            (mkIf m.player music.name)
           ];
           modules-right = [
             "hyprland/workspaces"
@@ -98,7 +101,8 @@
         // (import ./modules/player.nix) {
           inherit pkgs;
           name = player;
-        };
+        }
+        // music.settings;
     };
   };
 }
