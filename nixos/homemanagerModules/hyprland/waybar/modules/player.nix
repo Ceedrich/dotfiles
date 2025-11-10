@@ -28,7 +28,7 @@ in rec {
         cmd = "${playerctl}/bin/playerctl play-pause";
       }
       // {
-        format = "  {}";
+        format = "{}";
         exec = "${playerctl}/bin/playerctl metadata --format='{{ artist }} - {{ title }}'";
       };
     ${prev} =
