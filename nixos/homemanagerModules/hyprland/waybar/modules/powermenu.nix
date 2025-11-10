@@ -65,6 +65,7 @@ in rec {
       #custom-lock,
       #custom-reboot {
         color: @blue;
+        padding: 8px;
       }
 
     '';
