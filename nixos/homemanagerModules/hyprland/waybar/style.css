@@ -82,11 +82,6 @@ label.module {
   border-color: @overlay0;
 }
 
-#network {
-  color: @yellow;
-  border-bottom: 2px solid @yellow;
-}
-
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
   margin-left: 0px;

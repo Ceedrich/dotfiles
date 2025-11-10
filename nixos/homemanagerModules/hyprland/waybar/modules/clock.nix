@@ -21,8 +21,7 @@
     #css
     ''
       #clock {
-        color: @mauve;
-        border-bottom: 2px solid @mauve;
+        border-bottom: 2px solid;
         margin-right: 12px;
       }
     '';

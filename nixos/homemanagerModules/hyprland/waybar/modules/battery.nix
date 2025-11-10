@@ -19,20 +19,16 @@
     #css
     ''
       #battery {
-        color: @mauve;
-        border-bottom: 2px solid @mauve;
+        border: 2px solid;
       }
       #battery.charging {
         color: @green;
-        border-bottom: 2px solid @green;
       }
       #battery.discharging.warning {
         color: @yellow;
-        border-bottom: 2px solid @yellow;
       }
       #battery.discharging.critical {
         color: @red;
-        border-bottom: 2px solid @red;
       }
     '';
 }
