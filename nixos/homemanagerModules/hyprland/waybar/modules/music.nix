@@ -48,7 +48,10 @@ in rec {
     ''
       #group-music-player {}
       #custom-music-player-prev {}
-      #custom-music-player-main {}
+      #custom-music-player-main {
+        margin-left: 8px;
+        margin-right: 8px;
+      }
       #custom-music-player-next {}
     '';
 }
