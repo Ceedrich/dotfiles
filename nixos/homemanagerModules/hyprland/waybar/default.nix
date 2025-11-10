@@ -19,6 +19,7 @@
     m = wb.modules;
 
     player = pkgs.callPackage ./modules/music.nix {};
+    battery = pkgs.callPackage ./modules/battery.nix {};
 
     powermenu-name = "group/powermenu";
   in {
@@ -46,7 +47,7 @@
           modules-right = [
             "hyprland/workspaces"
             (mkIf m.audio "pulseaudio")
-            (mkIf m.battery "battery")
+            (mkIf m.battery battery.name)
             (mkIf m.powermenu powermenu-name)
             (mkIf m.tray "tray")
             (mkIf m.clock "clock")
@@ -76,26 +77,13 @@
             icon-size = 21;
             spacing = 10;
           };
-
-          battery = mkIf m.battery {
-            format = "{capacity}% {icon}";
-            format-icons = {
-              charging = ["󰢜" "󰂇" "󰢝" "󰢞" "󰂅"];
-              default = ["󰁺" "󰁼" "󰁾" "󰂀" "󰂂" "󰁹"];
-            };
-            states = {
-              warning = 30;
-              critical = 15;
-            };
-            tooltip = true;
-            tooltip-format = "{timeTo}";
-          };
         }
         // (import ./modules/powermenu.nix {
           inherit pkgs;
           name = powermenu-name;
         })
-        // player.settings;
+        // player.settings
+        // battery.settings;
     };
   };
 }
