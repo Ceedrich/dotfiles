@@ -31,14 +31,18 @@ in rec {
         format = "  {}";
         exec = "${playerctl}/bin/playerctl metadata --format='{{ artist }} - {{ title }}'";
       };
-    ${prev} = mkButton {
-      icon = "󰒮";
-      cmd = "${playerctl}/bin/playerctl previous";
-    };
-    ${next} = mkButton {
-      icon = "󰒭";
-      cmd = "${playerctl}/bin/playerctl next";
-    };
+    ${prev} =
+      mkButton {
+        icon = "󰒮";
+        cmd = "${playerctl}/bin/playerctl previous";
+      }
+      // {exec = "${playerctl}/bin/playerctl status";};
+    ${next} =
+      mkButton {
+        icon = "󰒭";
+        cmd = "${playerctl}/bin/playerctl next";
+      }
+      // {exec = "${playerctl}/bin/playerctl status";};
   };
   style =
     #css
