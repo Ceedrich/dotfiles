@@ -69,7 +69,10 @@ button:hover {
 #custom-poweroff,
 #custom-logout,
 #custom-lock,
-#custom-reboot {
+#custom-reboot,
+#custom-player-prev,
+#custom-player-main,
+#custom-player-next {
   margin-top: 2px;
   margin-bottom: 2px;
   margin-left: 4px;
