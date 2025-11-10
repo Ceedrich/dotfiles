@@ -48,7 +48,6 @@
             (mkIf m.powermenu powermenu-name)
             (mkIf m.tray "tray")
             (mkIf m.clock "clock")
-            "idle_inhibitor"
           ];
 
           pulseaudio = mkIf m.audio {
@@ -74,14 +73,6 @@
           tray = mkIf m.tray {
             icon-size = 21;
             spacing = 10;
-          };
-
-          idle_inhibitor = {
-            format = "{icon}";
-            format-icons = {
-              activated = "";
-              deactivated = "";
-            };
           };
 
           battery = mkIf m.battery {

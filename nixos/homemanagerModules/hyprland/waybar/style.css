@@ -88,6 +88,7 @@ button:hover {
 #clock {
   color: @maroon;
   border-bottom: 2px solid @maroon;
+  margin-right: 12px;
 }
 
 #clock.date {
@@ -108,15 +109,6 @@ button:hover {
 #network {
   color: @yellow;
   border-bottom: 2px solid @yellow;
-}
-
-#idle_inhibitor {
-  margin-right: 12px;
-  color: #7cb342;
-}
-
-#idle_inhibitor.activated {
-  color: @red;
 }
 
 #battery {
