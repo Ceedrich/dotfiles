@@ -18,12 +18,13 @@
     wb = config.programs.waybar;
     m = wb.modules;
 
+    audio = pkgs.callPackage ./modules/audio.nix {};
     clock = pkgs.callPackage ./modules/clock.nix {};
     player = pkgs.callPackage ./modules/player.nix {};
     battery = pkgs.callPackage ./modules/battery.nix {};
     powermenu = pkgs.callPackage ./modules/powermenu.nix {};
 
-    modules = [clock player battery powermenu];
+    modules = [clock player battery powermenu audio];
 
     moduleConfig = {
       style = (lib.readFile ./style.css) + (lib.strings.concatStrings (builtins.map (m: m.style) modules));
@@ -41,22 +42,13 @@
       ];
       modules-right = [
         "hyprland/workspaces"
-        (mkIf m.audio "pulseaudio")
+        (mkIf m.audio audio.name)
         (mkIf m.battery battery.name)
         (mkIf m.clock clock.name)
         (mkIf m.powermenu powermenu.name)
         (mkIf m.tray "tray")
       ];
 
-      pulseaudio = mkIf m.audio {
-        format = "{volume}% {icon}";
-        format-bluetooth = "{volume}% {icon}";
-        format-muted = "{volume}% 󰝟";
-        format-icons.default = ["󰖀" "󰕾"];
-        scroll-step = 3;
-        on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
-        on-click-right = lib.getExe (pkgs.pavucontrol);
-      };
       "clock#date" = mkIf m.date {
         format = "{:%d.%m.}";
         tooltip = false;

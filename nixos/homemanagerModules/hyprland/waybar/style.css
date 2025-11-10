@@ -73,15 +73,6 @@ label.module {
   border: none;
 }
 
-#pulseaudio {
-  border-bottom: 2px solid;
-}
-
-#pulseaudio.muted {
-  color: @overlay0;
-  border-color: @overlay0;
-}
-
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
   margin-left: 0px;
