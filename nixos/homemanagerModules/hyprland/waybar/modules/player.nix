@@ -25,7 +25,7 @@ in rec {
       format = "{icon}";
       format-icons = "󰒮";
       interval = 5;
-      tooltip = false;
+      tooltip = true;
       tooltip-format = "Previous";
       escape = true;
       max-length = 50;
