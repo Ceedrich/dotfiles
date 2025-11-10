@@ -1,8 +1,9 @@
 {}: rec {
   name = "clock";
   settings.${name} = {
-    format = "{=%H=%M}  ";
-    tooltip-format = "{=%A; %B %d; %Y (%R)}<br><tt><small>{calendar}</small></tt>";
+    format = "{:%H:%M}  ";
+    interval = 1;
+    tooltip-format = "{%A %B %d %Y (%R)}<br><tt><small>{calendar}</small></tt>";
     calendar = {
       mode = "month";
       weeks-pos = "left";
