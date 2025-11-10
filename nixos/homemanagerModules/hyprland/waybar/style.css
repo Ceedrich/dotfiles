@@ -58,13 +58,9 @@ label.module {
   margin: 2px 4px;
 }
 
-.modules-right label.module:nth-child(even) {
+.modules-right :nth-child(even) label.module {
   background-color: lime;
 }
-
-/* .modules-right label.module:nth-child(odd) { */
-/*   background-color: red; */
-/* } */
 
 #clock.date {
   color: @text;
