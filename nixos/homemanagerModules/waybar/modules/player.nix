@@ -18,7 +18,7 @@ in rec {
       tooltip-format = "Play/Pause";
       escape = true;
       on-click = "${playerctl}/bin/playerctl play-pause";
-      on-right-click = let
+      on-click-right = let
         player = "${playerctl}/bin/playerctl -l | head -n1";
       in ''hyprctl dispatch focuswindow "class:(?i:^.*$(${player}).*)"'';
       max-length = 50;
