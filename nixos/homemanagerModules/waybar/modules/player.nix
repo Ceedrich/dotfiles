@@ -18,6 +18,9 @@ in rec {
       tooltip-format = "Play/Pause";
       escape = true;
       on-click = "${playerctl}/bin/playerctl play-pause";
+      on-right-click = let
+        player = "${playerctl}/bin/playerctl -l | head -n1";
+      in ''hyprctl dispatch focuswindow "class:(?i:^.*$(${player}).*)"'';
       max-length = 50;
       exec = "${playerctl}/bin/playerctl metadata --format='{{ artist }} - {{ title }}'";
     };
