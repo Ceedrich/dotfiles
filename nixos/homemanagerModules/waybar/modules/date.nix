@@ -2,7 +2,7 @@
   name = "clock#date";
   settings = {
     ${name} = {
-      format = "{:%d.%m.}";
+      format = "{:%d.%m.%Y}";
       tooltip = false;
     };
   };
