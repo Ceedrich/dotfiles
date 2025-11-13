@@ -64,5 +64,13 @@ in rec {
         padding: 0px 8px;
       }
 
+      #custom-poweroff:hover,
+      #custom-logout:hover,
+      #custom-lock:hover,
+      #custom-reboot:hover {
+        padding: 0px 8px;
+        border-bottom: 2px solid;
+      }
+
     '';
 }
