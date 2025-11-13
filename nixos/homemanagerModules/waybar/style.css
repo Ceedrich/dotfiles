@@ -38,11 +38,13 @@ label.module {
 }
 
 .modules-right :nth-child(even) label.module {
+  background: red;
   color: @blue;
   border-color: @blue;
 }
 
 .modules-right :nth-child(odd) label.module {
+  background: blue;
   color: @mauve;
   border-color: @mauve;
 }
