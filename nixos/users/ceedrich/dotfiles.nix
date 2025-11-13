@@ -5,6 +5,7 @@
   settings = {
     hyprland.enable = true; # TODO: extract waybar out and make battery depend on what system it's running on (so, maybe remove out of home-manager into nixos config)
   };
+  programs.waybar.modules.battery = false;
 
   allowedUnfree = ["aseprite"];
 
