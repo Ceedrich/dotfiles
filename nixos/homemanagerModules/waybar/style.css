@@ -39,12 +39,16 @@ label.module {
 
 .modules-right :nth-child(even) label.module {
   background: red;
+  width: 10px;
+  height: 10px;
   color: @blue;
   border-color: @blue;
 }
 
 .modules-right :nth-child(odd) label.module {
   background: blue;
+  width: 10px;
+  height: 10px;
   color: @mauve;
   border-color: @mauve;
 }
