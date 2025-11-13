@@ -10,7 +10,7 @@
     #css
     ''
       #clock.date {
-          color: @text;
+          color: @overlay0;
           border: none;
         }
     '';
