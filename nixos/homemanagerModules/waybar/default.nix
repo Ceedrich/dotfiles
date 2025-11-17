@@ -28,7 +28,7 @@
     powermenu = pkgs.callPackage ./modules/powermenu.nix {};
     window = pkgs.callPackage ./modules/window.nix {};
 
-    modules = [workspaces date tray clock player battery powermenu audio];
+    modules = [workspaces date tray clock player battery powermenu audio window];
 
     moduleConfig = {
       style = (lib.readFile ./style.css) + (lib.strings.concatStrings (builtins.map (m: m.style) modules));
