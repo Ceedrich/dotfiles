@@ -1,6 +1,6 @@
 {writeShellScriptBin}: let
   rebuild_system = writeShellScriptBin "rebuild-system" ''
-    set -e
+    set -eo pipefail
     pushd ~/dotfiles/nixos/
     git diff -U0 .
     echo "Nixos Rebuilding..."
