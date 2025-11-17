@@ -5,9 +5,9 @@
     format-icons = {
       activated = "󰈈";
       deactivated = "󰈉";
-      tooltip-format-activated = "Idling disabled";
-      tooltip-format-deactivated = "Idling enabled";
     };
+    tooltip-format-activated = "Idling disabled";
+    tooltip-format-deactivated = "Idling enabled";
   };
   style =
     /*
