@@ -4,6 +4,8 @@
   programs.steam.enable = true;
   programs.hyprland.enable = true;
 
+  services.owncloud.enable = true;
+
   settings.bluetooth.enable = true;
 
   hardware.graphics = {
