@@ -15,10 +15,10 @@ in {
       wantedBy = ["default.target"];
       after = ["network.target"];
       wants = ["network.target"];
-      path = [pkgs.owncloud-client];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "owncloud";
+        ExecStart = "${pkgs.owncloud-client}/bin/owncloud";
+        Restart = "on-failure";
       };
     };
   };
