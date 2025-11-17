@@ -51,8 +51,8 @@
         (mkIf m.audio audio.name)
         (mkIf m.battery battery.name)
         (mkIf m.clock clock.name)
-        (mkIf m.powermenu powermenu.name)
         (mkIf m.idle_inhibitor idle_inhibitor.name)
+        (mkIf m.powermenu powermenu.name)
         (mkIf m.tray tray.name)
       ];
     };
