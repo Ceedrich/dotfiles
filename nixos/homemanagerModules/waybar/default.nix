@@ -26,6 +26,7 @@
     player = pkgs.callPackage ./modules/player.nix {};
     battery = pkgs.callPackage ./modules/battery.nix {};
     powermenu = pkgs.callPackage ./modules/powermenu.nix {};
+    window = pkgs.callPackage ./modules/window.nix {};
 
     modules = [workspaces date tray clock player battery powermenu audio];
 
@@ -38,7 +39,7 @@
       position = "top";
       modules-left = [
         (mkIf m.date date.name)
-        "hyprland/window"
+        window.name
       ];
       modules-center = [
         (mkIf m.player player.name)
