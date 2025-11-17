@@ -12,6 +12,7 @@
     powermenu = lib.mkEnableOption "enable powermenu";
     battery = lib.mkEnableOption "enable battery";
     player = lib.mkEnableOption "enable music player";
+    idle_inhibitor = lib.mkEnableOption "enable idle inhibitor";
   };
   config = let
     inherit (lib) mkIf;
@@ -27,8 +28,9 @@
     battery = pkgs.callPackage ./modules/battery.nix {};
     powermenu = pkgs.callPackage ./modules/powermenu.nix {};
     window = pkgs.callPackage ./modules/window.nix {};
+    idle_inhibitor = pkgs.callPackage ./modules/idle_inhibitor.nix {};
 
-    modules = [workspaces date tray clock player battery powermenu audio window];
+    modules = [workspaces date tray clock player battery powermenu audio window idle_inhibitor];
 
     moduleConfig = {
       style = (lib.readFile ./style.css) + (lib.strings.concatStrings (builtins.map (m: m.style) modules));
@@ -50,6 +52,7 @@
         (mkIf m.battery battery.name)
         (mkIf m.clock clock.name)
         (mkIf m.powermenu powermenu.name)
+        (mkIf m.idle_inhibitor idle_inhibitor.name)
         (mkIf m.tray tray.name)
       ];
     };
@@ -63,6 +66,7 @@
         powermenu = lib.mkDefault true;
         battery = lib.mkDefault true;
         player = lib.mkDefault true;
+        idle_inhibitor = lib.mkDefault true;
       };
       style = moduleConfig.style;
       settings.mainBar = lib.recursiveUpdate mainBar moduleConfig.settings;
