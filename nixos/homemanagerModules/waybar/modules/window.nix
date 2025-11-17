@@ -3,8 +3,6 @@
   settings = {
     ${name} = {
       format = "{title}";
-      format-tooltip = "Class: {class}";
-      tooltip = true;
       max-length = 30;
     };
   };
