@@ -7,7 +7,7 @@
       deactivated = "󰈉";
     };
     tooltip-format-activated = "Staying Awake";
-    tooltip-format-deactivated = "Sleep Enabled";
+    tooltip-format-deactivated = "Idling Enabled";
   };
   style =
     /*
