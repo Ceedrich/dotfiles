@@ -22,6 +22,8 @@
     (callPackage ../../packages/rebuild_system.nix {})
   ];
 
+  programs.ydotool.enable = true;
+
   # Theming
   catppuccin = {
     enable = true;
