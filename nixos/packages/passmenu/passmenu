@@ -56,7 +56,7 @@ option_menu() {
 main() {
   local passwords entry res
 
-  passwords=$(find -L "$passdir" -type f -name '*.gpg' -printf '%P\n' | sed 's/\.gpg//')
+  passwords=$(find -L "$passdir" -type f -name '*.gpg' -printf '%P\n' | sort | sed 's/\.gpg//')
   entry=$(echo "${passwords}" | rofi -dmenu -i -p "Account")
   [[ -n "$entry" ]] || exit 1
 
