@@ -127,7 +127,7 @@ in {
             ", PRINT, exec, ${screenshot} -m region"
             "SHIFT, PRINT, exec, ${screenshot} -m window"
 
-            "${mainMod}, P, exec, ${passmenu}"
+            "${mainMod}, P, exec, ${passmenu}/bin/passmenu"
 
             "${mainMod}, h, movefocus, l"
             "${mainMod}, l, movefocus, r"
