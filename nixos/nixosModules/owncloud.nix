@@ -10,6 +10,7 @@ in {
     enable = lib.mkEnableOption "enable OwnCloud";
   };
   config = lib.mkIf cfg.enable {
+    services.gnome.gnome-keyring.enable = true;
     systemd.user.services.owncloud = {
       enable = cfg.enable;
       wantedBy = ["default.target"];
