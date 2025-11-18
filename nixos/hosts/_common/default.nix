@@ -36,6 +36,9 @@
   networking.hostName = meta.hostname; # Define your hostname.
   networking.networkmanager.enable = true;
 
+  # GPG
+  programs.gnupg.agent.enable = true;
+
   # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
