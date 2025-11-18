@@ -61,6 +61,8 @@ in {
   };
 
   config = let
+    passmenu = pkgs.callPackage ../packages/passmenu {};
+
     variables = builtins.concatStringsSep " " [
       "DISPLAY"
       "HYPRLAND_INSTANCE_SIGNATURE"
@@ -124,6 +126,8 @@ in {
             "${mainMod}, Space, exec, ${launcher}"
             ", PRINT, exec, ${screenshot} -m region"
             "SHIFT, PRINT, exec, ${screenshot} -m window"
+
+            "${mainMod}, P, exec, ${passmenu}"
 
             "${mainMod}, h, movefocus, l"
             "${mainMod}, l, movefocus, r"

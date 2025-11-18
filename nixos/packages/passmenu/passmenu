@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+passdir=${PASSWORD_STORE_DIR:-$HOME/.password-store}
+
+get_username() {
+  local entry 
+  entry="$1"
+
+  while read -r line; do
+    if [[ "$line" == username:* ]]; then
+      # shellcheck disable=SC2001
+      echo "$line" | sed 's/username:\s*//'
+      return 0
+    fi
+  done < <(pass show "$entry")
+
+  while read -r line; do
+    if [[ "$line" == user:* ]]; then
+      # shellcheck disable=SC2001
+      echo "$line" | sed 's/user:\s*//'
+      return 0
+    fi
+  done < <(pass show "$entry")
+
+  while read -r line; do
+    if [[ "$line" == email:* ]]; then
+      # shellcheck disable=SC2001
+      echo "$line" | sed 's/email:\s*//'
+      return 0
+    fi
+  done < <(pass show "$entry")
+
+  exit 1
+}
+
+option_menu() {
+  local opt entry
+  entry="$1"
+  opt=$(echo -e "Username\nPassword\nOTP" | rofi -dmenu -i -p "Type")
+
+  case "$opt" in
+    "Username") 
+      get_username "$entry"
+    ;;
+    "Password")
+      pass show "$entry" | head -n1
+    ;;
+    "OTP")
+      pass otp "$entry"
+    ;;
+    *) return 1 
+    ;;
+  esac
+}
+
+main() {
+  local passwords entry res
+
+  passwords=$(find -L "$passdir" -type f -name '*.gpg' -printf '%P\n' | sed 's/\.gpg//')
+  entry=$(echo "${passwords}" | rofi -dmenu -i -p "Account")
+  [[ -n "$entry" ]] || exit 1
+
+  res=$(option_menu "$entry")
+
+  wtype "$res"
+}
+
+main
