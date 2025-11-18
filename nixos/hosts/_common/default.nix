@@ -17,12 +17,11 @@
     gnupg
     jq
     openconnect # TODO: move into module?
+    wlrctl
     expect # TODO: move into module?
     (pass.withExtensions (ext: with ext; [pass-otp pass-update pass-audit]))
     (callPackage ../../packages/rebuild_system.nix {})
   ];
-
-  programs.ydotool.enable = true;
 
   # Theming
   catppuccin = {
