@@ -1,36 +1,21 @@
 #!/usr/bin/env bash
 
+set -o pipefail
+
 passdir=${PASSWORD_STORE_DIR:-$HOME/.password-store}
 
 get_username() {
-  local entry 
+  local entry raw
   entry="$1"
 
-  while read -r line; do
-    if [[ "$line" == username:* ]]; then
-      # shellcheck disable=SC2001
-      echo "$line" | sed 's/username:\s*//'
-      return 0
-    fi
-  done < <(pass show "$entry")
+  [[ -n "$entry" ]] || exit 1
 
-  while read -r line; do
-    if [[ "$line" == user:* ]]; then
-      # shellcheck disable=SC2001
-      echo "$line" | sed 's/user:\s*//'
-      return 0
-    fi
-  done < <(pass show "$entry")
-
-  while read -r line; do
-    if [[ "$line" == email:* ]]; then
-      # shellcheck disable=SC2001
-      echo "$line" | sed 's/email:\s*//'
-      return 0
-    fi
-  done < <(pass show "$entry")
-
-  exit 1
+  raw=$(pass show "$entry")
+  
+  echo "$raw" | grep '^username:' | sed 's/^username:\s*//' \
+    || echo "$raw" | grep '^user:' | sed 's/^user:\s*//' \
+    || echo "$raw" | grep '^email:' | sed 's/^email:\s*//' \
+    || echo ""
 }
 
 option_menu() {
@@ -53,16 +38,24 @@ option_menu() {
   esac
 }
 
+_write() {
+  if [[ -n "$WAYLAND_DISPLAY" ]]; then 
+    wtype "$@"
+  else
+    xdotool type "$@"
+  fi
+}
+
 main() {
   local passwords entry res
 
   passwords=$(find -L "$passdir" -type f -name '*.gpg' -printf '%P\n' | sort | sed 's/\.gpg//')
-  entry=$(echo "${passwords}" | rofi -dmenu -i -p "Account")
+  entry=$(echo "$passwords" | rofi -dmenu -i -p "Account")
   [[ -n "$entry" ]] || exit 1
 
   res=$(option_menu "$entry")
 
-  wtype "$res"
+  _write "$res"
 }
 
 main
