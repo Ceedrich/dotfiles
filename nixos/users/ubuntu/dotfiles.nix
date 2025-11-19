@@ -44,9 +44,7 @@ in {
   home.packages = [
     pkgs.pdfgrep
     pkgs.aseprite
-    (import ../../homemanagerModules/hyprland/rofi/power-menu.nix rec {
-      inherit pkgs;
-
+    (pkgs.callPackage ../../homemanagerModules/hyprland/rofi/power-menu.nix rec {
       lockCommand = "i3lock -f -e -c \"#1e1e2e\"";
       logoutCommand = "/bin/loginctl kill-session self";
       shutdownCommand = "/bin/systemctl poweroff";
@@ -54,5 +52,6 @@ in {
       suspendCommand = "${lockCommand} && /bin/systemctl suspend";
     })
     (pkgs.callPackage ../../packages/space.nix {})
+    (pkgs.callPackage ../../packages/passmenu {})
   ];
 }

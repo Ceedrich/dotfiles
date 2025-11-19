@@ -11,6 +11,7 @@
 in
   pkgs.writeShellApplication {
     name = "passmenu";
+    bashOptions = [];
     runtimeInputs =
       [
         rofi-wayland

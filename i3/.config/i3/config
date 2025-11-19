@@ -26,6 +26,9 @@ exec_always --no-startup-id $HOME/.local/scripts/launch_polybar
 exec_always --no-startup-id xinput set-prop $(xinput list | grep -i "touchpad" | grep -o "id=[0-9]*" | grep -o "[0-9]*") "libinput Natural Scrolling Enabled" 1
 exec_always --no-startup-id xinput set-prop $(xinput list | grep -i "touchpad" | grep -o "id=[0-9]*" | grep -o "[0-9]*") "libinput Tapping Enabled" 1
 
+# Password
+bindsym $mod+p exec "passmenu"
+
 ## Screenshots
 bindsym $mod+Print exec "maim -losc 1,1,1,0.2 | xclip -selection clipboard -t image/png"
 bindsym Print exec "maim -losc 1,1,1,0.2 \
