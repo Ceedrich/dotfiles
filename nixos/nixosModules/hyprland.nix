@@ -187,16 +187,16 @@ in {
             disable_hyprland_logo = true;
           };
 
-          windowrulev2 = let
+          windowrule = let
             floating = [
-              "org.pulseaudio.pavucontrol"
-              ".blueman-manager-wrapped"
+              "org\\.pulseaudio\\.pavucontrol"
+              "\\.blueman-manager-wrapped"
             ];
           in [
-            "opacity 0.9 0.8, class:^com\\.mitchellh\\.ghostty"
+            "opacity 0.9 0.8, class:com\\.mitchellh\\.ghostty"
+            "float, class:(${lib.strings.concatStringsSep "|" floating})"
             "suppressevent maximize, class:.*"
             "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-            "float, class:(${lib.strings.concatStringsSep "|" floating})"
           ];
         };
       };

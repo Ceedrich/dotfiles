@@ -1,14 +1,16 @@
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
 building the system configuration...
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
-stopping the following units: accounts-daemon.service
-NOT restarting the following changed units: display-manager.service
+these 3 derivations will be built:
+  /nix/store/zjhdxzxsm0sillmx3ixw9n9xhgm2i8hn-etc-xdg-hypr-hyprland.conf.drv
+  /nix/store/074namrq1nfgdhq9mrp5rcfwamv3yacr-etc.drv
+  /nix/store/fczk0gk4wpqm9283hc8w2zwh6q9sclz5-nixos-system-gaming-25.05.20251116.4c8cdd5.drv
+building '/nix/store/zjhdxzxsm0sillmx3ixw9n9xhgm2i8hn-etc-xdg-hypr-hyprland.conf.drv'...
+building '/nix/store/074namrq1nfgdhq9mrp5rcfwamv3yacr-etc.drv'...
+building '/nix/store/fczk0gk4wpqm9283hc8w2zwh6q9sclz5-nixos-system-gaming-25.05.20251116.4c8cdd5.drv'...
 activating the configuration...
 setting up /etc...
 reloading user units for ceedrich...
 restarting sysinit-reactivation.target
-reloading the following units: dbus.service
-restarting the following units: polkit.service
-starting the following units: accounts-daemon.service
-the following new units were started: NetworkManager-dispatcher.service
-Done. The new configuration is /nix/store/0y9aivy6b6vxj1wgmzls2fyk2gw4ibz0-nixos-system-gaming-25.05.20251116.4c8cdd5
+the following new units were started: NetworkManager-dispatcher.service, sysinit-reactivation.target, systemd-tmpfiles-resetup.service
+Done. The new configuration is /nix/store/gvx5sjrm824kwz6gh8s5bkzp2m2hrjr2-nixos-system-gaming-25.05.20251116.4c8cdd5
