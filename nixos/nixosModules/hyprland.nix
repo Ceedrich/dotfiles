@@ -194,7 +194,7 @@ in {
             ];
           in
             [
-              "opacity 0.8 0.5, match:class com\.mitchellh\.ghostty"
+              "opacity 0.7 0.6, match:class com\.mitchellh\.ghostty"
               "suppress_event maximize, match:class .*"
               # "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
             ]
