@@ -194,11 +194,11 @@ in {
             ];
           in
             [
-              "opacity 0.9 0.8, class:(com.mitchellh.ghostty)"
-              "suppressevent maximize, class:.*"
-              "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+              "opacity 0.9 0.8, match:class com\.mitchellh\.ghostty"
+              "suppress_event maximize, match:class .*"
+              # "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
             ]
-            ++ (builtins.map (regex: "float, class:(${regex})") floating);
+            ++ (builtins.map (regex: "float on, match:class ${regex}") floating);
         };
       };
 
