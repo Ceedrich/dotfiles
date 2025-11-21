@@ -30,6 +30,7 @@ in {
     brave.enable = true;
     ghostty.enable = true;
     spotify.enable = true;
+    waybar.enable = true;
     # minesweeper.enable = true;
     # discord.enable = true;
 

@@ -1,7 +1,7 @@
 {}: rec {
   name = "clock";
   settings.${name} = {
-    format = "{:%H:%M}";
+    format = "{:%d.%m.%Y | %H:%M}";
     interval = 1;
     tooltip-format = "<tt><small>{calendar}</small></tt>";
     calendar = {
@@ -21,7 +21,8 @@
     #css
     ''
       #clock {
-        border-bottom: 2px solid;
+          color: @overlay0;
+          border: none;
       }
     '';
 }

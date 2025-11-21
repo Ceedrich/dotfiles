@@ -13,5 +13,9 @@
     /*
     css
     */
-    '''';
+    ''
+      #${name} {
+        border-bottom: 2px solid;
+      }
+    '';
 }

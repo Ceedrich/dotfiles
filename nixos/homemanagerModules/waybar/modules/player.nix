@@ -1,10 +1,17 @@
-{playerctl}: let
+{
+  # Defines the order, players should be targeted in. Only the first available player will work. If none of the specified players is available, the first other player will be used.
+  playerPriorities ? ["spotify" "vlc"],
+  playerctl,
+  lib,
+}: let
   prev = "custom/music-player-prev";
   main = "custom/music-player-main";
   next = "custom/music-player-next";
 in rec {
   name = "group/music-player";
   settings = let
+    players = "${lib.strings.concatStringsSep "," playerPriorities},%any";
+    playercmd = "${playerctl}/bin/playerctl --player='${players}'";
   in {
     ${name} = {
       orientation = "inherit";
@@ -17,12 +24,10 @@ in rec {
       tooltip = true;
       tooltip-format = "Play/Pause";
       escape = true;
-      on-click = "${playerctl}/bin/playerctl play-pause";
-      on-click-right = let
-        player = "${playerctl}/bin/playerctl -l | head -n1";
-      in ''hyprctl dispatch focuswindow "class:(?i:^.*$(${player}).*)"'';
+      on-click = "${playercmd} play-pause 2>/dev/null";
+      on-click-right = ''hyprctl dispatch focuswindow "class:(?i:^.*$(${playercmd} -l | head -n1).*)"'';
       max-length = 50;
-      exec = "${playerctl}/bin/playerctl metadata --format='{{ artist }} - {{ title }}'";
+      exec = "${playercmd} metadata --format='{{ artist }} - {{ title }}' 2>/dev/null";
     };
     ${prev} = {
       format = "{icon}";
@@ -32,8 +37,8 @@ in rec {
       tooltip-format = "Previous";
       escape = true;
       max-length = 50;
-      on-click = "${playerctl}/bin/playerctl previous";
-      exec = "${playerctl}/bin/playerctl status";
+      on-click = "${playercmd} previous 2>/dev/null";
+      exec = "${playercmd} status 2>/dev/null";
     };
     ${next} = {
       format = "{icon}";
@@ -43,8 +48,8 @@ in rec {
       tooltip-format = "Next";
       escape = true;
       max-length = 50;
-      on-click = "${playerctl}/bin/playerctl next";
-      exec = "${playerctl}/bin/playerctl status";
+      on-click = "${playercmd} next 2>/dev/null";
+      exec = "${playercmd} status 2>/dev/null";
     };
   };
   style =
