@@ -22,7 +22,6 @@
     ''
       #clock {
           color: @overlay0;
-          border: none;
       }
     '';
 }

@@ -9,7 +9,7 @@ in {
     clearDefaultKeybinds = true;
     settings = {
       font-family = "JetBrainsMono Nerd Font";
-      font-size = 16;
+      font-size = 14;
       theme = "catppuccin-mocha";
       window-decoration = false;
       confirm-close-surface = false;

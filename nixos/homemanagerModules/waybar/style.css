@@ -6,8 +6,8 @@
 }
 
 window#waybar {
-  background: transparent;
   background-color: @crust;
+  opacity: 0.8;
   color: @overlay0;
   transition-property: background-color;
   transition-duration: 0.1s;
@@ -20,16 +20,10 @@ window#waybar {
   padding-right: 8px;
 }
 
-button {
-  box-shadow: inset 0 -3px transparent;
-  border: none;
-  border-radius: 0px;
-}
-
 button:hover {
   background: inherit;
   color: @mauve;
-  border-bottom: 2px solid @mauve;
+  border-bottom: 2px solid;
 }
 
 label.module {

@@ -22,7 +22,6 @@
       }
       #pulseaudio.muted {
         color: @overlay0;
-        border-color: @overlay0;
       }
     '';
 }
