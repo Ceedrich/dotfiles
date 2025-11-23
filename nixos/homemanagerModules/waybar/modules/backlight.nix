@@ -1,17 +1,23 @@
-{}: rec {
-  name = "backlight";
-  settings.${name} = {
-    format = "{percent}% {icon}";
-    format-icons = ["󱩎" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨"];
-    tooltip = false;
+{lib, ...}: {
+  options.programs.waybar.modules.backlight = {
+    enable = lib.mkOption {
+      description = "enable backlight module";
+      default = true;
+      type = lib.types.bool;
+    };
   };
-  style =
-    /*
-    css
-    */
-    ''
-      #${name} {
-        border-bottom: 2px solid;
-      }
-    '';
+  config.programs.waybar = {
+    settings.mainBar."backlight" = {
+      format = "{percent}% {icon}";
+      format-icons = ["󱩎" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨"];
+      tooltip = false;
+    };
+    style =
+      # css
+      ''
+        #backlight {
+          border-bottom: 2px solid;
+        }
+      '';
+  };
 }

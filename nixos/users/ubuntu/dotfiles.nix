@@ -15,6 +15,12 @@
             --add-flags "--no-sandbox"
         '';
     });
+
+  lockCommand = "swaylock -f -e -c '#1e1e2e'";
+  logoutCommand = "/bin/loginctl kill-session self";
+  shutdownCommand = "/bin/systemctl poweroff";
+  rebootCommand = "/bin/systemctl reboot";
+  suspendCommand = "${lockCommand} && /bin/systemctl suspend";
 in {
   imports = [
     ../minimal/dotfiles.nix
@@ -30,7 +36,19 @@ in {
     brave.enable = true;
     ghostty.enable = true;
     spotify.enable = true;
-    waybar.enable = true;
+    waybar = {
+      enable = true;
+      enableSwaySupport = true;
+      modules.powermenu = {
+        inherit
+          lockCommand
+          shutdownCommand
+          rebootCommand
+          suspendCommand
+          logoutCommand
+          ;
+      };
+    };
     # minesweeper.enable = true;
     # discord.enable = true;
 
@@ -46,11 +64,13 @@ in {
     pkgs.pdfgrep
     pkgs.aseprite
     (pkgs.callPackage ../../homemanagerModules/hyprland/rofi/power-menu.nix rec {
-      lockCommand = "i3lock -f -e -c \"#1e1e2e\"";
-      logoutCommand = "/bin/loginctl kill-session self";
-      shutdownCommand = "/bin/systemctl poweroff";
-      rebootCommand = "/bin/systemctl reboot";
-      suspendCommand = "${lockCommand} && /bin/systemctl suspend";
+      inherit
+        lockCommand
+        shutdownCommand
+        rebootCommand
+        suspendCommand
+        logoutCommand
+        ;
     })
     (pkgs.callPackage ../../packages/space.nix {})
     (pkgs.callPackage ../../packages/passmenu {})

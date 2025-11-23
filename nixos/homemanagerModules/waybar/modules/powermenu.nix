@@ -1,76 +1,117 @@
 {
   lib,
-  callPackage,
+  config,
+  pkgs,
+  ...
 }: let
-  poweroff = "custom/poweroff";
-  logout = "custom/logout";
-  lock = "custom/lock";
-  reboot = "custom/reboot";
-
-  confirm-dialogue = callPackage ../../hyprland/rofi/confirm-dialogue.nix {};
-  doConfirm = lib.getExe confirm-dialogue;
-in rec {
   name = "group/powermenu";
-  settings = {
-    ${name} = {
-      orientation = "inherit";
-      drawer = {
-        transition-duration = 500;
-        children-class = "not-power";
+
+  poweroff = "custom/powermenu-poweroff";
+  logout = "custom/powermenu-logout";
+  lock = "custom/powermenu-lock";
+  reboot = "custom/powermenu-reboot";
+  suspend = "custom/powermenu-suspend";
+
+  confirm-dialogue = pkgs.callPackage ../../hyprland/rofi/confirm-dialogue.nix {};
+  mkConfirm = label: cmd: ''${lib.getExe confirm-dialogue} "${label}" "${cmd}"'';
+  cfg = config.programs.waybar.modules.powermenu;
+in {
+  options.programs.waybar.modules.powermenu = {
+    enable = lib.mkOption {
+      description = "enable powermenu module";
+      default = true;
+      type = lib.types.bool;
+    };
+    shutdownCommand = lib.mkOption {
+      default = "systemctl poweroff";
+      type = lib.types.str;
+    };
+    logoutCommand = lib.mkOption {
+      default = "loginctl kill-session self";
+      type = lib.types.str;
+    };
+    rebootCommand = lib.mkOption {
+      default = "systemctl reboot";
+      type = lib.types.str;
+    };
+    lockCommand = lib.mkOption {
+      default = "loginctl lock-session self";
+      type = lib.types.str;
+    };
+    suspendCommand = lib.mkOption {
+      default = "${cfg.lockCommand}; systemctl suspend";
+      type = lib.types.str;
+    };
+  };
+  config.programs.waybar = {
+    settings.mainBar = {
+      ${name} = {
+        orientation = "inherit";
+        drawer = {
+          transition-duration = 500;
+          children-class = "not-power";
+          # BUG: See https://github.com/Alexays/Waybar/issues/4382
+          on-scroll-up = "true";
+          on-scroll-down = "true";
+        };
+        modules = [poweroff logout lock suspend reboot];
+      };
+
+      ${poweroff} = rec {
+        format = "󰐥";
+        tooltip-format = "Poweroff";
+        on-click = mkConfirm "${format} ${tooltip-format}" cfg.shutdownCommand;
         # BUG: See https://github.com/Alexays/Waybar/issues/4382
         on-scroll-up = "true";
         on-scroll-down = "true";
       };
-      modules = [poweroff logout lock reboot];
+      ${suspend} = {
+        format = "󰏥";
+        tooltip-format = "Suspend";
+        on-click = cfg.suspendCommand;
+        on-scroll-up = "true";
+        on-scroll-down = "true";
+      };
+      ${logout} = rec {
+        format = "󰍃";
+        tooltip-format = "Logout";
+        on-click = mkConfirm "${format} ${tooltip-format}" cfg.logoutCommand;
+        # BUG: See https://github.com/Alexays/Waybar/issues/4382
+        on-scroll-up = "true";
+        on-scroll-down = "true";
+      };
+      ${lock} = {
+        format = "󰌾";
+        tooltip-format = "Lock";
+        on-click = cfg.lockCommand;
+        # BUG: See https://github.com/Alexays/Waybar/issues/4382
+        on-scroll-up = "true";
+        on-scroll-down = "true";
+      };
+      ${reboot} = rec {
+        format = "󰜉";
+        tooltip-format = "Reboot";
+        on-click = mkConfirm "${format} ${tooltip-format}" cfg.rebootCommand;
+      };
     };
+    style =
+      #css
+      ''
+        #custom-poweroff,
+        #custom-logout,
+        #custom-lock,
+        #custom-reboot {
+          padding: 0px 8px;
+        }
 
-    ${poweroff} = {
-      format = "󰐥";
-      tooltip-format = "Poweroff";
-      on-click = "${doConfirm} \"Shutdown\" \"systemctl poweroff\"";
-      # BUG: See https://github.com/Alexays/Waybar/issues/4382
-      on-scroll-up = "true";
-      on-scroll-down = "true";
-    };
-    ${logout} = {
-      format = "󰍃";
-      tooltip-format = "Logout";
-      on-click = "${doConfirm} \"Logout\" \"hyprctl dispatch exit\"";
-      # BUG: See https://github.com/Alexays/Waybar/issues/4382
-      on-scroll-up = "true";
-      on-scroll-down = "true";
-    };
-    ${lock} = {
-      format = "󰌾";
-      tooltip-format = "Lock";
-      on-click = "hyprlock";
-      # BUG: See https://github.com/Alexays/Waybar/issues/4382
-      on-scroll-up = "true";
-      on-scroll-down = "true";
-    };
-    ${reboot} = {
-      format = "󰜉";
-      tooltip-format = "Reboot";
-      on-click = "${doConfirm} \"Reboot\" \"reboot\"";
-    };
+        #custom-poweroff:hover,
+        #custom-logout:hover,
+        #custom-lock:hover,
+        #custom-reboot:hover {
+          padding: 0px 8px;
+          border-bottom: 2px solid;
+        }
+
+      '';
   };
-  style =
-    #css
-    ''
-      #custom-poweroff,
-      #custom-logout,
-      #custom-lock,
-      #custom-reboot {
-        padding: 0px 8px;
-      }
-
-      #custom-poweroff:hover,
-      #custom-logout:hover,
-      #custom-lock:hover,
-      #custom-reboot:hover {
-        padding: 0px 8px;
-        border-bottom: 2px solid;
-      }
-
-    '';
 }
