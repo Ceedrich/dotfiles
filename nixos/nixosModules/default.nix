@@ -5,5 +5,6 @@
     ./kanata.nix
     ./steam.nix
     ./owncloud.nix
+    ./mpvpaper.nix
   ];
 }

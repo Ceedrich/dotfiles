@@ -21,6 +21,7 @@
   systemd.packages = with pkgs; [lact];
   systemd.services.lactd.wantedBy = ["multi-user.target"];
 
+  services.mpvpaper.enable = true;
   services.openssh = {
     enable = true;
     ports = [22];
