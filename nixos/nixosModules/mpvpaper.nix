@@ -13,7 +13,7 @@ in {
   config = lib.mkIf cfg.enable {
     systemd.user.services.mpvpaper = {
       enable = cfg.enable;
-      wantedBy = ["default.target"];
+      wantedBy = ["graphical-session.target"];
       serviceConfig = {
         Type = "simple";
         ExecStart = ''${lib.getExe cfg.package} -so "no-audio loop" "*" ${./wallpaper.mp4}'';
