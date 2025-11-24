@@ -7,7 +7,8 @@
 
 window#waybar {
   background-color: @crust;
-  opacity: 0.8;
+  /* BUG: See https://github.com/Alexays/Waybar/issues/3869  */
+  /* opacity: 0.8; */
   color: @overlay0;
   transition-property: background-color;
   transition-duration: 0.1s;
