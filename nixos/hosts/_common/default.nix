@@ -21,6 +21,7 @@
     expect # TODO: move into module?
     (pass.withExtensions (ext: with ext; [pass-otp pass-update pass-audit]))
     (callPackage ../../packages/rebuild_system.nix {})
+    catppuccin-cursors.mochaMauve
   ];
 
   # Theming
