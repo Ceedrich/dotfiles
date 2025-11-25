@@ -23,7 +23,6 @@
 
       #workspaces button.active,
       #workspaces button.focused {
-        background-color: rgba(0, 0, 0, 0.3);
         color: @mauve;
         border-bottom: 2px solid;
       }

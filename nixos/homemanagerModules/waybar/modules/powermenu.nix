@@ -97,18 +97,19 @@ in {
     style =
       #css
       ''
-        #custom-poweroff,
-        #custom-logout,
-        #custom-lock,
-        #custom-reboot {
+        #custom-powermenu-poweroff,
+        #custom-powermenu-logout,
+        #custom-powermenu-lock,
+        #custom-powermenu-reboot,
+        #custom-powermenu-suspend {
+          color: @blue;
           padding: 0px 8px;
         }
 
-        #custom-poweroff:hover,
-        #custom-logout:hover,
-        #custom-lock:hover,
-        #custom-reboot:hover {
-          padding: 0px 8px;
+        #custom-powermenu-poweroff:hover,
+        #custom-powermenu-logout:hover,
+        #custom-powermenu-lock:hover,
+        #custom-powermenu-reboot:hover {
           border-bottom: 2px solid;
         }
 

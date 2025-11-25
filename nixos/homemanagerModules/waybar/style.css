@@ -28,15 +28,13 @@ button:hover {
 
 label.module {
   padding: 0 4px;
-  margin: 2px 2px;
+  margin: 2px 4px;
 }
 
 .modules-right :nth-child(even) label.module {
   color: @blue;
-  border-color: @blue;
 }
 
 .modules-right :nth-child(odd) label.module {
   color: @mauve;
-  border-color: @mauve;
 }
