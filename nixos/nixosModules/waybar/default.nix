@@ -46,26 +46,27 @@ in {
       };
 
       services.waybar = {
-settings.mainBar = {
-        position = "top";
-        modules-left =
-          lib.optional m.clock.enable "clock"
-          # Window
-          ++ lib.optional (m.window.enable && cfg.enableSwaySupport) "sway/window"
-          ++ lib.optional (m.window.enable && cfg.enableHyprlandSupport) "hyprland/window";
-        modules-center = lib.optional m.player.enable "group/music-player";
-        modules-right =
-          # Workspaces
-          (lib.optional (m.workspaces.enable && cfg.enableSwaySupport) "sway/workspaces")
-          ++ (lib.optional (m.workspaces.enable && cfg.enableHyprlandSupport) "hyprland/workspaces")
-          # Other modules
-          ++ (lib.optional m.audio.enable "pulseaudio")
-          ++ (lib.optional m.battery.enable "battery")
-          ++ (lib.optional m.backlight.enable "backlight")
-          ++ (lib.optional m.idle_inhibitor.enable "idle_inhibitor")
-          ++ (lib.optional m.powermenu.enable "group/powermenu")
-          ++ (lib.optional m.tray.enable "tray");
-      };
+        style = builtins.readFile ./style.css;
+        settings.mainBar = {
+          position = "top";
+          modules-left =
+            lib.optional m.clock.enable "clock"
+            # Window
+            ++ lib.optional (m.window.enable && cfg.enableSwaySupport) "sway/window"
+            ++ lib.optional (m.window.enable && cfg.enableHyprlandSupport) "hyprland/window";
+          modules-center = lib.optional m.player.enable "group/music-player";
+          modules-right =
+            # Workspaces
+            (lib.optional (m.workspaces.enable && cfg.enableSwaySupport) "sway/workspaces")
+            ++ (lib.optional (m.workspaces.enable && cfg.enableHyprlandSupport) "hyprland/workspaces")
+            # Other modules
+            ++ (lib.optional m.audio.enable "pulseaudio")
+            ++ (lib.optional m.battery.enable "battery")
+            ++ (lib.optional m.backlight.enable "backlight")
+            ++ (lib.optional m.idle_inhibitor.enable "idle_inhibitor")
+            ++ (lib.optional m.powermenu.enable "group/powermenu")
+            ++ (lib.optional m.tray.enable "tray");
+        };
       };
 
       systemd.user.services.waybar = {
