@@ -7,7 +7,7 @@
   cfg = config.services.waybar;
   jsonFormat = pkgs.formats.json {};
 in {
-  imports = [./modules];
+  imports = [./modules ./catppuccin.nix];
   options.services.waybar = {
     enable = lib.mkEnableOption "enable waybar";
     package = lib.mkPackageOption pkgs "waybar" {};
@@ -45,7 +45,8 @@ in {
         text = cfg.style;
       };
 
-      services.waybar.settings.mainBar = {
+      services.waybar = {
+settings.mainBar = {
         position = "top";
         modules-left =
           lib.optional m.clock.enable "clock"
@@ -64,6 +65,7 @@ in {
           ++ (lib.optional m.idle_inhibitor.enable "idle_inhibitor")
           ++ (lib.optional m.powermenu.enable "group/powermenu")
           ++ (lib.optional m.tray.enable "tray");
+      };
       };
 
       systemd.user.services.waybar = {
