@@ -7,6 +7,7 @@
   };
   services.hyprpaper.enable = false;
   programs.waybar = {
+    enable = false;
     enableHyprlandSupport = true;
     modules = {
       battery.enable = false;

@@ -6,5 +6,6 @@
     ./steam.nix
     ./owncloud.nix
     ./mpvpaper.nix
+    ./waybar
   ];
 }

@@ -5,6 +5,14 @@
   programs.hyprland.enable = true;
 
   services.owncloud.enable = true;
+  services.waybar = {
+    enable = true;
+    modules = {
+      battery.enable = false;
+      backlight.enable = false;
+    };
+    enableHyprlandSupport = true;
+  };
 
   settings.bluetooth.enable = true;
 
