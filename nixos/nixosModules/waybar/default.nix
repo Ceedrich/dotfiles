@@ -33,7 +33,8 @@ in {
     };
   };
   config = let
-    configuration = jsonFormat.generate "waybar-config.json" cfg.settings;
+    settings = lib.attrsets.attrValues cfg.settings;
+    configuration = jsonFormat.generate "waybar-config.json" settings;
     m = cfg.modules;
   in
     lib.mkIf cfg.enable {
