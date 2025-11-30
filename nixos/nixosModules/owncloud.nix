@@ -14,7 +14,11 @@ in {
     systemd.user.services.owncloud = {
       enable = cfg.enable;
       wantedBy = ["graphical-session.target"];
-      after = ["network.target"];
+      after = [
+        "network.target"
+        "graphical-session-pre.target"
+        "dbus.service"
+      ];
       wants = ["network.target"];
       serviceConfig = {
         Type = "simple";
