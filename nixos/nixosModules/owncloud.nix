@@ -13,13 +13,11 @@ in {
     services.gnome.gnome-keyring.enable = true;
     systemd.user.services.owncloud = {
       enable = cfg.enable;
+      description = "OwnCloud Client";
+      partOf = ["graphical-session.target"];
+      after = ["graphical-session.target"];
       wantedBy = ["graphical-session.target"];
-      after = [
-        "network.target"
-        "graphical-session-pre.target"
-        "dbus.service"
-      ];
-      wants = ["network.target"];
+
       serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.owncloud-client}/bin/owncloud";
