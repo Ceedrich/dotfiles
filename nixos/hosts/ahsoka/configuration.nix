@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-unstable,
+  ...
+}: {
   imports = [./hardware-configuration.nix];
 
   programs.steam.enable = true;
@@ -44,6 +48,7 @@
   networking.firewall.allowedTCPPorts = [22];
 
   services.tailscale.enable = true;
+  services.tailscale.package = pkgs-unstable.tailscale;
 
   system.stateVersion = "24.11";
 }
