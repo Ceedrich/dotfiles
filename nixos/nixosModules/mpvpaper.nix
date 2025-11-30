@@ -16,7 +16,7 @@ in {
       wantedBy = ["graphical-session.target"];
       serviceConfig = {
         Type = "simple";
-        ExecStart = ''${lib.getExe cfg.package} -so "no-audio loop" "*" ${./wallpaper.mp4}>/dev/null'';
+        ExecStart = ''${lib.getExe cfg.package} -so "no-audio loop" "*" ${./wallpaper.mp4}'';
         Restart = "on-failure";
       };
     };
