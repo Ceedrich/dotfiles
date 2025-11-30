@@ -13,7 +13,7 @@ in {
     services.gnome.gnome-keyring.enable = true;
     systemd.user.services.owncloud = {
       enable = cfg.enable;
-      wantedBy = ["default.target"];
+      wantedBy = ["graphical-session.target"];
       after = ["network.target"];
       wants = ["network.target"];
       serviceConfig = {
