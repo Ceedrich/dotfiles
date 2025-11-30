@@ -63,10 +63,18 @@
       inputs.ceedrichVim.homeModules.${system}.default
     ];
 
+    extraSpecialArgs = {
+      meta = {inherit machines;};
+      inherit
+        inputs
+        pkgs-unstable
+        nixgl
+        ;
+    };
+
     mkHomeManager = dir: user:
       home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {inherit inputs pkgs-unstable nixgl;};
+        inherit pkgs extraSpecialArgs;
 
         modules =
           [
@@ -104,6 +112,7 @@
           {
             home-manager.useGlobalPkgs = false;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = extraSpecialArgs;
             home-manager.users =
               pkgs.lib.mapAttrs (user: dir: {
                 imports =

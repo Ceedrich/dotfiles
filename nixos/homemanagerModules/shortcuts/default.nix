@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  meta,
   ...
 }: {
   options.shortcuts = {
@@ -29,7 +30,7 @@
       };
       jellyfin = mkShortcut "jellyfin" {
         name = "Jellyfin";
-        url = "http://fun-machine";
+        url = "http://${meta.machines.jabba.hostname}";
       };
     };
 
