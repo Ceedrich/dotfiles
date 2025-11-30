@@ -80,11 +80,19 @@
           ++ hm-modules;
       };
 
+    machines = import ./machines.nix;
+
     mkNixos = hostname: users:
       nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs pkgs-unstable;
-          meta = {inherit hostname system;};
+          meta = {
+            inherit
+              hostname
+              machines
+              system
+              ;
+          };
         };
         modules = [
           ./nixpkgs-issue-55674.nix
@@ -115,8 +123,8 @@
       };
   in {
     nixosConfigurations = utils.generateConfigs mkNixos {
-      fun-machine = {"ceedrich" = "minimal";};
-      gaming = {"ceedrich" = "ceedrich";};
+      jabba = {"ceedrich" = "minimal";};
+      ahsoka = {"ceedrich" = "ceedrich";};
     };
 
     homeConfigurations = utils.generateConfigs mkHomeManager {
