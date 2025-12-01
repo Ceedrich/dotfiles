@@ -1,9 +1,9 @@
 {
-  rofi-wayland,
+  rofi,
   writeShellApplication,
 }: let
   name = "confirm-dialogue";
-  dmenuCommand = "${rofi-wayland}/bin/rofi -dmenu -i -l 2 -p";
+  dmenuCommand = "${rofi}/bin/rofi -dmenu -i -l 2 -p";
 in
   writeShellApplication {
     inherit name;

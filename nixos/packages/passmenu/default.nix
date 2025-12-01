@@ -1,7 +1,7 @@
 {
   waylandSupport ? true,
   xserverSupport ? true,
-  rofi-wayland,
+  rofi,
   pkgs,
   wtype,
   gnused,
@@ -14,7 +14,7 @@ in
     bashOptions = [];
     runtimeInputs =
       [
-        rofi-wayland
+        rofi
         gnused
       ]
       ++ lib.optional waylandSupport wtype

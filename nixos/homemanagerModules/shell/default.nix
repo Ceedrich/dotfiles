@@ -18,7 +18,7 @@ in {
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       historySubstringSearch.enable = true;
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
       initContent =
         /*
         sh

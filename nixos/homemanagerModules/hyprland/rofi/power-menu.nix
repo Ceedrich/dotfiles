@@ -1,5 +1,5 @@
 {
-  dmenuCommand ? "${lib.getExe rofi-wayland} -dmenu -i -l 5 -p \"Power Menu\"",
+  dmenuCommand ? "${lib.getExe rofi} -dmenu -i -l 5 -p \"Power Menu\"",
   lockCommand ? "loginctl lock-session self",
   logoutCommand ? "loginctl kill-session self",
   shutdownCommand ? "systemctl poweroff",
@@ -8,7 +8,7 @@
   lib,
   callPackage,
   writeShellApplication,
-  rofi-wayland,
+  rofi,
 }: let
   join = lib.strings.concatStringsSep;
 

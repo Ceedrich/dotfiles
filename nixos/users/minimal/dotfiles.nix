@@ -5,7 +5,7 @@
   ];
   home.shellAliases.dev = "nix develop --command zsh";
   home.sessionVariables = {
-    MANPAGER="nvim +Man!";
+    MANPAGER = "nvim +Man!";
   };
   programs = {
     neovim.enable = true;
@@ -20,8 +20,10 @@
 
     git = {
       enable = true;
-      userName = "Cedric Lehr";
-      userEmail = "info@ceedri.ch";
+      settings.user = {
+        name = "Cedric Lehr";
+        email = "info@ceedri.ch";
+      };
     };
   };
 }

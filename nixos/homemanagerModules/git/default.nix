@@ -8,7 +8,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.git = lib.mkDefault {
       lfs.enable = true;
-      extraConfig = {
+      settings = {
         core.editor = "nvim";
         init.defaultBranch = "main";
         pull.rebase = true;
