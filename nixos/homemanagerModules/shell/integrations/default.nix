@@ -50,6 +50,7 @@ in {
     programs.bat = mkIf cfg.bat {
       enable = mkDefault true;
     };
+    home.shellAliases.cat = lib.mkIf cfg.bat "bat -pp";
 
     programs.zsh.integrations = mkIf cfg.enable {
       starship = mkDefault true;

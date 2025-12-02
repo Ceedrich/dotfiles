@@ -7,6 +7,7 @@
 
   programs.steam.enable = true;
   programs.hyprland.enable = true;
+  programs.thunderbird.enable = true;
 
   services.waybar = {
     enable = true;

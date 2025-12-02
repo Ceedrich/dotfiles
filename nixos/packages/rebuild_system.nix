@@ -8,7 +8,7 @@
       echo "Build failed!" &&
       cat nixos-switch.log | grep --color -C 3 -E "error|warning" && false
     )
-    gen=$(nixos-rebuild list-generations | grep current)
+    gen=$(nixos-rebuild list-generations | awk '$8 == "True" {print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 }')
     git add .
     git commit -em "$(hostname): $gen"
     popd
