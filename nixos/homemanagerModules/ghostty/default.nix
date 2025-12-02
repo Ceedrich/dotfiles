@@ -14,6 +14,9 @@ in {
       window-decoration = false;
       confirm-close-surface = false;
       title = "Ghostty";
+      bell-features = [
+        "no-title"
+      ];
 
       keybind = [
         "ctrl+shift+r=reload_config"
