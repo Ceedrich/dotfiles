@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../jarjar/minecraft-servers
   ];
 
   programs.steam.enable = true;
