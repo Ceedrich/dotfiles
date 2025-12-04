@@ -1,4 +1,39 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  ceedrichLib,
+  ...
+}: let
+  loader = "fabric";
+  version = "1.21.4";
+  mods = [
+    "rei"
+    "appleskin"
+    "fabric-api"
+    "cloth-config"
+    "lithium"
+    "simple-voice-chat"
+    "beaconextender"
+    "voice-chat-interaction"
+    "enhanced-groups"
+    "jade"
+    "accelerated-decay"
+    "rightclickharvest"
+    "just-player-heads"
+    "just-mob-heads"
+    "passive-endermen"
+    "chunky"
+    "coord-finder"
+    "melius-commands"
+    "clumps"
+    "bannerretrieval"
+  ];
+in {
+  environment.systemPackages = [
+    (ceedrichLib.makeModFetcher {
+      name = "vanillaish";
+      inherit loader version mods;
+    })
+  ];
   services.minecraft-servers.servers."vanillaish" = {
     enable = true;
     package = pkgs.fabricServers.fabric-1_21_4;

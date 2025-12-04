@@ -30,6 +30,7 @@
       url = "github:ceedrich/gnome-mines/vim-keys";
       flake = false;
     };
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
   outputs = {
@@ -39,6 +40,7 @@
     ...
   } @ inputs: let
     utils = import ./utils.nix {};
+    ceedrichLib = pkgs.callPackage ./lib {};
     system = "x86_64-linux";
     makePkgs = npkgs:
       import npkgs {
@@ -69,6 +71,7 @@
         inputs
         pkgs-unstable
         nixgl
+        ceedrichLib
         ;
     };
 
@@ -93,7 +96,11 @@
     mkNixos = hostname: users:
       nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit inputs pkgs-unstable;
+          inherit
+            inputs
+            pkgs-unstable
+            ceedrichLib
+            ;
           meta = {
             inherit
               hostname
@@ -134,6 +141,7 @@
     nixosConfigurations = utils.generateConfigs mkNixos {
       jabba = {"ceedrich" = "minimal";};
       ahsoka = {"ceedrich" = "ceedrich";};
+      jarjar = {};
     };
 
     homeConfigurations = utils.generateConfigs mkHomeManager {

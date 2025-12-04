@@ -3,7 +3,10 @@
   pkgs-unstable,
   ...
 }: {
-  imports = [./hardware-configuration.nix];
+  imports = [
+    ./hardware-configuration.nix
+    ../jarjar/minecraft-servers
+  ];
 
   programs.steam.enable = true;
   programs.hyprland.enable = true;
