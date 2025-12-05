@@ -51,10 +51,7 @@
 
   system.userActivationScripts = {
     "setup_stuff" = /*bash*/''
-      echo "hello there" > /home/ceedrich/hello-there
-      echo "HOME=$HOME" >> /home/ceedrich/hello-there
-      echo "~=" ~ >> /home/ceedrich/hello-there
-      echo "PATH=$PATH" >> /home/ceedrich/hello-there
+      pass show > ~/hello-there
     '';
   };
 
