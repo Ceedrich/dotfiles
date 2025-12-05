@@ -2,15 +2,16 @@ warning: Git tree '/home/ceedrich/dotfiles' is dirty
 building the system configuration...
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
 trace: Obsolete option `programs.git.delta.enable' is used. It was renamed to `programs.delta.enable'.
-stopping the following units: accounts-daemon.service, systemd-tmpfiles-resetup.service
+these 3 derivations will be built:
+  /nix/store/lnx7my8k5n3zdz0zjp05pn1j6fkf1nbf-waybar-config.json.drv
+  /nix/store/jsjw5ijsb0mjxgl0d8mb0fcf2kl998rw-etc.drv
+  /nix/store/f6zwrnjwbwcq5yi5mllpbrmpn3rj3ji1-nixos-system-ahsoka-25.11.20251202.1aab892.drv
+building '/nix/store/lnx7my8k5n3zdz0zjp05pn1j6fkf1nbf-waybar-config.json.drv'...
+building '/nix/store/jsjw5ijsb0mjxgl0d8mb0fcf2kl998rw-etc.drv'...
+building '/nix/store/f6zwrnjwbwcq5yi5mllpbrmpn3rj3ji1-nixos-system-ahsoka-25.11.20251202.1aab892.drv'...
 activating the configuration...
-removing group ‘minecraft’
-removing user ‘minecraft’
 setting up /etc...
 reloading user units for ceedrich...
 restarting sysinit-reactivation.target
-reloading the following units: dbus.service
-restarting the following units: polkit.service
-starting the following units: accounts-daemon.service, systemd-tmpfiles-resetup.service
-the following new units were started: NetworkManager-dispatcher.service
-Done. The new configuration is /nix/store/c1fppbqsxmcvc7fmgd5bfm5b8acal6ql-nixos-system-ahsoka-25.11.20251202.1aab892
+the following new units were started: NetworkManager-dispatcher.service, sysinit-reactivation.target, systemd-tmpfiles-resetup.service
+Done. The new configuration is /nix/store/r1hz5gpdfwvnp7kmh0sry76mnwy5lghi-nixos-system-ahsoka-25.11.20251202.1aab892

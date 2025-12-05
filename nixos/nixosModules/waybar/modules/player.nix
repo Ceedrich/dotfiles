@@ -49,6 +49,9 @@ in {
           on-click-right = ''hyprctl dispatch focuswindow "class:(?i:^.*$(${playercmd} -l | head -n1).*)"'';
           max-length = 50;
           exec = "${playercmd} metadata --format='{{ artist }} - {{ title }}' 2>/dev/null";
+          # BUG: See https://github.com/Alexays/Waybar/issues/4382
+          on-scroll-up = "true";
+          on-scroll-down = "true";
         };
         ${prev} = {
           format = "{icon}";
@@ -60,6 +63,9 @@ in {
           max-length = 50;
           on-click = "${playercmd} previous 2>/dev/null";
           exec = "${playercmd} status 2>/dev/null";
+          # BUG: See https://github.com/Alexays/Waybar/issues/4382
+          on-scroll-up = "true";
+          on-scroll-down = "true";
         };
         ${next} = {
           format = "{icon}";
@@ -71,6 +77,9 @@ in {
           max-length = 50;
           on-click = "${playercmd} next 2>/dev/null";
           exec = "${playercmd} status 2>/dev/null";
+          # BUG: See https://github.com/Alexays/Waybar/issues/4382
+          on-scroll-up = "true";
+          on-scroll-down = "true";
         };
       });
     style =
