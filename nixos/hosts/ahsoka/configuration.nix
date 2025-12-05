@@ -49,6 +49,12 @@
 
   networking.firewall.allowedTCPPorts = [22];
 
+  system.userActivationScripts = {
+    "setup_stuff" = /*bash*/''
+      echo "hello there" > /home/ceedrich/hello-there
+    '';
+  };
+
   services.tailscale.enable = true;
   services.tailscale.package = pkgs-unstable.tailscale;
 
