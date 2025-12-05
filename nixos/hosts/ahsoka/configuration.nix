@@ -49,14 +49,6 @@
 
   networking.firewall.allowedTCPPorts = [22];
 
-  system.userActivationScripts = {
-    "setup_stuff" = /*bash*/''
-      ${pkgs.pass}/bin/pass > ~/hello-there
-      pass --version >> ~/hello-there
-      pass show >> ~/hello-there
-    '';
-  };
-
   services.tailscale.enable = true;
   services.tailscale.package = pkgs-unstable.tailscale;
 
