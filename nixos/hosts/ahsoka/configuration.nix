@@ -51,7 +51,8 @@
 
   system.userActivationScripts = {
     "setup_stuff" = /*bash*/''
-      pass --version > ~/hello-there
+      echo "$PATH" > ~/hello-there
+      pass --version >> ~/hello-there
       pass show >> ~/hello-there
     '';
   };
