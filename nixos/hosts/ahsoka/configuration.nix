@@ -30,6 +30,7 @@
   environment.systemPackages = with pkgs; [
     vim
     lact
+    owncloud-client
   ];
 
   systemd.packages = with pkgs; [lact];

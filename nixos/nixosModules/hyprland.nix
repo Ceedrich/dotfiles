@@ -33,7 +33,6 @@ in {
     autostart = lib.mkOption {
       type = types.listOf types.str;
       default = [
-        "${pkgs.owncloud-client}/bin/owncloud"
         "${pkgs.waybar}/bin/waybar"
         "${pkgs.swaynotificationcenter}/bin/swaync"
         "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
