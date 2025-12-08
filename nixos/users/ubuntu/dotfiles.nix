@@ -25,7 +25,7 @@ in {
   imports = [
     ../minimal/dotfiles.nix
   ];
-  nixGL.packages = nixgl.packages;
+  targets.genericLinux.nixGL.packages = nixgl.packages;
 
   shortcuts = {
     moodle.enable = true;
