@@ -61,6 +61,7 @@ in {
   allowedUnfree = ["aseprite"];
 
   home.packages = [
+    pkgs.texliveFull
     pkgs.pdfgrep
     pkgs.aseprite
     (pkgs.callPackage ../../homemanagerModules/hyprland/rofi/power-menu.nix rec {

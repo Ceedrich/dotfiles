@@ -28,6 +28,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    texliveFull
     vim
     lact
     owncloud-client
