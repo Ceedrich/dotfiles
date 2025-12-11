@@ -1,10 +1,11 @@
 {...}: {
   imports = [
-    ./hyprland.nix
     ./bluetooth.nix
+    ./hyprland.nix
     ./kanata.nix
-    ./steam.nix
     ./mpvpaper.nix
+    ./steam.nix
     ./waybar
+    ./modrinth
   ];
 }

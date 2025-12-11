@@ -14,6 +14,6 @@ in {
       "modrinth-app"
       "modrinth-app-unwrapped"
     ];
-    home.packages = with pkgs; [modrinth-app];
+    environment.systemPackages = with pkgs; [modrinth-app];
   };
 }

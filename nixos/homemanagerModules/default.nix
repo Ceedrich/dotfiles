@@ -11,7 +11,6 @@
     ./btop
     ./yazi
     ./tmux
-    ./modrinth
     ./shortcuts
     ./minesweeper # ERROR: Broken
     ./discord

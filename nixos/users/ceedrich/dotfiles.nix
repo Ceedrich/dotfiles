@@ -39,6 +39,5 @@
     mangohud.enable = true;
     # minesweeper.enable = true;
     discord.enable = true;
-    modrinth.enable = true; # BUG: currently broken 
   };
 }
