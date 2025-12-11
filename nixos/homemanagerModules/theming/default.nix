@@ -12,13 +12,28 @@ in {
   config = lib.mkIf cfg.enable {
     gtk = let
       key = "gtk-application-prefer-dark-theme";
+
+      theme = {
+        name = "catppuccin-mocha-mauve-standard";
+        package = pkgs.catppuccin-gtk.override {
+          variant = "mocha";
+          accents = ["mauve"];
+        };
+      };
     in {
       enable = true;
-      gtk3.extraConfig = {
-        ${key} = 1;
+      inherit theme;
+      gtk3 = {
+        inherit theme;
+        extraConfig = {
+          ${key} = 1;
+        };
       };
-      gtk4.extraConfig = {
-        ${key} = 1;
+      gtk4 = {
+        inherit theme;
+        extraConfig = {
+          ${key} = 1;
+        };
       };
     };
 
