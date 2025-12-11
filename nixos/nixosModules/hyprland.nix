@@ -32,13 +32,7 @@ in {
     };
     autostart = lib.mkOption {
       type = types.listOf types.str;
-      default = [
-        "${pkgs.waybar}/bin/waybar"
-        "${pkgs.swaynotificationcenter}/bin/swaync"
-        "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
-        "${pkgs.blueman}/bin/blueman-applet"
-        "fcitx5"
-      ];
+      default = [];
     };
     powermenu = lib.mkOption {
       type = types.str;
@@ -56,6 +50,8 @@ in {
       type = types.listOf types.package;
       default = with pkgs; [
         networkmanagerapplet
+        swaynotificationcenter
+        blueman
         libnotify
       ];
     };
@@ -94,6 +90,7 @@ in {
       };
 
       programs.hyprland = {
+        withUWSM = lib.mkDefault true;
         package = hyprpkgs.hyprland;
         portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
         xwayland.enable = true;
@@ -109,6 +106,8 @@ in {
             powermenu
             emoji-picker
             ;
+
+          uwsm-run = lib.optionalString cfg.withUWSM "uwsm app --";
         in {
           exec-once =
             [
@@ -120,19 +119,19 @@ in {
 
           # Bindings
           bind = [
-            "${mainMod}, return, exec, ${terminal}"
+            "${mainMod}, return, exec, ${uwsm-run} ${terminal}"
             "${mainMod}, Q, killactive"
-            "${mainMod} SHIFT, Q, exec, ${powermenu}"
+            "${mainMod} SHIFT, Q, exec, ${uwsm-run} ${powermenu}"
 
             "${mainMod}, period, exec, ${emoji-picker}"
             "${mainMod}, T, togglefloating"
             "${mainMod}, F, fullscreen"
 
-            "${mainMod}, Space, exec, ${launcher}"
-            ", PRINT, exec, ${screenshot} -m region"
-            "SHIFT, PRINT, exec, ${screenshot} -m window"
+            "${mainMod}, Space, exec, ${launcher} -run-command '${uwsm-run} {cmd}'"
+            ", PRINT, exec, ${uwsm-run} ${screenshot} -m region"
+            "SHIFT, PRINT, exec, ${uwsm-run} ${screenshot} -m window"
 
-            "${mainMod}, P, exec, ${passmenu}/bin/passmenu"
+            "${mainMod}, P, exec, ${uwsm-run} ${passmenu}/bin/passmenu"
 
             "${mainMod}, h, movefocus, l"
             "${mainMod}, l, movefocus, r"
