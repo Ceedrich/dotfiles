@@ -2,8 +2,8 @@
   imports = [
     ./bluetooth.nix
     ./hyprland.nix
-    ./kanata.nix
-    ./mpvpaper.nix
+    ./kanata
+    ./mpvpaper
     ./steam.nix
     ./waybar
     ./modrinth

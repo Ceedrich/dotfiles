@@ -35,7 +35,6 @@ in {
   programs = {
     brave.enable = true;
     ghostty.enable = true;
-    spotify.enable = true;
     waybar = {
       enable = true;
       enableSwaySupport = true;

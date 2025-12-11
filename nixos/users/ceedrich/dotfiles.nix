@@ -29,7 +29,6 @@
   programs = {
     brave.enable = true;
     ghostty.enable = true;
-    spotify.enable = true;
     mangohud.enable = true;
     # minesweeper.enable = true;
     discord.enable = true;

@@ -8,10 +8,31 @@
     ../jarjar/minecraft-servers
   ];
 
-  programs.steam.enable = true;
-  programs.hyprland.enable = true;
-  programs.thunderbird.enable = true;
-  programs.modrinth.enable = true;
+  programs = {
+    coolercontrol.enable = true;
+    hyprland.enable = true;
+    modrinth.enable = true;
+    steam.enable = true;
+    thunderbird.enable = true;
+  };
+  environment.systemPackages = with pkgs; [
+    lact
+    owncloud-client
+    texliveFull
+    vim
+
+    spotify
+
+    aseprite
+    handbrake
+    ldtk
+    tiled
+  ];
+
+  allowedUnfree = [
+    "aseprite"
+    "spotify"
+  ];
 
   services.waybar = {
     enable = true;
@@ -29,19 +50,6 @@
     enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    texliveFull
-    vim
-    lact
-    owncloud-client
-    handbrake
-    ldtk
-    aseprite
-    tiled
-  ];
-
-  allowedUnfree = ["aseprite"];
-
   systemd.packages = with pkgs; [lact];
   systemd.services.lactd.wantedBy = ["multi-user.target"];
 
@@ -54,8 +62,6 @@
       AllowUsers = null;
     };
   };
-
-  programs.coolercontrol.enable = true;
 
   networking.firewall.allowedTCPPorts = [22];
 

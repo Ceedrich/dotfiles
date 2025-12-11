@@ -7,11 +7,22 @@
     ./hardware-configuration.nix
   ];
 
-  programs.hyprland = {
-    enable = true;
-    extraConfig = "monitor = , preferred, auto, 1";
+  programs = {
+    hyprland = {
+      enable = true;
+      extraConfig = "monitor = , preferred, auto, 1";
+    };
+    thunderbird.enable = true;
   };
-  programs.thunderbird.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    texliveFull
+    vim
+    owncloud-client
+    spotify
+  ];
+
+  allowedUnfree = ["spotify"];
 
   services.waybar = {
     enable = true;
@@ -25,12 +36,6 @@
     enable32Bit = true;
     enable = true;
   };
-
-  environment.systemPackages = with pkgs; [
-    texliveFull
-    vim
-    owncloud-client
-  ];
 
   services.mpvpaper.enable = true;
   services.openssh = {

@@ -6,7 +6,6 @@
     ./shell
     ./ghostty
     ./theming
-    ./spotify
     ./mangohud
     ./btop
     ./yazi
