@@ -112,7 +112,8 @@ in {
             ;
         in {
           # Autostart
-          exec-once = [systemdActivation] ++ autostart;
+          # exec-once = [systemdActivation] ++ autostart;
+          exec-once = autostart;
 
           # Bindings
           bind = [
