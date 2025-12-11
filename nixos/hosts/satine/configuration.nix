@@ -9,7 +9,7 @@
 
   programs.hyprland = {
     enable = true;
-    extraConfig = "monitor = , preferred, audo, 1";
+    extraConfig = "monitor = , preferred, auto, 1";
     };
   programs.thunderbird.enable = true;
 
