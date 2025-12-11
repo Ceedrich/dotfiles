@@ -84,7 +84,7 @@
   };
   i18n.inputMethod = {
     enable = true;
-    type = "fcitx5";
+    type = "ibus";
   };
 
   console.keyMap = "sg";
