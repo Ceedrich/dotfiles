@@ -18,7 +18,6 @@ in {
 
   config = {
     programs = mkIf cfg.enable {
-      waybar.enable = mkDefault true;
       hyprlock.enable = mkDefault true;
       rofi.enable = mkDefault true;
     };
