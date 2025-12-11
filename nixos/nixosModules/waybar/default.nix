@@ -69,15 +69,7 @@ in {
         };
       };
 
-      systemd.user.services.waybar = {
-        enable = true;
-        wantedBy = ["graphcal-session.target"];
-        serviceConfig = {
-          Type = "simple";
-          ExecReload = "${pkgs.coreutils}/bin/kill -SIGUSR2 $MAINPID";
-          ExecStart = "${cfg.package}/bin/waybar";
-          Restart = "on-failure";
-        };
-      };
+      programs.waybar.enable = true;
+      programs.waybar.package = cfg.package;
     };
 }
