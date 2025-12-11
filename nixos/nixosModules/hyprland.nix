@@ -154,6 +154,11 @@ in {
             };
           };
 
+          gestures = {
+            workspace_swipe_distance = 200;
+            workspace_swipe_forever = true;
+          };
+
           gesture = [
             "3, horizontal, workspace"
           ];
