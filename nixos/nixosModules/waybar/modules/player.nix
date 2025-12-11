@@ -46,13 +46,9 @@ in {
           tooltip-format = "Play/Pause";
           escape = true;
           on-click = "${playercmd} play-pause 2>/dev/null";
-<<<<<<< HEAD
-          on-click-right = ''${pkgs.hyprland}/bin/hyprctl dispatch focuswindow "class:(?i:^.*$(${playercmd} -l | head -n1).*)"'';
-=======
           on-click-right = let
             hyprlandPackage = "${config.programs.hyprland.package}";
           in ''${hyprlandPackage}/bin/hyprctl dispatch focuswindow "class:(?i:^.*$(${playercmd} -l | head -n1).*)"''; # TODO: add sway support
->>>>>>> 9042284 (ahsoka: 353	2025-12-12	00:08:31	25.11.20251204.c97c47f	6.12.60	Unknown	[])
           max-length = 50;
           exec = "${playercmd} metadata --format='{{ artist }} - {{ title }}' 2>/dev/null";
           # BUG: See https://github.com/Alexays/Waybar/issues/4382
