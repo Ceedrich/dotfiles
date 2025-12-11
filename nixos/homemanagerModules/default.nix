@@ -13,7 +13,6 @@
     ./shortcuts
     ./minesweeper # ERROR: Broken
     ./vpn
-    ./waybar
   ];
 
   programs.home-manager.enable = lib.mkDefault true;
