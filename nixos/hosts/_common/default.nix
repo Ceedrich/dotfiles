@@ -82,6 +82,7 @@
     layout = "us";
     variant = "altgr-intl";
   };
+  services.xserver.desktopManager.runXdgAutostartIfNone = true;
   i18n.inputMethod = {
     enable = true;
     type = "ibus";
