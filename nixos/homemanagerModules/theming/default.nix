@@ -9,44 +9,46 @@ in {
   options.settings.theming = {
     enable = lib.mkEnableOption "enable theming";
   };
-  config = lib.mkIf cfg.enable {
-    gtk = let
-      key = "gtk-application-prefer-dark-theme";
+  config = let
+    accent = "mauve";
+    flavor = "mocha";
+  in
+    lib.mkIf cfg.enable {
+      gtk = let
+        dark-theme = "gtk-application-prefer-dark-theme";
 
-      theme = {
-        name = "catppuccin-mocha-mauve-standard";
-        package = pkgs.catppuccin-gtk.override {
-          variant = "mocha";
-          accents = ["mauve"];
+        theme = {
+          name = "catppuccin-${flavor}-${accent}-standard";
+          package = pkgs.catppuccin-gtk.override {
+            variant = flavor;
+            accents = [accent];
+          };
+        };
+      in {
+        enable = true;
+        inherit theme;
+        gtk3 = {
+          inherit theme;
+          extraConfig = {
+            ${dark-theme} = 1;
+          };
+        };
+        gtk4 = {
+          inherit theme;
+          extraConfig = {
+            ${dark-theme} = 1;
+          };
         };
       };
-    in {
-      enable = true;
-      inherit theme;
-      gtk3 = {
-        inherit theme;
-        extraConfig = {
-          ${key} = 1;
-        };
-      };
-      gtk4 = {
-        inherit theme;
-        extraConfig = {
-          ${key} = 1;
-        };
+
+      catppuccin.flavor = lib.mkDefault flavor;
+      catppuccin.enable = lib.mkDefault true;
+      catppuccin.zsh-syntax-highlighting.enable = lib.mkDefault false;
+
+      qt = {
+        enable = true;
+        style.name = "kvantum";
+        platformTheme.name = "kvantum";
       };
     };
-
-    catppuccin.flavor = lib.mkDefault "mocha";
-    catppuccin.enable = lib.mkDefault true;
-    catppuccin.zsh-syntax-highlighting.enable = lib.mkDefault false;
-    # catppuccin.gtk.enable = lib.mkDefault true;
-    home.packages = [pkgs.catppuccin-gtk];
-
-    qt = {
-      enable = true;
-      style.name = "kvantum";
-      platformTheme.name = "kvantum";
-    };
-  };
 }
