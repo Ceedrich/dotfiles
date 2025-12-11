@@ -173,6 +173,7 @@ in {
             kb_variant = "altgr-intl";
             follow_mouse = 1;
             touchpad = {
+              scroll_factor = 0.2;
               natural_scroll = true;
             };
           };
