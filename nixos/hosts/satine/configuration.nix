@@ -7,7 +7,10 @@
     ./hardware-configuration.nix
   ];
 
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    extraConfig = "monitor = , preferred, audo, 1";
+    };
   programs.thunderbird.enable = true;
 
   services.waybar = {
