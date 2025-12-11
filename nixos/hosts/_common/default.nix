@@ -83,52 +83,6 @@
     variant = "altgr-intl";
   };
 
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5.settings.inputMethod = {};
-    fcitx5.settings.globalOptions = {
-      "Hotkey" = {
-        TriggerKeys = "";
-        EnumerateWithTriggerKeys = "True";
-        ActivateKeys = "";
-        DeactivateKeys = "";
-        AltTriggerKeys = "";
-        EnumerateForwardKeys = "";
-        EnumerateBackwardKeys = "";
-        EnumerateSkipFirst = "False";
-        EnumerateGroupForwardKeys = "";
-        EnumerateGroupBackwardKeys = "";
-        PrevPage = "";
-        NextPage = "";
-        PrevCandidate = "";
-        NextCandidate = "";
-        TogglePreedit = "";
-        ModifierOnlyKeyTimeout = 250;
-      };
-
-      "Behavior" = {
-        ActiveByDefault = "False";
-        resetStateWhenFocusIn = "No";
-        ShareInputState = "No";
-        PreeditEnabledByDefault = "True";
-        ShowInputMethodInformation = "True";
-        CompactInputMethodInformation = "True";
-        ShowFirstInputMethodInformation = "True";
-        DefaultPageSize = 5;
-        OverrideXkbOption = "False";
-        CustomXkbOption = "";
-        EnabledAddons = "";
-        DisabledAddons = "";
-        PreloadInputMethod = "True";
-        AllowInputMethodForPassword = "False";
-        ShowPreeditForPassword = "False";
-        AutoSavePeriod = 30;
-      };
-    };
-    fcitx5.ignoreUserConfig = true;
-  };
-
   console.keyMap = "sg";
 
   # Nix settings
