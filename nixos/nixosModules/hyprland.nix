@@ -74,7 +74,7 @@ in {
       "systemctl --user stop hyprland-session.target"
       "systemctl --user start hyprland-session.target"
     ]);
-    systemdActivation = "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd ${variables} ${extraCommands}";
+    systemdActivation = "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd ${variables} || true";
   in
     lib.mkIf cfg.enable {
       services.xserver.enable = true;
@@ -111,7 +111,13 @@ in {
             emoji-picker
             ;
         in {
-          exec-once = [systemdActivation] ++ autostart;
+          exec-once =
+            [
+              ''
+                ${pkgs.coreutils}/bin/sh -c "${systemdActivation}"
+              ''
+            ]
+            ++ autostart;
 
           # Bindings
           bind = [
@@ -218,7 +224,7 @@ in {
         enable = true;
         wlr.enable = true;
         extraPortals = [pkgs.xdg-desktop-portal-gtk];
-        configPackages = [ hyprpkgs.xdg-desktop-portal-hyprland ];
+        configPackages = [hyprpkgs.xdg-desktop-portal-hyprland];
       };
 
       hardware = {
