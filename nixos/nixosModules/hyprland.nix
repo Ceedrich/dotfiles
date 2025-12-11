@@ -113,7 +113,11 @@ in {
         in {
           # Autostart
           # exec-once = [systemdActivation] ++ autostart;
-          exec-once = autostart;
+          exec-once =
+            [
+              "systemctl --user start hyprland-session.target"
+            ]
+            ++ autostart;
 
           # Bindings
           bind = [
