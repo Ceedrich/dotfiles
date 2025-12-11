@@ -16,15 +16,9 @@
     };
   };
 
-  allowedUnfree = ["aseprite"];
-
   home.packages = with pkgs; [
     signal-desktop
     vlc
-    handbrake
-    ldtk
-    aseprite
-    tiled
     audacity
   ];
   # Custom HM modules

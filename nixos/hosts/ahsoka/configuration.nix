@@ -34,7 +34,13 @@
     vim
     lact
     owncloud-client
+    handbrake
+    ldtk
+    aseprite
+    tiled
   ];
+
+  allowedUnfree = ["aseprite"];
 
   systemd.packages = with pkgs; [lact];
   systemd.services.lactd.wantedBy = ["multi-user.target"];

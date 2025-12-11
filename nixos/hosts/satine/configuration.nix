@@ -10,7 +10,7 @@
   programs.hyprland = {
     enable = true;
     extraConfig = "monitor = , preferred, auto, 1";
-    };
+  };
   programs.thunderbird.enable = true;
 
   services.waybar = {
@@ -29,12 +29,8 @@
   environment.systemPackages = with pkgs; [
     texliveFull
     vim
-    lact
     owncloud-client
   ];
-
-  systemd.packages = with pkgs; [lact];
-  systemd.services.lactd.wantedBy = ["multi-user.target"];
 
   services.mpvpaper.enable = true;
   services.openssh = {
