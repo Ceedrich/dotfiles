@@ -82,6 +82,10 @@
     layout = "us";
     variant = "altgr-intl";
   };
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+  };
 
   console.keyMap = "sg";
 
