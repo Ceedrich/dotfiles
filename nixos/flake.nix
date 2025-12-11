@@ -141,6 +141,7 @@
     nixosConfigurations = utils.generateConfigs mkNixos {
       jabba = {"ceedrich" = "minimal";};
       ahsoka = {"ceedrich" = "ceedrich";};
+      satine = {"ceedrich" = "ceedrich";};
     };
 
     homeConfigurations = utils.generateConfigs mkHomeManager {
