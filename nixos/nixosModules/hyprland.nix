@@ -70,14 +70,10 @@ in {
       "WAYLAND_DISPLAY"
       "XDG_CURRENT_DESKTOP"
     ];
-    extraCommands = builtins.concatStringsSep " " (map (f: "&& ${f}") [
-      "systemctl --user stop hyprland-session.target"
-      "systemctl --user start hyprland-session.target"
+    systemdActivation = builtins.concatStringsSep " " (map (f: "&& ${f}") [
+      ''${pkgs.dbus}/bin/dbus-update-activation-environment --systemd ${variables} || true''
+      ''${pkgs.systemd}/bin/systemctl --user start hyprland-session.target || true''
     ]);
-    systemdActivation = ''
-      ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd ${variables} || true
-      ${pkgs.systemd}/bin/systemctl --user start hyprland-session.target || true
-    '';
   in
     lib.mkIf cfg.enable {
       services.xserver.enable = true;
