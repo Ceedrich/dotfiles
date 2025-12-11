@@ -12,7 +12,6 @@
     ./tmux
     ./shortcuts
     ./minesweeper # ERROR: Broken
-    ./discord
     ./vpn
     ./waybar
   ];

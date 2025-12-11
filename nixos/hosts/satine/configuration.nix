@@ -17,12 +17,16 @@
 
   environment.systemPackages = with pkgs; [
     texliveFull
-    vim
     owncloud-client
+
+    discord
     spotify
   ];
 
-  allowedUnfree = ["spotify"];
+  allowedUnfree = [
+    "discord"
+    "spotify"
+  ];
 
   services.waybar = {
     enable = true;

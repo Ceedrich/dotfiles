@@ -19,8 +19,8 @@
     lact
     owncloud-client
     texliveFull
-    vim
 
+    discord
     spotify
 
     aseprite
@@ -31,6 +31,7 @@
 
   allowedUnfree = [
     "aseprite"
+    "discord"
     "spotify"
   ];
 

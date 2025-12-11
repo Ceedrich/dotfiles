@@ -29,7 +29,5 @@
     brave.enable = true;
     ghostty.enable = true;
     mangohud.enable = true;
-    # minesweeper.enable = true;
-    discord.enable = true;
   };
 }

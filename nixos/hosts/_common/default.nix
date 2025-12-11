@@ -15,6 +15,7 @@
     pdfgrep
     gnugrep
     gnupg
+    vim
     jq
     openconnect # TODO: move into module?
     wlrctl
