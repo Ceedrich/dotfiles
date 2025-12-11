@@ -59,17 +59,6 @@ in {
 
   config = let
     passmenu = pkgs.callPackage ../packages/passmenu {};
-
-    variables = builtins.concatStringsSep " " [
-      "DISPLAY"
-      "HYPRLAND_INSTANCE_SIGNATURE"
-      "WAYLAND_DISPLAY"
-      "XDG_CURRENT_DESKTOP"
-    ];
-    systemdActivation = builtins.concatStringsSep " " (map (f: "&& ${f}") [
-      ''${pkgs.dbus}/bin/dbus-update-activation-environment --systemd ${variables} || true''
-      ''${pkgs.systemd}/bin/systemctl --user start hyprland-session.target || true''
-    ]);
   in
     lib.mkIf cfg.enable {
       services.xserver.enable = true;
@@ -77,18 +66,7 @@ in {
 
       environment.systemPackages = cfg.extra-packages;
 
-      # From https://github.com/nix-community/home-manager/blob/3b955f5f0a942f9f60cdc9cacb7844335d0f21c3/modules/services/window-managers/hyprland.nix#L330-L340
-      # and https://github.com/nix-community/home-manager/blob/3b955f5f0a942f9f60cdc9cacb7844335d0f21c3/modules/services/window-managers/hyprland.nix
-      # See also UWSM
-      systemd.user.targets.hyprland-session = {
-        enable = true;
-        description = "Hyprland compositor session";
-        documentation = ["man:systemd.special(7)"];
-        bindsTo = ["graphical-session.target"];
-        wants = ["graphical-session-pre.target"];
-        after = ["graphical-session-pre.target"];
-      };
-
+      programs.uwsm.enable = lib.mkDefault true;
       programs.hyprland = {
         withUWSM = lib.mkDefault true;
         package = hyprpkgs.hyprland;
@@ -109,13 +87,7 @@ in {
 
           uwsm-run = lib.optionalString cfg.withUWSM "uwsm app --";
         in {
-          exec-once =
-            [
-              ''
-                ${pkgs.coreutils}/bin/sh -c "${systemdActivation}"
-              ''
-            ]
-            ++ autostart;
+          exec-once = autostart;
 
           # Bindings
           bind = [
