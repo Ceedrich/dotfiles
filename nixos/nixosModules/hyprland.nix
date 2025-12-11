@@ -74,7 +74,10 @@ in {
       "systemctl --user stop hyprland-session.target"
       "systemctl --user start hyprland-session.target"
     ]);
-    systemdActivation = "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd ${variables} || true";
+    systemdActivation = ''
+      ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd ${variables} || true
+      ${pkgs.systemd}/bin/systemctl --user start hyprland-session.target || true
+    '';
   in
     lib.mkIf cfg.enable {
       services.xserver.enable = true;
