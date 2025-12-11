@@ -111,13 +111,7 @@ in {
             emoji-picker
             ;
         in {
-          # Autostart
-          # exec-once = [systemdActivation] ++ autostart;
-          exec-once =
-            [
-              "systemctl --user start hyprland-session.target"
-            ]
-            ++ autostart;
+          exec-once = [systemdActivation] ++ autostart;
 
           # Bindings
           bind = [
@@ -220,9 +214,12 @@ in {
         NIXOS_OZONE_WL = "1";
       };
 
-      xdg.portal.enable = true;
-      xdg.portal.wlr.enable = true;
-      xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+      xdg.portal = {
+        enable = true;
+        wlr.enable = true;
+        extraPortals = [pkgs.xdg-desktop-portal-gtk];
+        configPackages = [ hyprpkgs.xdg-desktop-portal-hyprland ];
+      };
 
       hardware = {
         graphics.enable = true;
