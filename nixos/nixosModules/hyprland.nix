@@ -37,6 +37,7 @@ in {
         "${pkgs.swaynotificationcenter}/bin/swaync"
         "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
         "${pkgs.blueman}/bin/blueman-applet"
+        "fcitx5 -d"
       ];
     };
     powermenu = lib.mkOption {
