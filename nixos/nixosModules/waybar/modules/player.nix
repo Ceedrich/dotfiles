@@ -46,7 +46,7 @@ in {
           tooltip-format = "Play/Pause";
           escape = true;
           on-click = "${playercmd} play-pause 2>/dev/null";
-          on-click-right = ''hyprctl dispatch focuswindow "class:(?i:^.*$(${playercmd} -l | head -n1).*)"'';
+          on-click-right = ''${pkgs.hyprland}/bin/hyprctl dispatch focuswindow "class:(?i:^.*$(${playercmd} -l | head -n1).*)"'';
           max-length = 50;
           exec = "${playercmd} metadata --format='{{ artist }} - {{ title }}' 2>/dev/null";
           # BUG: See https://github.com/Alexays/Waybar/issues/4382
