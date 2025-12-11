@@ -5,7 +5,6 @@
   settings = {
     hyprland.enable = true; # TODO: extract waybar out and make battery depend on what system it's running on (so, maybe remove out of home-manager into nixos config)
   };
-  services.owncloud-client.enable = true;
   services.hyprpaper.enable = false;
   programs.waybar = {
     enable = false;

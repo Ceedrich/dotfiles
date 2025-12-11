@@ -24,6 +24,8 @@
     catppuccin-cursors.mochaMauve
   ];
 
+  services.gnome.gnome-keyring.enable = true;
+
   # Theming
   catppuccin = {
     enable = true;
