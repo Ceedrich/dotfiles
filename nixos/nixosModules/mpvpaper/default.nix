@@ -14,6 +14,7 @@ in {
     systemd.user.services.mpvpaper = {
       enable = cfg.enable;
       wantedBy = ["graphical-session.target"];
+      after = ["graphical-session.target"];
       serviceConfig = {
         Type = "simple";
         ExecStart = ''${lib.getExe cfg.package} -so "no-audio loop" "*" ${./wallpaper.mp4}'';
