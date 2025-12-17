@@ -19,6 +19,7 @@
     lact
     owncloud-client
     texliveFull
+    zathura
 
     discord
     spotify

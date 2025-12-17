@@ -17,6 +17,7 @@
 
   environment.systemPackages = with pkgs; [
     texliveFull
+    zathura
     owncloud-client
 
     discord
