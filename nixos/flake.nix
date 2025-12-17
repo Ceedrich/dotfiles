@@ -115,6 +115,7 @@
           ./hosts/_common
           ./hosts/${hostname}/configuration.nix
           ./users/ceedrich
+          ./globalHM.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = false;
@@ -134,6 +135,9 @@
                   ++ hm-modules;
               })
               users;
+          }
+          {
+            global-hm.users = pkgs.lib.attrNames users;
           }
         ];
       };

@@ -15,8 +15,6 @@
     thunderbird.enable = true;
   };
 
-  xdg.mime.defaultApplications = {"application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";};
-
   environment.systemPackages = with pkgs; [
     texliveFull
     zathura
@@ -54,10 +52,19 @@
     };
   };
 
+  global-hm.config = {
+    programs.zathura.enable = true;
+    xdg.mimeApps.defaultApplications = {"application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";};
+  };
+
   networking.firewall.allowedTCPPorts = [22];
 
   services.tailscale.enable = true;
   services.tailscale.package = pkgs-unstable.tailscale;
 
   system.stateVersion = "24.11";
+
+  global-hm.config = {
+    programs.alacritty.enable = true;
+  };
 }
