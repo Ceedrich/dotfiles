@@ -2,6 +2,13 @@ warning: Git tree '/home/ceedrich/dotfiles' is dirty
 building the system configuration...
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
 trace: Obsolete option `programs.git.delta.enable' is used. It was renamed to `programs.delta.enable'.
+these 3 derivations will be built:
+  /nix/store/8g96xnrnajhjkd69qxl3li12b3a7imy7-system-units.drv
+  /nix/store/s5fz8qpnfddl4pwa20sah3ndmb2853wi-etc.drv
+  /nix/store/ah0hild1p3arhc740f9ikbq7c9gkwvpz-nixos-system-satine-25.11.20251204.c97c47f.drv
+building '/nix/store/8g96xnrnajhjkd69qxl3li12b3a7imy7-system-units.drv'...
+building '/nix/store/s5fz8qpnfddl4pwa20sah3ndmb2853wi-etc.drv'...
+building '/nix/store/ah0hild1p3arhc740f9ikbq7c9gkwvpz-nixos-system-satine-25.11.20251204.c97c47f.drv'...
 stopping the following units: accounts-daemon.service
 activating the configuration...
 setting up /etc...
@@ -11,4 +18,4 @@ reloading the following units: dbus-broker.service
 restarting the following units: polkit.service
 starting the following units: accounts-daemon.service
 the following new units were started: NetworkManager-dispatcher.service
-Done. The new configuration is /nix/store/lcxqdx3pjgdvpiwrhmainz769qqcxld4-nixos-system-satine-25.11.20251204.c97c47f
+Done. The new configuration is /nix/store/yl30z7c1dnhrmlliy9797k4fmpjs6cn6-nixos-system-satine-25.11.20251204.c97c47f
