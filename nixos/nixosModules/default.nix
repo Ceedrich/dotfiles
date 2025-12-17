@@ -3,9 +3,10 @@
     ./bluetooth.nix
     ./hyprland.nix
     ./kanata
+    ./modrinth
     ./mpvpaper
     ./steam.nix
     ./waybar
-    ./modrinth
+    ./zathura
   ];
 }

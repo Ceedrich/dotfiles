@@ -13,11 +13,11 @@
       extraConfig = "monitor = , preferred, auto, 1";
     };
     thunderbird.enable = true;
+    zathura.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
     texliveFull
-    zathura
     owncloud-client
 
     discord
@@ -58,11 +58,4 @@
   services.tailscale.package = pkgs-unstable.tailscale;
 
   system.stateVersion = "24.11";
-
-  global-hm.config = {
-    programs.zathura.enable = true;
-    xdg.mimeApps.defaultApplications = {
-      "application/pdf" = ["org.pwmt.zathura-pdf-mupdf.desktop"];
-    };
-  };
 }
