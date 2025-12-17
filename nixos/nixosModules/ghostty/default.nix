@@ -15,6 +15,7 @@ in {
     global-hm.config.programs.ghostty = {
       enable = true;
       package = null;
+      systemd.enable = false;
       clearDefaultKeybinds = true;
       settings = {
         font-family = "JetBrainsMono Nerd Font";

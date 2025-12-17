@@ -19,7 +19,6 @@
   vpn.epfl = true;
   programs = {
     brave.enable = true;
-    ghostty.enable = true;
     mangohud.enable = true;
   };
 }

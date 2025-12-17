@@ -6,6 +6,7 @@
   imports = [
     ./hardware-configuration.nix
     ../jarjar/minecraft-servers
+    ../graphical
   ];
 
   programs = {
