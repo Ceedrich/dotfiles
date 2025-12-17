@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -14,7 +15,10 @@ in {
     };
     config =
       lib.mkOption {
-        type = types.submodule {freeformType = lib.types.attrs;};
+        type = let
+          jsonFormat = pkgs.formats.json {};
+        in
+          types.submodule {freeformType = jsonFormat.type;};
         description = "Full home manager config applied to all (normal) users";
       }
       // {

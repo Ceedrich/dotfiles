@@ -20,7 +20,7 @@ in {
     };
     terminal = lib.mkOption {
       type = types.str;
-      default = "${pkgs.ghostty}/bin/ghostty";
+      default = "${config.programs.ghostty.package}/bin/ghostty";
     };
     launcher = lib.mkOption {
       type = types.str;

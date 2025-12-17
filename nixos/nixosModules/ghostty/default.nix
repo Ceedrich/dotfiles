@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -7,9 +8,11 @@
 in {
   options.programs.ghostty = {
     enable = lib.mkEnableOption "enable ghostty";
+    package = lib.mkPackageOption pkgs "ghostty" {};
   };
   config = lib.mkIf cfg.enable {
     global-hm.config.programs.ghostty = {
+      package = cfg.package;
       enable = true;
       clearDefaultKeybinds = true;
       settings = {
