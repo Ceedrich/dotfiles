@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./bluetooth.nix
+    ./ghostty
     ./hyprland.nix
     ./kanata
     ./modrinth

@@ -4,7 +4,6 @@
     ./git
     ./neovim
     ./shell
-    ./ghostty
     ./theming
     ./mangohud
     ./btop
