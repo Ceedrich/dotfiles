@@ -12,9 +12,14 @@ in {
       type = types.listOf types.str;
       default = [];
     };
-    config = lib.mkOption {
-      description = "Full home manager config applied to all (normal) users";
-    };
+    config =
+      lib.mkOption {
+        type = types.submodule {freeformType = lib.types.attrs;};
+        description = "Full home manager config applied to all (normal) users";
+      }
+      // {
+        merge = lib.types.merge;
+      };
   };
   config = {
     warnings = lib.mkIf (cfg.users == []) [
