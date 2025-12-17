@@ -52,11 +52,6 @@
     };
   };
 
-  global-hm.config = {
-    programs.zathura.enable = true;
-    xdg.mimeApps.defaultApplications = {"application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";};
-  };
-
   networking.firewall.allowedTCPPorts = [22];
 
   services.tailscale.enable = true;
@@ -65,6 +60,9 @@
   system.stateVersion = "24.11";
 
   global-hm.config = {
-    programs.alacritty.enable = true;
+    programs.zathura.enable = true;
+    xdg.mimeApps.defaultApplications = {
+      "application/pdf" = ["org.pwmt.zathura-pdf-mupdf.desktop"];
+    };
   };
 }
