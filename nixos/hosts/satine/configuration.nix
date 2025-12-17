@@ -15,6 +15,8 @@
     thunderbird.enable = true;
   };
 
+  xdg.mime.defaultApplications = {"application/pdf" = "zathura.desktop";};
+
   environment.systemPackages = with pkgs; [
     texliveFull
     zathura
