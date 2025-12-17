@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   ...
@@ -10,12 +9,8 @@ in {
     enable = lib.mkEnableOption "enable ghostty";
   };
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = [pkgs.ghostty];
-
     global-hm.config.programs.ghostty = {
       enable = true;
-      package = null;
-      systemd.enable = false;
       clearDefaultKeybinds = true;
       settings = {
         font-family = "JetBrainsMono Nerd Font";
