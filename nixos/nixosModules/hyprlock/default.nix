@@ -6,6 +6,7 @@
   cfg = config.programs.hyprlock;
 in {
   config.global-hm.config = lib.mkIf cfg.enable {
+    catppuccin.hyprlock.useDefaultConfig = false;
     programs.hyprlock = {
       enable = true;
       package = null;
