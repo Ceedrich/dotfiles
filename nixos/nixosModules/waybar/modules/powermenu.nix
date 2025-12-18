@@ -12,7 +12,7 @@
   reboot = "custom/powermenu-reboot";
   suspend = "custom/powermenu-suspend";
 
-  confirm-dialogue = pkgs.callPackage ../../../homemanagerModules/hyprland/rofi/confirm-dialogue.nix {};
+  confirm-dialogue = pkgs.callPackage ../../../homemanagerModules/rofi/confirm-dialogue.nix {};
   mkConfirm = label: cmd: ''${lib.getExe confirm-dialogue} "${label}" "${cmd}"'';
   wb = config.services.waybar;
   cfg = wb.modules.powermenu;

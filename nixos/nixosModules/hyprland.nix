@@ -37,7 +37,7 @@ in {
     powermenu = lib.mkOption {
       type = types.str;
       default = let
-        power-menu = pkgs.callPackage ../homemanagerModules/hyprland/rofi/power-menu.nix {
+        power-menu = pkgs.callPackage ../homemanagerModules/rofi/power-menu.nix {
           logoutCommand = "hyprctl dispatch exit";
         };
       in "${lib.getExe power-menu}";
