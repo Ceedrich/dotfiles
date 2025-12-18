@@ -2,6 +2,7 @@
   imports = [
     ./bluetooth.nix
     ./ghostty
+    ./hypridle
     ./hyprland.nix
     ./kanata
     ./modrinth

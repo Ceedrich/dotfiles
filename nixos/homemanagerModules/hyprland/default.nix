@@ -10,7 +10,6 @@ in {
     enable = mkEnableOption "enable hyprland config";
   };
   imports = [
-    ./hypridle
     ./hyprpaper
     ./hyprlock
     ./rofi
@@ -23,7 +22,6 @@ in {
     };
     services = {
       hyprpaper.enable = mkDefault true;
-      hypridle.enable = mkDefault true;
     };
   };
 }
