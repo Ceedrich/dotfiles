@@ -98,7 +98,7 @@ in {
             "${mainMod}, T, togglefloating"
             "${mainMod}, F, fullscreen"
 
-            "${mainMod}, Space, exec, ${launcher} -run-command ${uwsm-run} '{cmd}'"
+            "${mainMod}, Space, exec, ${launcher} -run-command '${uwsm-run} {cmd}'"
             ", PRINT, exec, ${screenshot} -m region"
             "SHIFT, PRINT, exec, ${screenshot} -m window"
 
