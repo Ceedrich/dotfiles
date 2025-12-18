@@ -5,8 +5,6 @@
 }: let
   cfg = config.services.hypridle;
 in {
-  options.services.hypridle = {
-  };
   config.global-hm.config = lib.mkIf cfg.enable {
     services.hypridle = {
       enable = true;

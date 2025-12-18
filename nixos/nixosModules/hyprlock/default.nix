@@ -1,0 +1,80 @@
+{
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.programs.hyprlock;
+in {
+  config.global-hm = lib.mkIf cfg.enable {
+    programs.hyprlock = {
+      enable = true;
+      package = null;
+
+      settings = {
+        general = {
+          ignore_empty_input = true;
+          hide_cursor = true;
+        };
+        # TODO: look into authenticaton methods
+        background = [
+          {
+            monitor = "";
+            path = "${../hyprpaper/wallpaper.jpg}";
+            blur_passes = 3;
+            brightness = 0.5;
+            color = "$base";
+          }
+        ];
+        label = [
+          # Time
+          {
+            monitor = "";
+            text = ''cmd[update:30000] echo "$(date +"%R")"'';
+            color = "$text";
+            font_size = 90;
+            font_family = "$font";
+            position = "-50, -20";
+            halign = "right";
+            valign = "top";
+          }
+          # Date
+
+          {
+            monitor = "";
+            text = ''cmd[update:43200000] echo "$(date +"%A, %d %B %Y")"'';
+            color = "$text";
+            font_size = 25;
+            font_family = "$font";
+            position = "-50, -170";
+            halign = "right";
+            valign = "top";
+          }
+        ];
+
+        input-field = [
+          {
+            monitor = "";
+            size = "300, 60";
+            outline_thickness = 4;
+            dots_size = 0.2;
+            dots_spacing = 0.2;
+            dots_center = true;
+            outer_color = "$accent";
+            inner_color = "$surface0";
+            font_color = "$text";
+            fade_on_empty = false;
+            placeholder_text = ''<span foreground="##$textAlpha"><i>󰌾 Logged in as </i><span foreground="##$accentAlpha">$USER</span></span>'';
+            hide_input = false;
+            check_color = "$accent";
+            fail_color = "$red";
+            fail_text = ''<i>$FAIL <b>($ATTEMPTS)</b></i>'';
+            capslock_color = "$yellow";
+            position = "0, -35";
+            halign = "center";
+            valign = "center";
+          }
+        ];
+      };
+    };
+  };
+}

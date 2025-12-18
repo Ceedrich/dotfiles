@@ -10,18 +10,12 @@ in {
     enable = mkEnableOption "enable hyprland config";
   };
   imports = [
-    ./hyprpaper
-    ./hyprlock
     ./rofi
   ];
 
   config = {
     programs = mkIf cfg.enable {
-      hyprlock.enable = mkDefault true;
       rofi.enable = mkDefault true;
-    };
-    services = {
-      hyprpaper.enable = mkDefault true;
     };
   };
 }
