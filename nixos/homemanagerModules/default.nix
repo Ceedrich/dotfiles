@@ -1,6 +1,5 @@
 {lib, ...}: {
   imports = [
-    ./btop
     ./git
     ./mangohud
     ./minesweeper # ERROR: Broken

@@ -7,7 +7,7 @@
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
   ];
-  # Packages
+  # Packages / Programs
   environment.systemPackages = with pkgs; [
     wl-clipboard
     unzip
@@ -17,6 +17,7 @@
     gnupg
     vim
     jq
+    file
     openconnect # TODO: move into module?
     wlrctl
     expect # TODO: move into module?
@@ -24,6 +25,10 @@
     (callPackage ../../packages/rebuild_system.nix {})
     catppuccin-cursors.mochaMauve
   ];
+
+  programs = {
+    btop.enable = true;
+  };
 
   services.gnome.gnome-keyring.enable = true;
 

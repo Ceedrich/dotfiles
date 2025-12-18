@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./bluetooth.nix
+    ./btop
     ./ghostty
     ./hypridle
     ./hyprland.nix
