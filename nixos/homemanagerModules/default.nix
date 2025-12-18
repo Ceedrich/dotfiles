@@ -6,7 +6,6 @@
     ./neovim
     ./rofi
     ./shell
-    ./shortcuts
     ./theming
     ./tmux
     ./vpn

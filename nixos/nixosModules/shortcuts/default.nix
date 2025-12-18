@@ -3,13 +3,14 @@
   config,
   meta,
   ...
-}: {
+}: let
+  cfg = config.shortcuts;
+in {
   options.shortcuts = {
-    moodle.enable = lib.mkEnableOption "enable moodle shortcut";
-    jellyfin.enable = lib.mkEnableOption "enable jellyfin shortcut";
+    moodle.enable = lib.mkEnableOption "enable moodle shortcut" // {default = true;};
+    jellyfin.enable = lib.mkEnableOption "enable jellyfin shortcut" // {default = true;};
   };
-  config = let
-    cfg = config.shortcuts;
+  config.global-hm.config = let
     mkShortcut = key: {
       name,
       url,
@@ -26,15 +27,12 @@
       moodle = mkShortcut "moodle" {
         name = "Moodle";
         url = "https://moodle.epfl.ch";
-        icon = ./assets/EPFL.png;
+        icon = ../../assets/EPFL.png;
       };
       jellyfin = mkShortcut "jellyfin" {
         name = "Jellyfin";
         url = "http://${meta.machines.jabba.hostname}";
       };
     };
-
-    shortcuts.moodle.enable = lib.mkDefault true;
-    shortcuts.jellyfin.enable = lib.mkDefault true;
   };
 }
