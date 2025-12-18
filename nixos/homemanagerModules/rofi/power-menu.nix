@@ -1,7 +1,7 @@
 {
   dmenuCommand ? "${lib.getExe rofi} -dmenu -i -l 5 -p \"Power Menu\"",
-  lockCommand ? "loginctl lock-session self",
-  logoutCommand ? "loginctl kill-session self",
+  lockCommand ? "loginctl lock-session",
+  logoutCommand ? "loginctl kill-session",
   shutdownCommand ? "systemctl poweroff",
   rebootCommand ? "systemctl reboot",
   suspendCommand ? "systemctl suspend",
