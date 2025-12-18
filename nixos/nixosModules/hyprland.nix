@@ -66,12 +66,37 @@ in {
 
       environment.systemPackages = cfg.extra-packages;
 
-      programs.uwsm.enable = lib.mkDefault true;
+      # programs.uwsm.enable = lib.mkDefault true;
       programs.hyprland = {
-        withUWSM = lib.mkDefault true;
+        # withUWSM = lib.mkDefault true;
         package = hyprpkgs.hyprland;
         portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
         xwayland.enable = true;
+      };
+
+      environment.sessionVariables = {
+        WLR_NO_HARDWARE_CURSORS = "1";
+        NIXOS_OZONE_WL = "1";
+      };
+
+      xdg.portal = {
+        enable = true;
+        wlr.enable = true;
+        extraPortals = [pkgs.xdg-desktop-portal-gtk];
+        configPackages = [hyprpkgs.xdg-desktop-portal-hyprland];
+      };
+
+      hardware = {
+        graphics.enable = true;
+      };
+
+      global-hm.config.wayland.windowManager.hyprland = {
+        enable = true;
+        package = null;
+        portalPackage = null;
+        systemd.enableXdgAutostart = true;
+
+        extraConfig = cfg.extraConfig;
 
         settings = let
           inherit
@@ -84,26 +109,25 @@ in {
             powermenu
             emoji-picker
             ;
-
-          uwsm-run = lib.optionalString cfg.withUWSM "uwsm app --";
+          # uwsm-run = lib.optionalString cfg.withUWSM "uwsm app --";
         in {
           exec-once = autostart;
 
           # Bindings
           bind = [
-            "${mainMod}, return, exec, ${uwsm-run} ${terminal}"
+            "${mainMod}, return, exec, ${terminal}"
             "${mainMod}, Q, killactive"
-            "${mainMod} SHIFT, Q, exec, ${uwsm-run} ${powermenu}"
+            "${mainMod} SHIFT, Q, exec, ${powermenu}"
 
             "${mainMod}, period, exec, ${emoji-picker}"
             "${mainMod}, T, togglefloating"
             "${mainMod}, F, fullscreen"
 
-            "${mainMod}, Space, exec, ${launcher} -run-command '${uwsm-run} {cmd}'"
-            ", PRINT, exec, ${uwsm-run} ${screenshot} -m region"
-            "SHIFT, PRINT, exec, ${uwsm-run} ${screenshot} -m window"
+            "${mainMod}, Space, exec, ${launcher} -run-command '{cmd}'"
+            ", PRINT, exec, ${screenshot} -m region"
+            "SHIFT, PRINT, exec, ${screenshot} -m window"
 
-            "${mainMod}, P, exec, ${uwsm-run} ${passmenu}/bin/passmenu"
+            "${mainMod}, P, exec, ${passmenu}/bin/passmenu"
 
             "${mainMod}, h, movefocus, l"
             "${mainMod}, l, movefocus, r"
@@ -187,22 +211,6 @@ in {
             ]
             ++ (builtins.map (regex: "float on, match:class ${regex}") floating);
         };
-      };
-
-      environment.sessionVariables = {
-        WLR_NO_HARDWARE_CURSORS = "1";
-        NIXOS_OZONE_WL = "1";
-      };
-
-      xdg.portal = {
-        enable = true;
-        wlr.enable = true;
-        extraPortals = [pkgs.xdg-desktop-portal-gtk];
-        configPackages = [hyprpkgs.xdg-desktop-portal-hyprland];
-      };
-
-      hardware = {
-        graphics.enable = true;
       };
     };
 }
