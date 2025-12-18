@@ -4,6 +4,7 @@
     ./ghostty
     ./hypridle
     ./hyprland.nix
+    ./hyprlock
     ./kanata
     ./modrinth
     ./mpvpaper

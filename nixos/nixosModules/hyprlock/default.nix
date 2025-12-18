@@ -5,7 +5,7 @@
 }: let
   cfg = config.programs.hyprlock;
 in {
-  config.global-hm = lib.mkIf cfg.enable {
+  config.global-hm.config = lib.mkIf cfg.enable {
     programs.hyprlock = {
       enable = true;
       package = null;
@@ -19,7 +19,7 @@ in {
         background = [
           {
             monitor = "";
-            path = "${../hyprpaper/wallpaper.jpg}";
+            path = "${../../assets/wallpaper.jpg}";
             blur_passes = 3;
             brightness = 0.5;
             color = "$base";
