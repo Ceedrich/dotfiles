@@ -89,7 +89,10 @@ in {
           exec-once = autostart;
 
           # Bindings
-          bind = [
+          bind = let
+            wpctl = "${pkgs.wireplumber}/bin/wpctl";
+            brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+          in [
             "${mainMod}, return, exec, ${uwsm-run} ${terminal}"
             "${mainMod}, Q, killactive"
             "${mainMod} SHIFT, Q, exec, ${powermenu}"
@@ -135,6 +138,12 @@ in {
             "${mainMod} SHIFT, 8, movetoworkspace, 8"
             "${mainMod} SHIFT, 9, movetoworkspace, 9"
             "${mainMod} SHIFT, 0, movetoworkspace, 10"
+
+            ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
+            ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 10%+"
+            ", XF86AudioLowerVolume, exec, ${wpctl} set-volume -l 0.0 @DEFAULT_AUDIO_SINK@ 10%-"
+            ", XF86MonBrightnessDown, exec, ${brightnessctl} -q s 10%-"
+            ", XF86MonBrightnessUp, exec, ${brightnessctl} -q s +10%"
           ];
 
           bindm = [
