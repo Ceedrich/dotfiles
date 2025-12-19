@@ -11,7 +11,6 @@
 
   programs = {
     coolercontrol.enable = true;
-    hyprland.enable = true;
     modrinth.enable = true;
     steam.enable = true;
     thunderbird.enable = true;
@@ -37,13 +36,9 @@
     "spotify"
   ];
 
-  services.waybar = {
-    enable = true;
-    modules = {
-      battery.enable = false;
-      backlight.enable = false;
-    };
-    enableHyprlandSupport = true;
+  services.waybar.modules = {
+    battery.enable = false;
+    backlight.enable = false;
   };
 
   settings.bluetooth.enable = true;

@@ -11,8 +11,8 @@ in {
   options.services.waybar = {
     enable = lib.mkEnableOption "enable waybar";
     package = lib.mkPackageOption pkgs "waybar" {};
-    enableHyprlandSupport = lib.mkEnableOption "enable hyprland support";
-    enableSwaySupport = lib.mkEnableOption "enable sway support";
+    enableHyprlandSupport = lib.mkEnableOption "enable hyprland support" // {default = config.programs.hyprland.enable;};
+    enableSwaySupport = lib.mkEnableOption "enable sway support" // {default = config.programs.sway.enable;};
 
     mainBar = lib.mkOption {
       default = "mainBar";

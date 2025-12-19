@@ -8,11 +8,9 @@
     ../graphical
   ];
 
+  programs.hyprland.extraConfig = "monitor = , preferred, auto, 1";
+
   programs = {
-    hyprland = {
-      enable = true;
-      extraConfig = "monitor = , preferred, auto, 1";
-    };
     thunderbird.enable = true;
     zathura.enable = true;
   };
@@ -29,11 +27,6 @@
     "discord"
     "spotify"
   ];
-
-  services.waybar = {
-    enable = true;
-    enableHyprlandSupport = true;
-  };
 
   settings.kanata.enable = true;
   settings.bluetooth.enable = true;
