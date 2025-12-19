@@ -47,6 +47,7 @@
   };
 
   networking.firewall.allowedTCPPorts = [22];
+  networking.networkmanager.wifi.powersave = true;
 
   services.tailscale.enable = true;
   services.tailscale.package = pkgs-unstable.tailscale;
