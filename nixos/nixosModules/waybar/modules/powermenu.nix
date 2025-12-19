@@ -33,7 +33,7 @@ in {
       type = lib.types.str;
     };
     logoutCommand = lib.mkOption {
-      default = "loginctl kill-session self";
+      default = "loginctl kill-session";
       type = lib.types.str;
     };
     rebootCommand = lib.mkOption {
@@ -41,7 +41,7 @@ in {
       type = lib.types.str;
     };
     lockCommand = lib.mkOption {
-      default = "loginctl lock-session self";
+      default = "loginctl lock-session";
       type = lib.types.str;
     };
     suspendCommand = lib.mkOption {
