@@ -2,9 +2,15 @@ warning: Git tree '/home/ceedrich/dotfiles' is dirty
 building the system configuration...
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
 trace: Obsolete option `programs.git.delta.enable' is used. It was renamed to `programs.delta.enable'.
+stopping the following units: accounts-daemon.service, kanata-default.service, kmod-static-nodes.service, logrotate-checkconf.service, network-setup.service, NetworkManager.service, nscd.service, resolvconf.service, rtkit-daemon.service, systemd-machined.service, systemd-modules-load.service, systemd-oomd.service, systemd-oomd.socket, systemd-sysctl.service, systemd-timesyncd.service, systemd-tmpfiles-resetup.service, systemd-vconsole-setup.service, wpa_supplicant.service
+NOT restarting the following changed units: bluetooth.service, display-manager.service, systemd-backlight@backlight:intel_backlight.service, systemd-backlight@leds:platform::kbd_backlight.service, systemd-fsck@dev-disk-by\x2duuid-F2BB\x2dE6D9.service, systemd-journal-flush.service, systemd-logind.service, systemd-random-seed.service, systemd-remount-fs.service, systemd-update-utmp.service, systemd-user-sessions.service, user-runtime-dir@1000.service, user@1000.service
 activating the configuration...
 setting up /etc...
+restarting systemd...
 reloading user units for ceedrich...
 restarting sysinit-reactivation.target
-the following new units were started: NetworkManager-dispatcher.service, sysinit-reactivation.target, systemd-tmpfiles-resetup.service
-Done. The new configuration is /nix/store/3mknacfd7fpi9kbx5acbw3aglcm4r9g8-nixos-system-satine-25.11.20251204.c97c47f
+reloading the following units: dbus-broker.service, firewall.service, reload-systemd-vconsole-setup.service
+restarting the following units: nix-daemon.service, polkit.service, sshd.service, systemd-journald.service, systemd-udevd.service, tailscaled.service
+starting the following units: accounts-daemon.service, kanata-default.service, kmod-static-nodes.service, logrotate-checkconf.service, network-setup.service, NetworkManager.service, nscd.service, resolvconf.service, rtkit-daemon.service, systemd-machined.service, systemd-modules-load.service, systemd-oomd.socket, systemd-sysctl.service, systemd-timesyncd.service, systemd-tmpfiles-resetup.service, systemd-vconsole-setup.service, wpa_supplicant.service
+the following new units were started: NetworkManager-dispatcher.service, systemd-hostnamed.service
+Done. The new configuration is /nix/store/8psfl0ykzr61s95lry0n5201nzh3akk6-nixos-system-satine-25.11.20251215.c6f52eb
