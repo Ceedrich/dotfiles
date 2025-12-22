@@ -13,6 +13,7 @@
   programs = {
     thunderbird.enable = true;
     zathura.enable = true;
+    modrinth.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
