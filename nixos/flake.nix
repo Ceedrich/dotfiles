@@ -3,10 +3,10 @@
 
   inputs = {
     ceedrichVim.url = "github:Ceedrich/neovim-config";
-    # disko = {
-    #   url = "github:nix-community/disko";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland.url = "github:hyprwm/Hyprland";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -146,6 +146,7 @@
       jabba = {"ceedrich" = "minimal";};
       ahsoka = {"ceedrich" = "ceedrich";};
       satine = {"ceedrich" = "ceedrich";};
+      jarjar = {"ceedrich" = "minimal";};
     };
 
     homeConfigurations = utils.generateConfigs mkHomeManager {
