@@ -17,6 +17,16 @@
 
   networking.firewall.allowedTCPPorts = [ 22 ];
 
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+    settings = {
+      PasswordAuthentication = false;
+      AllowUsers = null;
+    }
+    ;
+  };
+
   services.tailscale.enable = true;
   services.tailscale.package = pkgs-unstable.tailscale;
 }
