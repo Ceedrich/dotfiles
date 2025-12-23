@@ -15,6 +15,8 @@
 
   system.stateVersion = "24.11";
 
+  networking.firewall.allowedTCPPorts = [ 22 ];
+
   services.tailscale.enable = true;
   services.tailscale.package = pkgs-unstable.tailscale;
 }
