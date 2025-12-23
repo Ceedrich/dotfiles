@@ -1,4 +1,9 @@
-{modulesPath, inputs, ...}: {
+{
+  pkgs-unstable,
+  modulesPath,
+  inputs,
+  ...
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -9,4 +14,7 @@
   ];
 
   system.stateVersion = "24.11";
+
+  services.tailscale.enable = true;
+  services.tailscale.package = pkgs-unstable.tailscale;
 }
