@@ -26,7 +26,13 @@ in {
         bell-features = [
           "no-title"
         ];
-
+        shell-integration-features = [
+          "cursor"
+          "no-sudo"
+          "title"
+          "ssh-env"
+          "ssh-terminfo"
+        ];
         keybind = [
           "ctrl+shift+r=reload_config"
           "ctrl+shift+v=paste_from_clipboard"
