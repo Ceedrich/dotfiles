@@ -14,6 +14,7 @@
     thunderbird.enable = true;
     zathura.enable = true;
     modrinth.enable = true;
+    steam.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
