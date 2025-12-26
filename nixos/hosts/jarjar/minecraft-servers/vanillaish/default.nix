@@ -50,8 +50,8 @@ in {
       in ''
         ${backup-cmd} -c \
           -i /srv/minecraft/vanillaish/world \
-          -o /home/ceedrich/backups \
-          -s localhost:25575 \
+          -o /srv/minecraft/backups \
+          -s localhost:25575:vanillaish \
           -w rcon
       '';
       User = "minecraft";
@@ -77,6 +77,8 @@ in {
       enforce-whitelist = true;
       white-list = true;
       motd = "§6§l--- Ceedrich's Minecraft Server ---";
+      enable-rcon = true;
+      "rcon.password" = "vanillaish";
     };
     symlinks = {
       "mods" = pkgs.linkFarmFromDrvs "mods" (builtins.attrValues (
