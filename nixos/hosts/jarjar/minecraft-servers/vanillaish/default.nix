@@ -50,7 +50,7 @@ in {
       in ''
         ${backup-cmd} -c \
           -i /srv/minecraft/vanillaish/world \
-          -o /srv/minecraft/backups \
+          -o /srv/minecraft/backups/vanillaish \
           -s localhost:25575:vanillaish \
           -w rcon
       '';
