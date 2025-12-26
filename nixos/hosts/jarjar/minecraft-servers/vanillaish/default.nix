@@ -2,6 +2,7 @@
   lib,
   pkgs,
   ceedrichLib,
+  config,
   ...
 }: let
   loader = "fabric";
@@ -28,36 +29,15 @@
     "simple-voice-chat"
     "voice-chat-interaction"
   ];
+  server-name = "vanillaish";
 in {
   environment.systemPackages = [
     (ceedrichLib.makeModFetcher {
-      name = "vanillaish";
+      name = server-name;
       inherit loader version mods;
     })
   ];
-  systemd.timers.minecraft-backup-vanillaissh = {
-    wantedBy = ["timers.target"];
-    timerConfig = {
-      OnCalendar = "04:00";
-    };
-  };
-  systemd.services.minecraft-backup-vanillaissh = {
-    description = "Run backup script";
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = let
-        backup-cmd = "${pkgs.callPackage ../../../../packages/minecraft-backup.nix {}}/bin/minecraft-backup";
-      in ''
-        ${backup-cmd} -c \
-          -i /srv/minecraft/vanillaish/world \
-          -o /srv/minecraft/backups/vanillaish \
-          -s localhost:25575:vanillaish \
-          -w rcon
-      '';
-      User = "minecraft";
-    };
-  };
-  services.minecraft-servers.servers."vanillaish" = {
+  services.minecraft-servers.servers."${server-name}" = {
     enable = true;
     package = let
       escapeVersion = v: lib.replaceStrings ["."] ["_"] v;
@@ -78,7 +58,7 @@ in {
       white-list = true;
       motd = "§6§l--- Ceedrich's Minecraft Server ---";
       enable-rcon = true;
-      "rcon.password" = "vanillaish";
+      "rcon.password" = "${server-name}";
     };
     symlinks = {
       "mods" = pkgs.linkFarmFromDrvs "mods" (builtins.attrValues (
