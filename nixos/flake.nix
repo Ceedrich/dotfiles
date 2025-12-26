@@ -154,5 +154,7 @@
       "ubuntu" = "ceedrich";
       "minimal" = "ceedrich";
     };
+
+    packages.${system}."minecraft-backup" = pkgs.callPackage ./packages/minecraft-backup.nix {};
   };
 }

@@ -35,6 +35,28 @@ in {
       inherit loader version mods;
     })
   ];
+  systemd.timers.minecraft-backup-vanillaissh = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnCalendar = "04:00";
+    };
+  };
+  systemd.services.minecraft-backup-vanillaissh = {
+    description = "Run backup script";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = let
+        backup-cmd = "${pkgs.callPackage ../../../../packages/minecraft-backup.nix {}}/bin/minecraft-backup";
+      in ''
+        ${backup-cmd} -c \
+          -i /srv/minecraft/vanillaish/world \
+          -o /home/ceedrich/backups \
+          -s localhost:25575 \
+          -w rcon
+      '';
+      User = "minecraft";
+    };
+  };
   services.minecraft-servers.servers."vanillaish" = {
     enable = true;
     package = let
