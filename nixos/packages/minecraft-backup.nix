@@ -3,6 +3,7 @@
   gnutar,
   gzip,
   unixtools,
+  gawk,
   fetchFromGitHub,
   writeShellApplication,
 }: let
@@ -15,7 +16,13 @@
 in
   writeShellApplication {
     name = "minecraft-backup";
-    runtimeInputs = [bash gnutar gzip unixtools.xxd];
+    runtimeInputs = [
+      bash
+      gawk
+      gnutar
+      gzip
+      unixtools.xxd
+    ];
     text = ''
       exec ${src}/backup.sh "$@"
     '';
