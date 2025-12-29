@@ -27,8 +27,13 @@ in {
           format = "{volume}% {icon}";
           format-bluetooth = "{volume}% {icon}";
           format-muted = "{volume}% 󰝟";
-          format-icons.default = ["󰖀" "󰕾"];
+          format-icons = {
+            headphone = "󰋋";
+            headset = "󰋎";
+            default = ["󰕿" "󰖀" "󰕾"];
+          };
           scroll-step = 3;
+          reverse-scrolling = true;
           on-click = "${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_SINK@ toggle";
           on-click-right = lib.getExe cfg.pavucontrolPackage;
         };
