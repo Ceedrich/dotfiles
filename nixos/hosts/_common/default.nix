@@ -14,6 +14,7 @@
     gnutar
     pdfgrep
     gnugrep
+    ripgrep
     gnupg
     vim
     jq
