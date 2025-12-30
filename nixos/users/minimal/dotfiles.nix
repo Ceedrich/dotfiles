@@ -12,6 +12,7 @@
     yazi.enable = true;
     tmux.enable = true;
 
+    bash.enable = true;
     zsh = {
       enable = true;
       integrations.enable = true;
