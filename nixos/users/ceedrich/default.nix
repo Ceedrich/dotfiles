@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   programs.zsh.enable = true;
+  programs.bash.enable = true;
   users.users.ceedrich = {
     initialPassword = "password";
     shell = pkgs.zsh;

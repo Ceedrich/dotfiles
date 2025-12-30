@@ -12,9 +12,15 @@ in {
     ./integrations
   ];
   config = {
+    home.shellAliases = {
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
+      "....." = "cd ../../../..";
+    };
     programs.zsh = mkIf zsh.enable {
       enableCompletion = true;
-      autocd = true;
+      autocd = false;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       historySubstringSearch.enable = true;
