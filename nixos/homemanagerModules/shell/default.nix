@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   zsh = config.programs.zsh;
@@ -26,18 +25,12 @@ in {
       syntaxHighlighting.enable = true;
       historySubstringSearch.enable = true;
       dotDir = "${config.xdg.configHome}/zsh";
-      plugins = [
-        {
-          name = "vi-mode";
-          src = pkgs.zsh-vi-mode;
-          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-        }
-      ];
       initContent =
         /*
         sh
         */
         ''
+          bindkey -v
           setopt correct
 
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
