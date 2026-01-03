@@ -1,10 +1,11 @@
 {
   bash,
+  fetchFromGitHub,
+  gawk,
   gnutar,
   gzip,
+  restic,
   unixtools,
-  gawk,
-  fetchFromGitHub,
   writeShellApplication,
 }: let
   src = fetchFromGitHub {
@@ -21,6 +22,7 @@ in
       gawk
       gnutar
       gzip
+      restic
       unixtools.xxd
     ];
     text = ''

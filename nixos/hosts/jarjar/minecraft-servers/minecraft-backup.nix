@@ -6,6 +6,7 @@
 }: let
   mc-cfg = config.services.minecraft-servers;
   cfg = mc-cfg.backups;
+  restic-passwd = "restic";
 in {
   options.services.minecraft-servers.backups = {
     enable = lib.mkEnableOption "enable minecraft server backups" // {default = true;};
@@ -29,7 +30,8 @@ in {
     };
   };
   config = let
-    eachServer = f: lib.mapAttrs' f mc-cfg.servers;
+    # eachServer = f: lib.mapAttrs' f mc-cfg.servers;
+    eachServer = f: lib.foldl' lib.recursiveUpdate {} (lib.mapAttrsToList f mc-cfg.servers);
   in
     lib.mkIf cfg.enable {
       assertions =
@@ -46,8 +48,13 @@ in {
         })
         mc-cfg.servers;
       systemd.timers = eachServer (name: server: {
-        name = "minecraft-backup-${name}";
-        value = {
+        "minecraft-backup-${name}" = {
+          wantedBy = ["timers.target"];
+          timerConfig = {
+            OnCalendar = "${cfg.times}";
+          };
+        };
+        "minecraft-backup-restic-${name}" = {
           wantedBy = ["timers.target"];
           timerConfig = {
             OnCalendar = "${cfg.times}";
@@ -58,8 +65,7 @@ in {
         port = toString (server.serverProperties.rcon-port or cfg.rcon.port);
         password = server.serverProperties."rcon.password";
       in {
-        name = "minecraft-backup-${name}";
-        value = {
+        "minecraft-backup-${name}" = {
           description = "Run backup script for '${name}'";
           serviceConfig = {
             Type = "oneshot";
@@ -69,6 +75,23 @@ in {
               ${backup-cmd} -c \
                 -i ${mc-cfg.dataDir}/${name}/world \
                 -o ${cfg.dir}/${name} \
+                -s localhost:${port}:${password} \
+                -w rcon
+            '';
+            User = mc-cfg.user;
+            Group = mc-cfg.group;
+          };
+        };
+        "minecraft-backup-restic-${name}" = {
+          description = "Run backup script for '${name}'";
+          serviceConfig = {
+            Type = "oneshot";
+            ExecStart = let
+              backup-cmd = "${pkgs.callPackage ../../../packages/minecraft-backup.nix {}}/bin/minecraft-backup";
+            in ''
+              RESTIC_PASSWORD='${restic-passwd}' ${backup-cmd} -c \
+                -i ${mc-cfg.dataDir}/${name}/world \
+                -r ${cfg.dir}-restic/${name} \
                 -s localhost:${port}:${password} \
                 -w rcon
             '';
