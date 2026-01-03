@@ -84,12 +84,13 @@ in {
         };
         "minecraft-backup-restic-${name}" = {
           description = "Run backup script for '${name}'";
+          environment = { RESTIC_PASSWORD = restic-passwd; };
           serviceConfig = {
             Type = "oneshot";
             ExecStart = let
               backup-cmd = "${pkgs.callPackage ../../../packages/minecraft-backup.nix {}}/bin/minecraft-backup";
             in ''
-              RESTIC_PASSWORD='${restic-passwd}' ${backup-cmd} -c \
+              ${backup-cmd} -c \
                 -i ${mc-cfg.dataDir}/${name}/world \
                 -r ${cfg.dir}-restic/${name} \
                 -s localhost:${port}:${password} \
