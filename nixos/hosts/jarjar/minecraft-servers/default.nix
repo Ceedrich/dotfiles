@@ -7,6 +7,10 @@
   nixpkgs.overlays = [inputs.nix-minecraft.overlay];
   allowedUnfree = ["minecraft-server"];
   services.minecraft-servers = {
+    backups.restic = {
+      enable = true;
+      password = "restic";
+    };
     enable = true;
     eula = true;
   };
