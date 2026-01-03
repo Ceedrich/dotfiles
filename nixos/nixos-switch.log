@@ -1,17 +1,1 @@
-warning: Git tree '/home/ceedrich/dotfiles' is dirty
-building the system configuration...
-warning: Git tree '/home/ceedrich/dotfiles' is dirty
-trace: Obsolete option `programs.git.delta.enable' is used. It was renamed to `programs.delta.enable'.
-stopping the following units: accounts-daemon.service, logrotate-checkconf.service, pihole-ftl.service, systemd-tmpfiles-resetup.service
-activating the configuration...
-removing group ‘pihole’
-removing user ‘pihole’
-setting up /etc...
-removing obsolete file ‘/etc/pihole/pihole.toml’...
-reloading user units for ceedrich...
-restarting sysinit-reactivation.target
-reloading the following units: dbus-broker.service
-restarting the following units: polkit.service
-starting the following units: accounts-daemon.service, logrotate-checkconf.service, systemd-tmpfiles-resetup.service
-the following new units were started: NetworkManager-dispatcher.service
-Done. The new configuration is /nix/store/5pv7lj9r7ammwbp532fnm7ra95iay6j8-nixos-system-satine-25.11.20251215.c6f52eb
+

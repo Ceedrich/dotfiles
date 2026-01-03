@@ -53,6 +53,7 @@ in {
     };
 
     serverProperties = {
+      simulation-distance = 32;
       difficulty = 3; # hard
       enforce-whitelist = true;
       white-list = true;
