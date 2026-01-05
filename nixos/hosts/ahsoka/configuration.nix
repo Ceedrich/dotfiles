@@ -6,8 +6,10 @@
   imports = [
     ./hardware-configuration.nix
     ../jarjar/minecraft-servers
-    ../graphical
+    ../_graphical
   ];
+
+  global-hm.config.programs.mangohud.enable = true;
 
   programs = {
     coolercontrol.enable = true;

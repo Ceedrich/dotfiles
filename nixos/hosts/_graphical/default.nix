@@ -1,6 +1,21 @@
-{lib, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   inherit (lib) mkDefault;
 in {
+  global-hm.config = {
+    programs.brave.enable = true;
+    vpn.epfl = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    signal-desktop
+    vlc
+    audacity
+  ];
+
   programs.ghostty.enable = mkDefault true;
   programs.hyprland.enable = mkDefault true;
   programs.hyprlock.enable = mkDefault true;

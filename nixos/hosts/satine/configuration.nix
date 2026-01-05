@@ -5,7 +5,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../graphical
+    ../_graphical
   ];
 
   programs.hyprland.extraConfig = "monitor = , preferred, auto, 1";
