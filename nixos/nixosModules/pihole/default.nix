@@ -23,6 +23,7 @@ in {
         openFirewallDNS = true;
         settings = {
           dns = {
+            listeningMode = "ALL";
             upstreams = [
               "1.1.1.1"
               "1.0.0.1"
