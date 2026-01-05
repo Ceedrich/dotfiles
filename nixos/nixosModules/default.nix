@@ -9,6 +9,7 @@
     ./kanata
     ./modrinth
     ./mpvpaper
+    ./pihole
     ./shortcuts
     ./steam.nix
     ./waybar

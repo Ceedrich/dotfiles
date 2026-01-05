@@ -8,6 +8,7 @@
     ../_graphical
   ];
 
+  services.pihole.enable = true;
   programs.hyprland.extraConfig = "monitor = , preferred, auto, 1";
 
   programs = {
