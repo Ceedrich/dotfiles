@@ -27,6 +27,11 @@ in {
               "1.0.0.1"
             ];
           };
+          ntp = {
+            ipv4.active = false;
+            ipv6.active = false;
+            sync.active = false;
+          };
         };
       };
       pihole-web = {

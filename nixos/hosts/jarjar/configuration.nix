@@ -17,6 +17,7 @@
 
   networking.firewall.allowedTCPPorts = [ 22 ];
 
+  services.pihole.enable = true;
   services.openssh = {
     enable = true;
     ports = [ 22 ];
