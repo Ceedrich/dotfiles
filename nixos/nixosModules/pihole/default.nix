@@ -20,7 +20,6 @@ in {
             description = "Steven Black's HOSTS";
           }
         ];
-        openFirewallDNS = true;
         settings = {
           dns = {
             listeningMode = "ALL";
