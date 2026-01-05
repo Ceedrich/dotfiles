@@ -6,12 +6,12 @@
   cfg = config.programs.git;
 in {
   config = lib.mkIf cfg.enable {
-    programs.git = lib.mkDefault {
-      lfs.enable = true;
+    programs.git = {
+      lfs.enable = lib.mkDefault true;
       settings = {
-        core.editor = "nvim";
-        init.defaultBranch = "main";
-        pull.rebase = true;
+        core.editor = lib.mkDefault "nvim";
+        init.defaultBranch = lib.mkDefault "main";
+        pull.rebase = lib.mkDefault true;
       };
     };
 
