@@ -19,6 +19,12 @@ in {
             enabled = true;
             description = "Steven Black's HOSTS";
           }
+          {
+            url = "https://big.oisd.nl";
+            type = "block";
+            enabled = true;
+            description = "oisd blocklist";
+          }
         ];
         settings = {
           dns = {
