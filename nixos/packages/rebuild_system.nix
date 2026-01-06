@@ -1,12 +1,10 @@
 {
-  lib,
-  writeShellScriptBin,
   writeShellApplication,
   alejandra,
   gnugrep,
 }: let
-  rebuild_system = writeShellApplication {
-    name = "rebuild_system";
+  rebuild-system = writeShellApplication {
+    name = "rebuild-system";
     runtimeInputs = [
       gnugrep
       alejandra
@@ -25,9 +23,9 @@
       gen=$(nixos-rebuild list-generations | awk '$8 == "True" {print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 }')
       git add .
       git commit -am "$(hostname): $gen"
-      notify-send "NixOS rebuilt successfully!" --icon=software-update-available
+      notify-send "NixOS rebuilt successfully!" --icon=nix-snowflake-white
       popd
     '';
   };
 in
-  rebuild_system
+  rebuild-system

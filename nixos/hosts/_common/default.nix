@@ -17,8 +17,9 @@
     ripgrep
     gnupg
     vim
-    jq
+    fd
     file
+    jq
     openconnect # TODO: move into module?
     wlrctl
     expect # TODO: move into module?
