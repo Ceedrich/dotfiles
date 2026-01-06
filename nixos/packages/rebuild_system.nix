@@ -1,7 +1,12 @@
-{writeShellScriptBin}: let
+{
+  lib,
+  writeShellScriptBin,
+  alejandra,
+}: let
   rebuild_system = writeShellScriptBin "rebuild-system" ''
     set -eo pipefail
     pushd ~/dotfiles/nixos/
+    ${lib.getExe alejandra} . &>/dev/null || true
     git diff -U0 .
     echo "Nixos Rebuilding..."
     sudo nixos-rebuild switch --flake . 2>&1 | tee nixos-switch.log >&2 || (
