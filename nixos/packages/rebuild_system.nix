@@ -24,7 +24,7 @@
       )
       gen=$(nixos-rebuild list-generations | awk '$8 == "True" {print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 }')
       git add .
-      git commit -em "$(hostname): $gen"
+      git commit -am "$(hostname): $gen"
       notify-send "NixOS rebuilt successfully!" --icon=software-update-available
       popd
     '';
