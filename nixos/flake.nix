@@ -155,6 +155,9 @@
       "minimal" = "ceedrich";
     };
 
-    packages.${system}."minecraft-backup" = pkgs.callPackage ./packages/minecraft-backup.nix {};
+    packages.${system} = {
+      "rebuild-system" = pkgs.callPackage ./packages/rebuild_system.nix {};
+      "minecraft-backup" = pkgs.callPackage ./packages/minecraft-backup.nix {};
+    };
   };
 }
