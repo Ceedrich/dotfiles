@@ -22,7 +22,10 @@ in {
   services.nginx = {
     enable = true;
     virtualHosts."${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.homepage}/";
-    # virtualHosts."jellyfin.${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.jellyfin}/";
+    virtualHosts."jellyfin.ceedri.ch".locations."/".proxyPass = "http://localhost:${toString ports.jellyfin}/";
+    virtualHosts."flix.ceedri.ch".locations."/".proxyPass = "http://localhost:${toString ports.jellyfin}/";
+    virtualHosts."cediflix.ceedri.ch".locations."/".proxyPass = "http://localhost:${toString ports.jellyfin}/";
+
     # virtualHosts."arm.${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.arm}/";
   };
 
