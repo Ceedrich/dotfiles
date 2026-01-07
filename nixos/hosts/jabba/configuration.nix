@@ -142,7 +142,6 @@ in {
 
   services.jellyfin = {
     enable = true;
-    openFirewall = true;
   };
 
   services.openssh = {
@@ -153,8 +152,6 @@ in {
       AllowUsers = null;
     };
   };
-
-  networking.firewall.allowedTCPPorts = [22 80 8080 8096];
 
   environment.systemPackages = with pkgs; [
     vim
