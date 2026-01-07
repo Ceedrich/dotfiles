@@ -8,6 +8,9 @@
 in {
   global-hm.config = {
     programs.brave.enable = true;
+    xdg.mimeApps.defaultApplicationPackages = [
+      pkgs.brave
+    ];
     vpn.epfl = true;
   };
 
