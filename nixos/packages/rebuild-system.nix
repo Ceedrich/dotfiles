@@ -12,6 +12,7 @@
     text = ''
       set -eo pipefail
       pushd ~/dotfiles/nixos/
+      trap popd exit
 
       alejandra . &>/dev/null || true
       git diff -U0 .
@@ -23,8 +24,8 @@
       gen=$(nixos-rebuild list-generations | awk '$8 == "True" {print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 }')
       git add .
       git commit -am "$(hostname): $gen"
+      command -v notify-send || exit
       notify-send "NixOS rebuilt successfully!" --icon=nix-snowflake-white
-      popd
     '';
   };
 in
