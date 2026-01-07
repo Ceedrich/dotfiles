@@ -33,11 +33,11 @@ in {
               "1.1.1.1" # Cloudflare
               "1.0.0.1" # Cloudflare 2
             ];
-            cnameRecords = [
-              "home.ceedri.ch,jabba"
-              "cediflix.ceedri.ch,jabba"
-              "minecraft.ceedri.ch,jarjar"
-            ];
+            # cnameRecords = [
+            #   "home.ceedri.ch,jabba"
+            #   "cediflix.ceedri.ch,jabba"
+            #   "minecraft.ceedri.ch,jarjar"
+            # ];
             # hosts = ["100.94.165.18 mc.ceedri.ch"];
           };
           ntp = {
