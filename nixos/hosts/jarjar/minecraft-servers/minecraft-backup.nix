@@ -1,7 +1,8 @@
 {
-  pkgs,
+  ceedrichPkgs,
   config,
   lib,
+  pkgs,
   ...
 }: let
   mc-cfg = config.services.minecraft-servers;
@@ -67,7 +68,7 @@ in {
           serviceConfig = {
             Type = "oneshot";
             ExecStart = let
-              backup-cmd = "${pkgs.callPackage ../../../packages/minecraft-backup.nix {}}/bin/minecraft-backup";
+              backup-cmd = "${ceedrichPkgs.minecraft-backup}/bin/minecraft-backup";
             in ''
               ${backup-cmd} -c \
                 -i ${mc-cfg.dataDir}/${name}/world \
@@ -85,7 +86,7 @@ in {
           serviceConfig = {
             Type = "oneshot";
             ExecStart = let
-              backup-cmd = "${pkgs.callPackage ../../../packages/minecraft-backup.nix {}}/bin/minecraft-backup";
+              backup-cmd = "${ceedrichPkgs.minecraft-backup}/bin/minecraft-backup";
             in ''
               ${backup-cmd} -c \
                 -i ${mc-cfg.dataDir}/${name}/world \

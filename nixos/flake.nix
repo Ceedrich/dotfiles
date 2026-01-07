@@ -159,11 +159,6 @@
       "minimal" = "ceedrich";
     };
 
-    packages.${system} = rec {
-      "find-icons" = pkgs.callPackage ./packages/find-icons.nix {};
-      "test-icons" = pkgs.callPackage ./packages/test-icons.nix {inherit find-icons;};
-      "rebuild-system" = pkgs.callPackage ./packages/rebuild_system.nix {};
-      "minecraft-backup" = pkgs.callPackage ./packages/minecraft-backup.nix {};
-    };
+    packages.${system} = import ./packages {inherit pkgs;};
   };
 }
