@@ -30,10 +30,11 @@ in {
           dns = {
             listeningMode = "ALL";
             upstreams = [
-              "1.1.1.1"
-              "1.0.0.1"
+              "100.100.100.100" # Tailscale
+              "1.1.1.1" # Cloudflare
+              "1.0.0.1" # Cloudflare 2
             ];
-            # cnameRecords = ["mc.ceedri.ch,jarjar"];
+            cnameRecords = ["cediflix.ceedri.ch,jarjar"];
             # hosts = ["100.94.165.18 mc.ceedri.ch"];
           };
           ntp = {
