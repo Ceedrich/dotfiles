@@ -1,5 +1,6 @@
 {
   pkgs,
+  ceedrichPkgs,
   lib,
   ...
 }: let
@@ -10,11 +11,15 @@ in {
     vpn.epfl = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    signal-desktop
-    vlc
-    audacity
-  ];
+  environment.systemPackages =
+    (with pkgs; [
+      signal-desktop
+      vlc
+      audacity
+    ])
+    ++ (with ceedrichPkgs; [
+      test-icons
+    ]);
 
   programs.ghostty.enable = mkDefault true;
   programs.hyprland.enable = mkDefault true;

@@ -34,6 +34,7 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     home-manager,
     nixgl,
@@ -42,6 +43,7 @@
     utils = import ./utils.nix {};
     ceedrichLib = pkgs.callPackage ./lib {};
     system = "x86_64-linux";
+    ceedrichPkgs = self.packages.${system};
     makePkgs = npkgs:
       import npkgs {
         inherit system;
@@ -72,6 +74,7 @@
         pkgs-unstable
         nixgl
         ceedrichLib
+        ceedrichPkgs
         ;
     };
 
@@ -100,6 +103,7 @@
             inputs
             pkgs-unstable
             ceedrichLib
+            ceedrichPkgs
             ;
           meta = {
             inherit
