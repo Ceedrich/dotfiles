@@ -33,10 +33,8 @@ in {
               "1.1.1.1"
               "1.0.0.1"
             ];
-            cnameRecords = [
-              "mc.ceedri.ch,jarjar"
-              "minecraft.ceedri.ch,jarjar"
-            ];
+            # cnameRecords = ["mc.ceedri.ch,jarjar"];
+            # hosts = ["100.94.165.18 mc.ceedri.ch"];
           };
           ntp = {
             ipv4.active = false;
