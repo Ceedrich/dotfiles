@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  meta,
   ...
 }: let
   cfg = config.services.pihole;
@@ -38,7 +39,17 @@ in {
             #   "cediflix.ceedri.ch,jabba"
             #   "minecraft.ceedri.ch,jarjar"
             # ];
-            # hosts = ["100.94.165.18 mc.ceedri.ch"];
+            hosts = let
+              getIp = hostname: meta.machines.${hostname}.tailscale.ipv4;
+              hosts = {
+                "mc.ceedri.ch" = getIp "jarjar";
+                "minecraft.ceedri.ch" = getIp "jarjar";
+                "jellyfin.ceedri.ch" = getIp "jabba";
+                "cediflix.ceedri.ch" = getIp "jabba";
+                "flix.ceedri.ch" = getIp "jabba";
+              };
+            in
+              lib.mapAttrsToList (name: ip: "${ip} ${name}") hosts;
           };
           ntp = {
             ipv4.active = false;
