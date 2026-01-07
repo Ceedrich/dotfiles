@@ -34,6 +34,7 @@ in {
               "1.0.0.1" # Cloudflare 2
             ];
             cnameRecords = [
+              "home.ceedri.ch,jabba"
               "cediflix.ceedri.ch,jabba"
               "minecraft.ceedri.ch,jarjar"
             ];
