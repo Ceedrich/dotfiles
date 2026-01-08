@@ -1,7 +1,6 @@
 {
   pkgs,
   meta,
-  pkgs-unstable,
   ...
 }: let
   ports = {
@@ -28,9 +27,6 @@ in {
 
     # virtualHosts."arm.${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.arm}/";
   };
-
-  services.tailscale.enable = true;
-  services.tailscale.package = pkgs-unstable.tailscale;
 
   systemd.services.hd-idle = {
     description = "External HD spin down daemon";

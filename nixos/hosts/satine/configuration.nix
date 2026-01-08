@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs-unstable,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../_graphical
@@ -51,10 +47,5 @@
   networking.firewall.allowedTCPPorts = [22];
   networking.networkmanager.wifi.powersave = false;
 
-  services.tailscale = {
-    tray.enable = true;
-    enable = true;
-    package = pkgs-unstable.tailscale;
-  };
   system.stateVersion = "24.11";
 }

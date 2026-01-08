@@ -1,5 +1,4 @@
 {
-  pkgs-unstable,
   modulesPath,
   inputs,
   ...
@@ -26,7 +25,4 @@
       AllowUsers = null;
     };
   };
-
-  services.tailscale.enable = true;
-  services.tailscale.package = pkgs-unstable.tailscale;
 }

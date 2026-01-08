@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs-unstable,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../jarjar/minecraft-servers
@@ -64,9 +60,6 @@
   };
 
   networking.firewall.allowedTCPPorts = [22];
-
-  services.tailscale.enable = true;
-  services.tailscale.package = pkgs-unstable.tailscale;
 
   system.stateVersion = "24.11";
 }

@@ -3,6 +3,7 @@
   inputs,
   meta,
   pkgs,
+  pkgs-unstable,
   ...
 }: {
   imports = [
@@ -95,6 +96,11 @@
   };
 
   console.keyMap = "sg";
+
+  services.tailscale = {
+    enable = true;
+    package = pkgs-unstable.tailscale;
+  };
 
   # Nix settings
   nix.settings.experimental-features = ["nix-command" "flakes"];

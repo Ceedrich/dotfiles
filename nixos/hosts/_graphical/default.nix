@@ -34,4 +34,5 @@ in {
 
   services.hypridle.enable = mkDefault true;
   services.waybar.enable = mkDefault true;
+  services.tailscale.tray.enable = mkDefault true;
 }
