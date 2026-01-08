@@ -18,21 +18,24 @@ in {
     vpn.epfl = true;
   };
 
-  environment.systemPackages =
-    (with pkgs; [
-      signal-desktop
-      vlc
-      audacity
-    ])
-    ++ (with ceedrichPkgs; [
-      test-icons
-    ]);
+  environment.systemPackages = with pkgs; [
+    signal-desktop
+    vlc
+    audacity
+    ceedrichPkgs.test-icons
+  ];
 
-  programs.ghostty.enable = mkDefault true;
-  programs.hyprland.enable = mkDefault true;
-  programs.hyprlock.enable = mkDefault true;
-
-  services.hypridle.enable = mkDefault true;
-  services.waybar.enable = mkDefault true;
-  services.tailscale.tray.enable = mkDefault true;
+  programs = {
+    ghostty.enable = mkDefault true;
+    hyprland.enable = mkDefault true;
+    hyprlock.enable = mkDefault true;
+    thunderbird.enable = mkDefault true;
+    zathura.enable = mkDefault true;
+  };
+  services = {
+    hypridle.enable = mkDefault true;
+    mpvpaper.enable = mkDefault true;
+    tailscale.tray.enable = mkDefault true;
+    waybar.enable = mkDefault true;
+  };
 }

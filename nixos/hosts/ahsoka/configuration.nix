@@ -11,13 +11,10 @@
     coolercontrol.enable = true;
     modrinth.enable = true;
     steam.enable = true;
-    thunderbird.enable = true;
-    zathura.enable = true;
   };
   environment.systemPackages = with pkgs; [
     lact
     owncloud-client
-    texliveFull
 
     discord
     spotify
@@ -48,18 +45,6 @@
 
   systemd.packages = with pkgs; [lact];
   systemd.services.lactd.wantedBy = ["multi-user.target"];
-
-  services.mpvpaper.enable = true;
-  services.openssh = {
-    enable = true;
-    ports = [22];
-    settings = {
-      PasswordAuthentication = false;
-      AllowUsers = null;
-    };
-  };
-
-  networking.firewall.allowedTCPPorts = [22];
 
   system.stateVersion = "24.11";
 }

@@ -4,17 +4,14 @@
     ../_graphical
   ];
 
-  programs.hyprland.extraConfig = "monitor = , preferred, auto, 1";
-
   programs = {
-    thunderbird.enable = true;
-    zathura.enable = true;
     modrinth.enable = true;
     steam.enable = true;
+
+    hyprland.extraConfig = "monitor = , preferred, auto, 1";
   };
 
   environment.systemPackages = with pkgs; [
-    texliveFull
     owncloud-client
 
     discord
@@ -34,17 +31,6 @@
     enable = true;
   };
 
-  services.mpvpaper.enable = true;
-  services.openssh = {
-    enable = true;
-    ports = [22];
-    settings = {
-      PasswordAuthentication = false;
-      AllowUsers = null;
-    };
-  };
-
-  networking.firewall.allowedTCPPorts = [22];
   networking.networkmanager.wifi.powersave = false;
 
   system.stateVersion = "24.11";
