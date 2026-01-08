@@ -7,7 +7,10 @@
     name = "test-icons";
     runtimeInputs = [find-icons libnotify];
     text = ''
-      notify-send "test-icon" --icon="$(find-icons)"
+      icon="$(find-icons)"
+      [[ -n "$icon" ]] || exit 1
+      notify-send "test-icon" --icon="$icon"
+      echo "$icon"
     '';
   };
 in
