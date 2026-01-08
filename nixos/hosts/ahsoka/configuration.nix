@@ -12,12 +12,12 @@
     modrinth.enable = true;
     steam.enable = true;
     thunderbird.enable = true;
+    zathura.enable = true;
   };
   environment.systemPackages = with pkgs; [
     lact
     owncloud-client
     texliveFull
-    zathura
 
     discord
     spotify
