@@ -12,6 +12,7 @@
     ./pihole
     ./shortcuts
     ./steam.nix
+    ./tailscale
     ./waybar
     ./zathura
   ];

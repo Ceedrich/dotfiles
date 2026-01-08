@@ -51,8 +51,10 @@
   networking.firewall.allowedTCPPorts = [22];
   networking.networkmanager.wifi.powersave = false;
 
-  services.tailscale.enable = true;
-  services.tailscale.package = pkgs-unstable.tailscale;
-
+  services.tailscale = {
+    tray.enable = true;
+    enable = true;
+    package = pkgs-unstable.tailscale;
+  };
   system.stateVersion = "24.11";
 }
