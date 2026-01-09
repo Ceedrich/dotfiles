@@ -81,8 +81,12 @@ in {
       in {
         plugins.hyprbars = {
           bar_height = 20;
+          bar_color = "$overlay0";
+          bar_title_enabled = false;
+          bar_part_of_window = true;
+          bar_precedence_over_border = true;
           hyprbars-button = [
-            "rgb(ff4040), 10, 󰖭, hyprctl dispatch killactive"
+            "$red, 10,, hyprctl dispatch killactive"
           ];
         };
 
