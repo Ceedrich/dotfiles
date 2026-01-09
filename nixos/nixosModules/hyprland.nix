@@ -1,15 +1,12 @@
 {
   ceedrichPkgs,
   config,
-  inputs,
   lib,
   pkgs,
   ...
 }: let
   cfg = config.programs.hyprland;
 in {
-  imports = [inputs.hyprland.nixosModules.default];
-
   options.programs.hyprland = let
     types = lib.types;
   in {
@@ -62,11 +59,12 @@ in {
 
     environment.systemPackages = cfg.extra-packages;
 
-    programs.uwsm.enable = lib.mkDefault true;
     programs.hyprland = {
-      withUWSM = lib.mkDefault true;
       xwayland.enable = true;
+    };
 
+    global-hm.config.wayland.windowManager.hyprland = {
+      enable = true;
       plugins = with pkgs.hyprlandPlugins; [hyprbars hyprspace];
 
       settings = let
@@ -80,7 +78,6 @@ in {
           powermenu
           emoji-picker
           ;
-        uwsm-run = lib.optionalString cfg.withUWSM "uwsm app --";
       in {
         plugins.hyprbars = {
           bar_height = 20;
@@ -96,7 +93,7 @@ in {
           wpctl = "${pkgs.wireplumber}/bin/wpctl";
           brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
         in [
-          "${mainMod}, return, exec, ${uwsm-run} ${terminal}"
+          "${mainMod}, return, exec, ${terminal}"
           "${mainMod}, Q, killactive"
           "${mainMod} SHIFT, Q, exec, ${powermenu}"
 
@@ -104,7 +101,7 @@ in {
           "${mainMod}, T, togglefloating"
           "${mainMod}, F, fullscreen"
 
-          "${mainMod}, Space, exec, ${launcher} -run-command '${uwsm-run} {cmd}'"
+          "${mainMod}, Space, exec, ${launcher} -run-command '{cmd}'"
           ", PRINT, exec, ${screenshot} -m region"
           "SHIFT, PRINT, exec, ${screenshot} -m window"
 
@@ -192,11 +189,17 @@ in {
           ];
         in
           [
-            "opacity 0.7 0.6, match:class com\.mitchellh\.ghostty"
-            "suppress_event maximize, match:class .*"
-            # "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+            # Works from 0.53
+            # "opacity 0.7 0.6, match:class com\.mitchellh\.ghostty"
+            # "suppress_event maximize, match:class .*"
+
+            # Up until 0.52
+            "opacity 0.7 0.6, class:com\.mitchellh\.ghostty"
           ]
-          ++ (builtins.map (regex: "float on, match:class ${regex}") floating);
+          # Works from 0.53
+          # ++ (builtins.map (regex: "float on, match:class ${regex}") floating);
+          # Up until 0.52
+          ++ (builtins.map (regex: "float, class:${regex}") floating);
       };
     };
 

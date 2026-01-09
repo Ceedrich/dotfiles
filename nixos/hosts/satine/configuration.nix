@@ -7,9 +7,8 @@
   programs = {
     modrinth.enable = true;
     steam.enable = true;
-
-    hyprland.extraConfig = "monitor = , preferred, auto, 1";
   };
+  global-hm.config.wayland.windowManager.hyprland.extraConfig = "monitor = , preferred, auto, 1";
 
   environment.systemPackages = with pkgs; [
     owncloud-client
