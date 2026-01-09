@@ -3,12 +3,10 @@
   config,
   inputs,
   lib,
-  meta,
   pkgs,
   ...
 }: let
   cfg = config.programs.hyprland;
-  hyprpkgs = inputs.hyprland.packages.${meta.system};
 in {
   imports = [inputs.hyprland.nixosModules.default];
 
@@ -67,8 +65,6 @@ in {
     programs.uwsm.enable = lib.mkDefault true;
     programs.hyprland = {
       withUWSM = lib.mkDefault true;
-      package = hyprpkgs.hyprland;
-      portalPackage = hyprpkgs.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
 
       settings = let
@@ -204,7 +200,7 @@ in {
       enable = true;
       wlr.enable = true;
       extraPortals = [pkgs.xdg-desktop-portal-gtk];
-      configPackages = [hyprpkgs.xdg-desktop-portal-hyprland];
+      configPackages = [pkgs.xdg-desktop-portal-hyprland];
     };
 
     hardware = {
