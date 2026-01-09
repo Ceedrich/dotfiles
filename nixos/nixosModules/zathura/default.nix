@@ -13,6 +13,9 @@ in {
 
     global-hm.config.programs.zathura = {
       enable = true;
+      extraConfig = ''
+        set selection-clipboard clipboard
+      '';
     };
   };
 }
