@@ -80,7 +80,7 @@ in {
           ;
       in {
         plugins.hyprbars = {
-          bar_height = 20;
+          bar_height = 25;
           bar_color = "$overlay0";
           bar_title_enabled = false;
           bar_part_of_window = true;
