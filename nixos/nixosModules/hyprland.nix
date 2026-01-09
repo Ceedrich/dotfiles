@@ -80,14 +80,14 @@ in {
           ;
       in {
         plugin.hyprbars = {
-          bar_height = 25;
+          bar_height = 20;
           bar_blur = false;
           bar_color = "$crust";
           bar_title_enabled = false;
           bar_part_of_window = true;
           bar_precedence_over_border = true;
           hyprbars-button = [
-            "$red, 20,, hyprctl dispatch killactive"
+            "$red, 10,, hyprctl dispatch killactive"
           ];
         };
 
