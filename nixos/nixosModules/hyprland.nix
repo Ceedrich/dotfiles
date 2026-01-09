@@ -79,7 +79,7 @@ in {
           emoji-picker
           ;
       in {
-        plugins.hyprbars = {
+        plugin.hyprbars = {
           bar_height = 25;
           bar_color = "$overlay0";
           bar_title_enabled = false;
