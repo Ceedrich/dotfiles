@@ -65,7 +65,7 @@ in {
 
     global-hm.config.wayland.windowManager.hyprland = {
       enable = true;
-      plugins = with pkgs.hyprlandPlugins; [hyprbars hyprexpo];
+      plugins = with pkgs.hyprlandPlugins; [hyprbars];
 
       settings = let
         inherit
@@ -89,10 +89,6 @@ in {
           hyprbars-button = [
             "$red, 10,, hyprctl dispatch killactive"
           ];
-        };
-        plugin.hyprexpo = {
-          bg_col = "$crust";
-          skip_empty = true;
         };
 
         exec-once = autostart;
