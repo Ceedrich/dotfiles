@@ -82,7 +82,7 @@ in {
         plugin.hyprbars = {
           bar_height = 25;
           bar_blur = false;
-          bar_color = "$mauve";
+          bar_color = "$crust";
           bar_title_enabled = false;
           bar_part_of_window = true;
           bar_precedence_over_border = true;
