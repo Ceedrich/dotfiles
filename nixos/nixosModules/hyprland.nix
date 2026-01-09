@@ -67,6 +67,8 @@ in {
       withUWSM = lib.mkDefault true;
       xwayland.enable = true;
 
+      plugins = with pkgs.hyprlandPlugins; [hyprbars hyprspace];
+
       settings = let
         inherit
           (cfg)
@@ -80,6 +82,13 @@ in {
           ;
         uwsm-run = lib.optionalString cfg.withUWSM "uwsm app --";
       in {
+        plugins.hyprbars = {
+          bar_height = 20;
+          hyprbars-button = [
+            "rgb(ff4040), 10, 󰖭, hyprctl dispatch killactive"
+          ];
+        };
+
         exec-once = autostart;
 
         # Bindings
