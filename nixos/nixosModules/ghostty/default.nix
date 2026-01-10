@@ -21,6 +21,7 @@ in {
         theme = "catppuccin-mocha";
         window-decoration = false;
         working-directory = "home";
+        gtk-single-instance = false;
         confirm-close-surface = false;
         title = "Ghostty";
         bell-features = [
