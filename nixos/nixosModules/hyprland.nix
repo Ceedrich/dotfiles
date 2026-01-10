@@ -81,6 +81,7 @@ in {
       in {
         plugin.hyprbars = {
           bar_height = 20;
+          bar_button_padding = 8;
           bar_blur = false;
           bar_color = "$crust";
           bar_title_enabled = false;
