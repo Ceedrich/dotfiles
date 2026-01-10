@@ -34,7 +34,7 @@ in {
       type = types.str;
       default = let
         power-menu = pkgs.callPackage ../homemanagerModules/rofi/power-menu.nix {
-          logoutCommand = "hyprctl dispatch exit";
+          logoutCommand = "hyprctl dispatch exit"; # TODO: replace with `hyprshutdown`
         };
       in "${lib.getExe power-menu}";
     };
@@ -88,6 +88,7 @@ in {
           bar_precedence_over_border = true;
           hyprbars-button = [
             "$red, 10,, hyprctl dispatch killactive"
+            "$green, 10,, hyprctl dispatch togglefloating"
           ];
         };
 
