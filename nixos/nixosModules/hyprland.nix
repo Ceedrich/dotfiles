@@ -65,7 +65,11 @@ in {
 
     global-hm.config.wayland.windowManager.hyprland = {
       enable = true;
-      plugins = with pkgs.hyprlandPlugins; [hyprbars hyprspace];
+      systemd.enableXdgAutostart = true;
+      plugins = with pkgs.hyprlandPlugins; [
+        hyprbars
+        # hyprspace
+      ];
 
       settings = let
         inherit
@@ -94,6 +98,10 @@ in {
             "$green, 10,, hyprctl dispatch togglefloating"
           ];
         };
+        # plugin.overview = {
+        #   showEmptyWorkspace = true;
+        #   showNewWorkspace = false;
+        # };
 
         exec-once = autostart;
 
