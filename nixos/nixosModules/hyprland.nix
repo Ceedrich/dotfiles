@@ -86,8 +86,10 @@ in {
           bar_title_enabled = false;
           bar_part_of_window = true;
           bar_precedence_over_border = true;
+          bar_buttons_alignment = "left";
           hyprbars-button = [
             "$red, 10,, hyprctl dispatch killactive"
+            "$yellow, 10,, hyprctl dispatch fullscreenstate 1"
             "$green, 10,, hyprctl dispatch togglefloating"
           ];
         };
