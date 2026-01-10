@@ -65,7 +65,7 @@ in {
 
     global-hm.config.wayland.windowManager.hyprland = {
       enable = true;
-      plugins = with pkgs.hyprlandPlugins; [hyprbars];
+      plugins = with pkgs.hyprlandPlugins; [hyprbars hyprspace];
 
       settings = let
         inherit
