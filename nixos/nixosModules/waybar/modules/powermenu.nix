@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  pkgs,
+  ceedrichPkgs,
   ...
 }: let
   name = "group/powermenu";
@@ -12,8 +12,7 @@
   reboot = "custom/powermenu-reboot";
   suspend = "custom/powermenu-suspend";
 
-  confirm-dialogue = pkgs.callPackage ../../../homemanagerModules/rofi/confirm-dialogue.nix {};
-  mkConfirm = label: cmd: ''${lib.getExe confirm-dialogue} "${label}" "${cmd}"'';
+  mkConfirm = label: cmd: ''${lib.getExe ceedrichPkgs.confirm-dialogue} "${label}" "${cmd}"'';
   wb = config.services.waybar;
   cfg = wb.modules.powermenu;
 in {

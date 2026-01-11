@@ -5,8 +5,8 @@
   shutdownCommand ? "systemctl poweroff",
   rebootCommand ? "systemctl reboot",
   suspendCommand ? "systemctl suspend",
+  confirm-dialogue,
   lib,
-  callPackage,
   writeShellApplication,
   rofi,
 }: let
@@ -41,7 +41,7 @@
       cmd,
       confirm,
     }: let
-      doConfirm = lib.getExe (callPackage ./confirm-dialogue.nix {});
+      doConfirm = lib.getExe confirm-dialogue;
       command =
         if confirm
         then "${doConfirm} \"${name}\" \"${cmd}\""

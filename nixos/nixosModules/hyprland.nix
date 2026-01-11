@@ -33,7 +33,7 @@ in {
     powermenu = lib.mkOption {
       type = types.str;
       default = let
-        power-menu = pkgs.callPackage ../homemanagerModules/rofi/power-menu.nix {
+        power-menu = ceedrichPkgs.power-menu.override {
           logoutCommand = "hyprctl dispatch exit"; # TODO: replace with `hyprshutdown`
         };
       in "${lib.getExe power-menu}";
