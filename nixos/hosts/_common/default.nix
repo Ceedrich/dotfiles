@@ -9,6 +9,7 @@
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
   ];
+  environment.sessionVariables.GTK_IM_MODULE = "gtk-im-context-simple";
   # Packages / Programs
   environment.systemPackages = with pkgs; [
     wl-clipboard
