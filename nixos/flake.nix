@@ -77,22 +77,6 @@
         ;
     };
 
-    mkHomeManager = dir: user:
-      home-manager.lib.homeManagerConfiguration {
-        inherit pkgs extraSpecialArgs;
-
-        modules =
-          [
-            {
-              home.username = user;
-              home.homeDirectory = "/home/${user}";
-              home.stateVersion = "24.11";
-            }
-            ./users/${dir}/dotfiles.nix
-          ]
-          ++ hm-modules;
-      };
-
     machines = import ./machines.nix;
 
     mkNixos = hostname: users:
@@ -150,12 +134,6 @@
       ahsoka = {"ceedrich" = "ceedrich";};
       satine = {"ceedrich" = "ceedrich";};
       jarjar = {"ceedrich" = "minimal";};
-    };
-
-    homeConfigurations = utils.generateConfigs mkHomeManager {
-      "ceedrich" = "ceedrich";
-      "ubuntu" = "ceedrich";
-      "minimal" = "ceedrich";
     };
 
     packages.${system} = import ./packages {inherit pkgs;};
