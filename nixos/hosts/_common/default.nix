@@ -9,26 +9,33 @@
   imports = [
     inputs.catppuccin.nixosModules.catppuccin
   ];
-  environment.sessionVariables.GTK_IM_MODULE = "gtk-im-context-simple";
+  environment.sessionVariables = {
+    GTK_IM_MODULE = "gtk-im-context-simple";
+    MANPAGER = "nvim +Man!";
+  };
+  environment.shellAliases = {
+    dev = "nix develop --command zsh";
+  };
   # Packages / Programs
   environment.systemPackages = with pkgs; [
-    wl-clipboard
-    unzip
-    gnutar
-    pdfgrep
-    gnugrep
-    ripgrep
-    gnupg
-    vim
+    (pass.withExtensions (ext: with ext; [pass-otp pass-update pass-audit]))
+    catppuccin-cursors.mochaMauve
+    ceedrichPkgs.rebuild-system
+    expect # TODO: move into module?
     fd
     file
+    gnugrep
+    gnupg
+    gnutar
     jq
+    just
     openconnect # TODO: move into module?
+    pdfgrep
+    ripgrep
+    unzip
+    vim
+    wl-clipboard
     wlrctl
-    expect # TODO: move into module?
-    (pass.withExtensions (ext: with ext; [pass-otp pass-update pass-audit]))
-    ceedrichPkgs.rebuild-system
-    catppuccin-cursors.mochaMauve
   ];
 
   programs = {
@@ -98,12 +105,35 @@
 
   console.keyMap = "sg";
 
+  global-hm.config = {
+    settings.theming.enable = true;
+    programs = {
+      neovim.enable = true;
+      yazi.enable = true;
+      tmux.enable = true;
+
+      bash.enable = true;
+      zsh = {
+        enable = true;
+        integrations.enable = true;
+      };
+
+      git = {
+        enable = true;
+        settings.user = {
+          name = "Cedric Lehr";
+          email = "info@ceedri.ch";
+        };
+      };
+    };
+  };
+
   services.tailscale = {
     enable = true;
     package = pkgs-unstable.tailscale;
   };
+  programs.dconf.enable = true;
 
   # Nix settings
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  programs.dconf.enable = true;
 }

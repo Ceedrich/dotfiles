@@ -58,6 +58,7 @@
       };
     pkgs-unstable = makePkgs inputs.nixpkgs-unstable;
     pkgs = makePkgs nixpkgs;
+    lib = pkgs.lib;
 
     hm-modules = [
       ./nixpkgs-issue-55674.nix
@@ -108,32 +109,29 @@
             home-manager.useGlobalPkgs = false;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = extraSpecialArgs;
-            home-manager.users =
-              pkgs.lib.mapAttrs (user: dir: {
-                imports =
-                  [
-                    {
-                      home.username = user;
-                      home.homeDirectory = "/home/${user}";
-                      home.stateVersion = "24.11";
-                    }
-                    ./users/${dir}/dotfiles.nix
-                  ]
-                  ++ hm-modules;
-              })
-              users;
+            home-manager.users = lib.genAttrs users (user: {
+              imports =
+                [
+                  {
+                    home.username = user;
+                    home.homeDirectory = "/home/${user}";
+                    home.stateVersion = "24.11";
+                  }
+                ]
+                ++ hm-modules;
+            });
           }
           {
-            global-hm.users = pkgs.lib.attrNames users;
+            global-hm.users = users;
           }
         ];
       };
   in {
     nixosConfigurations = utils.generateConfigs mkNixos {
-      jabba = {"ceedrich" = "minimal";};
-      ahsoka = {"ceedrich" = "ceedrich";};
-      satine = {"ceedrich" = "ceedrich";};
-      jarjar = {"ceedrich" = "minimal";};
+      jabba = ["ceedrich"];
+      ahsoka = ["ceedrich"];
+      satine = ["ceedrich"];
+      jarjar = ["ceedrich"];
     };
 
     packages.${system} = import ./packages {inherit pkgs;};

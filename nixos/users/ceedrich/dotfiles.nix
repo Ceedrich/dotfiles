@@ -1,5 +1,0 @@
-{...}: {
-  imports = [
-    ../minimal/dotfiles.nix
-  ];
-}
