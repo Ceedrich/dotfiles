@@ -62,8 +62,8 @@ in {
           tooltip-format = "Previous";
           escape = true;
           max-length = 50;
-          on-click = "${playercmd} prev 2";
-          exec = "${playercmd} status 2";
+          on-click = "${playercmd} prev";
+          exec = "${playercmd} status";
           # BUG: See https://github.com/Alexays/Waybar/issues/4382
           on-scroll-up = "true";
           on-scroll-down = "true";
