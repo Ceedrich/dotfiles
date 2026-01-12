@@ -58,7 +58,7 @@ show() {
 {
   "text": "$artist - $title",
   "alt": "$playerName",
-  "tooltip": "${albumArtist:-$artist} - $album\r$trackNumber. $title\r",
+  "tooltip": "${albumArtist:-$artist} - $album\r\r$trackNumber. $title\r",
   "percentage": $percentage,
   "class": ""
 }
