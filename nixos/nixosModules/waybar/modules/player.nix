@@ -1,5 +1,4 @@
 {
-  ceedrichPkgs,
   pkgs,
   lib,
   config,
@@ -29,7 +28,7 @@ in {
   config.services.waybar = {
     settings = let
       players = "${lib.strings.concatStringsSep "," cfg.priorities},%any";
-      playercmd = "${ceedrichPkgs.waybar-player}/bin/waybar-player -p='${players}'";
+      playercmd = "${cfg.playerCtlPackage}/bin/playerctl --player='${players}'";
 
       prev = "custom/music-player-prev";
       main = "custom/music-player-main";
@@ -41,16 +40,17 @@ in {
           modules = [prev main next];
         };
         ${main} = {
-          format = "{text}";
+          format = "{}";
           interval = 5;
           tooltip = true;
           tooltip-format = "Play/Pause";
-          return-type = "json";
           escape = true;
-          on-click = "${playercmd} play-pause";
-          on-click-right = ''${playercmd} open'';
+          on-click = "${playercmd} play-pause 2>/dev/null";
+          on-click-right = let
+            hyprlandPackage = "${config.programs.hyprland.package}";
+          in ''${hyprlandPackage}/bin/hyprctl dispatch focuswindow "class:(?i:^.*$(${playercmd} -l | head -n1).*)"''; # TODO: add sway support
           max-length = 50;
-          exec = "${playercmd} show";
+          exec = "${playercmd} metadata --format='{{ artist }} - {{ title }}' 2>/dev/null";
           # BUG: See https://github.com/Alexays/Waybar/issues/4382
           on-scroll-up = "true";
           on-scroll-down = "true";
@@ -63,8 +63,8 @@ in {
           tooltip-format = "Previous";
           escape = true;
           max-length = 50;
-          on-click = "${playercmd} prev";
-          exec = "${playercmd} status";
+          on-click = "${playercmd} previous 2>/dev/null";
+          exec = "${playercmd} status 2>/dev/null";
           # BUG: See https://github.com/Alexays/Waybar/issues/4382
           on-scroll-up = "true";
           on-scroll-down = "true";
@@ -77,8 +77,8 @@ in {
           tooltip-format = "Next";
           escape = true;
           max-length = 50;
-          on-click = "${playercmd} next";
-          exec = "${playercmd} status";
+          on-click = "${playercmd} next 2>/dev/null";
+          exec = "${playercmd} status 2>/dev/null";
           # BUG: See https://github.com/Alexays/Waybar/issues/4382
           on-scroll-up = "true";
           on-scroll-down = "true";
