@@ -41,11 +41,11 @@ in {
           modules = [prev main next];
         };
         ${main} = {
-          format = "{}";
+          format = "{text}";
           interval = 5;
           tooltip = true;
           return-type = "json";
-          tooltip-format = "{}";
+          tooltip-format = "{tooltip}";
           escape = true;
           on-click = "${playercmd} play-pause";
           on-click-right = ''${playercmd} open'';
