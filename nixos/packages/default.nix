@@ -11,4 +11,5 @@ in rec {
   serve-dir = callPackage ./serve-dir.nix {};
   space = callPackage ./space.nix {};
   test-icons = callPackage ./test-icons.nix {inherit find-icons;};
+  waybar-player = callPackage ./waybar-player {};
 }

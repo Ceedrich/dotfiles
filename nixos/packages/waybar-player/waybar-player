@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+
+PLAYERS=
+DEBUG=false
+
+debug() {
+  if $DEBUG; then
+    echo "[DEBUG]:" "$@" 1>&2
+  fi
+}
+
+myplayer() {
+  if [[ -n "$PLAYERS" ]]; then
+    debug playerctl --player="$PLAYERS" "$@" 
+    playerctl --player="$PLAYERS" "$@"
+  else
+    debug playerctl "$@"
+    playerctl "$@"
+  fi
+}
+
+usage() {
+  cat <<- EOF
+Usage: $0 [options] <command>
+
+Commands:
+  show          Shows the data required for waybar
+  play-pause    Plays/Pauses the current track
+  next          Skip to the next track 
+  prev          Skip to the previous track
+  open          Open the track in the player
+  active        Returns 0 if active, 1 if inactive
+
+Options:
+  -h            Show this message and exit
+  -p            Comma-separated list of players with descending priority
+  -d            Use debug output
+EOF
+}
+
+show() {
+  local album artist albumArtist title length position percentage trackNumber playerName
+  playerName=$(myplayer metadata --format='{{playerName}}')
+  artist=$(myplayer metadata --format='{{artist}}')
+  albumArtist=$(myplayer metadata --format='{{xesam:albumArtist}}')
+  album=$(myplayer metadata --format='{{album}}')
+  title=$(myplayer metadata --format='{{title}}')
+  length=$(myplayer metadata --format='{{mpris:length}}')
+  position=$(myplayer metadata --format='{{position}}')
+  trackNumber=$(myplayer metadata --format='{{xesam:trackNumber}}')
+  trackNumber=$(printf "%02d" "$trackNumber")
+  percentage=$(( position * 100 / length ))
+  jq --unbuffered --compact-output << EOF
+{
+  "text": "$artist - $title",
+  "alt": "$playerName",
+  "tooltip": "${albumArtist:-$artist} - $album\r$trackNumber. $title\r",
+  "percentage": $percentage,
+  "class": ""
+}
+EOF
+}
+
+play-pause() {
+  myplayer play-pause
+}
+next() {
+  myplayer next
+}
+prev() {
+  myplayer previous
+}
+open() {
+  local activeplayer
+  activeplayer=$(myplayer -l | head -n1)
+  hyprctl dispatch focuswindow "class:(?i:^.*$activeplayer.*)"
+}
+
+while getopts "hdp:" opt; do
+  case $opt in
+    h) usage; exit;;
+    d) DEBUG=true;;
+    p) PLAYERS="$OPTARG";;
+    *) usage; exit 1;;
+  esac
+done
+shift $((OPTIND - 1))
+
+case "$1" in 
+  'show') show;;
+  'play-pause') play-pause;;
+  'next') next;;
+  'status') myplayer metadata>/dev/null 2>&1; exit $?;;
+  'prev') prev;;
+  'open') open;;
+  *) usage; exit 1;;
+esac
