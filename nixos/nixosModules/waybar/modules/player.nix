@@ -45,7 +45,7 @@ in {
           interval = 5;
           tooltip = true;
           return-type = "json";
-          tooltip-format = "{tooltip}";
+          tooltip-format = "{text}";
           escape = true;
           on-click = "${playercmd} play-pause";
           on-click-right = ''${playercmd} open'';
