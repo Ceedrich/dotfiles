@@ -44,6 +44,7 @@ in {
           format = "{text}";
           interval = 5;
           tooltip = true;
+          tooltip-format = "Play/Pause";
           return-type = "json";
           escape = true;
           on-click = "${playercmd} play-pause";
