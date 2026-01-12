@@ -45,12 +45,10 @@ in {
           interval = 5;
           tooltip = true;
           return-type = "json";
-          tooltip-format = "Play/Pause";
+          tooltip-format = "{}";
           escape = true;
           on-click = "${playercmd} play-pause";
-          on-click-right = let
-            hyprlandPackage = "${config.programs.hyprland.package}";
-          in ''${hyprlandPackage}/bin/hyprctl dispatch focuswindow "class:(?i:^.*$(${playercmd} -l | head -n1).*)"''; # TODO: add sway support
+          on-click-right = ''${playercmd} open'';
           max-length = 50;
           exec = "${playercmd} show";
           # BUG: See https://github.com/Alexays/Waybar/issues/4382

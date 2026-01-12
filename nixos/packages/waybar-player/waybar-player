@@ -38,6 +38,10 @@ Options:
 EOF
 }
 
+is_active() {
+  myplayer metadata>/dev/null 2>&1
+}
+
 show() {
   local album artist albumArtist title length position percentage trackNumber playerName
   playerName=$(myplayer metadata --format='{{playerName}}')
@@ -71,6 +75,7 @@ prev() {
   myplayer previous
 }
 open() {
+  # TODO: add support for other compositors
   local activeplayer
   activeplayer=$(myplayer -l | head -n1)
   hyprctl dispatch focuswindow "class:(?i:^.*$activeplayer.*)"
@@ -87,11 +92,11 @@ done
 shift $((OPTIND - 1))
 
 case "$1" in 
-  'show') show;;
-  'play-pause') play-pause;;
-  'next') next;;
-  'status') myplayer metadata>/dev/null 2>&1; exit $?;;
-  'prev') prev;;
-  'open') open;;
+  'show') show || exit;;
+  'play-pause') play-pause || exit;;
+  'next') next || exit;;
+  'status') is_active; exit $?;;
+  'prev') prev || exit;;
+  'open') open || exit;;
   *) usage; exit 1;;
 esac
