@@ -99,5 +99,6 @@ in {
           };
         };
       });
+      environment.systemPackages = lib.optional cfg.restic.enable pkgs.restic;
     };
 }
