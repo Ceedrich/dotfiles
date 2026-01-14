@@ -72,9 +72,11 @@ in {
       submaps."minimized".settings = {
         bind = [
           "${cfg.mainMod}, Q, killactive"
-          ", Return, movetoworkspace, +0"
+          ", Return, movetoworkspacesilent, +0"
+          ", Return, togglespecialworkspace, minimized"
           ", Return, submap, reset"
-          ", mouse:272, movetoworkspace, +0"
+          ", mouse:272, movetoworkspacesilent, +0"
+          ", mouse:272, togglespecialworkspace, minimized"
           ", mouse:272, submap, reset"
           ", escape, togglespecialworkspace, minimized"
           ", escape, submap, reset"
