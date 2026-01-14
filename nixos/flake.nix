@@ -97,34 +97,33 @@
               ;
           };
         };
-        modules = [
-          ./nixpkgs-issue-55674.nix
-          ./nixosModules
-          ./hosts/_common
-          ./hosts/${hostname}/configuration.nix
-          ./users/ceedrich
-          ./globalHM.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = false;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = extraSpecialArgs;
-            home-manager.users = lib.genAttrs users (user: {
-              imports =
-                [
-                  {
-                    home.username = user;
-                    home.homeDirectory = "/home/${user}";
-                    home.stateVersion = "24.11";
-                  }
-                ]
-                ++ hm-modules;
-            });
-          }
-          {
-            global-hm.users = users;
-          }
-        ];
+        modules =
+          [
+            ./nixpkgs-issue-55674.nix
+            ./globalHM.nix
+            ./nixosModules
+            ./hosts/_common
+            ./hosts/${hostname}/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = false;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = extraSpecialArgs;
+              home-manager.users = lib.genAttrs users (user: {
+                imports =
+                  [
+                    {
+                      home.username = user;
+                      home.homeDirectory = "/home/${user}";
+                      home.stateVersion = "24.11";
+                    }
+                  ]
+                  ++ hm-modules;
+              });
+              global-hm.users = users;
+            }
+          ]
+          ++ builtins.map (user: ./users/${user}) users;
       };
   in {
     nixosConfigurations = utils.generateConfigs mkNixos {

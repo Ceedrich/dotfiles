@@ -43,6 +43,12 @@
     enable = true;
   };
 
+  home-manager.sharedModules = [
+    {
+      programs.bat.package = pkgs.bat;
+    }
+  ];
+
   systemd.packages = with pkgs; [lact];
   systemd.services.lactd.wantedBy = ["multi-user.target"];
 

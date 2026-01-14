@@ -1,3 +1,4 @@
+# TODO: look at `home-manager.sharedModules`, See also <https://home-manager.dev/manual/25.11/nixos-options.xhtml#nixos-opt-home-manager.sharedModules>
 {
   pkgs,
   lib,
