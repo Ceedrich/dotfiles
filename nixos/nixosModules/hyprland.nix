@@ -70,6 +70,31 @@ in {
         hyprbars
         # hyprspace
       ];
+      #See <https://github.com/hyprwm/Hyprland/issues/995#issuecomment-2069669681>
+      submaps."minimized".settings = {
+        bind = [
+          "${cfg.mainMod}, Q, killactive"
+          ", Return, movetoworkspace, +0"
+          ", Return, submap, reset"
+          ", mouse:272, movetoworkspace, +0"
+          ", mouse:272, submap, reset"
+          ", escape, togglespecialworkspace, minimized"
+          ", escape, submap, reset"
+        ];
+      };
+
+      submaps."resize".settings = {
+        binde = [
+          ", right, resizeactive, 10 0"
+          ", left, resizeactive, -10 0"
+          ", up, resizeactive, 0 -10"
+          ", down, resizeactive, 0 10"
+        ];
+
+        bind = [
+          ", escape, submap, reset"
+        ];
+      };
 
       settings = let
         inherit
@@ -104,32 +129,6 @@ in {
         #   showEmptyWorkspace = true;
         #   showNewWorkspace = false;
         # };
-
-        #See <https://github.com/hyprwm/Hyprland/issues/995#issuecomment-2069669681>
-        submaps."minimized".settings = {
-          bind = [
-            "${mainMod}, Q, killactive"
-            ", Return, movetoworkspace, +0"
-            ", Return, submap, reset"
-            ", mouse:272, movetoworkspace, +0"
-            ", mouse:272, submap, reset"
-            ", escape, togglespecialworkspace, minimized"
-            ", escape, submap, reset"
-          ];
-        };
-
-        submaps."resize".settings = {
-          binde = [
-            ", right, resizeactive, 10 0"
-            ", left, resizeactive, -10 0"
-            ", up, resizeactive, 0 -10"
-            ", down, resizeactive, 0 10"
-          ];
-
-          bind = [
-            ", escape, submap, reset"
-          ];
-        };
 
         exec-once = autostart;
 
