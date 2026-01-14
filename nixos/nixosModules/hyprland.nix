@@ -47,6 +47,18 @@ in {
         swaynotificationcenter
         blueman
         libnotify
+        (pkgs.writeShellApplication {
+          name = "hyprland-un-minimize";
+          runtimeInputs = [cfg.package pkgs.jq];
+          text = ''
+            hyprctl dispatch movetoworkspacesilent +0
+            active_name=$(hyprctl activeworkspace -j | jq -r '.name')
+            if [[ $active_name = "minimized" ]]; then
+              hyprctl dispatch togglespecialworkspace minimized
+            fi
+            hyprctl dispatch submap reset
+          '';
+        })
       ];
     };
   };
@@ -69,15 +81,12 @@ in {
         # hyprspace
       ];
       #See <https://github.com/hyprwm/Hyprland/issues/995#issuecomment-2069669681>
-      submaps."minimized".settings = {
+      submaps."minimized".settings = let
+      in {
         bind = [
           "${cfg.mainMod}, Q, killactive"
-          ", Return, movetoworkspacesilent, +0"
-          ", Return, togglespecialworkspace, minimized"
-          ", Return, submap, reset"
-          ", mouse:272, movetoworkspacesilent, +0"
-          ", mouse:272, togglespecialworkspace, minimized"
-          ", mouse:272, submap, reset"
+          ", Return, exec, hyprland-un-minimize"
+          ", mouse:272, exec, hyprland-un-minimize"
           ", escape, togglespecialworkspace, minimized"
           ", escape, submap, reset"
         ];
