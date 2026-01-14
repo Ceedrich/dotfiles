@@ -53,6 +53,7 @@ in {
           text = ''
             hyprctl dispatch movetoworkspacesilent +0
             active_name=$(hyprctl activeworkspace -j | jq -r '.name')
+            notify-send "$active_name"
             if [[ $active_name = "minimized" ]]; then
               hyprctl dispatch togglespecialworkspace minimized
             fi
