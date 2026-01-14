@@ -84,7 +84,7 @@ in {
           ;
       in {
         plugin.hyprbars = {
-          bar_height = 20;
+          bar_height = 24;
           bar_button_padding = 8;
           bar_blur = false;
           bar_color = "$crust";
@@ -92,10 +92,12 @@ in {
           bar_part_of_window = true;
           bar_precedence_over_border = true;
           bar_buttons_alignment = "left";
-          hyprbars-button = [
-            "$red, 10,, hyprctl dispatch killactive"
-            "$yellow, 10,, hyprctl dispatch fullscreenstate 1"
-            "$green, 10,, hyprctl dispatch togglefloating"
+          hyprbars-button = let
+            size = toString 12;
+          in [
+            "$red, ${size},, hyprctl dispatch killactive"
+            "$yellow, ${size},, hyprctl dispatch fullscreenstate 1"
+            "$green, ${size},, hyprctl dispatch togglefloating"
           ];
         };
         # plugin.overview = {
