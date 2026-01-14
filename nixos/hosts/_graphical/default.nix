@@ -21,6 +21,7 @@ in {
   environment.systemPackages = with pkgs; [
     signal-desktop
     vlc
+    nautilus
     audacity
     ceedrichPkgs.test-icons
   ];
