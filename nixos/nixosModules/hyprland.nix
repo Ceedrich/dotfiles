@@ -96,7 +96,8 @@ in {
             size = toString 12;
           in [
             "$red, ${size},, hyprctl dispatch killactive"
-            "$yellow, ${size},, hyprctl dispatch fullscreenstate 1"
+            # TODO: add minimize functionality, see <https://github.com/hyprwm/Hyprland/issues/995#issuecomment-2069669681>
+            # "$yellow, ${size},, hyprctl dispatch fullscreenstate 1"
             "$green, ${size},, hyprctl dispatch togglefloating"
           ];
         };
