@@ -33,7 +33,6 @@ in {
   ];
 
   programs = {
-    nautilus.enable = mkDefault true;
     ghostty.enable = mkDefault true;
     hyprland.enable = mkDefault true;
     hyprlock.enable = mkDefault true;
