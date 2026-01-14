@@ -16,6 +16,13 @@
 
   networking.firewall.allowedTCPPorts = [22];
 
+  services.uptime-kuma = {
+    enable = true;
+    settings = {
+      PORT = "4000";
+    };
+  };
+
   services.pihole.enable = true;
   services.openssh = {
     enable = true;
