@@ -142,6 +142,7 @@ in {
           "${mainMod}, period, exec, ${emoji-picker}"
           "${mainMod}, T, togglefloating"
           "${mainMod}, F, fullscreen"
+          "${mainMod}, R, submap, resize"
 
           "${mainMod}, Space, exec, ${launcher} -run-command '{cmd}'"
           ", PRINT, exec, ${screenshot} -m region"
@@ -220,7 +221,7 @@ in {
         ];
 
         decoration = {
-          dim_special = 0.4;
+          dim_special = 0.6;
         };
 
         misc = {
