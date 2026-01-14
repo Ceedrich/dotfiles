@@ -20,11 +20,12 @@ in {
   };
   config.services.waybar = {
     settings = let
+      hyprlandPackage = config.programs.hyprland.package;
     in
       lib.genAttrs cfg.bars (bar: {
         "custom/minimized" = {
           "format" = "";
-          "on-click" = "hyprctl --batch 'dispatch submap reset; dispatch workspace special:minimized; dispatch submap minimized'";
+          "on-click" = "${hyprlandPackage}/bin/hyprctl --batch 'dispatch submap reset; dispatch workspace special:minimized; dispatch submap minimized'";
         };
       });
     style =
