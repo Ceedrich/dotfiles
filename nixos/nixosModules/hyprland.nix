@@ -30,13 +30,11 @@ in {
       type = types.listOf types.str;
       default = [];
     };
-    powermenu = lib.mkOption {
-      type = types.str;
-      default = let
-        power-menu = ceedrichPkgs.power-menu.override {
-          logoutCommand = "hyprctl dispatch exit"; # TODO: replace with `hyprshutdown`
-        };
-      in "${lib.getExe power-menu}";
+    powermenuPackage = lib.mkOption {
+      type = types.package;
+      default = ceedrichPkgs.power-menu.override {
+        logoutCommand = ''loginctl terminate-user ""''; # TODO: replace with `hyprshutdown`
+      };
     };
     emoji-picker = lib.mkOption {
       type = types.str;
@@ -104,7 +102,7 @@ in {
           launcher
           autostart
           screenshot
-          powermenu
+          powermenuPackage
           emoji-picker
           ;
       in {
@@ -139,7 +137,7 @@ in {
         in [
           "${mainMod}, return, exec, ${terminal}"
           "${mainMod}, Q, killactive"
-          "${mainMod} SHIFT, Q, exec, ${powermenu}"
+          "${mainMod} SHIFT, Q, exec, ${lib.getExe powermenuPackage}"
 
           "${mainMod}, period, exec, ${emoji-picker}"
           "${mainMod}, T, togglefloating"
