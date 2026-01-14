@@ -59,6 +59,7 @@ in {
             # Workspaces
             (lib.optional (m.workspaces.enable && cfg.enableSwaySupport) "sway/workspaces")
             ++ (lib.optional (m.workspaces.enable && cfg.enableHyprlandSupport) "hyprland/workspaces")
+            ++ ["custom/minimized"]
             # Other modules
             ++ (lib.optional m.audio.enable "pulseaudio")
             ++ (lib.optional m.battery.enable "battery")

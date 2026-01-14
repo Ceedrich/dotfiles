@@ -96,8 +96,7 @@ in {
             size = toString 12;
           in [
             "$red, ${size},, hyprctl dispatch killactive"
-            # TODO: add minimize functionality, see <https://github.com/hyprwm/Hyprland/issues/995#issuecomment-2069669681>
-            # "$yellow, ${size},, hyprctl dispatch fullscreenstate 1"
+            "$yellow, ${size},, hyprctl dispatch --batch 'dispatch movetoworkspacesilent special:minimized'"
             "$green, ${size},, hyprctl dispatch togglefloating"
           ];
         };
@@ -105,6 +104,32 @@ in {
         #   showEmptyWorkspace = true;
         #   showNewWorkspace = false;
         # };
+
+        #See <https://github.com/hyprwm/Hyprland/issues/995#issuecomment-2069669681>
+        submaps."minimized".settings = {
+          bind = [
+            "${mainMod}, Q, killactive"
+            ", Return, movetoworkspace, +0"
+            ", Return, submap, reset"
+            ", mouse:272, movetoworkspace, +0"
+            ", mouse:272, submap, reset"
+            ", escape, togglespecialworkspace, minimized"
+            ", escape, submap, reset"
+          ];
+        };
+
+        submaps."resize".settings = {
+          binde = [
+            ", right, resizeactive, 10 0"
+            ", left, resizeactive, -10 0"
+            ", up, resizeactive, 0 -10"
+            ", down, resizeactive, 0 10"
+          ];
+
+          bind = [
+            ", escape, submap, reset"
+          ];
+        };
 
         exec-once = autostart;
 
