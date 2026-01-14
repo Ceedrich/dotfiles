@@ -16,6 +16,13 @@ in {
       "x-scheme-handler/unknown" = "brave-browser.desktop";
     };
     vpn.epfl = true;
+
+    xdg.userDirs = {
+      enable = true;
+      createDirectories = true;
+      desktop = null;
+      publicShare = null;
+    };
   };
 
   environment.systemPackages = with pkgs; [
