@@ -83,10 +83,10 @@ in {
 
       submaps."resize".settings = {
         binde = [
-          ", right, resizeactive, 10 0"
-          ", left, resizeactive, -10 0"
-          ", up, resizeactive, 0 -10"
-          ", down, resizeactive, 0 10"
+          ", h, resizeactive, -10 0"
+          ", j, resizeactive, 0 10"
+          ", k, resizeactive, 0 -10"
+          ", l, resizeactive, 10 0"
         ];
 
         bind = [
