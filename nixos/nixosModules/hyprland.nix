@@ -219,6 +219,10 @@ in {
           "fade, 1, 0.5, default"
         ];
 
+        decoration = {
+          dim_special = 0.4;
+        };
+
         misc = {
           force_default_wallpaper = false;
           disable_hyprland_logo = true;
