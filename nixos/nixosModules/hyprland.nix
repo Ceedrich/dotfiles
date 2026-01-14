@@ -52,9 +52,7 @@ in {
           runtimeInputs = [cfg.package pkgs.jq];
           text = ''
             hyprctl dispatch movetoworkspacesilent +0
-            active_name=$(hyprctl activeworkspace -j | jq -r '.name')
-            notify-send "$active_name"
-            if [[ $active_name = "minimized" ]]; then
+            if [[ $(hyprctl activewindow) = "Invalid" ]]; then
               hyprctl dispatch togglespecialworkspace minimized
             fi
             hyprctl dispatch submap reset
