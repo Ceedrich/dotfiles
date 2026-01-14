@@ -24,8 +24,8 @@ in {
     in
       lib.genAttrs cfg.bars (bar: {
         "custom/minimized" = {
-          "format" = "";
-          "tooltip-format" = "minimized windows";
+          "format" = "󰖯";
+          "tooltip-format" = "Minimized windows";
           "on-click" = "${hyprlandPackage}/bin/hyprctl --batch 'dispatch submap reset; dispatch workspace special:minimized; dispatch submap minimized'";
         };
       });
