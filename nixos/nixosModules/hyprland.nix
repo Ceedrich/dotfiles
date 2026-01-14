@@ -87,6 +87,10 @@ in {
           ", j, resizeactive, 0 10"
           ", k, resizeactive, 0 -10"
           ", l, resizeactive, 10 0"
+          "CTRL, h, resizeactive, -50 0"
+          "CTRL, j, resizeactive, 0 50"
+          "CTRL, k, resizeactive, 0 -50"
+          "CTRL, l, resizeactive, 50 0"
         ];
 
         bind = [
