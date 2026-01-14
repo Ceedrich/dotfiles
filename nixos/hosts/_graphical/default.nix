@@ -22,6 +22,7 @@ in {
       createDirectories = true;
       desktop = null;
       publicShare = null;
+      music = null;
     };
   };
 
