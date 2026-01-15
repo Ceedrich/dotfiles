@@ -45,6 +45,7 @@ in {
                 "mc.ceedri.ch" = getIp "jarjar";
                 "minecraft.ceedri.ch" = getIp "jarjar";
                 "jellyfin.ceedri.ch" = getIp "jabba";
+                "pihole.ceedri.ch" = getIp "jarjar";
                 "cediflix.ceedri.ch" = getIp "jabba";
                 "flix.ceedri.ch" = getIp "jabba";
               };
