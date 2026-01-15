@@ -40,7 +40,6 @@ in {
             #   "minecraft.ceedri.ch,jarjar"
             # ];
             hosts = let
-              getIp = hostname: config.homelab.hosts.${hostname}.tailscale.ipv4;
               hosts = lib.listToAttrs (lib.concatMap (host: let
                 ipv4 = host.tailscale.ipv4;
                 services = lib.attrValues host.services;
@@ -54,14 +53,6 @@ in {
                   })
                   subdomains)
                 services) (lib.attrValues config.homelab.hosts));
-              # hosts = {
-              #   "mc.ceedri.ch" = getIp "jarjar";
-              #   "minecraft.ceedri.ch" = getIp "jarjar";
-              #   "jellyfin.ceedri.ch" = getIp "jabba";
-              #   "pihole.ceedri.ch" = getIp "jarjar";
-              #   "cediflix.ceedri.ch" = getIp "jabba";
-              #   "flix.ceedri.ch" = getIp "jabba";
-              # };
             in
               lib.mapAttrsToList (name: ip: "${ip} ${name}") hosts;
           };

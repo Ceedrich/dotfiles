@@ -56,6 +56,7 @@ in {
     services = {
       pihole.subdomains = ["pihole"];
       uptime-kuma.subdomains = ["uptime-kuma" "uptime"];
+      minecraft.subdomains = ["minecraft" "mc"];
     };
   };
 }
