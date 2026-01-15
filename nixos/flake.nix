@@ -102,7 +102,7 @@
             ./nixpkgs-issue-55674.nix
             ./globalHM.nix
             ./nixosModules
-            ./services.nix
+            ./homelab.nix
             ./hosts/_common
             ./hosts/${hostname}/configuration.nix
             home-manager.nixosModules.home-manager
