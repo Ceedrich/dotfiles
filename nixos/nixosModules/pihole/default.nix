@@ -63,5 +63,9 @@ in {
         ports = [25555];
       };
     };
+    homelab.reverseProxies.pihole = {
+      subdomain = "pihole";
+      port = 25555;
+    };
   };
 }
