@@ -72,7 +72,7 @@ in {
     hosts = mkOption {
       type = attrsOf hostConfig;
       description = "All the hosts present in the homelab";
-      default = import ./machines.nix;
+      default = import ../../machines.nix;
     };
     reverseProxies = mkOption {
       type = attrsOf reverseProxyConfig;

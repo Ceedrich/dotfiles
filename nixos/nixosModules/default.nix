@@ -3,6 +3,7 @@
     ./bluetooth.nix
     ./btop
     ./ghostty
+    ./homelab
     ./hypridle
     ./hyprland.nix
     ./hyprlock
