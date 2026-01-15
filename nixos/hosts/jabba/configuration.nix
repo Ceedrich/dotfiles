@@ -136,10 +136,7 @@ in {
     enable = true;
     openFirewall = true;
   };
-  homelab.reverseProxies = lib.genAttrs ["jellyfin" "flix" "cediflix"] (name: {
-    subdomain = name;
-    port = ports.jellyfin;
-  });
+  homelab.reverseProxies.jellyfin.port = ports.jellyfin;
 
   services.openssh = {
     enable = true;

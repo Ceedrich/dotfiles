@@ -42,6 +42,9 @@ in {
       ipv4 = "100.113.168.35";
       ipv6 = "fd7a:115c:a1e0::5001:a826";
     };
+    services = {
+      jellyfin.subdomains = ["jellyfin" "cediflix" "flix"];
+    };
   };
 
   jarjar = mkMachine "jarjar" {
@@ -49,6 +52,10 @@ in {
     tailscale = {
       ipv4 = "100.94.165.18";
       ipv6 = "fd7a:115c:a1e0::1301:a524";
+    };
+    services = {
+      pihole.subdomains = ["pihole"];
+      uptime-kuma.subdomains = ["uptime-kuma" "uptime"];
     };
   };
 }

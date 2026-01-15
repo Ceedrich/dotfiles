@@ -1,4 +1,6 @@
 {
+  pkgs,
+  meta,
   lib,
   config,
   ...
@@ -7,35 +9,49 @@
 in {
   options.homelab = with lib.types; let
     inherit (lib) mkOption;
-    host = submodule ({config, ...}: {
+    serviceConfig = submodule {
       options = {
-        hostname = mkOption {
-          description = "the hostname of the machine";
-          type = str;
-        };
-        description = mkOption {
-          type = str;
-          description = "description of the machine";
-          default = config.hostname;
-        };
-        tailscale = {
-          ipv4 = mkOption {
-            type = str;
-            description = "the tailscale assigned ipv4 address";
-          };
-          ipv6 = mkOption {
-            type = str;
-            description = "the tailscale assigned ipv6 address";
-          };
+        subdomains = mkOption {
+          type = listOf str;
+          description = "subdomains used for accessing the server";
+          default = [];
         };
       };
-    });
+    };
+    hostConfig = let
+      jsonFormat = pkgs.formats.json {};
+    in
+      submodule ({config, ...}: {
+        freeformType = jsonFormat.type;
+        options = {
+          hostname = mkOption {
+            description = "the hostname of the machine";
+            type = str;
+          };
+          description = mkOption {
+            type = str;
+            description = "description of the machine";
+            default = config.hostname;
+          };
+          tailscale = {
+            ipv4 = mkOption {
+              type = str;
+              description = "the tailscale assigned ipv4 address";
+            };
+            ipv6 = mkOption {
+              type = str;
+              description = "the tailscale assigned ipv6 address";
+            };
+          };
+          services = mkOption {
+            type = attrsOf serviceConfig;
+            description = "global service configuration";
+            default = {};
+          };
+        };
+      });
     reverseProxyConfig = submodule {
       options = {
-        subdomain = mkOption {
-          type = str;
-          description = "The subdomain under which it is reachable, i.e. `subdomain.\${homelab.baseUrl}`";
-        };
         url = mkOption {
           type = str;
           description = "The url the reverse proxy points to";
@@ -54,9 +70,9 @@ in {
       default = "ceedri.ch"; # TODO: find better url.
     };
     hosts = mkOption {
-      type = attrsOf host;
+      type = attrsOf hostConfig;
       description = "All the hosts present in the homelab";
-      default = {};
+      default = import ./machines.nix;
     };
     reverseProxies = mkOption {
       type = attrsOf reverseProxyConfig;
@@ -64,16 +80,31 @@ in {
       default = {};
     };
   };
-  config = lib.mkIf (cfg.reverseProxies != {}) {
-    services.nginx = {
-      enable = true;
-      virtualHosts = lib.genAttrs' (lib.attrValues cfg.reverseProxies) (proxyCfg: {
-        name =
-          if (proxyCfg.subdomain == null)
-          then cfg.baseUrl
-          else "${proxyCfg.subdomain}.${cfg.baseUrl}";
-        value = {locations."/".proxyPass = "${proxyCfg.url}:${toString proxyCfg.port}/";};
-      });
+  config = let
+    services = lib.attrByPath [meta.hostname "services"] {} cfg.hosts;
+  in
+    lib.mkIf (cfg.reverseProxies != {}) {
+      assertions = builtins.map (prox: {
+        assertion = lib.hasAttr prox services;
+        message = "Proxy ${prox} has no configuration in `machines.nix`"; # TODO: improve this message
+      }) (lib.attrNames cfg.reverseProxies);
+
+      # TODO: add proper error handling
+      services.nginx = {
+        enable = true;
+        virtualHosts = lib.genAttrs' (lib.concatMap ({
+          name,
+          value,
+        }: let
+          serviceName = name;
+          proxyCfg = value;
+          subdomains = services.${serviceName}.subdomains;
+        in (builtins.map (subdomain: {
+            name = "${subdomain}.${cfg.baseUrl}";
+            value = {locations."/".proxyPass = "${proxyCfg.url}:${toString proxyCfg.port}/";};
+          })
+          subdomains))
+        (lib.attrsToList cfg.reverseProxies)) (lib.id);
+      };
     };
-  };
 }
