@@ -43,6 +43,7 @@ in {
       ipv6 = "fd7a:115c:a1e0::5001:a826";
     };
     services = {
+      homepage-dashboard.subdomains = ["home" "dashboard"];
       jellyfin.subdomains = ["jellyfin" "cediflix" "flix"];
     };
   };

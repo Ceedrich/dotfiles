@@ -1,15 +1,4 @@
-{
-  lib,
-  pkgs,
-  meta,
-  ...
-}: let
-  ports = {
-    arm = 8080;
-    jellyfin = 8096;
-    homepage = 3000;
-  };
-in {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -18,10 +7,12 @@ in {
     device = "/dev/disk/by-label/drive1";
     fsType = "ext4";
   };
+  services.udev.enable = true;
+  boot.kernelModules = ["sg"];
 
-  services.nginx = {
-    enable = true;
-    virtualHosts."${meta.hostname}".locations."/".proxyPass = "http://localhost:${toString ports.homepage}/";
+  services = {
+    homepage-dashboard.enable = true;
+    jellyfin.enable = true;
   };
 
   systemd.services.hd-idle = {
@@ -31,9 +22,6 @@ in {
       ExecStart = "${pkgs.hd-idle}/bin/hd-idle -i 0 -a /dev/disk/by-label/drive1 -i 900";
     };
   };
-
-  services.udev.enable = true;
-  boot.kernelModules = ["sg"];
 
   # users.users.arm = {
   #   isNormalUser = true;
@@ -48,57 +36,6 @@ in {
   #   docker.enable = true;
   #   oci-containers.backend = "docker";
   # };
-
-  services.homepage-dashboard = {
-    enable = true;
-    allowedHosts = "localhost,127.0.0.1,${meta.hostname}";
-    listenPort = ports.homepage;
-    services = [
-      {
-        "Media" = [
-          # {
-          #   "Automatic Ripping Machine" = {
-          #     description = "Automatically Digitizes DVD'S";
-          #     href = "http://${meta.hostname}:${toString ports.arm}";
-          #     icon = "mdi-disc-player";
-          #   };
-          # }
-          {
-            "Jellyfin" = {
-              icon = "jellyfin.png";
-              description = "Media Server to watch movies and TV shows";
-              href = "http://${meta.hostname}:${toString ports.jellyfin}";
-            };
-          }
-        ];
-      }
-    ];
-
-    widgets = [
-      {
-        resources = {
-          cpu = true;
-          cputemp = true;
-          memory = true;
-          disk = "/media-server";
-          units = "metric";
-        };
-      }
-    ];
-
-    #
-
-    settings = {
-      title = "Ceedrich's HomeLab";
-      layout = {
-        "Media" = {
-          style = "row";
-          header = true;
-          columns = 4;
-        };
-      };
-    };
-  };
 
   # virtualisation.oci-containers.containers."arm-rippers" = {
   #   autoStart = true;
@@ -132,12 +69,6 @@ in {
   #   "d /home/arm/config 1777 arm arm"
   # ];
 
-  services.jellyfin = {
-    enable = true;
-    openFirewall = true;
-  };
-  homelab.reverseProxies.jellyfin.port = ports.jellyfin;
-
   services.openssh = {
     enable = true;
     ports = [22];
@@ -146,16 +77,6 @@ in {
       AllowUsers = null;
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    vim
-    ghostty
-    home-manager
-    wget
-  ];
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   system.stateVersion = "24.11";
 }

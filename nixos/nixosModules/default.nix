@@ -4,9 +4,11 @@
     ./btop
     ./ghostty
     ./homelab
+    ./homepage
     ./hypridle
     ./hyprland.nix
     ./hyprlock
+    ./jellyfin
     ./kanata
     ./modrinth
     ./mpvpaper

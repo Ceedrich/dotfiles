@@ -9,11 +9,24 @@
 in {
   options.homelab = with lib.types; let
     inherit (lib) mkOption;
+    finalServiceConfig = submodule {
+      options = {
+        subdomain = mkOption {
+          type = nullOr str;
+          description = "primary subdomain used for accessing the service";
+        };
+        subdomains = mkOption {
+          type = listOf str;
+          description = "subdomains used for accessing the service";
+          default = [];
+        };
+      };
+    };
     serviceConfig = submodule {
       options = {
         subdomains = mkOption {
           type = listOf str;
-          description = "subdomains used for accessing the server";
+          description = "subdomains used for accessing the service";
           default = [];
         };
       };
@@ -79,32 +92,51 @@ in {
       description = "All the configurations of reverse proxies of the server";
       default = {};
     };
+    services = mkOption {
+      type = attrsOf finalServiceConfig;
+      description = "Readonly view of all services accessible with a subdomain";
+      readOnly = true;
+    };
   };
   config = let
     services = lib.attrByPath [meta.hostname "services"] {} cfg.hosts;
-  in
-    lib.mkIf (cfg.reverseProxies != {}) {
-      assertions = builtins.map (prox: {
-        assertion = lib.hasAttr prox services;
-        message = "Proxy ${prox} has no configuration in `machines.nix`"; # TODO: improve this message
-      }) (lib.attrNames cfg.reverseProxies);
-
-      # TODO: add proper error handling
-      services.nginx = {
-        enable = true;
-        virtualHosts = lib.genAttrs' (lib.concatMap ({
-          name,
-          value,
-        }: let
-          serviceName = name;
-          proxyCfg = value;
-          subdomains = services.${serviceName}.subdomains;
-        in (builtins.map (subdomain: {
-            name = "${subdomain}.${cfg.baseUrl}";
-            value = {locations."/".proxyPass = "${proxyCfg.url}:${toString proxyCfg.port}/";};
+    allServices =
+      lib.concatMapAttrs (
+        host: hostCfg:
+          lib.mapAttrs (service: serviceCfg: rec {
+            subdomains = serviceCfg.subdomains;
+            subdomain =
+              if subdomains != []
+              then lib.elemAt subdomains 0
+              else null;
           })
-          subdomains))
-        (lib.attrsToList cfg.reverseProxies)) (lib.id);
-      };
+          hostCfg.services
+      )
+      cfg.hosts;
+  in {
+    assertions = builtins.map (prox: {
+      assertion = lib.hasAttr prox services;
+      message = "Proxy ${prox} has no configuration in `machines.nix`"; # TODO: improve this message
+    }) (lib.attrNames cfg.reverseProxies);
+
+    homelab.services = allServices;
+
+    # TODO: add proper error handling
+    services.nginx = lib.mkIf (cfg.reverseProxies != {}) {
+      enable = true;
+      virtualHosts = lib.genAttrs' (lib.concatMap ({
+        name,
+        value,
+      }: let
+        serviceName = name;
+        proxyCfg = value;
+        subdomains = services.${serviceName}.subdomains;
+      in (builtins.map (subdomain: {
+          name = "${subdomain}.${cfg.baseUrl}";
+          value = {locations."/".proxyPass = "${proxyCfg.url}:${toString proxyCfg.port}/";};
+        })
+        subdomains))
+      (lib.attrsToList cfg.reverseProxies)) (lib.id);
     };
+  };
 }
