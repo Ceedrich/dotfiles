@@ -31,7 +31,7 @@ in {
       };
       jellyfin = mkShortcut "jellyfin" {
         name = "Jellyfin";
-        url = "http://${meta.machines.jabba.hostname}";
+        url = "http://${config.homelab.services.jellyfin.subdomain}.${config.homelab.baseUrl}";
       };
     };
   };

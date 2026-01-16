@@ -2,7 +2,7 @@
   imports = [
     ./git
     ./mangohud
-    ./minesweeper # ERROR: Broken
+    # ./minesweeper # ERROR: Broken
     ./neovim
     ./rofi
     ./shell

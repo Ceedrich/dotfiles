@@ -1,14 +1,9 @@
 {
   ceedrichPkgs,
-  inputs,
   meta,
   pkgs,
-  pkgs-unstable,
   ...
 }: {
-  imports = [
-    inputs.catppuccin.nixosModules.catppuccin
-  ];
   environment.sessionVariables = {
     GTK_IM_MODULE = "gtk-im-context-simple";
     MANPAGER = "nvim +Man!";
@@ -130,7 +125,7 @@
 
   services.tailscale = {
     enable = true;
-    package = pkgs-unstable.tailscale;
+    package = pkgs.tailscale;
   };
   programs.dconf.enable = true;
 
