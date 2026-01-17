@@ -26,7 +26,7 @@ in {
         "custom/minimized" = {
           "format" = "󰖯";
           "tooltip-format" = "Minimized windows";
-          "on-click" = "${hyprlandPackage}/bin/hyprctl --batch 'dispatch submap reset; dispatch workspace special:minimized; dispatch submap minimized'";
+          "on-click" = "${hyprlandPackage}/bin/hyprctl dispatch plugin:xtd:bringallfrom special:minimized";
         };
       });
   };
