@@ -17,10 +17,7 @@
 
   networking.firewall.allowedTCPPorts = [22];
 
-  services.nginx = {
-    enable = true;
-    virtualHosts."${meta.hostname}".locations."/".proxyPass = "http://localhost:4000/";
-  };
+  homelab.reverseProxies.uptime-kuma.port = 4000;
   services.uptime-kuma = {
     enable = true;
     settings = {

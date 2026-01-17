@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -27,7 +28,16 @@ in {
               "Jellyfin" = {
                 icon = "jellyfin.png";
                 description = "Media Server to watch movies and TV shows";
-                href = "http://${hl.services.jellyfin.subdomain}.${hl.baseUrl}";
+                href = pkgs.ceedrichLib.homelabUrl "jellyfin" config;
+              };
+            }
+          ];
+          "Admin" = [
+            {
+              "Pihole" = {
+                icon = "si-Pi-hole";
+                description = "Ad blocker and DNS server";
+                href = pkgs.ceedrichLib.homelabUrl "pihole" config;
               };
             }
           ];

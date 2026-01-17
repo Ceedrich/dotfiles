@@ -1,7 +1,7 @@
 {
+  pkgs,
   lib,
   config,
-  meta,
   ...
 }: let
   cfg = config.shortcuts;
@@ -31,7 +31,7 @@ in {
       };
       jellyfin = mkShortcut "jellyfin" {
         name = "Jellyfin";
-        url = "http://${config.homelab.services.jellyfin.subdomain}.${config.homelab.baseUrl}";
+        url = pkgs.ceedrichLib.homelabUrl "jellyfin" config;
       };
     };
   };
