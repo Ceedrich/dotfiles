@@ -41,6 +41,7 @@ in {
       type = "vpn";
     };
     vpn = {
+      username = "cedric.lehr@epfl.ch";
       gateway = "vpn.epfl.ch";
 
       service-type = "org.freedesktop.NetworkManager.openconnect";
