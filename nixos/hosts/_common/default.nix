@@ -51,7 +51,13 @@
 
   # Networking
   networking.hostName = meta.hostname; # Define your hostname.
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [
+      networkmanager-openconnect
+      networkmanager-openvpn
+    ];
+  };
 
   # GPG
   programs.gnupg.agent.enable = true;
