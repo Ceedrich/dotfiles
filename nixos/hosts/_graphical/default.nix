@@ -39,6 +39,7 @@ in {
     connection = {
       id = "VPN-EPFL";
       type = "vpn";
+      autoconnect = false;
     };
     vpn = {
       username = "cedric.lehr@epfl.ch";
