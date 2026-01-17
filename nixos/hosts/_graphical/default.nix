@@ -35,6 +35,21 @@ in {
     ceedrichPkgs.test-icons
   ];
 
+  networking.networkmanager.ensureProfiles.profiles.VPN-EPFL = {
+    connection = {
+      id = "VPN-EPFL";
+      type = "vpn";
+    };
+    vpn = {
+      gateway = "vpn.epfl.ch";
+
+      service-type = "org.freedesktop.NetworkManager.openconnect";
+      protocol = "anyconnect";
+      useragent = "AnyConnect";
+      authtype = "password";
+    };
+  };
+
   programs = {
     ghostty.enable = mkDefault true;
     hyprland.enable = mkDefault true;
