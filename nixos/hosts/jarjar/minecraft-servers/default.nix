@@ -11,6 +11,7 @@
       enable = true;
       password = "restic";
     };
+    openFirewall = true;
     enable = true;
     eula = true;
   };

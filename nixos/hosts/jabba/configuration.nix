@@ -13,6 +13,7 @@
   services = {
     homepage-dashboard.enable = true;
     jellyfin.enable = true;
+    jellyfin.openFirewall = true;
   };
 
   systemd.services.hd-idle = {
