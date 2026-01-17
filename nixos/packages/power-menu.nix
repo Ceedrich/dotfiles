@@ -5,7 +5,7 @@
   shutdownCommand ? "systemctl poweroff",
   rebootCommand ? "systemctl reboot",
   suspendCommand ? "systemctl suspend",
-  confirm-dialogue,
+  rofi-confirm-dialogue,
   lib,
   writeShellApplication,
   rofi,
@@ -41,7 +41,7 @@
       cmd,
       confirm,
     }: let
-      doConfirm = lib.getExe confirm-dialogue;
+      doConfirm = lib.getExe rofi-confirm-dialogue;
       command =
         if confirm
         then "${doConfirm} \"${name}\" \"${cmd}\""

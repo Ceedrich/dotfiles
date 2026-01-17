@@ -12,7 +12,7 @@
   reboot = "custom/powermenu-reboot";
   suspend = "custom/powermenu-suspend";
 
-  mkConfirm = label: cmd: ''${lib.getExe ceedrichPkgs.confirm-dialogue} "${label}" "${cmd}"'';
+  mkConfirm = label: cmd: ''${lib.getExe ceedrichPkgs.rofi-confirm-dialogue} "${label}" "${cmd}"'';
   wb = config.services.waybar;
   cfg = wb.modules.powermenu;
 in {

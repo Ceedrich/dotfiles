@@ -2,7 +2,7 @@
   rofi,
   writeShellApplication,
 }: let
-  name = "confirm-dialogue";
+  name = "rofi-confirm-dialogue";
   dmenuCommand = "${rofi}/bin/rofi -dmenu -i -l 2 -p";
 in
   writeShellApplication {
