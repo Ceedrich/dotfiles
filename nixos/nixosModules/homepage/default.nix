@@ -66,6 +66,11 @@ in {
             header = true;
             columns = 4;
           };
+          "Admin" = {
+            style = "row";
+            header = true;
+            columns = 4;
+          };
         };
       };
     };
