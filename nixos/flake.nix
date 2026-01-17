@@ -21,10 +21,6 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    gnome-mines-custom = {
-      url = "github:ceedrich/gnome-mines/vim-keys";
-      flake = false;
-    };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     deploy-rs.url = "github:serokell/deploy-rs";
   };

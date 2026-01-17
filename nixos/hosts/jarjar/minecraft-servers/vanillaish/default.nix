@@ -26,6 +26,7 @@
     "rightclickharvest"
     "simple-voice-chat"
     "voice-chat-interaction"
+    # "bluemap" # TODO: look at bluemap
   ];
   server-name = "vanillaish";
 in {
