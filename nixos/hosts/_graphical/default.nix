@@ -1,7 +1,8 @@
 {
-  pkgs,
   ceedrichPkgs,
+  inputs,
   lib,
+  pkgs,
   ...
 }: let
   inherit (lib) mkDefault;
@@ -27,6 +28,7 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    inputs.deploy-rs.packages.${pkgs.stdenv.hostPlatform.system}.deploy-rs
     signal-desktop
     vlc
     audacity

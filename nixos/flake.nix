@@ -118,6 +118,7 @@
     };
 
     deploy = {
+      remoteBuild = true;
       nodes = {
         jabba = mkDeployNode "jabba" {sshUser = "ceedrich";};
         jarjar = mkDeployNode "jarjar" {sshUser = "ceedrich";};
