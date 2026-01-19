@@ -24,6 +24,12 @@
     };
   };
 
+  homelab.backup = {
+    enable = true;
+    repository = "sftp:ceedrich@jarjar:backups-jabba";
+    paths = ["/var/lib/jellyfin"];
+  };
+
   # users.users.arm = {
   #   isNormalUser = true;
   #   description = "arm";
