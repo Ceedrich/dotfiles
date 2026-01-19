@@ -29,10 +29,10 @@ in {
         ];
         shell-integration-features = [
           "cursor"
-          "no-sudo"
+          "sudo"
           "title"
-          "ssh-env"
           "ssh-terminfo"
+          "ssh-env"
         ];
         keybind = [
           "ctrl+shift+r=reload_config"
