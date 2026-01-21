@@ -1,7 +1,9 @@
 keys:
-  - &ahsoka age1032u058v6p59q56epx5llkldlda8g6ar2u5wnx8a98xfluqjef0qwr959q
+  - &global age1vum8eqs7mnm70uepcpk2du4krhn6fc5gndvn72uqshxz2tn48ggq4y8fzf
+  - &ahsoka age1979mamfydsdstlyvl8uuyz97m999puu0a8hxdjw0t0sf6kd6q30sl9mquj
 creation_rules:
   - path_regex: ^nixosModules/secrets/secrets\.yaml$
     key_groups:
       - age:
           - *ahsoka
+          - *global

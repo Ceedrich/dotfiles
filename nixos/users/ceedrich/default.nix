@@ -10,7 +10,7 @@
       # Phone
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCde6+GqW2Z4bDGNZw5Na2ywU8ESNfrIYtesNDczsXNOfg3qpeAi+HxOOOlWvnlLRC6PHUBk7rNrEednHgICA+LH2eBGbIZkBoLq1vZnvMI0N/Ou8zLtJ2yxbWIOpsTV8Qq575xGoWCxZGB+lx/Rzip8P2myS7KdiHb9o4I7gnRXIyd+pwbIB+NpR0zDpEJLuHYntEzXaperdsp6auttPCi18qPC2RYBZer0l1cHCBcmp5gURjF2eCfyOawMLPFXTA9RwYvl5LUDmaoIVBzgAqCZCTgMge4cXKML5AnBkU5YZhYAGq6gUPruqxgNiBHyE1jCVaC3IMSeNMjAOJHMY4t"
       # Gaming PC
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL9QLT3DoOqnWd9g0GoV9Vgxc+RKgkLiri9eU2qgi8e5 ceedrich@gaming"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIXgpJJrk1/aTXPH+UaqmUZ2m5fUKss+RKPONLmR471C ceedrich@ahsoka"
     ];
     isNormalUser = true;
     description = "Cedric";

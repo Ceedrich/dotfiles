@@ -16,16 +16,8 @@ in {
   };
 
   sops.secrets = {
-    "vpn_epfl/username" = {
+    "vpn_epfl" = {
       owner = ceedrich.name;
-    };
-    "vpn_epfl/password" = {
-      owner = ceedrich.name;
-    };
-    "ahsoka/ssh/ceedrich/id_ed25519" = {
-      owner = ceedrich.name;
-      mode = "600";
-      path = "${ceedrich.home}/.ssh/id_ed25519";
     };
   };
 }
