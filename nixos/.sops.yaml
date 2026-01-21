@@ -1,0 +1,7 @@
+keys:
+  - &ahsoka age1032u058v6p59q56epx5llkldlda8g6ar2u5wnx8a98xfluqjef0qwr959q
+creation_rules:
+  - path_regex: ^nixosModules/secrets/secrets\.yaml$
+    key_groups:
+      - age:
+          - *ahsoka
