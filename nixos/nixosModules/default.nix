@@ -15,7 +15,7 @@
     ./modrinth
     ./mpvpaper
     ./pihole
-    ./secrets
+    # ./secrets
     ./shortcuts
     ./steam.nix
     ./tailscale
