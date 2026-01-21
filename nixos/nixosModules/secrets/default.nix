@@ -15,7 +15,7 @@ in {
     };
   };
 
-  secrets = {
+  sops.secrets = {
     "vpn_epfl/username" = {
       owner = ceedrich.name;
     };
