@@ -23,7 +23,7 @@ in {
       owner = ceedrich.name;
     };
     "ahsoka/ssh/ceedrich/id_ed25519" = {
-      # path = "${ceedrich.home}/.ssh/id_ed25519";
+      path = "${ceedrich.home}/.ssh/id_ed25519";
     };
   };
 }
