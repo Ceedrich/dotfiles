@@ -23,6 +23,8 @@ in {
       owner = ceedrich.name;
     };
     "ahsoka/ssh/ceedrich/id_ed25519" = {
+      owner = ceedrich.name;
+      mode = "600";
       path = "${ceedrich.home}/.ssh/id_ed25519";
     };
   };
