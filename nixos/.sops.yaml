@@ -1,9 +1,13 @@
 keys:
-  - &global age1vum8eqs7mnm70uepcpk2du4krhn6fc5gndvn72uqshxz2tn48ggq4y8fzf
+  - &jabba: age1m609reksf38wlt5qc2753wcnt2zgkxyd0dfdzk5ghprmp9k6zsvqdh96uy
+  - &jarjar: age1gx4k7dxwncq99xuyef98rhz6y58t3gjegya29g2rrx7lu40e8d9qtxvkv2
+  - &satine: age18r8fh45s365a4wydtryahsux3pxxwfn8jnmx3cyq2gathvmqgpvsk3frgh
   - &ahsoka age1979mamfydsdstlyvl8uuyz97m999puu0a8hxdjw0t0sf6kd6q30sl9mquj
 creation_rules:
   - path_regex: ^nixosModules/secrets/secrets\.yaml$
     key_groups:
       - age:
-          - *ahsoka
-          - *global
+        - *jabba
+        - *jarjar
+        - *satine
+        - *ahsoka
