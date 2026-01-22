@@ -35,10 +35,6 @@ in {
     ceedrichPkgs.test-icons
   ];
 
-  networking.networkmanager.plugins = with pkgs; [
-    networkmanager-openconnect
-  ];
-
   programs = {
     ghostty.enable = mkDefault true;
     hyprland.enable = mkDefault true;
