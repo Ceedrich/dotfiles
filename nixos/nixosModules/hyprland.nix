@@ -47,6 +47,7 @@ in {
         swaynotificationcenter
         blueman
         libnotify
+        nwg-drawer
       ];
     };
   };
@@ -184,6 +185,7 @@ in {
         };
 
         gesture = [
+          "4, up, dispatcher, exec, nwg-drawer -wm hyprland"
           "3, up, dispatcher, plugin:xtd:bringallfrom, special:minimized"
           "3, down, dispatcher, movetoworkspacesilent, special:minimized"
           "3, horizontal, workspace"
