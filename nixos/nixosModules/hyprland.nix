@@ -181,8 +181,6 @@ in {
 
         gestures = {
           workspace_swipe_distance = 200;
-          # workspace_swipe_forever = true;
-          workspace_swipe_use_r = true;
         };
 
         gesture = [
