@@ -69,23 +69,6 @@ in {
         xtra-dispatchers
         # hyprspace
       ];
-      submaps."resize".settings = {
-        binde = [
-          ", h, resizeactive, -10 0"
-          ", j, resizeactive, 0 10"
-          ", k, resizeactive, 0 -10"
-          ", l, resizeactive, 10 0"
-          "CTRL, h, resizeactive, -50 0"
-          "CTRL, j, resizeactive, 0 50"
-          "CTRL, k, resizeactive, 0 -50"
-          "CTRL, l, resizeactive, 50 0"
-        ];
-
-        bind = [
-          ", escape, submap, reset"
-        ];
-      };
-
       settings = let
         inherit
           (cfg)
@@ -134,7 +117,6 @@ in {
           "${mainMod}, period, exec, ${emoji-picker}"
           "${mainMod}, T, togglefloating"
           "${mainMod}, F, fullscreen"
-          "${mainMod}, R, submap, resize"
 
           "${mainMod}, Space, exec, ${launcher} -run-command '{cmd}'"
           ", PRINT, exec, ${screenshot} -m region"
@@ -182,8 +164,8 @@ in {
         ];
 
         bindm = [
-          "${mainMod}, mouse:272, movewindow"
-          "${mainMod}, mouse:273, resizewindow"
+          "${mainMod}, mouse:272, resizewindow"
+          "${mainMod}, mouse:273, movewindow"
         ];
 
         # Input
