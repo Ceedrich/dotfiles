@@ -3,6 +3,7 @@
     ./git
     ./mangohud
     ./neovim
+    ./nwg-drawer
     ./rofi
     ./shell
     ./theming

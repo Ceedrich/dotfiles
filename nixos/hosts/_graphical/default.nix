@@ -9,6 +9,7 @@
 in {
   global-hm.config = {
     programs.brave.enable = true;
+    programs.nwg-drawer.enable = true;
     xdg.mimeApps.defaultApplications = {
       "text/html" = "brave-browser.desktop";
       "x-scheme-handler/http" = "brave-browser.desktop";
