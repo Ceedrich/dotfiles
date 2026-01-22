@@ -14,7 +14,7 @@ in {
     home.packages = [cfg.package];
     xdg.configFile."nwg-drawer/drawer.css".text = ''
       window {
-          background-color: rgba(30, 30, 46, 0.95);
+          background-color: rgba(30, 30, 46, 0.8);
           color: rgb(205, 214, 244);
       }
 
@@ -39,12 +39,12 @@ in {
 
       #pinned-box {
           padding-bottom: 5px;
-          border-bottom: 1px dotted gray
+          border-bottom: 1px dotted rgb(108, 112, 134);
       }
 
       #files-box {
           padding: 5px;
-          border: 1px dotted gray;
+          border: 1px dotted rgb(108, 112, 134);
           border-radius: 15px
       }
 
