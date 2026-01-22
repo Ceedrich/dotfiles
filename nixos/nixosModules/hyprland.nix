@@ -184,6 +184,7 @@ in {
         };
 
         gesture = [
+          "3, up, dispatcher, plugin:xtd:bringallfrom, special:minimized"
           "3, down, dispatcher, movetoworkspacesilent, special:minimized"
           "3, horizontal, workspace"
         ];
