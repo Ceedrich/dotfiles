@@ -184,6 +184,7 @@ in {
         };
 
         gesture = [
+          "3, down, dispatcher, movetoworkspacesilent, special:minimized"
           "3, horizontal, workspace"
         ];
 
