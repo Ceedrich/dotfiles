@@ -8,6 +8,7 @@
     ./minimized.nix
     ./player.nix
     ./powermenu.nix
+    ./notification.nix
     ./tray.nix
     ./window.nix
     ./workspaces.nix

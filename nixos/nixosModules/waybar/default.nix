@@ -66,6 +66,7 @@ in {
             ++ (lib.optional m.backlight.enable "backlight")
             ++ (lib.optional m.idle_inhibitor.enable "idle_inhibitor")
             ++ (lib.optional m.powermenu.enable "group/powermenu")
+            ++ (lib.optional m.notification.enable "custom/notification")
             ++ (lib.optional m.tray.enable "tray");
         };
       };
