@@ -96,7 +96,7 @@ in {
           in [
             "$red, ${size},, hyprctl dispatch killactive"
             "$yellow, ${size},, hyprctl dispatch --batch 'dispatch movetoworkspacesilent special:minimized'"
-            "$green, ${size},, hyprctl dispatch togglefloating"
+            "$green, ${size},, hyprctl --batch 'dispatch movetoworkspace empty; dispatch fullscreenstate 1'"
           ];
         };
         # plugin.overview = {
