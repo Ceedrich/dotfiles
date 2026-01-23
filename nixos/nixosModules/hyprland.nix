@@ -45,7 +45,7 @@ in {
       default = with pkgs; [
         networkmanagerapplet
         swaynotificationcenter
-        openssl
+        gio-sharp
         gvfs
         blueman
         libnotify
