@@ -13,14 +13,16 @@ in {
       default = true;
       type = lib.types.bool;
     };
-    swayncPackage = lib.mkPackageOption pkgs "swaync";
+    swayncPackage = lib.mkPackageOption pkgs "swaynotificationcenter" {};
     bars = lib.mkOption {
       default = [wb.mainBar];
       type = lib.types.listOf lib.types.str;
       description = "The names of the bars to add the module to";
     };
   };
-  config.services.waybar = {
+  config.services.waybar = let
+    swaync-client = "${cfg.swayncPackage}/bin/swaync-client";
+  in {
     settings = lib.genAttrs cfg.bars (bar: {
       "custom/notification" = {
         tooltip = true;
@@ -36,10 +38,9 @@ in {
           dnd-inhibited-none = "󰪑";
         };
         return-type = "json";
-        exec-if = "which swaync-client";
-        exec = "swaync-client -swb";
-        on-click = "swaync-client -t -sw";
-        on-click-right = "swaync-client -d -sw";
+        exec = "${swaync-client} -swb";
+        on-click = "${swaync-client} -t -sw";
+        on-click-right = "${swaync-client} -d -sw";
         escape = true;
       };
     });
