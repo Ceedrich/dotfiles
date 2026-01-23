@@ -186,8 +186,8 @@ in {
 
         gesture = [
           "3, up, dispatcher, exec, nwg-drawer -wm hyprland"
-          "3, pinchout, dispatcher, plugin:xtd:bringallfrom, special:minimized"
-          "3, pinchin, dispatcher, movetoworkspacesilent, special:minimized"
+          "3, pinchin, dispatcher, plugin:xtd:bringallfrom, special:minimized"
+          "3, pinchout, dispatcher, movetoworkspacesilent, special:minimized"
           "3, horizontal, workspace"
         ];
 
