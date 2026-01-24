@@ -120,6 +120,7 @@ in {
           "${mainMod}, period, exec, ${emoji-picker}"
           "${mainMod}, T, togglefloating"
           "${mainMod}, F, fullscreen"
+          "${mainMod}, N, exec, swaync-client -t"
 
           "${mainMod}, Space, exec, ${launcher} -run-command '{cmd}'"
           ", PRINT, exec, ${screenshot} -m region"
