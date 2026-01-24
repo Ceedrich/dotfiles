@@ -15,10 +15,6 @@
 /*   padding: 0; */
 /* } */
 
-:focus-visible {
-  outline: 2px solid @accent;
-}
-
 .notification-background {
   border-radius: 0.5rem;
   box-shadow:
@@ -149,6 +145,11 @@
 }
 .control-center button:active {
   background-color: @surface2;
+}
+
+.control-center button:focus-visible,
+.control-center .notification:focus-visible {
+  outline: 2px solid @accent;
 }
 
 .control-center {
