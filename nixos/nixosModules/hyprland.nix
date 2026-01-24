@@ -85,7 +85,7 @@ in {
           ;
       in {
         plugin.hyprbars = {
-          bar_height = 24;
+          bar_height = 28;
           bar_button_padding = 8;
           bar_blur = false;
           bar_color = "$crust";
@@ -96,7 +96,7 @@ in {
           bar_precedence_over_border = true;
           bar_buttons_alignment = "left";
           hyprbars-button = let
-            size = toString 12;
+            size = toString 14;
           in [
             "$red, ${size},, hyprctl dispatch killactive"
             "$yellow, ${size},, hyprctl dispatch --batch 'dispatch movetoworkspacesilent special:minimized'"
