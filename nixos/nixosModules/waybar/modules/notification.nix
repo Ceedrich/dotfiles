@@ -26,7 +26,7 @@ in {
     settings = lib.genAttrs cfg.bars (bar: {
       "custom/notification" = {
         tooltip = true;
-        format = "󱗼";
+        format = "";
         format-icons = {
           # notification = "󱅫";
           # none = "󰂜";
