@@ -20,6 +20,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    services.gvfs.enable = true; # See <https://github.com/NixOS/nixpkgs/issues/340623>
     environment.systemPackages = cfg.extraPackages;
 
     global-hm.config.catppuccin.swaync.enable = false; # We set our custom theme
