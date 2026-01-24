@@ -90,7 +90,7 @@ in {
           bar_blur = false;
           bar_color = "$crust";
           # bar_title_enabled = false;
-          col.text = "#6c7086";
+          col.text = "$overlay0";
           bar_text_size = 12;
           bar_text_font = "JetBrains Mono Nerdfont";
           bar_part_of_window = true;
