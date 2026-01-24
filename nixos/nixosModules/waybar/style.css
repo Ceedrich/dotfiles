@@ -10,7 +10,6 @@ window#waybar {
   /* BUG: See https://github.com/Alexays/Waybar/issues/3869  */
   /* opacity: 0.8; */
   color: @overlay0;
-  padding: 2rem;
   transition-property: background-color;
   transition-duration: 0.1s;
   border-bottom: 1px solid @overlay1;
