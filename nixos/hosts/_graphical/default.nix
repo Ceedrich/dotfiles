@@ -48,6 +48,12 @@ in {
     hypridle.enable = mkDefault true;
     mpvpaper.enable = mkDefault true;
     tailscale.tray.enable = mkDefault true;
-    waybar.enable = mkDefault true;
+    waybar = {
+      enable = mkDefault true;
+      modules = {
+        window.enable = false;
+        player.enable = false;
+      };
+    };
   };
 }

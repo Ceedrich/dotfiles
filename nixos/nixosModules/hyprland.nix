@@ -89,7 +89,7 @@ in {
           bar_button_padding = 8;
           bar_blur = false;
           bar_color = "$crust";
-          bar_title_enabled = false;
+          # bar_title_enabled = false;
           bar_part_of_window = true;
           bar_precedence_over_border = true;
           bar_buttons_alignment = "left";
