@@ -7,6 +7,11 @@
 }: let
   cfg = config.programs.hyprland;
 in {
+  imports = [
+    ./hyprbars.nix
+    ./swaync.nix
+    ./screenshots.nix
+  ];
   options.programs.hyprland = let
     types = lib.types;
   in {
@@ -22,10 +27,6 @@ in {
       type = types.str;
       default = "rofi -show drun -show-icons";
     };
-    screenshot = lib.mkOption {
-      type = types.str;
-      default = "${pkgs.hyprshot}/bin/hyprshot -o ~/Pictures/Screenshots";
-    };
     autostart = lib.mkOption {
       type = types.listOf types.str;
       default = [];
@@ -36,15 +37,10 @@ in {
         logoutCommand = ''loginctl terminate-user ""''; # TODO: replace with `hyprshutdown`
       };
     };
-    emoji-picker = lib.mkOption {
-      type = types.str;
-      default = "rofi/bin/rofi -modi emoji -show emoji";
-    };
     extra-packages = lib.mkOption {
       type = types.listOf types.package;
       default = with pkgs; [
         networkmanagerapplet
-        swaynotificationcenter
         gio-sharp
         gvfs
         blueman
@@ -68,7 +64,6 @@ in {
       enable = true;
       systemd.enableXdgAutostart = true;
       plugins = with pkgs.hyprlandPlugins; [
-        hyprbars
         xtra-dispatchers
         # hyprspace
       ];
@@ -79,30 +74,9 @@ in {
           terminal
           launcher
           autostart
-          screenshot
           powermenuPackage
-          emoji-picker
           ;
       in {
-        plugin.hyprbars = {
-          bar_height = 28;
-          bar_button_padding = 8;
-          bar_blur = false;
-          bar_color = "$crust";
-          col.text = "$overlay0";
-          bar_text_size = 12;
-          bar_text_font = "JetBrains Mono Nerdfont";
-          bar_part_of_window = true;
-          bar_precedence_over_border = true;
-          bar_buttons_alignment = "left";
-          hyprbars-button = let
-            size = toString 14;
-          in [
-            "$red, ${size},, hyprctl dispatch killactive"
-            "$yellow, ${size},, hyprctl dispatch --batch 'dispatch movetoworkspacesilent special:minimized'"
-            "$green, ${size},, hyprctl --batch 'dispatch movetoworkspace empty; dispatch fullscreenstate 1'"
-          ];
-        };
         # plugin.overview = {
         #   showEmptyWorkspace = true;
         #   showNewWorkspace = false;
@@ -119,14 +93,10 @@ in {
           "${mainMod}, Q, killactive"
           "${mainMod} SHIFT, Q, exec, ${lib.getExe powermenuPackage}"
 
-          "${mainMod}, period, exec, ${emoji-picker}"
           "${mainMod}, T, togglefloating"
           "${mainMod}, F, fullscreen"
-          "${mainMod}, N, exec, swaync-client -t"
 
           "${mainMod}, Space, exec, ${launcher} -run-command '{cmd}'"
-          ", PRINT, exec, ${screenshot} -m region"
-          "SHIFT, PRINT, exec, ${screenshot} -m window"
 
           "${mainMod}, P, exec, ${ceedrichPkgs.passmenu}/bin/passmenu"
 

@@ -8,7 +8,7 @@
     ./homelab
     ./homepage
     ./hypridle
-    ./hyprland.nix
+    ./hyprland
     ./hyprlock
     ./jellyfin
     ./kanata
