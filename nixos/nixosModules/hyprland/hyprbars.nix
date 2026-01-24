@@ -9,7 +9,7 @@
 in {
   options.programs.hyprland.modules.hyprbars = let
   in {
-    enable = lib.mkEnableOption "Hyprbars";
+    enable = lib.mkEnableOption "Hyprbars" // {default = true;};
   };
 
   config.global-hm.config.wayland.windowManager.hyprland = lib.mkIf cfg.enable {
