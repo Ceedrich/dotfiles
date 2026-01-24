@@ -26,10 +26,8 @@ in {
     settings = lib.genAttrs cfg.bars (bar: {
       "custom/notification" = {
         tooltip = true;
-        format = "{0} {icon}";
+        format = "󱗼";
         format-icons = {
-          default = "󱗼";
-
           # notification = "󱅫";
           # none = "󰂜";
           # dnd-notification = "󰂠";
