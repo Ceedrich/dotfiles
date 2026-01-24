@@ -15,6 +15,10 @@
 /*   padding: 0; */
 /* } */
 
+:focus-visible {
+  outline: 2px solid @accent;
+}
+
 .notification-background {
   border-radius: 0.5rem;
   box-shadow:
