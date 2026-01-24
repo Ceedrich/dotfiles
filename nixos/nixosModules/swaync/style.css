@@ -147,11 +147,6 @@
   background-color: @surface2;
 }
 
-.control-center button:focus-visible,
-.control-center .notification:focus-visible {
-  outline: 2px solid @accent;
-}
-
 .control-center {
   box-shadow:
     0 0 8px 0 rgba(0, 0, 0, 0.8),
@@ -182,6 +177,14 @@
 .control-center .widget-title > label {
   color: @text;
   font-size: 1.5em;
+}
+
+/* buttons-grid */
+
+.widget-buttons-grid {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  background: red;
 }
 
 /* dnd */
