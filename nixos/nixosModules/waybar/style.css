@@ -6,6 +6,8 @@
 }
 
 window#waybar {
+  padding-top: 2px;
+  padding-bottom: 2px;
   background-color: @crust;
   /* BUG: See https://github.com/Alexays/Waybar/issues/3869  */
   /* opacity: 0.8; */

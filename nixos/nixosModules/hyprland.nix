@@ -89,7 +89,6 @@ in {
           bar_button_padding = 8;
           bar_blur = false;
           bar_color = "$crust";
-          # bar_title_enabled = false;
           col.text = "$overlay0";
           bar_text_size = 12;
           bar_text_font = "JetBrains Mono Nerdfont";
