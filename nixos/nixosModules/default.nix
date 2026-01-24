@@ -18,6 +18,7 @@
     # ./secrets
     ./shortcuts
     ./steam.nix
+    ./swaync
     ./tailscale
     ./waybar
     ./zathura

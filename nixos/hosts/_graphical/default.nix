@@ -44,6 +44,7 @@ in {
     zathura.enable = mkDefault true;
   };
   services = {
+    swaync.enable = mkDefault true;
     hypridle.enable = mkDefault true;
     mpvpaper.enable = mkDefault true;
     tailscale.tray.enable = mkDefault true;
