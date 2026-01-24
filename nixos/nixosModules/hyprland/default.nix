@@ -41,8 +41,6 @@ in {
       type = types.listOf types.package;
       default = with pkgs; [
         networkmanagerapplet
-        gio-sharp
-        gvfs
         blueman
         libnotify
         nwg-drawer
@@ -63,10 +61,7 @@ in {
     global-hm.config.wayland.windowManager.hyprland = {
       enable = true;
       systemd.enableXdgAutostart = true;
-      plugins = with pkgs.hyprlandPlugins; [
-        xtra-dispatchers
-        # hyprspace
-      ];
+      plugins = with pkgs.hyprlandPlugins; [xtra-dispatchers];
       settings = let
         inherit
           (cfg)
