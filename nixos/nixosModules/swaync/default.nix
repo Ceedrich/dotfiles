@@ -80,7 +80,7 @@ in {
         ];
       };
       style = ''
-        @import ${./colors.css};
+        @import "${./colors.css}";
         ${lib.readFile ./style.css}
       '';
     };
