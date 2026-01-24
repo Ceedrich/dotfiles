@@ -90,6 +90,8 @@ in {
           bar_blur = false;
           bar_color = "$crust";
           # bar_title_enabled = false;
+          bar_text_size = 12;
+          bar_text_font = "JetBrains Mono Nerdfont";
           bar_part_of_window = true;
           bar_precedence_over_border = true;
           bar_buttons_alignment = "left";
