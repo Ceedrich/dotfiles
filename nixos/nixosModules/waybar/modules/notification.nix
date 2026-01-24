@@ -44,5 +44,12 @@ in {
         escape = true;
       };
     });
+    style =
+      # css
+      ''
+        #custom-notification {
+          border-bottom: 2px solid;
+        }
+      '';
   };
 }
