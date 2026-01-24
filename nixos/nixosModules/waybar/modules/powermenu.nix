@@ -17,11 +17,7 @@
   cfg = wb.modules.powermenu;
 in {
   options.services.waybar.modules.powermenu = {
-    enable = lib.mkOption {
-      description = "enable powermenu module";
-      default = true;
-      type = lib.types.bool;
-    };
+    enable = lib.mkEnableOption "powermenu module";
     bars = lib.mkOption {
       default = [wb.mainBar];
       type = lib.types.listOf lib.types.str;

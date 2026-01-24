@@ -28,14 +28,16 @@ in {
         tooltip = true;
         format = "{0} {icon}";
         format-icons = {
-          notification = "󱅫";
-          none = "󰂜";
-          dnd-notification = "󰂠";
-          dnd-none = "󰪓";
-          inhibited-notification = "󰂛";
-          inhibited-none = "󰪑";
-          dnd-inhibited-notification = "󰂛";
-          dnd-inhibited-none = "󰪑";
+          default = "󱗼";
+
+          # notification = "󱅫";
+          # none = "󰂜";
+          # dnd-notification = "󰂠";
+          # dnd-none = "󰪓";
+          # inhibited-notification = "󰂛";
+          # inhibited-none = "󰪑";
+          # dnd-inhibited-notification = "󰂛";
+          # dnd-inhibited-none = "󰪑";
         };
         return-type = "json";
         exec = "${swaync-client} -swb";
