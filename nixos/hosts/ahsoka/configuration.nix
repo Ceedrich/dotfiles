@@ -16,6 +16,8 @@
     lact
     owncloud-client
 
+    unityhub
+
     discord
     spotify
 
@@ -26,6 +28,10 @@
   ];
 
   allowedUnfree = [
+    # Unity
+    "unityhub"
+    "corefonts"
+
     "aseprite"
     "discord"
     "spotify"
