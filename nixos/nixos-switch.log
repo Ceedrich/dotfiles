@@ -1,17 +1,46 @@
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
+warning: updating lock file "/home/ceedrich/dotfiles/nixos/flake.lock":
+• Removed input 'hyprshutdown'
+• Removed input 'hyprshutdown/aquamarine'
+• Removed input 'hyprshutdown/aquamarine/hyprutils'
+• Removed input 'hyprshutdown/aquamarine/hyprwayland-scanner'
+• Removed input 'hyprshutdown/aquamarine/hyprwayland-scanner/nixpkgs'
+• Removed input 'hyprshutdown/aquamarine/hyprwayland-scanner/systems'
+• Removed input 'hyprshutdown/aquamarine/nixpkgs'
+• Removed input 'hyprshutdown/aquamarine/systems'
+• Removed input 'hyprshutdown/hyprgraphics'
+• Removed input 'hyprshutdown/hyprgraphics/hyprutils'
+• Removed input 'hyprshutdown/hyprgraphics/nixpkgs'
+• Removed input 'hyprshutdown/hyprgraphics/systems'
+• Removed input 'hyprshutdown/hyprtoolkit'
+• Removed input 'hyprshutdown/hyprtoolkit/aquamarine'
+• Removed input 'hyprshutdown/hyprtoolkit/hyprgraphics'
+• Removed input 'hyprshutdown/hyprtoolkit/hyprlang'
+• Removed input 'hyprshutdown/hyprtoolkit/hyprlang/hyprutils'
+• Removed input 'hyprshutdown/hyprtoolkit/hyprlang/nixpkgs'
+• Removed input 'hyprshutdown/hyprtoolkit/hyprlang/systems'
+• Removed input 'hyprshutdown/hyprtoolkit/hyprutils'
+• Removed input 'hyprshutdown/hyprtoolkit/hyprwayland-scanner'
+• Removed input 'hyprshutdown/hyprtoolkit/hyprwayland-scanner/nixpkgs'
+• Removed input 'hyprshutdown/hyprtoolkit/hyprwayland-scanner/systems'
+• Removed input 'hyprshutdown/hyprtoolkit/nixpkgs'
+• Removed input 'hyprshutdown/hyprtoolkit/systems'
+• Removed input 'hyprshutdown/hyprutils'
+• Removed input 'hyprshutdown/hyprutils/nixpkgs'
+• Removed input 'hyprshutdown/hyprutils/systems'
+• Removed input 'hyprshutdown/nixpkgs'
+• Removed input 'hyprshutdown/systems'
 building the system configuration...
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
 trace: Obsolete option `programs.git.delta.enable' is used. It was renamed to `programs.delta.enable'.
-these 3 derivations will be built:
-  /nix/store/60c3nc0fp4lx94bfnwa91a39xixfblkb-etc-xdg-waybar-style.css.drv
-  /nix/store/fpgafjmgms6ykrxqxdhdskr581xknnjc-etc.drv
-  /nix/store/4ynyylwrckyipk281k55jag5xzjvs6lj-nixos-system-ahsoka-25.11.20260117.72ac591.drv
-building '/nix/store/60c3nc0fp4lx94bfnwa91a39xixfblkb-etc-xdg-waybar-style.css.drv'...
-building '/nix/store/fpgafjmgms6ykrxqxdhdskr581xknnjc-etc.drv'...
-building '/nix/store/4ynyylwrckyipk281k55jag5xzjvs6lj-nixos-system-ahsoka-25.11.20260117.72ac591.drv'...
+these 2 derivations will be built:
+  /nix/store/szlas5f2173z3279c8avzqaf4j0hlv9f-etc.drv
+  /nix/store/hy8xblvqn6625i5pd07b6l45l31dqyz4-nixos-system-ahsoka-25.11.20260117.72ac591.drv
+building '/nix/store/szlas5f2173z3279c8avzqaf4j0hlv9f-etc.drv'...
+building '/nix/store/hy8xblvqn6625i5pd07b6l45l31dqyz4-nixos-system-ahsoka-25.11.20260117.72ac591.drv'...
 activating the configuration...
 setting up /etc...
 reloading user units for ceedrich...
 restarting sysinit-reactivation.target
 the following new units were started: NetworkManager-dispatcher.service
-Done. The new configuration is /nix/store/9bi86qsaz9ri4fic9ahp1dig1ci995rp-nixos-system-ahsoka-25.11.20260117.72ac591
+Done. The new configuration is /nix/store/qnx5xp8cjf2x8nlk29dsmkkq4wdlhagv-nixos-system-ahsoka-25.11.20260117.72ac591
