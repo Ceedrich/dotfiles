@@ -7,13 +7,21 @@
   cfg = config.services.swaync;
 in {
   options.services.swaync = let
-    inherit (lib) mkEnableOption;
+    inherit (lib) types mkEnableOption;
   in {
     enable = mkEnableOption "enable ";
     package = lib.mkPackageOption pkgs "swaynotificationcenter" {};
+    extraPackages = lib.mkOption {
+      type = types.listOf types.package;
+      default = [
+        pkgs.hyprpicker
+      ];
+    };
   };
 
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = cfg.extraPackages;
+
     global-hm.config.catppuccin.swaync.enable = false; # We set our custom theme
     global-hm.config.services.swaync = {
       enable = true;
@@ -30,6 +38,14 @@ in {
         widget-config = {
           backlight = {label = "󰛩";};
           dnd = {text = "Do Not Disturb";};
+          buttons-grid = {
+            actions = [
+              {
+                label = "󰈊";
+                command = "hyprpicker -aq";
+              }
+            ];
+          };
           menubar = {
             "menu#power-buttons" = {
               actions = [
@@ -70,6 +86,7 @@ in {
         };
         widgets = [
           "menubar"
+          "buttons-grid"
           "inhibitors"
           "mpris"
           "volume"
