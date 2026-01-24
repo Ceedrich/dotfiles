@@ -34,6 +34,12 @@
                 home-manager.useGlobalPkgs = false;
                 home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = {inherit ceedrichPkgs;};
+                home-manager.sharedModules = [
+                  ../nixpkgs-issue-55674.nix
+                  ../homemanagerModules
+                  inputs.catppuccin.homeModules.catppuccin
+                  inputs.ceedrichVim.homeModules.${system}.default
+                ];
                 home-manager.users = inputs.nixpkgs.lib.genAttrs users (user: {
                   imports = [
                     {
@@ -41,10 +47,6 @@
                       home.homeDirectory = "/home/${user}";
                       home.stateVersion = "24.11";
                     }
-                    ../nixpkgs-issue-55674.nix
-                    ../homemanagerModules
-                    inputs.catppuccin.homeModules.catppuccin
-                    inputs.ceedrichVim.homeModules.${system}.default
                   ];
                 });
                 global-hm.users = users;
