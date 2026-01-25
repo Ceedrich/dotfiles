@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
-    ../jarjar/minecraft-servers
+    # ../jarjar/minecraft-servers
     ../_graphical
   ];
 
