@@ -3,6 +3,7 @@
   inputs,
   lib,
   pkgs,
+  config,
   ...
 }: let
   inherit (lib) mkDefault;
@@ -62,6 +63,7 @@ in {
       in {
         enable = true;
         theme = spicePkgs.themes.catppuccin;
+        colorScheme = config.catppuccin.flavor;
       };
     };
     services = {
