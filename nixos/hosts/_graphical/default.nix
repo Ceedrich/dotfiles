@@ -45,6 +45,7 @@ in {
       signal-desktop
       vlc
       audacity
+      libnotify
       ceedrichPkgs.test-icons
     ];
 
