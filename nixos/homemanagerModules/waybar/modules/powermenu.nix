@@ -13,10 +13,10 @@
   suspend = "custom/powermenu-suspend";
 
   mkConfirm = label: cmd: ''${lib.getExe ceedrichPkgs.rofi-confirm-dialogue} "${label}" "${cmd}"'';
-  wb = config.services.waybar;
+  wb = config.programs.waybar;
   cfg = wb.modules.powermenu;
 in {
-  options.services.waybar.modules.powermenu = {
+  options.programs.waybar.modules.powermenu = {
     enable = lib.mkEnableOption "powermenu module";
     bars = lib.mkOption {
       default = [wb.mainBar];
@@ -44,7 +44,7 @@ in {
       type = lib.types.str;
     };
   };
-  config.services.waybar = lib.mkIf cfg.enable {
+  config.programs.waybar = lib.mkIf cfg.enable {
     settings = lib.genAttrs cfg.bars (bar: {
       ${name} = {
         orientation = "inherit";

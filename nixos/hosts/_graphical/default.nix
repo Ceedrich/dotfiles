@@ -17,6 +17,13 @@ in {
       "x-scheme-handler/about" = "brave-browser.desktop";
       "x-scheme-handler/unknown" = "brave-browser.desktop";
     };
+    programs.waybar = {
+      enable = mkDefault true;
+      modules = {
+        window.enable = false;
+        player.enable = false;
+      };
+    };
     vpn.epfl = true;
 
     xdg.userDirs = {
@@ -48,12 +55,5 @@ in {
     hypridle.enable = mkDefault true;
     mpvpaper.enable = mkDefault true;
     tailscale.tray.enable = mkDefault true;
-    waybar = {
-      enable = mkDefault true;
-      modules = {
-        window.enable = false;
-        player.enable = false;
-      };
-    };
   };
 }

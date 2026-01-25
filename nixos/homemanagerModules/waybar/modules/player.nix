@@ -4,10 +4,10 @@
   config,
   ...
 }: let
-  wb = config.services.waybar;
+  wb = config.programs.waybar;
   cfg = wb.modules.player;
 in {
-  options.services.waybar.modules.player = {
+  options.programs.waybar.modules.player = {
     enable = lib.mkOption {
       description = "enable music player module";
       default = true;
@@ -25,7 +25,7 @@ in {
     };
     playerCtlPackage = lib.mkPackageOption pkgs "playerctl" {};
   };
-  config.services.waybar = {
+  config.programs.waybar = {
     settings = let
       players = "${lib.strings.concatStringsSep "," cfg.priorities},%any";
       playercmd = "${cfg.playerCtlPackage}/bin/playerctl --player='${players}'";
@@ -47,7 +47,7 @@ in {
           escape = true;
           on-click = "${playercmd} play-pause 2>/dev/null";
           on-click-right = let
-            hyprlandPackage = "${config.programs.hyprland.package}";
+            hyprlandPackage = "${config.wayland.windowManager.hyprland.package}";
           in ''${hyprlandPackage}/bin/hyprctl dispatch focuswindow "class:(?i:^.*$(${playercmd} -l | head -n1).*)"''; # TODO: add sway support
           max-length = 50;
           exec = "${playercmd} metadata --format='{{ artist }} - {{ title }}' 2>/dev/null";

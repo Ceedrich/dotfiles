@@ -3,10 +3,10 @@
   config,
   ...
 }: let
-  wb = config.services.waybar;
+  wb = config.programs.waybar;
   cfg = wb.modules.minimized;
 in {
-  options.services.waybar.modules.minimized = {
+  options.programs.waybar.modules.minimized = {
     enable = lib.mkOption {
       description = "minimized";
       default = true;
@@ -18,9 +18,9 @@ in {
       description = "The names of the bars to add the module to";
     };
   };
-  config.services.waybar = {
+  config.programs.waybar = {
     settings = let
-      hyprlandPackage = config.programs.hyprland.package;
+      hyprlandPackage = config.wayland.windowManager.hyprland.package;
     in
       lib.genAttrs cfg.bars (bar: {
         "custom/minimized" = {

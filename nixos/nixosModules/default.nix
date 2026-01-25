@@ -20,7 +20,7 @@
     ./steam.nix
     ./swaync
     ./tailscale
-    ./waybar
+    # ./waybar
     ./zathura
   ];
 }

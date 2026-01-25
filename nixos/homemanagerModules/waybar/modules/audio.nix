@@ -4,10 +4,10 @@
   config,
   ...
 }: let
-  wb = config.services.waybar;
+  wb = config.programs.waybar;
   cfg = wb.modules.audio;
 in {
-  options.services.waybar.modules.audio = {
+  options.programs.waybar.modules.audio = {
     enable = lib.mkOption {
       description = "enable audio module";
       default = true;
@@ -20,7 +20,7 @@ in {
     };
     pavucontrolPackage = lib.mkPackageOption pkgs "pavucontrol" {};
   };
-  config.services.waybar = lib.mkIf cfg.enable {
+  config.programs.waybar = lib.mkIf cfg.enable {
     settings = let
       settings = lib.genAttrs cfg.bars (bar: {
         "pulseaudio" = {

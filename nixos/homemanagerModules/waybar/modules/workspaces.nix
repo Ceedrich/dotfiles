@@ -3,10 +3,10 @@
   config,
   ...
 }: let
-  wb = config.services.waybar;
-  cfg = config.services.waybar.modules.workspaces;
+  wb = config.programs.waybar;
+  cfg = config.programs.waybar.modules.workspaces;
 in {
-  options.services.waybar.modules.workspaces = {
+  options.programs.waybar.modules.workspaces = {
     enable = lib.mkOption {
       default = true;
       type = lib.types.bool;
@@ -20,11 +20,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.waybar.settings = lib.attrsets.genAttrs cfg.bars (
+    programs.waybar.settings = lib.attrsets.genAttrs cfg.bars (
       bar: {}
     );
 
-    services.waybar.style =
+    programs.waybar.style =
       lib.mkIf cfg.enable
       #css
       ''

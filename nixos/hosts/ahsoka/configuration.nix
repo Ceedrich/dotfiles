@@ -6,6 +6,10 @@
   ];
 
   global-hm.config.programs.mangohud.enable = true;
+  global-hm.config.programs.waybar.modules = {
+    battery.enable = false;
+    backlight.enable = false;
+  };
 
   programs = {
     coolercontrol.enable = true;
@@ -36,11 +40,6 @@
     "discord"
     "spotify"
   ];
-
-  services.waybar.modules = {
-    battery.enable = false;
-    backlight.enable = false;
-  };
 
   settings.bluetooth.enable = true;
 

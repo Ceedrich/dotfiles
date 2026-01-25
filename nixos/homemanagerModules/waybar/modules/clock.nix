@@ -3,10 +3,10 @@
   config,
   ...
 }: let
-  wb = config.services.waybar;
+  wb = config.programs.waybar;
   cfg = wb.modules.clock;
 in {
-  options.services.waybar.modules.clock = {
+  options.programs.waybar.modules.clock = {
     enable = lib.mkOption {
       description = "enable clock module";
       default = true;
@@ -18,7 +18,7 @@ in {
       description = "The names of the bars to add the module to";
     };
   };
-  config.services.waybar = lib.mkIf cfg.enable {
+  config.programs.waybar = lib.mkIf cfg.enable {
     settings = lib.genAttrs cfg.bars (bar: {
       "clock" = {
         format = "{:%d.%m.%Y | %H:%M}";

@@ -4,10 +4,10 @@
   config,
   ...
 }: let
-  wb = config.services.waybar;
+  wb = config.programs.waybar;
   cfg = wb.modules.notification;
 in {
-  options.services.waybar.modules.notification = {
+  options.programs.waybar.modules.notification = {
     enable = lib.mkOption {
       description = "notification";
       default = true;
@@ -20,7 +20,7 @@ in {
       description = "The names of the bars to add the module to";
     };
   };
-  config.services.waybar = let
+  config.programs.waybar = let
     swaync-client = "${cfg.swayncPackage}/bin/swaync-client";
   in {
     settings = lib.genAttrs cfg.bars (bar: {
