@@ -14,12 +14,10 @@
     owncloud-client
 
     discord
-    spotify
   ];
 
   allowedUnfree = [
     "discord"
-    "spotify"
   ];
 
   settings.kanata.enable = true;

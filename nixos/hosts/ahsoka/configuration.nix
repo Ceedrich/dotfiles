@@ -23,7 +23,6 @@
     unityhub
 
     discord
-    spotify
 
     aseprite
     handbrake
@@ -38,7 +37,6 @@
 
     "aseprite"
     "discord"
-    "spotify"
   ];
 
   settings.bluetooth.enable = true;
