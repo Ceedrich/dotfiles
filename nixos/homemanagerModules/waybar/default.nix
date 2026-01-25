@@ -20,6 +20,7 @@ in {
   in
     lib.mkIf cfg.enable {
       programs.waybar = {
+        systemd.enable = true;
         style = builtins.readFile ./style.css;
         settings.${cfg.mainBar} = {
           position = "top";
