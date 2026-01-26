@@ -18,11 +18,10 @@ in {
   config = let
     m = cfg.modules;
     modules-left =
-      lib.optional m.clock.enable "clock"
-      # Window
-      ++ lib.optional m.window.enable "hyprland/window";
+      lib.optional m.window.enable "hyprland/window";
     modules-center =
-      (lib.optional m.player.enable "group/music-player")
+      (lib.optional m.clock.enable "clock")
+      ++ (lib.optional m.player.enable "group/music-player")
       ++ (lib.optional m.workspaces.enable "hyprland/workspaces")
       ++ (lib.optional m.minimized.enable "custom/minimized")
       ++ (lib.optional m.audio.enable "pulseaudio")
