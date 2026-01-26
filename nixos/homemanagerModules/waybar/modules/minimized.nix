@@ -34,12 +34,5 @@ in {
           "on-click" = "${hyprlandPackage}/bin/hyprctl dispatch plugin:xtd:bringallfrom special:minimized";
         };
       });
-    style =
-      #css
-      ''
-        #${lib.replaceStrings ["/"] ["-"] cfg.name} {
-          border-bottom: 2px solid;
-        }
-      '';
   };
 }

@@ -35,14 +35,5 @@ in {
         tooltip-format-deactivated = "Idling Enabled";
       };
     });
-    style =
-      /*
-      css
-      */
-      ''
-        #${cfg.name} {
-          border-bottom: 2px solid;
-        }
-      '';
   };
 }

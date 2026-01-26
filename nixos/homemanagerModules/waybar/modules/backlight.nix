@@ -32,13 +32,5 @@ in {
         reverse-scrolling = true;
       };
     });
-
-    style =
-      # css
-      ''
-        #${cfg.name} {
-          border-bottom: 2px solid;
-        }
-      '';
   };
 }

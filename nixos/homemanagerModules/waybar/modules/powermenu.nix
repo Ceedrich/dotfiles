@@ -109,14 +109,6 @@ in {
           color: @blue;
           padding: 0px 8px;
         }
-
-        #custom-powermenu-poweroff:hover,
-        #custom-powermenu-logout:hover,
-        #custom-powermenu-lock:hover,
-        #custom-powermenu-reboot:hover {
-          border-bottom: 2px solid;
-        }
-
       '';
   };
 }

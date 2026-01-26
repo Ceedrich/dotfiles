@@ -43,9 +43,6 @@ in {
     style =
       #css
       ''
-        #${cfg.name} {
-          border-bottom: 2px solid;
-        }
         #${cfg.name}.charging {
           color: @green;
         }

@@ -50,12 +50,5 @@ in {
         escape = true;
       };
     });
-    style =
-      # css
-      ''
-        #${lib.replaceStrings ["/"] ["-"] cfg.name} {
-          border-bottom: 2px solid;
-        }
-      '';
   };
 }

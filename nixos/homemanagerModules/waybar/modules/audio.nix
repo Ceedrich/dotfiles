@@ -47,9 +47,6 @@ in {
     style =
       #css
       ''
-        #${cfg.name} {
-          border-bottom: 2px solid;
-        }
         #${cfg.name}.muted {
           color: @overlay0;
         }

@@ -48,6 +48,7 @@ in {
       ''
         #${cfg.name} {
             color: @overlay0;
+            border: none;
         }
       '';
   };

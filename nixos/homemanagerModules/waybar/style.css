@@ -39,6 +39,10 @@ tooltip label {
   color: @text;
 }
 
+label .module {
+  border-bottom: 2px solid;
+}
+
 .modules-center :nth-child(odd) label.module,
 .modules-right :nth-child(odd) label.module {
   color: @blue;
