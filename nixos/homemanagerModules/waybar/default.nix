@@ -17,31 +17,52 @@ in {
   };
   config = let
     m = cfg.modules;
+    modules-left =
+      lib.optional m.clock.enable "clock"
+      # Window
+      ++ lib.optional m.window.enable "hyprland/window";
+    modules-center =
+      (lib.optional m.player.enable "group/music-player")
+      ++ (lib.optional m.workspaces.enable "hyprland/workspaces")
+      ++ (lib.optional m.minimized.enable "custom/minimized")
+      ++ (lib.optional m.audio.enable "pulseaudio")
+      ++ (lib.optional m.battery.enable "battery")
+      ++ (lib.optional m.backlight.enable "backlight");
+    modules-right =
+      (lib.optional m.idle_inhibitor.enable "idle_inhibitor")
+      ++ (lib.optional m.notification.enable "custom/notification")
+      ++ (lib.optional m.powermenu.enable "group/powermenu")
+      ++ (lib.optional m.tray.enable "tray");
   in
     lib.mkIf cfg.enable {
       programs.waybar = {
         systemd.enable = true;
-        style = builtins.readFile ./style.css;
         settings.${cfg.mainBar} = {
+          inherit modules-left modules-right modules-center;
           position = "top";
-          modules-left =
-            lib.optional m.clock.enable "clock"
-            # Window
-            ++ lib.optional m.window.enable "hyprland/window";
-          modules-center = lib.optional m.player.enable "group/music-player";
-          modules-right =
-            # Workspaces
-            (lib.optional m.workspaces.enable "hyprland/workspaces")
-            ++ (lib.optional m.minimized.enable "custom/minimized")
-            # Other modules
-            ++ (lib.optional m.audio.enable "pulseaudio")
-            ++ (lib.optional m.battery.enable "battery")
-            ++ (lib.optional m.backlight.enable "backlight")
-            ++ (lib.optional m.idle_inhibitor.enable "idle_inhibitor")
-            ++ (lib.optional m.notification.enable "custom/notification")
-            ++ (lib.optional m.powermenu.enable "group/powermenu")
-            ++ (lib.optional m.tray.enable "tray");
         };
+
+        style = let
+          eachPlace = style: let
+            css =
+              ""
+              + (lib.optionalString (modules-left != []) ''.modules-left ${style}'')
+              + (lib.optionalString (modules-center != []) ''.modules-center ${style}'')
+              + (lib.optionalString (modules-right != []) ''.modules-right ${style}'');
+          in
+            css;
+        in ''
+          ${builtins.readFile ./style.css}
+          ${eachPlace ''
+            {
+              background-color: @base;
+              color: @text;
+              border-radius: 100rem;
+              box-shadow: inset 0 0 0 1px @surface1;
+              padding: 0.5rem 1rem;
+            }
+          ''}
+        '';
       };
     };
 }

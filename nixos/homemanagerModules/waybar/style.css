@@ -11,16 +11,9 @@ window#waybar {
   /* BUG: See https://github.com/Alexays/Waybar/issues/3869  */
   opacity: 0.8;
 }
-window#waybar > box {
-  margin: 0.5rem 1rem 0 1rem;
 
-  background-color: @base;
-  color: @text;
-  transition-property: background-color;
-  transition-duration: 0.1s;
-  border-radius: 0.5rem;
-  box-shadow: inset 0 0 0 1px @surface1;
-  padding: 0.5rem;
+window#waybar > box {
+  padding: 1rem 1rem 0;
 }
 
 button:hover {
@@ -30,13 +23,28 @@ button:hover {
 
 label.module {
   padding: 2px 4px;
-  margin: 2px 4px;
+  margin: 0 0.5rem;
 }
 
-.modules-right :nth-child(even) label.module {
+tooltip {
+  background: @mantle;
+  color: @text;
+}
+
+tooltip > box {
+  padding: 1rem;
+}
+
+tooltip label {
+  color: @text;
+}
+
+.modules-center :nth-child(odd) label.module,
+.modules-right :nth-child(odd) label.module {
   color: @blue;
 }
 
-.modules-right :nth-child(odd) label.module {
+.modules-center :nth-child(even) label.module,
+.modules-right :nth-child(even) label.module {
   color: @mauve;
 }
