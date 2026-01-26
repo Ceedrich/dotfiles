@@ -176,6 +176,7 @@ in {
         ];
 
         decoration = {
+          rounding = 8;
           dim_special = 0.6;
         };
 
