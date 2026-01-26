@@ -52,7 +52,14 @@ in {
     services.xserver.enable = true;
     services.displayManager.gdm.enable = true;
 
-    environment.systemPackages = cfg.extra-packages;
+    environment.systemPackages = with pkgs;
+      [
+        networkmanagerapplet
+        blueman
+        libnotify
+        nwg-drawer
+      ]
+      ++ cfg.extra-packages;
 
     programs.hyprland = {
       xwayland.enable = true;
