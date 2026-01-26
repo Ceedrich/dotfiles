@@ -7,6 +7,11 @@
   cfg = wb.modules.minimized;
 in {
   options.programs.waybar.modules.minimized = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "custom/minimized";
+      readOnly = true;
+    };
     enable = lib.mkOption {
       description = "minimized";
       default = true;
@@ -23,11 +28,18 @@ in {
       hyprlandPackage = config.wayland.windowManager.hyprland.package;
     in
       lib.genAttrs cfg.bars (bar: {
-        "custom/minimized" = {
+        "${cfg.name}" = {
           "format" = "󰖯";
           "tooltip-format" = "Minimized windows";
           "on-click" = "${hyprlandPackage}/bin/hyprctl dispatch plugin:xtd:bringallfrom special:minimized";
         };
       });
+    style =
+      #css
+      ''
+        #${lib.replaceStrings ["/"] ["-"] cfg.name} {
+          border-bottom: 2px solid;
+        }
+      '';
   };
 }

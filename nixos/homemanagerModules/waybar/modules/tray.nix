@@ -7,6 +7,11 @@
   cfg = wb.modules.tray;
 in {
   options.programs.waybar.modules.tray = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "tray";
+      readOnly = true;
+    };
     enable = lib.mkOption {
       description = "enable tray module";
       default = true;
@@ -20,7 +25,7 @@ in {
   };
   config.programs.waybar = lib.mkIf cfg.enable {
     settings = lib.attrsets.genAttrs cfg.bars (bar: {
-      "tray" = {
+      "${cfg.name}" = {
         icon-size = 21;
         spacing = 8;
       };
@@ -28,7 +33,7 @@ in {
     style =
       #css
       ''
-        #tray {
+        #${cfg.name} {
             padding: 0px 8px;
         }
       '';

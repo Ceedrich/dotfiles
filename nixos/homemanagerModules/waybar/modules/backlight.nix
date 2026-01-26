@@ -7,6 +7,11 @@
   cfg = wb.modules.backlight;
 in {
   options.programs.waybar.modules.backlight = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "backlight";
+      readOnly = true;
+    };
     enable = lib.mkOption {
       description = "enable backlight module";
       default = true;
@@ -20,7 +25,7 @@ in {
   };
   config.programs.waybar = lib.mkIf cfg.enable {
     settings = lib.genAttrs cfg.bars (bar: {
-      "backlight" = {
+      "${cfg.name}" = {
         format = "{percent}% {icon}";
         format-icons = ["󱩎" "󱩎" "󱩏" "󱩐" "󱩑" "󱩒" "󱩓" "󱩔" "󱩕" "󱩖" "󰛨"];
         tooltip = false;
@@ -31,7 +36,7 @@ in {
     style =
       # css
       ''
-        #backlight {
+        #${cfg.name} {
           border-bottom: 2px solid;
         }
       '';

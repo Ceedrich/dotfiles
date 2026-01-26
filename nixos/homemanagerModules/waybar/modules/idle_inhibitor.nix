@@ -7,6 +7,11 @@
   cfg = wb.modules.idle_inhibitor;
 in {
   options.programs.waybar.modules.idle_inhibitor = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "idle_inhibitor";
+      readOnly = true;
+    };
     enable = lib.mkOption {
       description = "enable idle_inhibitor module";
       default = true;
@@ -20,7 +25,7 @@ in {
   };
   config.programs.waybar = lib.mkIf cfg.enable {
     settings = lib.genAttrs cfg.bars (bar: {
-      "idle_inhibitor" = {
+      "${cfg.name}" = {
         format = "{icon}";
         format-icons = {
           activated = "󰈈";
@@ -35,7 +40,7 @@ in {
       css
       */
       ''
-        #idle_inhibitor {
+        #${cfg.name} {
           border-bottom: 2px solid;
         }
       '';

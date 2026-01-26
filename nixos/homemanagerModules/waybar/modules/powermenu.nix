@@ -4,8 +4,6 @@
   ceedrichPkgs,
   ...
 }: let
-  name = "group/powermenu";
-
   poweroff = "custom/powermenu-poweroff";
   logout = "custom/powermenu-logout";
   lock = "custom/powermenu-lock";
@@ -17,6 +15,11 @@
   cfg = wb.modules.powermenu;
 in {
   options.programs.waybar.modules.powermenu = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "group/powermenu";
+      readOnly = true;
+    };
     enable = lib.mkEnableOption "powermenu module";
     bars = lib.mkOption {
       default = [wb.mainBar];
@@ -46,7 +49,7 @@ in {
   };
   config.programs.waybar = lib.mkIf cfg.enable {
     settings = lib.genAttrs cfg.bars (bar: {
-      ${name} = {
+      ${cfg.name} = {
         orientation = "inherit";
         drawer = {
           transition-duration = 500;

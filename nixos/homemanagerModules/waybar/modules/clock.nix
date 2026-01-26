@@ -7,6 +7,11 @@
   cfg = wb.modules.clock;
 in {
   options.programs.waybar.modules.clock = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "clock";
+      readOnly = true;
+    };
     enable = lib.mkOption {
       description = "enable clock module";
       default = true;
@@ -20,7 +25,7 @@ in {
   };
   config.programs.waybar = lib.mkIf cfg.enable {
     settings = lib.genAttrs cfg.bars (bar: {
-      "clock" = {
+      "${cfg.name}" = {
         format = "{:%d.%m.%Y | %H:%M}";
         interval = 1;
         tooltip-format = "<tt><small>{calendar}</small></tt>";
@@ -41,7 +46,7 @@ in {
     style =
       #css
       ''
-        #clock {
+        #${cfg.name} {
             color: @overlay0;
         }
       '';

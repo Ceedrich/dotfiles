@@ -17,21 +17,23 @@ in {
   };
   config = let
     m = cfg.modules;
-    modules-left =
-      lib.optional m.window.enable "hyprland/window";
-    modules-center =
-      (lib.optional m.clock.enable "clock")
-      ++ (lib.optional m.player.enable "group/music-player")
-      ++ (lib.optional m.workspaces.enable "hyprland/workspaces")
-      ++ (lib.optional m.minimized.enable "custom/minimized")
-      ++ (lib.optional m.audio.enable "pulseaudio")
-      ++ (lib.optional m.battery.enable "battery")
-      ++ (lib.optional m.backlight.enable "backlight");
-    modules-right =
-      (lib.optional m.idle_inhibitor.enable "idle_inhibitor")
-      ++ (lib.optional m.notification.enable "custom/notification")
-      ++ (lib.optional m.powermenu.enable "group/powermenu")
-      ++ (lib.optional m.tray.enable "tray");
+    mkModules = mods: lib.foldl' (mods: name: mods ++ lib.optional m.${name}.enable m.${name}.name) [] mods;
+    modules-left = mkModules ["window"];
+    modules-center = mkModules [
+      "clock"
+      "player"
+      "workspaces"
+      "minimized"
+      "audio"
+      "battery"
+      "backlight"
+    ];
+    modules-right = mkModules [
+      "idle_inhibitor"
+      "notification"
+      "powermenu"
+      "tray"
+    ];
   in
     lib.mkIf cfg.enable {
       programs.waybar = {

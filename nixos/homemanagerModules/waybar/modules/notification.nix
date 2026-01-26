@@ -8,6 +8,12 @@
   cfg = wb.modules.notification;
 in {
   options.programs.waybar.modules.notification = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "custom/notification";
+      readOnly = true;
+    };
+
     enable = lib.mkOption {
       description = "notification";
       default = true;
@@ -24,7 +30,7 @@ in {
     swaync-client = "${cfg.swayncPackage}/bin/swaync-client";
   in {
     settings = lib.genAttrs cfg.bars (bar: {
-      "custom/notification" = {
+      "${cfg.name}" = {
         tooltip = true;
         format = "";
         format-icons = {
@@ -47,7 +53,7 @@ in {
     style =
       # css
       ''
-        #custom-notification {
+        #${lib.replaceStrings ["/"] ["-"] cfg.name} {
           border-bottom: 2px solid;
         }
       '';

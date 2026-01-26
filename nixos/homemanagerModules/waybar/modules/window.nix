@@ -11,6 +11,11 @@
   };
 in {
   options.programs.waybar.modules.window = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "hyprland/window";
+      readOnly = true;
+    };
     enable = lib.mkOption {
       description = "enable window module";
       default = true;
@@ -24,7 +29,7 @@ in {
   };
   config.programs.waybar = lib.mkIf cfg.enable {
     settings = lib.attrsets.genAttrs cfg.bars (bar: {
-      "hyprland/window" = windowConfig;
+      ${cfg.name} = windowConfig;
     });
   };
 }

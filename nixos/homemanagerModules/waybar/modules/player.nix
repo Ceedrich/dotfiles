@@ -8,6 +8,11 @@
   cfg = wb.modules.player;
 in {
   options.programs.waybar.modules.player = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "group/music-player";
+      readOnly = true;
+    };
     enable = lib.mkOption {
       description = "enable music player module";
       default = true;
@@ -35,7 +40,7 @@ in {
       next = "custom/music-player-next";
     in
       lib.genAttrs cfg.bars (bar: {
-        "group/music-player" = {
+        ${cfg.name} = {
           orientation = "inherit";
           modules = [prev main next];
         };
@@ -87,7 +92,7 @@ in {
     style =
       #css
       ''
-        #group-music-player {}
+        #${lib.replaceStrings ["/"] ["-"] cfg.name} {}
         #custom-music-player-prev {}
         #custom-music-player-main {
           padding: 8px;

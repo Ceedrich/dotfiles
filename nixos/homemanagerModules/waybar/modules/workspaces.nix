@@ -7,6 +7,11 @@
   cfg = config.programs.waybar.modules.workspaces;
 in {
   options.programs.waybar.modules.workspaces = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "hyprland/workspaces";
+      readOnly = true;
+    };
     enable = lib.mkOption {
       default = true;
       type = lib.types.bool;

@@ -7,6 +7,11 @@
   cfg = wb.modules.battery;
 in {
   options.programs.waybar.modules.battery = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "battery";
+      readOnly = true;
+    };
     enable = lib.mkOption {
       description = "enable battery module";
       default = true;
@@ -20,7 +25,7 @@ in {
   };
   config.programs.waybar = lib.mkIf cfg.enable {
     settings = lib.genAttrs cfg.bars (bar: {
-      "battery" = {
+      "${cfg.name}" = {
         format = "{capacity}% {icon}";
         format-icons = {
           charging = ["󰢜" "󰂇" "󰢝" "󰢞" "󰂅"];
@@ -38,16 +43,16 @@ in {
     style =
       #css
       ''
-        #battery {
+        #${cfg.name} {
           border-bottom: 2px solid;
         }
-        #battery.charging {
+        #${cfg.name}.charging {
           color: @green;
         }
-        #battery.discharging.warning {
+        #${cfg.name}.discharging.warning {
           color: @yellow;
         }
-        #battery.discharging.critical {
+        #${cfg.name}.discharging.critical {
           color: @red;
         }
       '';

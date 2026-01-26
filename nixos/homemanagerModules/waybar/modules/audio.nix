@@ -8,6 +8,11 @@
   cfg = wb.modules.audio;
 in {
   options.programs.waybar.modules.audio = {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "pulseaudio";
+      readOnly = true;
+    };
     enable = lib.mkOption {
       description = "enable audio module";
       default = true;
@@ -23,7 +28,7 @@ in {
   config.programs.waybar = lib.mkIf cfg.enable {
     settings = let
       settings = lib.genAttrs cfg.bars (bar: {
-        "pulseaudio" = {
+        "${cfg.name}" = {
           format = "{volume}% {icon}";
           format-bluetooth = "{volume}% {icon}";
           format-muted = "{volume}% 󰝟";
@@ -42,10 +47,10 @@ in {
     style =
       #css
       ''
-        #pulseaudio {
+        #${cfg.name} {
           border-bottom: 2px solid;
         }
-        #pulseaudio.muted {
+        #${cfg.name}.muted {
           color: @overlay0;
         }
       '';
