@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  meta,
   ...
 }: let
   cfg = config.services.pihole;
