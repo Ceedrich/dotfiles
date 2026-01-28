@@ -55,32 +55,10 @@ in {
     deluge = {
       web.port = mkPortOption "Deluge Web" 9011;
     };
-
-    user = mkOption {
-      type = types.str;
-      default = "servarr";
-    };
-    group = mkOption {
-      type = types.str;
-      default = "servarr";
-    };
   };
 
   config = lib.mkIf cfg.enable {
-    users = {
-      groups.${cfg.group} = {};
-      users.${cfg.user} = {
-        isSystemUser = true;
-        group = cfg.group;
-        home = cfg.dataDir;
-      };
-    };
-
     services.deluge = {
-      user = cfg.user;
-      group = cfg.group;
-      dataDir = "${cfg.dataDir}/deluge";
-
       enable = true;
       declarative = true;
       openFirewall = true;
@@ -99,10 +77,6 @@ in {
       };
     };
     services.sonarr = {
-      user = cfg.user;
-      group = cfg.group;
-      dataDir = "${cfg.dataDir}/sonarr";
-
       settings = {
         server.port = cfg.sonarr.port;
         auth.enabled = false;
@@ -117,15 +91,14 @@ in {
       enable = true;
     };
     services.radarr = {
-      user = cfg.user;
-      group = cfg.group;
-      dataDir = "${cfg.dataDir}/radarr";
-
       settings = {
         server.port = cfg.radarr.port;
         auth.enabled = false;
       };
       enable = true;
     };
+
+    users.users.${config.services.sonarr.user}.extraGroups = [config.services.deluge.group];
+    users.users.${config.services.radarr.user}.extraGroups = [config.services.deluge.group];
   };
 }
