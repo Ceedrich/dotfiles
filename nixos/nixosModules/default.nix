@@ -21,6 +21,7 @@
     ./pihole
     # ./secrets
     ./shortcuts
+    ./servarr
     ./steam.nix
     ./swaync
     ./tailscale
