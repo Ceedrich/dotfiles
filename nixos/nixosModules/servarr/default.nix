@@ -65,15 +65,24 @@ in {
       };
     };
     services.sonarr = {
-      settings.server.port = cfg.sonarr.port;
+      settings = {
+        server.port = cfg.sonarr.port;
+        auth.enabled = false;
+      };
       enable = true;
     };
     services.prowlarr = {
-      settings.server.port = cfg.prowlarr.port;
+      settings = {
+        server.port = cfg.prowlarr.port;
+        auth.enabled = false;
+      };
       enable = true;
     };
     services.radarr = {
-      settings.server.port = cfg.radarr.port;
+      settings = {
+        server.port = cfg.radarr.port;
+        auth.enabled = false;
+      };
       enable = true;
     };
   };
