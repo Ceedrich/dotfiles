@@ -110,8 +110,6 @@ in {
       enable = true;
     };
     services.prowlarr = {
-      dataDir = "${cfg.dataDir}/prowlarr";
-
       settings = {
         server.port = cfg.prowlarr.port;
         auth.enabled = false;
