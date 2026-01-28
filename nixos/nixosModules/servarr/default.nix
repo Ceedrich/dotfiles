@@ -83,11 +83,13 @@ in {
 
       enable = true;
       declarative = true;
+      openFirewall = true;
       web = {
         port = cfg.deluge.web.port;
         enable = true;
       };
       config = {
+        listen_ports = [6881 6889];
         max_upload_speed = "0.0";
         max_upload_slots_global = 0;
       };
