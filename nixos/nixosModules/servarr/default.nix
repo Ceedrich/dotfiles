@@ -55,6 +55,10 @@ in {
     services.deluge = {
       enable = true;
       declarative = true;
+      web = {
+        port = cfg.deluge.web.port;
+        enable = true;
+      };
       config = {
         max_upload_speed = "0.0";
         max_upload_slots_global = 0;
