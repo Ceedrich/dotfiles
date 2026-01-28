@@ -100,5 +100,10 @@ in {
 
     users.users.${config.services.sonarr.user}.extraGroups = [config.services.deluge.group];
     users.users.${config.services.radarr.user}.extraGroups = [config.services.deluge.group];
+
+    homelab.reverseProxies.deluge.port = cfg.deluge.web.port;
+    homelab.reverseProxies.sonarr.port = cfg.sonarr.port;
+    homelab.reverseProxies.radarr.port = cfg.radarr.port;
+    homelab.reverseProxies.prowlarr.port = cfg.prowlarr.port;
   };
 }

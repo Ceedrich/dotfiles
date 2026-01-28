@@ -11,6 +11,7 @@
   boot.kernelModules = ["sg"];
 
   services = {
+    servarr.enable = true;
     homepage-dashboard.enable = true;
     jellyfin.enable = true;
     jellyfin.openFirewall = true;

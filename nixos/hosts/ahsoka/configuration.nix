@@ -5,8 +5,6 @@
     ../_graphical
   ];
 
-  services.servarr.enable = true;
-
   global-hm.config.programs.mangohud.enable = true;
   global-hm.config.programs.waybar.modules = {
     battery.enable = false;

@@ -43,6 +43,10 @@ in {
       ipv6 = "fd7a:115c:a1e0::5001:a826";
     };
     services = {
+      sonarr.subdomains = ["sonarr"];
+      radarr.subdomains = ["radarr"];
+      prowlarr.subdomains = ["prowlarr"];
+      deluge.subdomains = ["deluge"];
       homepage-dashboard.subdomains = ["home" "dashboard"];
       jellyfin.subdomains = ["jellyfin" "cediflix" "flix"];
     };
