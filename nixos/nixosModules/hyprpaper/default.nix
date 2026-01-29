@@ -22,7 +22,6 @@ in {
           wallpaper = [
             {
               path = "${../../assets/wallpaper.jpg}";
-              fit_mode = "cover";
             }
           ];
         };
