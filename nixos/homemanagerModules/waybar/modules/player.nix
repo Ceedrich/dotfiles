@@ -52,7 +52,9 @@ in {
     style =
       #css
       ''
-        #${lib.replaceStrings ["/"] ["-"] cfg.name} {}
+        #${cfg.name} {
+          color: inherit;
+        }
       '';
   };
 }
