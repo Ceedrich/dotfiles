@@ -21,7 +21,6 @@ in {
     modules-left = mkModules ["window" "player"];
     modules-center = mkModules [
       "clock"
-      "player"
       "workspaces"
       "minimized"
       "audio"
