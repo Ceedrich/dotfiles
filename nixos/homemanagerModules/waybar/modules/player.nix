@@ -54,6 +54,7 @@ in {
       ''
         #${cfg.name} {
           color: inherit;
+          border: none;
         }
       '';
   };
