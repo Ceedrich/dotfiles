@@ -26,7 +26,6 @@ in {
         enable = mkDefault true;
         modules = {
           window.enable = false;
-          player.enable = false;
         };
       };
       vpn.epfl = true;
