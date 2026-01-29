@@ -41,31 +41,22 @@ in {
       programs.waybar = {
         systemd.enable = true;
         settings.${cfg.mainBar} = {
-          inherit modules-left modules-right modules-center;
+          "group/left" = {
+            modules = modules-left;
+          };
+          "group/center" = {
+            modules = modules-center;
+          };
+          "group/right" = {
+            modules = modules-right;
+          };
+          modules-left = ["group/left"];
+          modules-center = ["group/center"];
+          modules-right = ["group/right"];
           position = "top";
         };
 
-        style = let
-          eachPlace = style: let
-            css =
-              ""
-              + (lib.optionalString (modules-left != []) ''.modules-left ${style}'')
-              + (lib.optionalString (modules-center != []) ''.modules-center ${style}'')
-              + (lib.optionalString (modules-right != []) ''.modules-right ${style}'');
-          in
-            css;
-        in ''
-          ${builtins.readFile ./style.css}
-          ${eachPlace ''
-            {
-              background-color: @base;
-              color: @text;
-              border-radius: 100rem;
-              box-shadow: inset 0 0 0 1px @surface1;
-              padding: 0.5rem 1rem;
-            }
-          ''}
-        '';
+        style = builtins.readFile ./style.css;
       };
     };
 }
