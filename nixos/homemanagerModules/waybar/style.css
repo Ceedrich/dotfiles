@@ -55,7 +55,7 @@ label.module {
   color: @mauve;
 }
 
-#left,
+/* #left, */
 #center,
 #right {
   background-color: @base;
