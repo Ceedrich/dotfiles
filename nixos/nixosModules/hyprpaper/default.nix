@@ -20,9 +20,7 @@ in {
           preload = ["${../../assets/wallpaper.jpg}"];
 
           wallpaper = [
-            {
-              path = "${../../assets/wallpaper.jpg}";
-            }
+            ",${../../assets/wallpaper.jpg}"
           ];
         };
       };
