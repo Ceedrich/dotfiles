@@ -9,6 +9,7 @@
     steam.enable = true;
   };
   services.mpvpaper.enable = false;
+  services.hyprpaper.enable = false;
 
   global-hm.config.wayland.windowManager.hyprland.extraConfig = "monitor = , preferred, auto, 1";
 
