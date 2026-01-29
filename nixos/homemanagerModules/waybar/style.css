@@ -43,14 +43,18 @@ label.module {
   border-bottom: 2px solid;
 }
 
-.modules-center :nth-child(odd) label.module,
-.modules-right :nth-child(odd) label.module {
-  color: @blue;
-}
+/* .modules-center :nth-child(odd) label.module, */
+/* .modules-right :nth-child(odd) label.module { */
+/*   color: @blue; */
+/* } */
+/**/
+/* .modules-center :nth-child(even) label.module, */
+/* .modules-right :nth-child(even) label.module { */
+/*   color: @mauve; */
+/* } */
 
-.modules-center :nth-child(even) label.module,
-.modules-right :nth-child(even) label.module {
-  color: @mauve;
+.modules-center, .modules-right, .modules-left {
+  background: red;
 }
 
 #left,
