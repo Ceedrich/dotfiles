@@ -20,7 +20,7 @@ in {
         background = [
           {
             monitor = "";
-            path = "${../../assets/wallpaper.jpg}";
+            path = "${../../assets/wallpaper.png}";
             blur_passes = 3;
             brightness = 0.5;
             color = "$base";
