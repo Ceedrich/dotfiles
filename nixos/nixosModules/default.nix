@@ -3,6 +3,7 @@
     ./backup.nix
     ./bluetooth.nix
     ./btop
+    ./clipboard
     ./ghostty
     ./globalHM.nix
     ./homelab

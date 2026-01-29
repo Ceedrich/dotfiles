@@ -67,6 +67,7 @@ in {
       };
     };
     services = {
+      clipboard.enable = mkDefault true;
       swaync.enable = mkDefault true;
       hypridle.enable = mkDefault true;
       mpvpaper.enable = mkDefault true;
