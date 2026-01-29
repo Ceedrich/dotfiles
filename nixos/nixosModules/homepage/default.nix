@@ -50,6 +50,7 @@ in {
             cpu = true;
             cputemp = true;
             memory = true;
+            network = true;
             disk = "/media-server";
             units = "metric";
           };

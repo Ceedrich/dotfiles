@@ -8,6 +8,8 @@
     modrinth.enable = true;
     steam.enable = true;
   };
+  services.mpvpaper.enable = false;
+
   global-hm.config.wayland.windowManager.hyprland.extraConfig = "monitor = , preferred, auto, 1";
 
   environment.systemPackages = with pkgs; [
