@@ -37,8 +37,8 @@ in {
           border-radius: 0;
           border: none;
           color: @overlay0;
-          padding: 0px 4px;
-          margin: 2px 4px;
+          padding: 2px 4px;
+          margin: 0px 4px;
         }
 
         #workspaces button.active,
