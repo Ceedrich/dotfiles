@@ -42,12 +42,15 @@ in {
         systemd.enable = true;
         settings.${cfg.mainBar} = {
           "group/left" = {
+            orientation = "inherit";
             modules = modules-left;
           };
           "group/center" = {
+            orientation = "inherit";
             modules = modules-center;
           };
           "group/right" = {
+            orientation = "inherit";
             modules = modules-right;
           };
           modules-left = ["group/left"];
