@@ -18,7 +18,10 @@ in {
   config = let
     m = cfg.modules;
     mkModules = mods: lib.foldl' (mods: name: mods ++ lib.optional m.${name}.enable m.${name}.name) [] mods;
-    modules-left = mkModules ["window" "player"];
+    modules-left = mkModules [
+      "window"
+      "player" # TODO: look at vanishing modules
+    ];
     modules-center = mkModules [
       "clock"
       "workspaces"
