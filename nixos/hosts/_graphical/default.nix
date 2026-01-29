@@ -72,6 +72,7 @@ in {
       hypridle.enable = mkDefault true;
       mpvpaper.enable = mkDefault true;
       tailscale.tray.enable = mkDefault true;
+      playerctld.enable = mkDefault true;
     };
   };
 }
