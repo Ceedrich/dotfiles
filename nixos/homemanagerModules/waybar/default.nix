@@ -18,7 +18,7 @@ in {
   config = let
     m = cfg.modules;
     mkModules = mods: lib.foldl' (mods: name: mods ++ lib.optional m.${name}.enable m.${name}.name) [] mods;
-    modules-left = mkModules ["window"];
+    modules-left = mkModules ["window" "player"];
     modules-center = mkModules [
       "clock"
       "player"

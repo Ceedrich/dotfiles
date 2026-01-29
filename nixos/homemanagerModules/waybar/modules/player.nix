@@ -10,7 +10,7 @@ in {
   options.programs.waybar.modules.player = {
     name = lib.mkOption {
       type = lib.types.str;
-      default = "group/music-player";
+      default = "mpris";
       readOnly = true;
     };
     enable = lib.mkOption {
@@ -28,76 +28,31 @@ in {
       default = ["spotify" "vlc"];
       type = lib.types.listOf lib.types.str;
     };
-    playerCtlPackage = lib.mkPackageOption pkgs "playerctl" {};
   };
   config.programs.waybar = {
     settings = let
-      players = "${lib.strings.concatStringsSep "," cfg.priorities},%any";
-      playercmd = "${cfg.playerCtlPackage}/bin/playerctl --player='${players}'";
-
-      prev = "custom/music-player-prev";
-      main = "custom/music-player-main";
-      next = "custom/music-player-next";
     in
       lib.genAttrs cfg.bars (bar: {
         ${cfg.name} = {
-          orientation = "inherit";
-          modules = [prev main next];
-        };
-        ${main} = {
-          format = "{}";
-          interval = 5;
-          tooltip = true;
-          tooltip-format = "Play/Pause";
-          escape = true;
-          on-click = "${playercmd} play-pause 2>/dev/null";
-          on-click-right = let
-            hyprlandPackage = "${config.wayland.windowManager.hyprland.package}";
-          in ''${hyprlandPackage}/bin/hyprctl dispatch focuswindow "class:(?i:^.*$(${playercmd} -l | head -n1).*)"''; # TODO: add sway support
-          max-length = 50;
-          exec = "${playercmd} metadata --format='{{ artist }} - {{ title }}' 2>/dev/null";
-          # BUG: See https://github.com/Alexays/Waybar/issues/4382
-          on-scroll-up = "true";
-          on-scroll-down = "true";
-        };
-        ${prev} = {
-          format = "{icon}";
-          format-icons = "󰒮";
-          interval = 5;
-          tooltip = true;
-          tooltip-format = "Previous";
-          escape = true;
-          max-length = 50;
-          on-click = "${playercmd} previous 2>/dev/null";
-          exec = "${playercmd} status 2>/dev/null";
-          # BUG: See https://github.com/Alexays/Waybar/issues/4382
-          on-scroll-up = "true";
-          on-scroll-down = "true";
-        };
-        ${next} = {
-          format = "{icon}";
-          format-icons = "󰒭";
-          interval = 5;
-          tooltip = true;
-          tooltip-format = "Next";
-          escape = true;
-          max-length = 50;
-          on-click = "${playercmd} next 2>/dev/null";
-          exec = "${playercmd} status 2>/dev/null";
-          # BUG: See https://github.com/Alexays/Waybar/issues/4382
-          on-scroll-up = "true";
-          on-scroll-down = "true";
+          "interval" = 5;
+          "format" = "{player_icon} {dynamic}";
+          "tooltip-format" = "{player_icon} {dynamic}";
+          "dynamic-len" = 30;
+          "dynamic-order" = [
+            "title"
+            "artist"
+            "album"
+          ];
+          "title-len" = 20;
+          "player-icons" = {
+            "spotify" = "󰓇";
+          };
         };
       });
     style =
       #css
       ''
         #${lib.replaceStrings ["/"] ["-"] cfg.name} {}
-        #custom-music-player-prev {}
-        #custom-music-player-main {
-          padding: 8px;
-        }
-        #custom-music-player-next {}
       '';
   };
 }
