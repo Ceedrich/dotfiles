@@ -17,11 +17,11 @@ in {
           ipc = "on";
           splash = false;
 
-          preload = [../../assets/wallpaper.jpg];
+          preload = ["${../../assets/wallpaper.jpg}"];
 
           wallpaper = [
             {
-              path = ../../assets/wallpaper.jpg;
+              path = "${../../assets/wallpaper.jpg}";
               fit_mode = "cover";
             }
           ];
