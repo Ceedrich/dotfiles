@@ -141,7 +141,7 @@ in {
             ", XF86MonBrightnessDown, exec, ${brightnessctl} -q s 10%-"
             ", XF86MonBrightnessUp, exec, ${brightnessctl} -q s +10%"
           ]
-          ++ lib.optional config.services.clipboard.enable "${mainMod}, V, exec, cliphist list | rofi -dmenu -display-columns 2 | cliphist decode | wl-copy";
+          ++ lib.optional config.services.clipboard.enable "${mainMod}, V, exec, cliphist list | rofi -dmenu -i -display-columns 2 | cliphist decode | wl-copy";
 
         bindm = [
           "${mainMod}, mouse:272, resizewindow"
