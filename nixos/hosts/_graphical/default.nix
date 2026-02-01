@@ -25,7 +25,7 @@ in {
       programs.waybar = {
         enable = mkDefault true;
         modules = {
-          window.enable = false;
+          # window.enable = false;
         };
       };
       vpn.epfl = true;
