@@ -55,9 +55,16 @@ label.module {
   color: @mauve;
 }
 
-/* #left, */
 #center,
 #right {
+  background-color: @base;
+  color: @overlay0;
+  border-radius: 100rem;
+  box-shadow: inset 0 0 0 1px @surface1;
+  padding: 0.5rem 1rem;
+}
+
+#left label.module {
   background-color: @base;
   color: @overlay0;
   border-radius: 100rem;
