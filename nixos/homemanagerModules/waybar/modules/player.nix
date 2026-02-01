@@ -36,7 +36,7 @@ in {
           interval = 5;
           format = "{player_icon} {dynamic}";
           tooltip-format = "{player_icon} {dynamic}";
-          dynamic-len = 30;
+          dynamic-len = 40;
           dynamic-order = [
             "title"
             "artist"
