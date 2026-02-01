@@ -33,18 +33,19 @@ in {
     in
       lib.genAttrs cfg.bars (bar: {
         ${cfg.name} = {
-          "interval" = 5;
-          "format" = "{player_icon} {dynamic}";
-          "tooltip-format" = "{player_icon} {dynamic}";
-          "dynamic-len" = 30;
-          "dynamic-order" = [
+          interval = 5;
+          format = "{player_icon} {dynamic}";
+          tooltip-format = "{player_icon} {dynamic}";
+          dynamic-len = 30;
+          dynamic-order = [
             "title"
             "artist"
             "album"
           ];
-          "title-len" = 20;
-          "player-icons" = {
+          title-len = 20;
+          player-icons = {
             "spotify" = "󰓇";
+            default = "󰐍";
           };
         };
       });
