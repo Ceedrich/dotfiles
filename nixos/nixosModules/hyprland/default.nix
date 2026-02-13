@@ -172,10 +172,8 @@ in {
 
         # Animation
         animation = [
-          "windows, 1, 0.5, easeOutQuint"
-          "windowsIn, 1, 0.5, easeOutQuint, popin 80%"
-          "windowsOut, 1, 0.5, linear, popin 80%"
           "workspaces, 1, 2, default"
+          "windows, 1, 0.5, default"
           "fade, 1, 0.5, default"
         ];
 
