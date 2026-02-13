@@ -206,8 +206,7 @@ in {
           # Up until 0.52
           ++ [
             "float, center, title:^(Open File|Open|Save|Save File|Save As|Export|Import|Choose File|Rename), class:^(.*)$"
-            "float, center, class:(xdg-desktop-portal-[a-zA-z0-9]*)"
-            "float, center, class:(Xdg-desktop-portal-[a-zA-z0-9]*)"
+            "float, center, class:([Xx]dg-desktop-portal-[a-zA-z0-9]*)"
           ]
           ++ (builtins.map (regex: "float, class:${regex}") floating);
       };
