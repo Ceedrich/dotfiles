@@ -44,7 +44,7 @@ in {
           ];
           title-len = 20;
           player-icons = {
-            "spotify" = "󰓇";
+            spotify = ''<span foreground="#a6e3a1">󰓇</span>'';
             default = "󰐍";
           };
         };
