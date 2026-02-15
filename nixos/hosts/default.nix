@@ -16,9 +16,12 @@
       ceedrichPkgs = config.packages;
       mkNixos = hostname: users:
         inputs.nixpkgs.lib.nixosSystem {
-          specialArgs = {
+          specialArgs = let
+            pkgs-unstable = import inputs.nixpkgs-unstable {inherit system;};
+          in {
             inherit inputs inputs';
             inherit ceedrichPkgs;
+            inherit pkgs-unstable;
             meta = {inherit hostname;};
           };
           modules =

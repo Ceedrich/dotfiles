@@ -3,6 +3,7 @@
   inputs,
   lib,
   pkgs,
+  pkgs-unstable,
   config,
   ...
 }: let
@@ -47,7 +48,14 @@ in {
       libnotify
       ceedrichPkgs.test-icons
       blender
+      pkgs-unstable.hyprshutdown
     ];
+
+    logoutCommands = {
+      shutdown = "hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'";
+      reboot = "hyprshutdown -t 'Restarting...' --post-cmd 'reboot'";
+      logout = "hyprshutdown -t 'Logging out...'";
+    };
 
     allowedUnfree = [
       "spotify"

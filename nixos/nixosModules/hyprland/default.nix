@@ -46,12 +46,7 @@ in {
     };
     extra-packages = lib.mkOption {
       type = types.listOf types.package;
-      default = with pkgs; [
-        networkmanagerapplet
-        blueman
-        libnotify
-        nwg-drawer
-      ];
+      default = [];
     };
   };
 
