@@ -5,6 +5,7 @@
   ...
 }: let
   cfg = config.services.swaync;
+  commands = config.logoutCommands;
 in {
   options.services.swaync = let
     inherit (lib) types mkEnableOption;
@@ -51,19 +52,19 @@ in {
             "menu#power-buttons" = {
               actions = [
                 {
-                  command = "systemctl reboot";
+                  command = commands.reboot;
                   label = "   Reboot";
                 }
                 {
-                  command = "swaync-client -cp; hyprlock";
+                  command = "swaync-client -cp; ${commands.lock}";
                   label = "   Lock";
                 }
                 {
-                  command = "loginctl terminate-session \${XDG_SESSION_ID-}";
+                  command = commands.logout;
                   label = "   Logout";
                 }
                 {
-                  command = "systemctl poweroff";
+                  command = commands.shutdown;
                   label = "   Shut down";
                 }
               ];

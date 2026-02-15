@@ -33,9 +33,16 @@ in {
     };
     powermenuPackage = lib.mkOption {
       type = types.package;
-      default = ceedrichPkgs.power-menu.override {
-        logoutCommand = ''loginctl terminate-user ""''; # TODO: replace with `hyprshutdown`
-      };
+      default = let
+        commands = config.logoutCommands;
+      in
+        ceedrichPkgs.power-menu.override {
+          lockCommand = commands.lock;
+          logoutCommand = commands.logout;
+          shutdownCommand = commands.shutdown;
+          rebootCommand = commands.reboot;
+          suspendCommand = commands.suspend;
+        };
     };
     extra-packages = lib.mkOption {
       type = types.listOf types.package;

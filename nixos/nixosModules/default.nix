@@ -15,6 +15,7 @@
     ./hyprpolkitagent
     ./jellyfin
     ./kanata
+    ./logoutCommands.nix
     ./modrinth
     ./mpvpaper
     ./pihole
