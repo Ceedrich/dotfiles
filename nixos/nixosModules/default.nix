@@ -12,6 +12,7 @@
     ./hyprland
     ./hyprlock
     ./hyprpaper
+    ./hyprpolkitagent
     ./jellyfin
     ./kanata
     ./modrinth
