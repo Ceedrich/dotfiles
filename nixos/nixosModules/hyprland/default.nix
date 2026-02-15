@@ -175,7 +175,7 @@ in {
         # Animation
         animation = [
           "workspaces, 1, 2, default"
-          "windows, 1, 0.5, default, popin"
+          "windows, 1, 1, default, popin 90%"
           "fade, 1, 0.5, default"
         ];
 
