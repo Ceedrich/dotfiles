@@ -44,6 +44,7 @@ in {
         blueman
         libnotify
         nwg-drawer
+        hyprpolkitagent
       ];
     };
   };
@@ -58,6 +59,7 @@ in {
         blueman
         libnotify
         nwg-drawer
+        hyprpolkitagent
       ]
       ++ cfg.extra-packages;
 
