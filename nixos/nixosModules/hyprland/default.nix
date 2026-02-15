@@ -189,6 +189,9 @@ in {
           disable_hyprland_logo = true;
         };
 
+        layerrule = [
+          "animation popin, ^rofi$"
+        ];
         windowrule = let
           floating = [
             "org.pulseaudio.pavucontrol"
