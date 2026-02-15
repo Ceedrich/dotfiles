@@ -161,6 +161,10 @@ in {
           };
         };
 
+        general = {
+          resize_on_border = true;
+        };
+
         gestures = {
           workspace_swipe_distance = 200;
         };
