@@ -46,6 +46,7 @@ in {
       audacity
       libnotify
       ceedrichPkgs.test-icons
+      blender
     ];
 
     allowedUnfree = [
