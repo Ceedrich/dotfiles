@@ -89,6 +89,7 @@ in {
       userName = "ceedrich";
       user = config.users.users.${userName};
     in {
+      enable = true;
       configDir = "${user.home}/.config/syncthing";
       user = userName;
       overrideDevices = true;
