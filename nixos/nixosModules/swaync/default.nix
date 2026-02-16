@@ -46,6 +46,14 @@ in {
                 label = "󰈊";
                 command = "hyprpicker -aq";
               }
+              {
+                label = "󰖩";
+                command = "nm-connection-editor";
+              }
+              {
+                label = "󰂯";
+                command = "blueman-manager";
+              }
             ];
           };
           menubar = {
