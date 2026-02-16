@@ -197,9 +197,22 @@ in {
           "animation popin 90%, ^rofi$"
         ];
         windowrule = let
-          floating = [
+          floatingClass = [
             "org.pulseaudio.pavucontrol"
             ".blueman-manager-wrapped"
+            "nm-connection-editor"
+          ];
+          floatingTitle = [
+            "Open File"
+            "Open"
+            "Save"
+            "Save File"
+            "Save As"
+            "Export"
+            "Import"
+            "Choose File"
+            "Rename"
+            "This page wants to save"
           ];
         in
           [
@@ -214,10 +227,10 @@ in {
           # ++ (builtins.map (regex: "float on, match:class ${regex}") floating);
           # Up until 0.52
           ++ [
-            "float, center, title:^(Open File|Open|Save|Save File|Save As|Export|Import|Choose File|Rename|This page wants to save), class:^(.*)$"
             "float, center, class:([Xx]dg-desktop-portal-[a-zA-z0-9]*)"
           ]
-          ++ (builtins.map (regex: "float, class:${regex}") floating);
+          ++ (builtins.map (regex: "float, title:^${regex}$") floatingTitle)
+          ++ (builtins.map (regex: "float, class:${regex}") floatingClass);
       };
     };
 
