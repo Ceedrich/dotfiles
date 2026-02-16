@@ -49,6 +49,7 @@ in {
       ceedrichPkgs.test-icons
       blender
       pkgs-unstable.hyprshutdown
+      jellyfin-desktop
     ];
 
     logoutCommands = {
