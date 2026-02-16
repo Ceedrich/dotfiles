@@ -18,8 +18,6 @@
   };
   environment.systemPackages = with pkgs; [
     lact
-    owncloud-client
-
     unityhub
 
     discord

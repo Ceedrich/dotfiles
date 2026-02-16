@@ -31,6 +31,8 @@ in {
       };
       vpn.epfl = true;
 
+      services.owncloud-client.enable = true;
+
       xdg.userDirs = {
         enable = true;
         createDirectories = true;
