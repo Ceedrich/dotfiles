@@ -82,6 +82,7 @@ in {
       clipboard.enable = mkDefault true;
       swaync.enable = mkDefault true;
       hypridle.enable = mkDefault true;
+      hyprsunset.enable = mkDefault true;
       mpvpaper.enable = mkDefault true;
       tailscale.tray.enable = mkDefault true;
       playerctld.enable = mkDefault true;

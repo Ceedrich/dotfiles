@@ -10,6 +10,7 @@
     ./homepage
     ./hypridle
     ./hyprland
+    ./hyprsunset
     ./hyprlock
     ./hyprpaper
     ./hyprpolkitagent
