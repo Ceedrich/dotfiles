@@ -2,9 +2,14 @@ warning: Git tree '/home/ceedrich/dotfiles' is dirty
 building the system configuration...
 warning: Git tree '/home/ceedrich/dotfiles' is dirty
 trace: Obsolete option `programs.git.delta.enable' is used. It was renamed to `programs.delta.enable'.
+stopping the following units: accounts-daemon.service, syncthing-init.service, syncthing.service
 activating the configuration...
+removing group ‘syncthing’
 setting up /etc...
 reloading user units for ceedrich...
 restarting sysinit-reactivation.target
+reloading the following units: dbus.service
+restarting the following units: polkit.service
+starting the following units: accounts-daemon.service
 the following new units were started: NetworkManager-dispatcher.service
-Done. The new configuration is /nix/store/dvxbfha412llxmza6x58ax6fpbdywx2a-nixos-system-ahsoka-25.11.20260214.3aadb7c
+Done. The new configuration is /nix/store/gh91w3ss6xl8355xrnsrcgczgsikf4rv-nixos-system-ahsoka-25.11.20260214.3aadb7c

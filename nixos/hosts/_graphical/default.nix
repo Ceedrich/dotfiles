@@ -84,21 +84,5 @@ in {
       playerctld.enable = mkDefault true;
       printing.enable = mkDefault true;
     };
-
-    services.syncthing = let
-      userName = "ceedrich";
-      user = config.users.users.${userName};
-    in {
-      enable = true;
-      configDir = "${user.home}/.config/syncthing";
-      user = userName;
-      overrideFolders = true;
-      settings = {
-        folders."Keepass" = {
-          path = "${user.home}/keepass";
-          devices = [];
-        };
-      };
-    };
   };
 }
