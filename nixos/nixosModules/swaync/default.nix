@@ -48,11 +48,11 @@ in {
               }
               {
                 label = "󰖩";
-                command = "nm-connection-editor";
+                command = "swaync-client -cp; nm-connection-editor";
               }
               {
                 label = "󰂯";
-                command = "blueman-manager";
+                command = "swaync-client -cp; blueman-manager";
               }
             ];
           };
