@@ -28,7 +28,9 @@ in {
     global-hm.config.services.swaync = {
       enable = true;
       package = cfg.package;
-      settings = {
+      settings = let
+        close-swaync = "swaync-client -cp";
+      in {
         "$schema" = "https://raw.githubusercontent.com/ErikReider/SwayNotificationCenter/refs/heads/main/src/configSchema.json";
         control-center-height = -1;
         control-center-margin-right = 16;
@@ -43,16 +45,20 @@ in {
           buttons-grid = {
             actions = [
               {
+                label = "󰋽";
+                command = "${close-swaync}; ${lib.getExe pkgs.hyprsysteminfo}";
+              }
+              {
                 label = "󰈊";
                 command = "hyprpicker -aq";
               }
               {
                 label = "󰖩";
-                command = "swaync-client -cp; nm-connection-editor";
+                command = "${close-swaync}; nm-connection-editor";
               }
               {
                 label = "󰂯";
-                command = "swaync-client -cp; blueman-manager";
+                command = "${close-swaync}; blueman-manager";
               }
             ];
           };
@@ -64,7 +70,7 @@ in {
                   label = "   Reboot";
                 }
                 {
-                  command = "swaync-client -cp; ${commands.lock}";
+                  command = "${close-swaync}; ${commands.lock}";
                   label = "   Lock";
                 }
                 {
