@@ -29,11 +29,6 @@ in {
         url = "https://moodle.epfl.ch";
         icon = ../../assets/EPFL.png;
       };
-      jellyfin = mkShortcut "jellyfin" {
-        name = "Jellyfin";
-        url = pkgs.ceedrichLib.homelabUrl "jellyfin" config;
-        icon = "jellyfin";
-      };
     };
   };
 }
