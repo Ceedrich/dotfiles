@@ -92,7 +92,6 @@ in {
       enable = true;
       configDir = "${user.home}/.config/syncthing";
       user = userName;
-      overrideDevices = true;
       overrideFolders = true;
       settings = {
         folders."Keepass" = {
