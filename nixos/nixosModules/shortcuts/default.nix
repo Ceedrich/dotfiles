@@ -32,6 +32,7 @@ in {
       jellyfin = mkShortcut "jellyfin" {
         name = "Jellyfin";
         url = pkgs.ceedrichLib.homelabUrl "jellyfin" config;
+        icon = "jellyfin";
       };
     };
   };
