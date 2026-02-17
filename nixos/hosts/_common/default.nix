@@ -130,5 +130,12 @@
   programs.dconf.enable = true;
 
   # Nix settings
+  nix.gc = {
+    automatic = true;
+    persistent = true;
+    dates = "weekly";
+    randomizedDelaySec = "45min";
+    options = "--delete-older-than 30d";
+  };
   nix.settings.experimental-features = ["nix-command" "flakes"];
 }
