@@ -60,6 +60,7 @@ in {
         blueman
         libnotify
         nwg-drawer
+        cfg.powermenuPackage
       ]
       ++ cfg.extra-packages;
 
