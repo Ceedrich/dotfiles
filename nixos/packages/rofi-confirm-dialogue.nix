@@ -2,22 +2,21 @@
   rofi,
   writeShellApplication,
 }: let
-  name = "rofi-confirm-dialogue";
-  dmenuCommand = "${rofi}/bin/rofi -dmenu -i -l 2 -p";
 in
-  writeShellApplication {
-    inherit name;
+  writeShellApplication rec {
+    name = "rofi-confirm-dialogue";
     text = ''
-      if [ $# -ne 2 ]; then
+      if [ $# -lt 2 ]; then
         echo "Usage: ${name} [title] [command]"
         exit 1
       fi
-      text="Are you sure? ($1)"
-      result=$(echo -e "Yes\nNo" | ${dmenuCommand} "$text")
+      action="$1"; shift
+      text="Are you sure? ($action)"
+      result=$(echo -e "Yes\nNo" | ${rofi}/bin/rofi -dmenu -i -l 2 -p "$text")
 
       case "$result" in
         Yes)
-          eval "$2";;
+          "$@";;
       esac
     '';
   }

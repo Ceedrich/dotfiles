@@ -44,7 +44,7 @@
       doConfirm = lib.getExe rofi-confirm-dialogue;
       command =
         if confirm
-        then "${doConfirm} \"${name}\" \"${cmd}\""
+        then "${doConfirm} \"${name}\" ${cmd}"
         else "${cmd}";
     in ''
       "${name}")
