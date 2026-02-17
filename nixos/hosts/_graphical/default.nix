@@ -55,9 +55,9 @@ in {
     ];
 
     logoutCommands = {
-      shutdown = "hyprctl dispatch exec hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'";
-      reboot = "hyprctl dispatch exec hyprshutdown -t 'Restarting...' --post-cmd 'reboot'";
-      logout = "hyprctl dispatch exec hyprshutdown -t 'Logging out...'";
+      shutdown = ''hyprctl dispatch exec "hyprshutdown -t 'Shutting down...' --post-cmd 'shutdown -P 0'"'';
+      reboot = ''hyprctl dispatch exec "hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"'';
+      logout = ''hyprctl dispatch exec "hyprshutdown -t 'Logging out...'"'';
     };
 
     allowedUnfree = [
