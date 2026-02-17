@@ -70,6 +70,8 @@ in {
       hyprlock.enable = mkDefault true;
       thunderbird.enable = mkDefault true;
       zathura.enable = mkDefault true;
+      firefox.enable = mkDefault true;
+
       spicetify = let
         spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       in {
@@ -78,6 +80,7 @@ in {
         colorScheme = config.catppuccin.flavor;
       };
     };
+    environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
     services = {
       clipboard.enable = mkDefault true;
       swaync.enable = mkDefault true;

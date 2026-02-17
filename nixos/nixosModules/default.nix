@@ -4,6 +4,7 @@
     ./bluetooth.nix
     ./btop
     ./clipboard
+    ./firefox
     ./ghostty
     ./globalHM.nix
     ./homelab
