@@ -50,7 +50,7 @@ in {
       audacity
       libnotify
       ceedrichPkgs.test-icons
-      blender
+      blender-hip
       pkgs-unstable.hyprshutdown
       jellyfin-desktop
       wl-clipboard
