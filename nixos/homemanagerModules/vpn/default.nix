@@ -17,11 +17,10 @@
       inherit name;
       runtimeInputs = with pkgs; [
         openconnect
-        expect
         (pass.withExtensions (e: with e; [pass-otp]))
       ];
       text = ''
-        sudo -u "$USER" expect ${./vpn.exp} ${server} ${username} "$(pass show ${passwordPath} | head -n1)" "$(pass otp ${otpPath})"
+        sudo ${pkgs.expect}/bin/expect ${./vpn.exp} ${server} ${username} "$(pass show ${passwordPath} | head -n1)" "$(pass otp ${otpPath})"
       '';
     };
 in {
