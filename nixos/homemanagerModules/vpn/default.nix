@@ -1,17 +1,38 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   cfg = config.vpn;
+
+  mkVpn = {
+    name,
+    server,
+    username,
+    passwordPath,
+    otpPath ? passwordPath,
+  }:
+    pkgs.writeShellApplication {
+      inherit name;
+      runtimeInputs = with pkgs; [
+        (pass.withExtensions (e: with e; [pass-otp]))
+        openconnect
+      ];
+      text = ''
+        sudo expect ${./vpn.exp} ${server} ${username} "$(pass show ${passwordPath} | head -n1)" "$(pass otp ${otpPath})"
+      '';
+    };
 in {
   options.vpn = {
-    epfl = lib.mkEnableOption "enable ";
+    epfl = lib.mkEnableOption "EPFL vpn";
   };
   config = {
-    home.shellAliases.epfl-vpn =
-      lib.mkIf cfg.epfl
-      # host username password otp
-      ''sudo expect ${./vpn.exp} vpn.epfl.ch lehr "$(pass show studium/epfl | head -n1)" "$(pass otp studium/epfl)"'';
+    home.packages = lib.optional cfg.epfl (mkVpn {
+      name = "epfl-vpn";
+      server = "vpn.epfl.ch";
+      username = "lehr";
+      passwordPath = "studium/epfl";
+    });
   };
 }
