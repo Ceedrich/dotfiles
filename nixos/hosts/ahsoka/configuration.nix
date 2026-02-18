@@ -18,6 +18,7 @@
   };
   environment.systemPackages = with pkgs; [
     lact
+    clinfo
     unityhub
 
     discord
@@ -42,6 +43,9 @@
   hardware.graphics = {
     enable32Bit = true;
     enable = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+    ];
   };
 
   systemd.packages = with pkgs; [lact];
