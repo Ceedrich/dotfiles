@@ -13,7 +13,6 @@
   };
   # Packages / Programs
   environment.systemPackages = with pkgs; [
-    (pass.withExtensions (ext: with ext; [pass-otp pass-update pass-audit]))
     catppuccin-cursors.mochaMauve
     ceedrichPkgs.rebuild-system
     expect # TODO: move into module?
@@ -24,13 +23,11 @@
     gnutar
     jq
     just
-    openconnect # TODO: move into module?
+    openconnect # TODO: move into module? and remove from common
     pdfgrep
     ripgrep
     unzip
     vim
-    wl-clipboard
-    wlrctl
   ];
 
   programs = {

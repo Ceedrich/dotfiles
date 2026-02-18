@@ -43,6 +43,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
+      (pass.withExtensions (ext: with ext; [pass-otp pass-update pass-audit]))
       inputs.deploy-rs.packages.${pkgs.stdenv.hostPlatform.system}.deploy-rs
       signal-desktop
       vlc
@@ -52,6 +53,8 @@ in {
       blender
       pkgs-unstable.hyprshutdown
       jellyfin-desktop
+      wl-clipboard
+      wlrctl
     ];
 
     logoutCommands = {
