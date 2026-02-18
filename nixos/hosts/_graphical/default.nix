@@ -51,6 +51,7 @@ in {
       libnotify
       ceedrichPkgs.test-icons
       blender-hip
+      poppler-utils
       pkgs-unstable.hyprshutdown
       jellyfin-desktop
       wl-clipboard
