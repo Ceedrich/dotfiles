@@ -15,7 +15,6 @@
   environment.systemPackages = with pkgs; [
     catppuccin-cursors.mochaMauve
     ceedrichPkgs.rebuild-system
-    expect # TODO: move into module?
     fd
     file
     gnugrep
@@ -23,7 +22,6 @@
     gnutar
     jq
     just
-    openconnect # TODO: move into module? and remove from common
     pdfgrep
     ripgrep
     unzip

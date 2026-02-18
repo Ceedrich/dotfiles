@@ -16,8 +16,9 @@
     pkgs.writeShellApplication {
       inherit name;
       runtimeInputs = with pkgs; [
-        (pass.withExtensions (e: with e; [pass-otp]))
+        expect
         openconnect
+        (pass.withExtensions (e: with e; [pass-otp]))
       ];
       text = ''
         sudo expect ${./vpn.exp} ${server} ${username} "$(pass show ${passwordPath} | head -n1)" "$(pass otp ${otpPath})"
