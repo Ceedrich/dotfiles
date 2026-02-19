@@ -71,7 +71,10 @@ in {
     global-hm.config.wayland.windowManager.hyprland = {
       enable = true;
       systemd.enableXdgAutostart = true;
-      plugins = with pkgs.hyprlandPlugins; [xtra-dispatchers];
+      plugins = with pkgs.hyprlandPlugins; [
+        xtra-dispatchers
+        hyprspace
+      ];
       settings = let
         inherit
           (cfg)
