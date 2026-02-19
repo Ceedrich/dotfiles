@@ -73,7 +73,6 @@ in {
       systemd.enableXdgAutostart = true;
       plugins = with pkgs.hyprlandPlugins; [
         xtra-dispatchers
-        hyprspace
       ];
       settings = let
         inherit
