@@ -23,10 +23,6 @@ in {
       type = types.str;
       default = "${config.programs.ghostty.package}/bin/ghostty";
     };
-    launcher = lib.mkOption {
-      type = types.str;
-      default = "rofi -show drun -show-icons";
-    };
     autostart = lib.mkOption {
       type = types.listOf types.str;
       default = [];
@@ -61,6 +57,7 @@ in {
         libnotify
         nwg-drawer
         cfg.powermenuPackage
+        cshell
       ]
       ++ cfg.extra-packages;
 
@@ -79,7 +76,6 @@ in {
           (cfg)
           mainMod
           terminal
-          launcher
           autostart
           powermenuPackage
           ;
@@ -104,7 +100,7 @@ in {
             "${mainMod}, T, togglefloating"
             "${mainMod}, F, fullscreen"
 
-            "${mainMod}, Space, exec, ${launcher} -run-command '{cmd}'"
+            "${mainMod}, Space, exec, cshell cofi show"
 
             "${mainMod}, P, exec, ${ceedrichPkgs.passmenu}/bin/passmenu"
 
