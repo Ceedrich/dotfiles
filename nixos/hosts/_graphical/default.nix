@@ -94,6 +94,7 @@ in {
       tailscale.tray.enable = mkDefault true;
       playerctld.enable = mkDefault true;
       printing.enable = mkDefault true;
+      cshell.enable = mkDefault true;
     };
   };
 }

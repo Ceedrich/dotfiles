@@ -36,8 +36,7 @@
   };
 
   users.users.ceedrich.extraGroups = ["media-server"];
-  users.users.sonarr.extraGroups = ["media-server"];
-  users.users.radarr.extraGroups = ["media-server"];
+  users.users.servarr.extraGroups = ["media-server"];
   users.users.deluge.extraGroups = ["media-server"];
   users.users.jellyfin.extraGroups = ["media-server"];
   users.users.media-server = {

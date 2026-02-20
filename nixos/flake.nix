@@ -18,6 +18,7 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     ceedrichVim.url = "github:Ceedrich/neovim-config";
+    cshell.url = "git+ssh://git@github.com/Ceedrich/cshell";
     catppuccin = {
       url = "github:catppuccin/nix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";

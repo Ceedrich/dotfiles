@@ -4,6 +4,7 @@
     ./bluetooth.nix
     ./btop
     ./clipboard
+    ./cshell
     ./firefox
     ./ghostty
     ./globalHM.nix

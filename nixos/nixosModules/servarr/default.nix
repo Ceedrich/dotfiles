@@ -58,6 +58,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    users.users.servarr = {
+      isNormalUser = false;
+      isSystemUser = true;
+      extraGroups = [config.services.deluge.group];
+      group = "servarr";
+    };
+    users.groups.servarr = {};
+
     services.deluge = {
       enable = true;
       declarative = true;
@@ -81,6 +89,8 @@ in {
         server.port = cfg.sonarr.port;
         auth.enabled = false;
       };
+      user = "servarr";
+      group = "servarr";
       enable = true;
     };
     services.prowlarr = {
@@ -95,11 +105,16 @@ in {
         server.port = cfg.radarr.port;
         auth.enabled = false;
       };
+      user = "servarr";
+      group = "servarr";
       enable = true;
     };
-
-    users.users.${config.services.sonarr.user}.extraGroups = [config.services.deluge.group];
-    users.users.${config.services.radarr.user}.extraGroups = [config.services.deluge.group];
+    services.bazarr = {
+      enable = true;
+      listenPort = 9012;
+      user = "servarr";
+      group = "servarr";
+    };
 
     homelab.reverseProxies.deluge.port = cfg.deluge.web.port;
     homelab.reverseProxies.sonarr.port = cfg.sonarr.port;

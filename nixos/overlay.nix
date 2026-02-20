@@ -5,5 +5,6 @@
     ceedrichLib = final.callPackage ./lib {};
     ceedrichVim = inputs.ceedrichVim.packages.${system}.neovim;
     tailscale = inputs.nixpkgs-unstable.legacyPackages.${system}.tailscale;
+    cshell = inputs.cshell.packages.${system}.default;
   };
 }
