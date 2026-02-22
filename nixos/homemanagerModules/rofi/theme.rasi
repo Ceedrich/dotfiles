@@ -4,128 +4,141 @@
   font: "JetBrains Mono Nerd Font 14";
   background-color: transparent;
   text-color: @text;
+
+  base-opaque: rgba(30, 30, 46, 0.9);
+}
+
+window {
+  anchor: north;
+  location: north;
+  y-offset: 20%;
 }
 
 mainbox {
-  border-radius: 1em;
-  background-color: @base;
-  padding: 1em 0.75em;
-  spacing: 0.5em;
-  opacity: 0.9;
+  border-radius: 1.5em;
+  padding: 1em;
+
+  background-color: @base-opaque;
+
+  // Simulated box-shadow
   border: 4px 2px 4px 6px;
   border-color: rgba(0,0,1, 0.1);
+
+  children: ["inputbar", "listview"]; // TODO: add title
 }
 
 // Inputs
-
 inputbar {
-  padding: 0em 0.5em 0.6em 0.5em;
-  border: 0 0 2px 0;
-  border-color: @overlay0;
+  padding: 0em 0.5em;
+
   text-color: @text;
-  children:   [ "prompt","textbox-prompt-colon","entry","num-filtered-rows","textbox-num-sep","num-rows","case-indicator" ];
+
+  children: [ "textbox-search-icon","entry","num-filtered-rows","textbox-num-sep","num-rows","case-indicator" ];
 }
 
-prompt  {
+prompt {
   text-color: @subtext0;
 }
 
-textbox-prompt-colon {
-  margin:     0 0.25em 0em 0em ;
-  expand:     false;
-  str:        ":";
+textbox-search-icon {
+  margin: 0 0.25em 0 0 ;
+  expand: false;
+
+  str: " ";
   text-color: @subtext0;
 }
-
 
 num-filtered-rows {
-    expand:     false;
-    text-color: @subtext0;
+  expand: false;
+  text-color: @subtext0;
 }
 num-rows {
-    expand:     false;
-    text-color: @subtext0;
+  expand: false;
+  text-color: @subtext0;
 }
+
 textbox-num-sep {
-    expand:     false;
-    str:        "/";
-    text-color: @subtext0;
+  expand: false;
+  str: "/";
+  text-color: @subtext0;
 }
 
 // Elements
 
 listview {
-  spacing: 0.1em;
-  scrollbar: true;
-}
+  lines: 10;
+  require-input: true;
+  dynamic: true;
+  fixed-height: false;
 
-scrollbar {
-    width:        0.25em;
-    handle-width: 0.5em ;
-    handle-color: @subtext0;
-    handle-rounded-corners: true;
+  margin: 0.5em 0 0 0;
+  padding: 0.5em 0 0 0;
+
+  border: 2px 0 0 0;
+  border-color: @surface0;
+
+  spacing: 0.25em;
 }
 
 element {
-    cursor:  pointer;
-    border:  0;
-    margin: 0.1em 0.5em 0.1em 0.1em;
-    padding: 0.25em 0.5em;
-    border-radius: 0.5em;
+  cursor: pointer;
+  padding: 0.25em 0.5em;
+  border-radius: 0.75em;
 }
 element normal.normal {
 }
 element normal.urgent {
-    background-color: @yellow;
-    text-color:       @base;
+  background-color: @yellow;
+  text-color: @base;
 }
 element normal.active {
-    background-color: @mauve;
-    text-color:       @base;
+  background-color: @mauve;
+  text-color: @base;
 }
 element selected.normal {
-    background-color: @mauve;
-    text-color:       @base;
+  background-color: @mauve;
+  text-color: @base;
 }
 element selected.urgent {
-    background-color: @mauve;
-    text-color:       @base;
+  background-color: @mauve;
+  text-color: @base;
 }
 element selected.active {
-    background-color: @mauve;
-    text-color:       @base;
+  background-color: @mauve;
+  text-color: @base;
 }
 element alternate.normal {
 }
 element alternate.urgent {
-    background-color: @yellow;
-    text-color:       @base;
+  background-color: @yellow;
+  text-color: @base;
 }
 element alternate.active {
-    background-color: @mauve;
-    text-color:       @base;
+  background-color: @mauve;
+  text-color: @base;
 }
 
 element-text {
-    background-color: transparent;
-    cursor:           inherit;
-    highlight:        inherit;
-    text-color:       inherit;
+  background-color: transparent;
+  cursor: inherit;
+  highlight: inherit;
+  text-color: inherit;
 }
 element-icon {
-    background-color: transparent;
-    size:             1em ;
-    cursor:           inherit;
-    text-color:       inherit;
+  size: 1em ;
+
+  background-color: transparent;
+  cursor: inherit;
+  text-color: inherit;
 }
 
 // Buttons
 button {
-    cursor:     pointer;
+  cursor: pointer;
 }
 button selected {
-    background-color: @mauve;
-    text-color:       @base;
+  background-color: @mauve;
+  text-color: @base;
 }
 
 
