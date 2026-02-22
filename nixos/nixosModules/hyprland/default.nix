@@ -198,7 +198,7 @@ in {
 
         layerrule = [
           "animation popin 90%, ^rofi$"
-          "animation fade 0, ^rofi$"
+          "noanim on, ^rofi$"
         ];
         windowrule = let
           floatingClass = [
