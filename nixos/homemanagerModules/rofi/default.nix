@@ -21,25 +21,7 @@ in {
         hide-scrollbar = true;
       };
 
-      theme = let
-        lit = config.lib.formats.rasi.mkLiteral;
-      in {
-        "*" = {
-          selected-normal-background = lit "@mauve";
-          font = "JetBrains Mono Nerd Font 14";
-        };
-        entry.placeholder = "";
-        prompt = {
-          text-style = lit "bold";
-        };
-        window = {
-          border = lit "0.2em";
-          border-radius = lit "0.5em";
-          border-color = lit "@mauve";
-        };
-        element-icon = {size = lit "1em";};
-        element-text = {vertical-align = lit "0.5";};
-      };
+      theme = lib.mkForce ./theme.rasi;
     };
 
     catppuccin.rofi.enable = true;

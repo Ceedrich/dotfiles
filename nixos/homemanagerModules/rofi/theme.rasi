@@ -1,0 +1,114 @@
+@import "catppuccin-mocha"
+
+* {
+  font: "JetBrains Mono Nerd Font 14";
+  background-color: transparent;
+  text-color: @text;
+}
+
+mainbox {
+  border-radius: 1em;
+  background-color: @surface0;
+  padding: 1em 0.75em;
+  opacity: 0.9;
+}
+
+// Inputs
+
+inputbar {
+  padding: 0em 0.5em;
+    text-color: @text;
+    children:   [ "prompt","textbox-prompt-colon","entry","num-filtered-rows","textbox-num-sep","num-rows","case-indicator" ];
+}
+
+prompt  {
+  text-color: @subtext1;
+}
+
+textbox-prompt-colon {
+    margin:     0 0.25em 0em 0em ;
+    expand:     false;
+    str:        ":";
+    text-color: inherit;
+}
+
+
+num-filtered-rows {
+    expand:     false;
+    text-color: @subtext0;
+}
+num-rows {
+    expand:     false;
+    text-color: @subtext0;
+}
+textbox-num-sep {
+    expand:     false;
+    str:        "/";
+    text-color: @subtext0;
+}
+
+// Elements
+
+listview {
+  margin: 0.5em 0em 0em 0em;
+  scrollbar: true;
+}
+
+scrollbar {
+    width:        0.25em;
+    handle-width: 0.5em ;
+    handle-color: @subtext0;
+}
+
+element {
+    cursor:  pointer;
+    border:  0;
+    margin: 0.1em 0em;
+    padding: 0.1em 0.2em;
+    border-radius: 0.5em;
+}
+element normal.normal {
+}
+element normal.urgent {
+    background-color: @yellow;
+    text-color:       @base;
+}
+element normal.active {
+    background-color: @mauve;
+    text-color:       @base;
+}
+element selected.normal {
+    background-color: @mauve;
+    text-color:       @base;
+}
+element selected.urgent {
+    background-color: @mauve;
+    text-color:       @base;
+}
+element selected.active {
+    background-color: @mauve;
+    text-color:       @base;
+}
+element-text {
+    background-color: transparent;
+    cursor:           inherit;
+    highlight:        inherit;
+    text-color:       inherit;
+}
+element-icon {
+    background-color: transparent;
+    size:             1em ;
+    cursor:           inherit;
+    text-color:       inherit;
+}
+
+// Buttons
+button {
+    cursor:     pointer;
+}
+button selected {
+    background-color: @mauve;
+    text-color:       @base;
+}
+
+
