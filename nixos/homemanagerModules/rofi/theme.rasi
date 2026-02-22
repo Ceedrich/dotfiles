@@ -8,28 +8,33 @@
 
 mainbox {
   border-radius: 1em;
-  background-color: @surface0;
+  background-color: @base;
   padding: 1em 0.75em;
+  spacing: 0.5em;
   opacity: 0.9;
+  border: 4px 2px 4px 6px;
+  border-color: rgba(0,0,1, 0.1);
 }
 
 // Inputs
 
 inputbar {
-  padding: 0em 0.5em;
-    text-color: @text;
-    children:   [ "prompt","textbox-prompt-colon","entry","num-filtered-rows","textbox-num-sep","num-rows","case-indicator" ];
+  padding: 0em 0.5em 0.6em 0.5em;
+  border: 0 0 2px 0;
+  border-color: @overlay0;
+  text-color: @text;
+  children:   [ "prompt","textbox-prompt-colon","entry","num-filtered-rows","textbox-num-sep","num-rows","case-indicator" ];
 }
 
 prompt  {
-  text-color: @subtext1;
+  text-color: @subtext0;
 }
 
 textbox-prompt-colon {
-    margin:     0 0.25em 0em 0em ;
-    expand:     false;
-    str:        ":";
-    text-color: inherit;
+  margin:     0 0.25em 0em 0em ;
+  expand:     false;
+  str:        ":";
+  text-color: @subtext0;
 }
 
 
@@ -50,7 +55,7 @@ textbox-num-sep {
 // Elements
 
 listview {
-  margin: 0.5em 0em 0em 0em;
+  spacing: 0.1em;
   scrollbar: true;
 }
 
@@ -58,13 +63,14 @@ scrollbar {
     width:        0.25em;
     handle-width: 0.5em ;
     handle-color: @subtext0;
+    handle-rounded-corners: true;
 }
 
 element {
     cursor:  pointer;
     border:  0;
-    margin: 0.1em 0em;
-    padding: 0.1em 0.2em;
+    margin: 0.1em 0.5em 0.1em 0.1em;
+    padding: 0.25em 0.5em;
     border-radius: 0.5em;
 }
 element normal.normal {
@@ -89,6 +95,17 @@ element selected.active {
     background-color: @mauve;
     text-color:       @base;
 }
+element alternate.normal {
+}
+element alternate.urgent {
+    background-color: @yellow;
+    text-color:       @base;
+}
+element alternate.active {
+    background-color: @mauve;
+    text-color:       @base;
+}
+
 element-text {
     background-color: transparent;
     cursor:           inherit;
