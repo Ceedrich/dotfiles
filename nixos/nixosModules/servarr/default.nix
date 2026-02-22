@@ -77,6 +77,8 @@ in {
       };
     };
     services.sonarr = {
+      user = "servarr";
+      group = "servarr";
       settings = {
         server.port = cfg.sonarr.port;
         auth.enabled = false;
@@ -91,6 +93,8 @@ in {
       enable = true;
     };
     services.radarr = {
+      user = "servarr";
+      group = "servarr";
       settings = {
         server.port = cfg.radarr.port;
         auth.enabled = false;
@@ -98,8 +102,18 @@ in {
       enable = true;
     };
 
-    users.users.${config.services.sonarr.user}.extraGroups = [config.services.deluge.group];
-    users.users.${config.services.radarr.user}.extraGroups = [config.services.deluge.group];
+    services.bazarr = {
+      enable = true;
+      user = "servarr";
+      group = "servarr";
+    };
+
+    users.users.servarr = {
+      isSystemUser = true;
+      extraGroups = [config.services.deluge.group];
+      group = "servarr";
+    };
+    users.groups.servarr = {};
 
     homelab.reverseProxies.deluge.port = cfg.deluge.web.port;
     homelab.reverseProxies.sonarr.port = cfg.sonarr.port;

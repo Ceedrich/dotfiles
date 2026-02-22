@@ -35,16 +35,9 @@
     paths = ["/var/lib/jellyfin"];
   };
 
-  users.users.ceedrich.extraGroups = ["media-server"];
-  users.users.sonarr.extraGroups = ["media-server"];
-  users.users.radarr.extraGroups = ["media-server"];
-  users.users.deluge.extraGroups = ["media-server"];
-  users.users.jellyfin.extraGroups = ["media-server"];
-  users.users.media-server = {
-    isSystemUser = true;
-    group = "media-server";
-  };
-  users.groups.media-server = {};
+  users.users.ceedrich.extraGroups = ["servarr"];
+  users.users.deluge.extraGroups = ["servarr"];
+  users.users.jellyfin.extraGroups = ["servarr"];
 
   # users.users.arm = {
   #   isNormalUser = true;
