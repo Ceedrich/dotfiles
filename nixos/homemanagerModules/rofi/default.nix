@@ -15,7 +15,7 @@ in {
         kb-row-up = "Up,Control+k";
         kb-remove-to-eol = "";
         kb-accept-entry = "Return";
-        mc-select-entry = "";
+        me-select-entry = "";
         me-accept-entry = "MousePrimary";
         display-drun = "Applications";
         modi = "drun,emoji";
