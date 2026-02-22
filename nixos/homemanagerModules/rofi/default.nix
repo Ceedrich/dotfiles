@@ -23,7 +23,33 @@ in {
         hide-scrollbar = true;
       };
 
-      theme = lib.mkForce ./theme.rasi;
+      theme = lib.mkForce ./cofi.rasi;
+    };
+
+    xdg.dataFile = {
+      "rofi/themes/clauncher.rasi".text =
+        # rasi
+        ''
+          @theme "cofi"
+
+          inputbar {
+            children: [ "textbox-search-icon","entry","num-filtered-rows","textbox-num-sep","num-rows","case-indicator" ];
+          }
+
+          textbox-search-icon {
+            margin: 0 0.25em 0 0 ;
+            expand: false;
+
+            str: " ";
+            text-color: @subtext0;
+          }
+
+          listview {
+            require-input: true;
+            dynamic: true;
+            fixed-height: false;
+          }
+        '';
     };
 
     catppuccin.rofi.enable = true;

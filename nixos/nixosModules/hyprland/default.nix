@@ -25,7 +25,7 @@ in {
     };
     launcher = lib.mkOption {
       type = types.str;
-      default = "rofi -show drun -show-icons";
+      default = "rofi -show drun -show-icons -config clauncher";
     };
     autostart = lib.mkOption {
       type = types.listOf types.str;

@@ -33,18 +33,18 @@ inputbar {
 
   text-color: @text;
 
-  children: [ "textbox-search-icon","entry","num-filtered-rows","textbox-num-sep","num-rows","case-indicator" ];
+  children: [ "prompt", "textbox-colon","entry","num-filtered-rows","textbox-num-sep","num-rows","case-indicator" ];
 }
 
 prompt {
   text-color: @subtext0;
 }
 
-textbox-search-icon {
+textbox-colon {
   margin: 0 0.25em 0 0 ;
   expand: false;
 
-  str: " ";
+  str: ":";
   text-color: @subtext0;
 }
 
@@ -67,9 +67,6 @@ textbox-num-sep {
 
 listview {
   lines: 10;
-  require-input: true;
-  dynamic: true;
-  fixed-height: false;
 
   margin: 0.5em 0 0 0;
   padding: 0.5em 0 0 0;
