@@ -5,7 +5,7 @@
   background-color: transparent;
   text-color: @text;
 
-  base-opaque: rgba(30, 30, 46, 0.9);
+  surface0-opaque: rgba(49, 50, 68, 0.9);
 }
 
 window {
@@ -18,7 +18,7 @@ mainbox {
   border-radius: 1.5em;
   padding: 1em;
 
-  background-color: @base-opaque;
+  background-color: @surface0-opaque;
 
   // Simulated box-shadow
   border: 4px 2px 4px 6px;
@@ -72,7 +72,7 @@ listview {
   padding: 0.5em 0 0 0;
 
   border: 2px 0 0 0;
-  border-color: @surface0;
+  border-color: @surface1;
 
   spacing: 0.25em;
 }
