@@ -36,6 +36,11 @@ in {
             children: [ "textbox-search-icon","entry","num-filtered-rows","textbox-num-sep","num-rows","case-indicator" ];
           }
 
+          entry {
+            placeholder: "Spotlight Search...";
+            placeholder-color: @subtext0;
+          }
+
           textbox-search-icon {
             margin: 0 0.25em 0 0 ;
             expand: false;
