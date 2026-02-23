@@ -9,9 +9,21 @@ in {
   options.programs.nwg-drawer = {
     enable = lib.mkEnableOption "nwg-drawer";
     package = lib.mkPackageOption pkgs "nwg-drawer" {};
+    finalPackage = lib.mkOption {
+      readOnly = true;
+      internal = true;
+      type = lib.types.package;
+    };
   };
   config = lib.mkIf cfg.enable {
-    home.packages = [cfg.package];
+    programs.nwg-drawer.finalPackage = pkgs.writeShellApplication {
+      name = "nwg-drawer";
+      runtimeInputs = [pkgs.nwg-drawer];
+      text = ''
+        exec nwg-drawer -term ghostty -fm yazi -ovl "$@"
+      '';
+    };
+    home.packages = [cfg.finalPackage];
     xdg.configFile."nwg-drawer/drawer.css".text = ''
       window {
           background-color: rgba(30, 30, 46, 0.8);
