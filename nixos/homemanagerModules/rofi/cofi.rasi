@@ -5,10 +5,13 @@
   background-color: transparent;
   text-color: @text;
 
+  base-opaque: rgba(30, 30, 46, 0.9);
   surface0-opaque: rgba(49, 50, 68, 0.9);
+  clr-background: @surface0-opaque;
 }
 
 window {
+  border-radius: 1.5em;
   anchor: north;
   location: north;
   y-offset: 20%;
@@ -18,13 +21,18 @@ mainbox {
   border-radius: 1.5em;
   padding: 1em;
 
-  background-color: @surface0-opaque;
+  background-color: @clr-background;
 
   // Simulated box-shadow
   border: 4px 2px 4px 6px;
   border-color: rgba(0,0,1, 0.1);
 
   children: ["inputbar", "listview"]; // TODO: add title
+}
+
+textbox {
+  padding: 1em;
+  background-color: @clr-background;
 }
 
 // Inputs
@@ -137,5 +145,3 @@ button selected {
   background-color: @mauve;
   text-color: @base;
 }
-
-
