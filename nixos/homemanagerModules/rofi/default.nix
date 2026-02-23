@@ -37,7 +37,7 @@ in {
           }
 
           entry {
-            placeholder: "Spotlight Search...";
+            placeholder: "Search...";
             placeholder-color: @subtext0;
           }
 
