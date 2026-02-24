@@ -15,10 +15,18 @@
 
   environment.systemPackages = with pkgs; [
     discord
+
+    # unity
+    unityhub
+    jetbrains.rider
   ];
 
   allowedUnfree = [
     "discord"
+    # unity
+    "unityhub"
+    "corefonts"
+    "rider"
   ];
 
   settings.kanata.enable = true;

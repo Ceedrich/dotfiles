@@ -19,7 +19,9 @@
   environment.systemPackages = with pkgs; [
     lact
     clinfo
+
     unityhub
+    rider
 
     discord
 
@@ -33,6 +35,7 @@
     # Unity
     "unityhub"
     "corefonts"
+    "rider"
 
     "aseprite"
     "discord"
