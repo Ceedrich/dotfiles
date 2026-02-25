@@ -50,6 +50,7 @@ in {
       audacity
       libnotify
       ceedrichPkgs.test-icons
+      ceedrichPkgs.pdfopen
       blender-hip
       poppler-utils
       pkgs-unstable.hyprshutdown

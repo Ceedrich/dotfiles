@@ -8,6 +8,7 @@
       minecraft-backup = callPackage ./minecraft-backup.nix {};
       # TODO: modrinth-prefetch
       passmenu = callPackage ./passmenu {};
+      pdfopen = callPackage ./pdfopen.nix {};
       power-menu = callPackage ./power-menu.nix {inherit rofi-confirm-dialogue;};
       rebuild-system = callPackage ./rebuild-system.nix {};
       serve-dir = callPackage ./serve-dir.nix {};
