@@ -21,7 +21,7 @@
     clinfo
 
     unityhub
-    rider
+    jetbrains.rider
 
     discord
 
