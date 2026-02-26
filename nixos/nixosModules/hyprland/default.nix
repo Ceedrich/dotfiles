@@ -198,6 +198,7 @@ in {
 
         layerrule = [
           "noanim, ^rofi$"
+          "animation, slide"
         ];
         windowrule = let
           floatingClass = [
