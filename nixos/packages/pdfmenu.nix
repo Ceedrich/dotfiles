@@ -1,0 +1,6 @@
+{
+  lib,
+  pdfopen,
+  rofi,
+}: {
+}
