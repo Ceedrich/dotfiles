@@ -26,6 +26,7 @@
     ripgrep
     unzip
     vim
+    neofetch
   ];
 
   programs = {
