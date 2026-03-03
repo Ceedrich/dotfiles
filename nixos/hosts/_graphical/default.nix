@@ -51,6 +51,7 @@ in {
       libnotify
       ceedrichPkgs.test-icons
       ceedrichPkgs.pdfopen
+      ceedrichPkgs.rofi-pdfmenu
       blender-hip
       poppler-utils
       pkgs-unstable.hyprshutdown
