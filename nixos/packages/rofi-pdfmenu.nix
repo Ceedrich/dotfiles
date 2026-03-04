@@ -16,7 +16,11 @@
       uutils-findutils
     ];
     text = ''
-      fd --extension=pdf . "$HOME" | rofi -dmenu -i -format "q" -p "Open PDF" | xargs pdfopen
+      PDFMENU_HOME=''${PDFMENU_HOME:-$HOME}
+      fd --extension=pdf . "$PDFMENU_HOME" \
+        --exec printf '%s\0icon\x1fapplication-pdf\n' \
+        | rofi -show-icons -dmenu -i -format "q" -p "Open PDF" \
+        | xargs pdfopen
     '';
   };
 
