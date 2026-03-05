@@ -19,10 +19,10 @@ in
           "privacy.donottrackheader.enabled" = true;
           "privacy.fingerprintingProtection" = false;
           "privacy.resistFingerprinting" = false;
-          "privacy.trackingprotection.emailtracking.enabled" = true;
-          "privacy.trackingprotection.enabled" = true;
-          "privacy.trackingprotection.fingerprinting.enabled" = false;
-          "privacy.trackingprotection.socialtracking.enabled" = true;
+          # "privacy.trackingprotection.emailtracking.enabled" = true;
+          "privacy.trackingprotection.enabled" = false;
+          # "privacy.trackingprotection.fingerprinting.enabled" = false;
+          # "privacy.trackingprotection.socialtracking.enabled" = true;
         };
         ExtensionSettings = {
           "uBlock0@raymondhill.net" = {
