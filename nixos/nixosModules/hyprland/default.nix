@@ -213,6 +213,7 @@ in {
             "Save File"
             "Save As"
             "Export"
+            "Picture-in-Picture"
             "Import"
             "Choose File"
             "Rename"
