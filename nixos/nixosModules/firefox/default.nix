@@ -14,6 +14,7 @@ in
         DisableFirefoxStudies = true;
         Preferences = {
           "browser.tabs.closeWindowWithLastTab" = false;
+          "privacy.clearOnShutdown.cookies" = false;
         };
         ExtensionSettings = {
           "uBlock0@raymondhill.net" = {
