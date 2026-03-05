@@ -25,10 +25,14 @@ in
             installation_mode = "force_installed";
           };
         };
+        SearchEngines = {
+          Remove = ["Google" "Bing" "Perplexity" "Wikipedia"];
+          Default = "DuckDuckGo";
+        };
       };
     };
     environment.etc."librewolf/librewolf/librewolf.overrides.cfg".text = ''
-      defaultPref("privacy.resistFingerprinting", false);
+      pref("privacy.resistFingerprinting", false);
     '';
     environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
   }
