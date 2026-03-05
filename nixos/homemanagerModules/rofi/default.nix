@@ -48,12 +48,6 @@ in {
             str: " ";
             text-color: @subtext0;
           }
-
-          listview {
-            require-input: true;
-            dynamic: true;
-            fixed-height: false;
-          }
         '';
     };
 
