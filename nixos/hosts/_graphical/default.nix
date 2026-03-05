@@ -57,6 +57,16 @@ in {
       jellyfin-desktop
       wl-clipboard
       wlrctl
+
+      # libreoffice
+      libreoffice-qt
+      hunspell
+      hunspellDicts.de-ch
+      hunspellDicts.fr-moderne
+      hunspellDicts.en-us
+    ];
+    allowedUnfree = [
+      "spotify"
     ];
 
     logoutCommands = {
@@ -64,10 +74,6 @@ in {
       reboot = ''hyprctl dispatch exec "hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"'';
       logout = ''hyprctl dispatch exec "hyprshutdown -t 'Logging out...'"'';
     };
-
-    allowedUnfree = [
-      "spotify"
-    ];
 
     programs = {
       ghostty.enable = mkDefault true;
