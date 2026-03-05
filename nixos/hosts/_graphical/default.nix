@@ -92,7 +92,7 @@ in {
         colorScheme = config.catppuccin.flavor;
       };
     };
-    environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
+    # environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
     services = {
       clipboard.enable = mkDefault true;
       swaync.enable = mkDefault true;
