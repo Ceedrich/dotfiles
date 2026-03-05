@@ -34,5 +34,5 @@ in
         };
       };
     };
-    environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
+    # environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
   }
