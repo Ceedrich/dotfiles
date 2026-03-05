@@ -1,15 +1,12 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: let
   cfg = config.programs.firefox;
-  inherit (lib) mkDefault;
 in
   lib.mkIf cfg.enable {
     programs.firefox = {
-      package = mkDefault pkgs.librewolf;
       policies = {
         DisableTelemetry = true;
         DisableFirefoxStudies = true;
