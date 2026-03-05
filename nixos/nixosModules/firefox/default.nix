@@ -34,6 +34,8 @@ in
     };
     environment.etc."librewolf/librewolf/librewolf.overrides.cfg".text = ''
       pref("privacy.resistFingerprinting", false);
+      perf("privacy.clearOnShutdown.history", false);
+      perf("privacy.clearOnShutdown.cookies", false);
     '';
     environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
   }
