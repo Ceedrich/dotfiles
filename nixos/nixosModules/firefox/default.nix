@@ -14,15 +14,6 @@ in
         DisableFirefoxStudies = true;
         Preferences = {
           "browser.tabs.closeWindowWithLastTab" = false;
-          "cookiebanners.service.mode.privateBrowsing" = 2; # Block cookie banners in private browsing
-          "cookiebanners.service.mode" = 2; # Block cookie banners
-          "privacy.donottrackheader.enabled" = true;
-          "privacy.fingerprintingProtection" = false;
-          "privacy.resistFingerprinting" = false;
-          # "privacy.trackingprotection.emailtracking.enabled" = true;
-          "privacy.trackingprotection.enabled" = false;
-          # "privacy.trackingprotection.fingerprinting.enabled" = false;
-          # "privacy.trackingprotection.socialtracking.enabled" = true;
         };
         ExtensionSettings = {
           "uBlock0@raymondhill.net" = {
@@ -36,5 +27,8 @@ in
         };
       };
     };
+    environment.etc."librewolf/librewolf/librewolf.overrides.cfg".text = ''
+      defaultPref("privacy.resistFingerprinting", false);
+    '';
     environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
   }
