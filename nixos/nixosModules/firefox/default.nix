@@ -14,7 +14,6 @@ in
         DisableFirefoxStudies = true;
         Preferences = {
           "browser.tabs.closeWindowWithLastTab" = false;
-          "privacy.clearOnShutdown_v2.cookiesAndStorage" = false;
         };
         ExtensionSettings = {
           "uBlock0@raymondhill.net" = {
@@ -34,7 +33,6 @@ in
     };
     environment.etc."librewolf/librewolf/librewolf.overrides.cfg".text = ''
       pref("privacy.resistFingerprinting", false);
-      pref("privacy.clearOnShutdown_v2.cookiesAndStorage", false);
     '';
     environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
   }
