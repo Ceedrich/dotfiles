@@ -6,8 +6,9 @@
   cfg = config.programs.zsh;
   inherit (lib) mkDefault;
 in {
+  imports = [./eza];
   config = {
-    programs.zsh = {
+    programs.zsh = lib.mkIf cfg.enable {
       syntaxHighlighting.enable = mkDefault true;
       autosuggestions.enable = mkDefault true;
 
@@ -22,6 +23,13 @@ in {
         '';
     };
 
+    environment.shellAliases = {
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
+      "....." = "cd ../../../..";
+    };
+
     programs.starship = {
       enable = mkDefault true;
       interactiveOnly = true;
@@ -33,7 +41,7 @@ in {
       fuzzyCompletion = mkDefault true;
     };
 
-    # TODO: eza
+    programs.eza.enable = mkDefault true;
 
     programs.zoxide = {
       enable = mkDefault true;
