@@ -63,6 +63,7 @@ in {
       wlrctl
       keepassxc
       gh
+      nsxiv
 
       # libreoffice
       libreoffice-qt
