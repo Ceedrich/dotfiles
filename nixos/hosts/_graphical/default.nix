@@ -62,6 +62,7 @@ in {
       wl-clipboard
       wlrctl
       keepassxc
+      gh
 
       # libreoffice
       libreoffice-qt
