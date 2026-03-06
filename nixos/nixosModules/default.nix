@@ -29,5 +29,6 @@
     ./tailscale
     # ./waybar
     ./zathura
+    ./zsh
   ];
 }

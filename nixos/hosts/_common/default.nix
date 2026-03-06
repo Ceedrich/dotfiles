@@ -104,10 +104,10 @@
       tmux.enable = true;
 
       bash.enable = true;
-      zsh = {
-        enable = true;
-        integrations.enable = true;
-      };
+      # zsh = {
+      #   enable = true;
+      #   integrations.enable = true;
+      # };
 
       git = {
         enable = true;
