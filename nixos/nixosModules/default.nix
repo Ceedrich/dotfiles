@@ -4,6 +4,7 @@
     ./bluetooth.nix
     ./btop
     ./clipboard
+    ./eza
     ./firefox
     ./ghostty
     ./globalHM.nix

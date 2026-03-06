@@ -6,7 +6,7 @@
   cfg = config.programs.zsh;
   inherit (lib) mkDefault;
 in {
-  imports = [./eza];
+  imports = [];
   config = {
     programs.zsh = lib.mkIf cfg.enable {
       syntaxHighlighting.enable = mkDefault true;
