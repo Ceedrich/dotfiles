@@ -16,13 +16,6 @@ in {
     global-hm.config = {
       programs.brave.enable = true;
       programs.nwg-drawer.enable = true;
-      xdg.mimeApps.defaultApplications = {
-        "text/html" = "librewolf.desktop";
-        "x-scheme-handler/http" = "librewolf.desktop";
-        "x-scheme-handler/https" = "librewolf.desktop";
-        "x-scheme-handler/about" = "librewolf.desktop";
-        "x-scheme-handler/unknown" = "librewolf.desktop";
-      };
       programs.waybar = {
         enable = mkDefault true;
         modules = {
@@ -40,6 +33,16 @@ in {
         publicShare = null;
         music = null;
       };
+    };
+
+    xdg.mime.defaultApplications = let
+      browser = "librewolf.desktop";
+    in {
+      "text/html" = browser;
+      "x-scheme-handler/http" = browser;
+      "x-scheme-handler/https" = browser;
+      "x-scheme-handler/about" = browser;
+      "x-scheme-handler/unknown" = browser;
     };
 
     environment.systemPackages = with pkgs; [
