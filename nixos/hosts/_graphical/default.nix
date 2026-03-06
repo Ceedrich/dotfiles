@@ -58,6 +58,7 @@ in {
       jellyfin-desktop
       wl-clipboard
       wlrctl
+      keepassxc
 
       # libreoffice
       libreoffice-qt
