@@ -37,7 +37,7 @@ in {
 
     programs.zoxide = {
       enable = mkDefault true;
-      flags = ["--no-cmd" "--cmd cd"];
+      flags = ["--cmd cd"];
     };
 
     programs.bat = {
