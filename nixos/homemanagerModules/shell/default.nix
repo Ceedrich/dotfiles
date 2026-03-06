@@ -41,6 +41,11 @@ in {
 
     programs.bash = mkIf bash.enable {
       enableCompletion = true;
+      bashrcExtra = ''
+        [[ $- == *i* ]] && source -- "$(blesh-share)"/ble.sh --attach=none
+        ...
+        [[ ! ''${BLE_VERSION-} ]] || ble-attach
+      '';
     };
     home.packages = mkIf bash.enable [pkgs.blesh];
   };
