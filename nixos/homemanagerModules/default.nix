@@ -9,7 +9,6 @@
     ./tmux
     ./vpn
     ./waybar
-    ./yazi
   ];
   programs.rofi.enable = lib.mkDefault true;
 
