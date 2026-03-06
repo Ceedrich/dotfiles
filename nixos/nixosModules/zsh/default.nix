@@ -28,6 +28,14 @@ in {
       "..." = "cd ../..";
       "...." = "cd ../../..";
       "....." = "cd ../../../..";
+      ga = "git add";
+      gc = "git commit";
+      gco = "git checkout";
+      gd = "git diff";
+      gp = "git push";
+      gst = "git status";
+      v = "nvim";
+      vimdiff = "nvim -d";
     };
 
     programs.starship = {
