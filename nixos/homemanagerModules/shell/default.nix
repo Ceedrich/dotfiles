@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   zsh = config.programs.zsh;
@@ -41,5 +42,6 @@ in {
     programs.bash = mkIf bash.enable {
       enableCompletion = true;
     };
+    home.packages = mkIf bash.enable [pkgs.blesh];
   };
 }
