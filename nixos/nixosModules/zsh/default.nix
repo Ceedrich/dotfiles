@@ -23,7 +23,26 @@ in {
     };
 
     programs.starship = {
-      enable = true;
+      enable = mkDefault true;
+      interactiveOnly = true;
+      settings = builtins.fromTOML (builtins.readFile ./starship.toml);
     };
+
+    programs.fzf = {
+      keybindings = mkDefault true;
+      fuzzyCompletion = mkDefault true;
+    };
+
+    # TODO: eza
+
+    programs.zoxide = {
+      enable = mkDefault true;
+      flags = ["--no-cmd" "--cmd cd"];
+    };
+
+    programs.bat = {
+      enable = mkDefault true;
+    };
+    environment.shellAliases.cat = "bat -pp";
   };
 }
