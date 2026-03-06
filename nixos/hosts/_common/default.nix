@@ -7,6 +7,7 @@
   environment.sessionVariables = {
     GTK_IM_MODULE = "gtk-im-context-simple";
     MANPAGER = "nvim +Man!";
+    EDITOR = "nvim";
   };
   environment.shellAliases = {
     dev = "nix develop --command zsh";
