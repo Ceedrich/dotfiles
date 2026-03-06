@@ -17,7 +17,7 @@ in {
       programs.brave.enable = true;
       programs.nwg-drawer.enable = true;
       xdg.mimeApps.defaultApplications = {
-        "text/html" = "brave-browser.desktop";
+        "text/html" = "librewolf.desktop";
         "x-scheme-handler/http" = "librewolf.desktop";
         "x-scheme-handler/https" = "librewolf.desktop";
         "x-scheme-handler/about" = "librewolf.desktop";
