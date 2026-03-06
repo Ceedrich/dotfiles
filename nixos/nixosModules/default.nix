@@ -29,6 +29,7 @@
     ./swaync
     ./tailscale
     # ./waybar
+    ./yazi
     ./zathura
     ./zsh
   ];

@@ -31,6 +31,7 @@
 
   programs = {
     btop.enable = true;
+    yazi.enable = true;
   };
 
   services.gnome.gnome-keyring.enable = true;
@@ -100,7 +101,7 @@
     settings.theming.enable = true;
     programs = {
       neovim.enable = true;
-      yazi.enable = true;
+      # yazi.enable = true;
       tmux.enable = true;
 
       bash.enable = true;
