@@ -11,7 +11,10 @@ in {
   };
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [pkgs.eza];
-    environment.shellAliases = {
+    environment.shellAliases = let
+      args = lib.escapeShellArgs ["--icons" "auto"];
+    in {
+      eza = "eza ${args}";
       ls = "eza";
       ll = "eza -l";
       la = "eza -a";
