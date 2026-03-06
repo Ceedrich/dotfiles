@@ -5,7 +5,6 @@
     ./neovim
     ./nwg-drawer
     ./rofi
-    ./shell
     ./theming
     ./tmux
     ./vpn
