@@ -17,7 +17,7 @@
       alejandra . &>/dev/null || true
       git diff -U0 .
       echo "Nixos Rebuilding..."
-      sudo nixos-rebuild switch --flake . 2>&1 | tee nixos-switch.log >&2 || (
+      sudo nixos-rebuild switch --flake . "$@" 2>&1 | tee nixos-switch.log >&2 || (
         echo "Build failed!" &&
         cat nixos-switch.log | grep --color -C 3 -E "error|warning" && false
       )
