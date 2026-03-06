@@ -2,7 +2,7 @@
   programs.zsh.enable = true;
   users.users.ceedrich = {
     initialPassword = "password";
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
     openssh.authorizedKeys.keys = [
       # Laptop
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuBEOPD9FWQSesLFFfNEDlU7xoT8fEL+EGJJIluzSmO ceedrich@satine"
