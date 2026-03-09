@@ -28,7 +28,7 @@ in {
       default =
         if config.programs.wlr-which-key.enable
         then "wlr-which-key"
-        else "rofi -show drun -show-icons -config clauncher";
+        else "rofi -show drun -show-icons -config clauncher -run-command '{cmd}'";
     };
     autostart = lib.mkOption {
       type = types.listOf types.str;
@@ -107,7 +107,7 @@ in {
             "${mainMod}, T, togglefloating"
             "${mainMod}, F, fullscreen"
 
-            "${mainMod}, Space, exec, ${launcher} -run-command '{cmd}'"
+            "${mainMod}, Space, exec, ${launcher}"
 
             "${mainMod}, P, exec, ${ceedrichPkgs.passmenu}/bin/passmenu"
 
