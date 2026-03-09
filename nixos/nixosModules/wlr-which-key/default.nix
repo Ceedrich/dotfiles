@@ -20,6 +20,8 @@ in {
         background = colors.base.hex;
         color = colors.text.hex;
         border = colors.accent.hex;
+        anchor = "top";
+        margin_top = "200";
 
         menu = [
           {
