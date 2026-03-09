@@ -34,32 +34,32 @@ in {
           }
           {
             key = "q";
-            desc = "Power Menu";
+            desc = "󰐥 Power Menu";
             cmd = "${lib.getExe config.programs.power-menu.package}";
           }
           {
             key = "p";
-            desc = "Password Menu";
+            desc = "󰌾 Password Menu";
             cmd = "${lib.getExe ceedrichPkgs.passmenu}";
           }
           {
             key = "w";
-            desc = "Windows";
+            desc = "󱂬 Windows";
             cmd = "rofi -modes window -show window";
           }
           {
             key = "e";
-            desc = "Emojis";
+            desc = "😀 Emojis";
             cmd = "rofi -show emoji";
           }
           {
             key = "c";
-            desc = "Clipboard history";
+            desc = "󱉧 Clipboard history";
             cmd = "cliphist list | rofi -dmenu -i -p 'Clipboard' -display-columns 2 | cliphist decode | wl-copy";
           }
           {
             key = "o";
-            desc = "Open Documents";
+            desc = "󰈙 Open Documents";
             submenu = [
               {
                 key = "p";
