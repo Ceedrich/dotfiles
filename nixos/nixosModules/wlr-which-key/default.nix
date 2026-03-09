@@ -17,17 +17,34 @@ in {
       colors = config.catppuccin.colors;
     in
       yaml.generate "config.yaml" {
+        font = "JetBrainsMono Nerd Font 16";
         background = colors.base.hex;
         color = colors.text.hex;
         border = colors.accent.hex;
         anchor = "top";
         margin_top = 200;
+        inhibit_compositor_keyboard_shortcuts = true;
 
         menu = [
           {
             key = "space";
             desc = "Search";
             cmd = "rofi -show drun -show-icons";
+          }
+          {
+            key = "q";
+            desc = "Power Menu";
+            cmd = "notify-send 'wlr-which-key' 'not yet implemented'";
+          }
+          {
+            key = "p";
+            desc = "Password Menu";
+            cmd = "notify-send 'wlr-which-key' 'not yet implemented'";
+          }
+          {
+            key = "w";
+            desc = "Windows";
+            cmd = "rofi -modes window -show window";
           }
           {
             key = "o";
