@@ -12,7 +12,7 @@ in {
   };
   config = {
     environment.systemPackages = [cfg.package];
-    environment.etc."xdg/wlr-which-key/config.yaml".source = let
+    global-hm.config.xdg.configFile."wlr-which-key/config.yaml".source = let
       yaml = pkgs.formats.yaml {};
       colors = config.catppuccin.colors;
     in
