@@ -30,8 +30,8 @@ in {
         size = toString 14;
       in [
         "$red, ${size},, hyprctl dispatch killactive"
-        "$yellow, ${size},, hyprctl dispatch --batch 'dispatch movetoworkspacesilent special:minimized'"
-        "$green, ${size},, hyprctl dispatch movetoworkspace empty"
+        "$yellow, ${size},, hyprctl dispatch togglefloating"
+        "$green, ${size},, hyprctl dispatch fullscreen toggle"
       ];
     };
   };

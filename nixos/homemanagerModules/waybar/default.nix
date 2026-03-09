@@ -25,7 +25,6 @@ in {
     modules-center = mkModules [
       "clock"
       "workspaces"
-      "minimized"
       "audio"
       "battery"
       "backlight"

@@ -5,7 +5,6 @@
     ./battery.nix
     ./clock.nix
     ./idle_inhibitor.nix
-    ./minimized.nix
     ./player.nix
     ./powermenu.nix
     ./notification.nix
