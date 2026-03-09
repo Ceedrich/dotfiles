@@ -34,19 +34,6 @@ in {
       type = types.listOf types.str;
       default = [];
     };
-    powermenuPackage = lib.mkOption {
-      type = types.package;
-      default = let
-        commands = config.logoutCommands;
-      in
-        ceedrichPkgs.power-menu.override {
-          lockCommand = commands.lock;
-          logoutCommand = commands.logout;
-          shutdownCommand = commands.shutdown;
-          rebootCommand = commands.reboot;
-          suspendCommand = commands.suspend;
-        };
-    };
     extra-packages = lib.mkOption {
       type = types.listOf types.package;
       default = [];
@@ -63,7 +50,6 @@ in {
         blueman
         libnotify
         nwg-drawer
-        cfg.powermenuPackage
       ]
       ++ cfg.extra-packages;
 
@@ -84,7 +70,6 @@ in {
           terminal
           launcher
           autostart
-          powermenuPackage
           ;
       in {
         # plugin.overview = {
@@ -102,7 +87,6 @@ in {
           [
             "${mainMod}, return, exec, ${terminal}"
             "${mainMod}, Q, killactive"
-            "${mainMod} SHIFT, Q, exec, ${lib.getExe powermenuPackage}"
 
             "${mainMod}, T, togglefloating"
             "${mainMod}, F, fullscreen"
@@ -149,7 +133,8 @@ in {
             ", XF86MonBrightnessDown, exec, ${brightnessctl} -q s 10%-"
             ", XF86MonBrightnessUp, exec, ${brightnessctl} -q s +10%"
           ]
-          ++ lib.optional config.services.clipboard.enable "${mainMod}, V, exec, cliphist list | rofi -dmenu -i -p 'Clipboard' -display-columns 2 | cliphist decode | wl-copy";
+          ++ lib.optional config.services.clipboard.enable "${mainMod}, V, exec, cliphist list | rofi -dmenu -i -p 'Clipboard' -display-columns 2 | cliphist decode | wl-copy"
+          ++ lib.optional config.programs.power-menu.enable "${mainMod} SHIFT, Q, exec, ${lib.getExe config.programs.power-menu.package}";
 
         bindm = [
           "${mainMod}, mouse:272, movewindow"

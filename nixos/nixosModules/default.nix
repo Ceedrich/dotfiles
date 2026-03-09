@@ -23,6 +23,7 @@
     ./modrinth
     ./mpvpaper
     ./pihole
+    ./power-menu
     # ./secrets
     ./shortcuts
     ./servarr
