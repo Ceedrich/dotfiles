@@ -47,6 +47,11 @@ in {
             cmd = "rofi -modes window -show window";
           }
           {
+            key = "e";
+            desc = "Emojis";
+            cmd = "rofi -show emoji | wl-copy";
+          }
+          {
             key = "c";
             desc = "Clipboard history";
             cmd = "cliphist list | rofi -dmenu -i -p 'Clipboard' -display-columns 2 | cliphist decode | wl-copy";
