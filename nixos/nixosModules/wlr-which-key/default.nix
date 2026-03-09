@@ -47,6 +47,11 @@ in {
             cmd = "rofi -modes window -show window";
           }
           {
+            key = "c";
+            desc = "Clipboard history";
+            cmd = "cliphist list | rofi -dmenu -i -p 'Clipboard' -display-columns 2 | cliphist decode | wl-copy";
+          }
+          {
             key = "o";
             desc = "Open Documents";
             submenu = [
