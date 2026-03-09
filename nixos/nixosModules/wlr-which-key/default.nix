@@ -49,7 +49,7 @@ in {
           {
             key = "e";
             desc = "Emojis";
-            cmd = "rofi -show emoji | wl-copy";
+            cmd = "rofi -show emoji";
           }
           {
             key = "c";
