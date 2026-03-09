@@ -35,7 +35,7 @@ in {
           {
             key = "q";
             desc = "Power Menu";
-            cmd = "notify-send 'wlr-which-key' 'not yet implemented'";
+            cmd = "${lib.getExe config.programs.power-menu.package}";
           }
           {
             key = "p";
