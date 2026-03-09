@@ -39,7 +39,7 @@ in {
           {
             key = "p";
             desc = "Password Menu";
-            cmd = "notify-send 'wlr-which-key' 'not yet implemented'";
+            cmd = "passmenu";
           }
           {
             key = "w";
