@@ -41,7 +41,12 @@ in {
     programs.starship = {
       enable = mkDefault true;
       interactiveOnly = true;
-      settings = builtins.fromTOML (builtins.readFile ./starship.toml);
+      settings =
+        lib.importTOML ./starship.toml
+        // rec {
+          palette = "catppuccin_${config.catppuccin.flavor}";
+          palettes.${palette} = lib.mapAttrs (n: clr: clr.hex) config.catppuccin.colors;
+        };
     };
 
     programs.fzf = {
