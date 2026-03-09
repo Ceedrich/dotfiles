@@ -21,7 +21,7 @@ in {
         color = colors.text.hex;
         border = colors.accent.hex;
         anchor = "top";
-        margin_top = "200";
+        margin_top = 200;
 
         menu = [
           {
