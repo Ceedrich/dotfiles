@@ -64,7 +64,6 @@ in {
         libnotify
         nwg-drawer
         cfg.powermenuPackage
-        ceedrichPkgs.passmenu
       ]
       ++ cfg.extra-packages;
 
@@ -110,7 +109,7 @@ in {
 
             "${mainMod}, Space, exec, ${launcher}"
 
-            "${mainMod}, P, exec, passmenu"
+            "${mainMod}, P, exec, ${lib.getExe ceedrichPkgs.passmenu}"
 
             "${mainMod}, h, movefocus, l"
             "${mainMod}, l, movefocus, r"

@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  ceedrichPkgs,
   ...
 }: let
   cfg = config.programs.wlr-which-key;
@@ -39,7 +40,7 @@ in {
           {
             key = "p";
             desc = "Password Menu";
-            cmd = "passmenu";
+            cmd = "${lib.getExe ceedrichPkgs.passmenu}";
           }
           {
             key = "w";
