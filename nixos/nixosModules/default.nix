@@ -7,6 +7,7 @@
     ./eza
     ./firefox
     ./ghostty
+    ./catppuccin.nix
     ./globalHM.nix
     ./homelab
     ./homepage

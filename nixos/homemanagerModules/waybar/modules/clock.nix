@@ -35,10 +35,10 @@ in {
           on-scroll = 1;
           format = {
             months = "<b>{}</b>";
-            weeks = ''<span color="#6c7086">{}</span>'';
+            weeks = ''<span color="${config.catppuccin.colors.overlay0.hex}">{}</span>'';
             weekdays = "<b>{}</b>";
             days = "<b>{}</b>";
-            today = ''<span color="#cba6f7"><b>{}</b></span>'';
+            today = ''<span color="${config.catppuccin.colors.mauve.hex}"><b>{}</b></span>'';
           };
         };
       };

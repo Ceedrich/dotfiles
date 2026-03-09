@@ -112,8 +112,10 @@ in {
           "notifications"
         ];
       };
-      style = ''
-        @import "${./colors.css}";
+      style = let
+        colors = lib.concatStringsSep "\n" (lib.mapAttrsToList (color: value: "@define-color ${color} ${value.hex};") config.catppuccin.colors);
+      in ''
+        ${colors}
         ${lib.readFile ./style.css}
       '';
     };
