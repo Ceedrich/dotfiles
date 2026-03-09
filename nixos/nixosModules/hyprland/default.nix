@@ -152,8 +152,8 @@ in {
           ++ lib.optional config.services.clipboard.enable "${mainMod}, V, exec, cliphist list | rofi -dmenu -i -p 'Clipboard' -display-columns 2 | cliphist decode | wl-copy";
 
         bindm = [
-          "${mainMod}, mouse:272, resizewindow"
-          "${mainMod}, mouse:273, movewindow"
+          "${mainMod}, mouse:272, movewindow"
+          "${mainMod}, mouse:273, resizewindow"
         ];
 
         # Input
