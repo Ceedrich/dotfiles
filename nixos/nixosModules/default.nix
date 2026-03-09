@@ -30,6 +30,7 @@
     ./swaync
     ./tailscale
     # ./waybar
+    ./wlr-which-key
     ./yazi
     ./zathura
     ./zsh
