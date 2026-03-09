@@ -49,7 +49,7 @@ in {
           }
           {
             key = "e";
-            desc = "😀 Emojis";
+            desc = " Emojis";
             cmd = "rofi -show emoji";
           }
           {
@@ -63,7 +63,7 @@ in {
             submenu = [
               {
                 key = "p";
-                desc = "PDF";
+                desc = "󰈙 PDF";
                 cmd = "rofi-pdfmenu";
               }
             ];
