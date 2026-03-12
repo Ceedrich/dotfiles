@@ -1,6 +1,6 @@
 {
   fd,
-  xdg-utils,
+  handlr,
   uutils-findutils,
   writeShellApplication,
 }: let
@@ -9,7 +9,7 @@
     bashOptions = [];
     runtimeInputs = [
       fd
-      xdg-utils
+      handlr
       uutils-findutils
     ];
     text = builtins.readFile ./rofi-file-picker;

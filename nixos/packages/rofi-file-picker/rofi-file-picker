@@ -82,5 +82,5 @@ fi
 fd '.' "${args[@]}" "$SEARCH_DIR" --print0 \
   | add_icons \
   | rofi -show-icons -dmenu -i -format "q" -p "$PROMPT" \
-  | xargs xdg-open >/dev/null 2>&1 & disown
+  | xargs handlr open >/dev/null 2>&1 & disown
 
