@@ -93,7 +93,7 @@ in {
 
             "${mainMod}, Space, exec, ${launcher}"
 
-            "${mainMod}, P, exec, ${lib.getExe ceedrichPkgs.passmenu}"
+            # "${mainMod}, P, exec, ${lib.getExe ceedrichPkgs.passmenu}"
 
             "${mainMod}, h, movefocus, l"
             "${mainMod}, l, movefocus, r"
@@ -133,8 +133,7 @@ in {
             ", XF86MonBrightnessDown, exec, ${brightnessctl} -q s 10%-"
             ", XF86MonBrightnessUp, exec, ${brightnessctl} -q s +10%"
           ]
-          ++ lib.optional config.services.clipboard.enable "${mainMod}, V, exec, cliphist list | rofi -dmenu -i -p 'Clipboard' -display-columns 2 | cliphist decode | wl-copy"
-          ++ lib.optional config.programs.power-menu.enable "${mainMod} SHIFT, Q, exec, ${lib.getExe config.programs.power-menu.package}";
+          ++ lib.optional config.services.clipboard.enable "${mainMod}, V, exec, cliphist list | rofi -dmenu -i -p 'Clipboard' -display-columns 2 | cliphist decode | wl-copy";
 
         bindm = [
           "${mainMod}, mouse:272, movewindow"
