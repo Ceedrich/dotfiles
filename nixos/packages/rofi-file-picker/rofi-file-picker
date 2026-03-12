@@ -12,6 +12,17 @@ add_icons() {
     case "$ext" in
       pdf) icon_str="application-pdf";;
       png|gif|jpg|jpeg|webp|bmp|svg) icon_str="image";;
+      webm|mkv|vob|gifv|avi|mov|mp4|mpg|mpeg|mpv) icon_str="video";;
+      doc|docx|odt) icon_str="application-vnd.oasis.opendocument.text";;
+      md|markdown) icon_str="text-markdown";;
+      txt) icon_str="text" ;;
+      toml) icon_str="application-toml" ;;
+      yaml) icon_str="application-json" ;;
+      html) icon_str="text-html" ;;
+      htm) icon_str="text-html" ;;
+      xml) icon_str="text-xml" ;;
+      mp3|ogg|wav) icon_str="audio-mp3" ;;
+      zip) icon_str="application-zip";;
       *) icon_str="gtk-file";;
     esac
     $FOLDERS && icon_str="folder"
@@ -57,15 +68,15 @@ shift $((OPTIND - 1))
 [[ -z $PREFIX ]] && PREFIX=$SEARCH_DIR
 [[ -z $TYPE ]] && TYPE="f"
 
-if ! $FOLDERS; then
-  (( ${#EXTENSIONS} == 0 )) && fatal "At least one extension must be specified"
-fi
-
 args=()
 if $FOLDERS; then
   args=("--type=directory")
 else
-  args=("${EXTENSIONS[@]/#/--extension=}")
+  args=(
+    "--type=file"
+    "--type=symlink"
+    "${EXTENSIONS[@]/#/--extension=}"
+  )
 fi
 
 fd '.' "${args[@]}" "$SEARCH_DIR" --print0 \
