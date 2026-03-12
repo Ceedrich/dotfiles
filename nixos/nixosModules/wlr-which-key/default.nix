@@ -12,7 +12,7 @@ in {
     package = lib.mkPackageOption pkgs "wlr-which-key" {};
   };
   config = {
-    environment.systemPackages = [cfg.package];
+    environment.systemPackages = [cfg.package ceedrichPkgs.rofi-file-picker];
     global-hm.config.xdg.configFile."wlr-which-key/config.yaml".source = let
       yaml = pkgs.formats.yaml {};
       colors = config.catppuccin.colors;
@@ -64,7 +64,17 @@ in {
               {
                 key = "p";
                 desc = "󰈙 PDF";
-                cmd = "rofi-pdfmenu";
+                cmd = "rofi-file-picker -e pdf";
+              }
+              {
+                key = "i";
+                desc = "󰋩 Images";
+                cmd = "rofi-file-picker -e png,jpg,jpeg,webp,bmp,gif";
+              }
+              {
+                key = "d";
+                desc = "󰉋 Folders";
+                cmd = "rofi-file-picker -f";
               }
             ];
           }

@@ -6,6 +6,7 @@
       rofi-confirm-dialogue = callPackage ./rofi-confirm-dialogue.nix {};
       find-icons = callPackage ./find-icons.nix {};
       minecraft-backup = callPackage ./minecraft-backup.nix {};
+      rofi-file-picker = callPackage ./rofi-file-picker {};
       # TODO: modrinth-prefetch
       passmenu = callPackage ./passmenu {};
       pdfopen = callPackage ./pdfopen.nix {};

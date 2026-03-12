@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+fatal () {
+  echo "FATAL:" "$@" >&2
+  exit 1
+}
+
+add_icons() {
+  local icon_str ext display_str;
+  while read -r -d $'\0' file; do
+    ext="${file##*.}"
+    case "$ext" in
+      pdf) icon_str="application-pdf";;
+      png|gif|jpg|jpeg|webp|bmp|svg) icon_str="image";;
+      *) icon_str="gtk-file";;
+    esac
+    $FOLDERS && icon_str="folder"
+    display_str="${file#"$PREFIX"}"
+    echo -e "$file\0icon\x1f$icon_str\x1fdisplay\x1f$display_str"
+  done
+}
+
+usage() {
+  cat << EOF
+usage: $0 [options]
+
+Options:
+  -h    Show this message and exit
+  -e    Comma separted list of extensions to search for
+  -f    Search for folders instead of files, ignores '-e'
+  -d    Set the search directory (default '\$HOME/')
+  -s    Strip the given prefix, defaults to search directory set by '-d'
+  -p    Set prompt for rofi
+EOF
+}
+
+SEARCH_DIR=
+PROMPT=
+PREFIX=
+FOLDERS=false;
+
+while getopts "hfd:t:e:p:s:" opt; do
+  case $opt in
+    h) usage; exit ;;
+    e) IFS=, read -ra EXTENSIONS <<< "$OPTARG" ;;
+    f) FOLDERS=true;;
+    d) SEARCH_DIR=$OPTARG ;;
+    p) PROMPT=$OPTARG ;;
+    s) PREFIX=$OPTARG ;;
+    *) usage; exit 1 ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+[[ -z $SEARCH_DIR ]] && SEARCH_DIR="$HOME/"
+[[ -z $PROMPT ]] && PROMPT="Open Files"
+[[ -z $PREFIX ]] && PREFIX=$SEARCH_DIR
+[[ -z $TYPE ]] && TYPE="f"
+
+if ! $FOLDERS; then
+  (( ${#EXTENSIONS} == 0 )) && fatal "At least one extension must be specified"
+fi
+
+args=()
+if $FOLDERS; then
+  args=("--type=directory")
+else
+  args=("${EXTENSIONS[@]/#/--extension=}")
+fi
+
+fd '.' "${args[@]}" "$SEARCH_DIR" --print0 \
+  | add_icons \
+  | rofi -show-icons -dmenu -i -format "q" -p "$PROMPT" \
+  | xargs xdg-open >/dev/null 2>&1 & disown
+
