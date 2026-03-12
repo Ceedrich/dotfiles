@@ -111,6 +111,14 @@ in {
       printing.enable = mkDefault true;
     };
 
+    services.flatpak = {
+      enable = true;
+      update.auto.enable = true;
+      packages = [
+        "com.modrinth.ModrinthApp"
+      ];
+    };
+
     nix.settings = {
       substituters = ["https://hyprland.cachix.org"];
       trusted-substituters = ["https://hyprland.cachix.org"];
