@@ -72,7 +72,7 @@ in {
                 cmd = "rofi-file-picker -e png,jpg,jpeg,webp,bmp,gif -p 'Open Image'";
               }
               {
-                key = "i";
+                key = "f";
                 desc = "󰉋 Folders";
                 cmd = "rofi-file-picker -f -p 'Open Folders'";
               }
