@@ -90,36 +90,18 @@ element {
   padding: 0.25em 0.5em;
   border-radius: 0.75em;
 }
-element normal.normal {
+element selected {
+  background-color: @mauve;
+  text-color: @base;
 }
-element normal.urgent {
+
+element urgent {
   background-color: @yellow;
   text-color: @base;
 }
-element normal.active {
-  background-color: @mauve;
-  text-color: @base;
-}
-element selected.normal {
-  background-color: @mauve;
-  text-color: @base;
-}
-element selected.urgent {
-  background-color: @mauve;
-  text-color: @base;
-}
-element selected.active {
-  background-color: @mauve;
-  text-color: @base;
-}
-element alternate.normal {
-}
-element alternate.urgent {
-  background-color: @yellow;
-  text-color: @base;
-}
-element alternate.active {
-  background-color: @mauve;
+
+element active {
+  background-color: @lavender;
   text-color: @base;
 }
 

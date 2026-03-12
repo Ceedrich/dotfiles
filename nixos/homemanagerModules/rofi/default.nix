@@ -18,8 +18,9 @@ in {
         me-select-entry = "";
         me-accept-entry = "MousePrimary";
         display-drun = "Applications";
-        modi = "drun,emoji";
+        display-window = "Windows";
         display-emoji = "Emoji";
+        modi = "drun,emoji,window";
         hide-scrollbar = true;
       };
 
