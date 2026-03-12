@@ -13,7 +13,6 @@
 
   programs = {
     coolercontrol.enable = true;
-    modrinth.enable = true;
     steam.enable = true;
   };
   environment.systemPackages = with pkgs; [

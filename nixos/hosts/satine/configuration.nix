@@ -5,7 +5,6 @@
   ];
 
   programs = {
-    modrinth.enable = true;
     steam.enable = true;
   };
   services.mpvpaper.enable = false;
