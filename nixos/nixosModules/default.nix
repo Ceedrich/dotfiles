@@ -24,6 +24,7 @@
     ./mpvpaper
     ./pihole
     ./power-menu
+    ./user-mime.nix
     # ./secrets
     ./shortcuts
     ./servarr
