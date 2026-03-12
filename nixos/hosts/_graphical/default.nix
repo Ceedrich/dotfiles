@@ -118,6 +118,9 @@ in {
         "com.modrinth.ModrinthApp"
       ];
     };
+    environment.profileRelativeEnvVars = {
+      XDG_DATA_DIRS = ["/var/lib/flatpak/exports/share"];
+    };
 
     nix.settings = {
       substituters = ["https://hyprland.cachix.org"];
