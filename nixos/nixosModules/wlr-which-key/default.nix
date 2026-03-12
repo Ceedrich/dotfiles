@@ -64,17 +64,12 @@ in {
               {
                 key = "p";
                 desc = "󰈙 PDF";
-                cmd = "rofi-file-picker -e pdf";
+                cmd = "rofi-file-picker -e pdf -p 'Open PDF'";
               }
               {
                 key = "i";
                 desc = "󰋩 Images";
-                cmd = "rofi-file-picker -e png,jpg,jpeg,webp,bmp,gif";
-              }
-              {
-                key = "d";
-                desc = "󰉋 Folders";
-                cmd = "rofi-file-picker -f";
+                cmd = "rofi-file-picker -e png,jpg,jpeg,webp,bmp,gif -p 'Open Image'";
               }
             ];
           }
