@@ -76,6 +76,11 @@ in {
                 desc = "󰉋 Folders";
                 cmd = "rofi-file-picker -f -p 'Open Folders'";
               }
+              {
+                key = "v";
+                desc = "󰕧 Videos";
+                cmd = "rofi-file-picker -e webm,mkv,vob,gifv,avi,mov,mp4,mpg,mpeg,mpv -p 'Open Videos'";
+              }
             ];
           }
         ];
