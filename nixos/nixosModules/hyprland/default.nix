@@ -28,7 +28,7 @@ in {
       default =
         if config.programs.wlr-which-key.enable
         then "wlr-which-key"
-        else "rofi -show drun -show-icons -config clauncher -run-command '{cmd}'";
+        else "rofi -show drun -show-icons";
     };
     autostart = lib.mkOption {
       type = types.listOf types.str;

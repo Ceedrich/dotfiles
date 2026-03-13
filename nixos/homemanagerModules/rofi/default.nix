@@ -24,34 +24,13 @@ in {
         hide-scrollbar = true;
       };
 
-      theme = lib.mkForce ./cofi.rasi;
+      theme = ./cofi.rasi;
     };
 
     xdg.dataFile = {
-      "rofi/themes/clauncher.rasi".text =
-        # rasi
-        ''
-          @theme "cofi"
-
-          inputbar {
-            children: [ "textbox-search-icon","entry","num-filtered-rows","textbox-num-sep","num-rows","case-indicator" ];
-          }
-
-          entry {
-            placeholder: "Search...";
-            placeholder-color: @subtext0;
-          }
-
-          textbox-search-icon {
-            margin: 0 0.25em 0 0 ;
-            expand: false;
-
-            str: " ";
-            text-color: @subtext0;
-          }
-        '';
+      "rofi/themes/catppuccin-mocha.rasi".text = config.catppuccin.colorsRasi;
     };
 
-    catppuccin.rofi.enable = true;
+    catppuccin.rofi.enable = false;
   };
 }
