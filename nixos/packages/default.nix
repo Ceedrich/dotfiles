@@ -9,9 +9,7 @@
       rofi-file-picker = callPackage ./rofi-file-picker {};
       # TODO: modrinth-prefetch
       passmenu = callPackage ./passmenu {};
-      pdfopen = callPackage ./pdfopen.nix {};
       power-menu = callPackage ./power-menu.nix {inherit rofi-confirm-dialogue;};
-      rofi-pdfmenu = callPackage ./rofi-pdfmenu.nix {inherit pdfopen;};
       rebuild-system = callPackage ./rebuild-system.nix {};
       serve-dir = callPackage ./serve-dir.nix {};
       space = callPackage ./space.nix {};
