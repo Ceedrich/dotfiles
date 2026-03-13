@@ -37,6 +37,7 @@ in {
     ];
   in
     lib.mkIf cfg.enable {
+      catppuccin.waybar.enable = false;
       programs.waybar = {
         systemd.enable = true;
         settings.${cfg.mainBar} = {
@@ -58,7 +59,9 @@ in {
           position = "top";
         };
 
-        style = config.catppuccin.colorsGTK + builtins.readFile ./style.css;
+        style =
+          lib.mkBefore (''${config.catppuccin.colorsGTK}\n''
+          + builtins.readFile ./style.css);
       };
     };
 }
