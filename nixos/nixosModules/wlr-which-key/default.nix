@@ -19,7 +19,7 @@ in {
     in
       yaml.generate "config.yaml" {
         font = "JetBrainsMono Nerd Font 16";
-        background = colors.base-80.hex;
+        background = colors.base-90.hex;
         color = colors.text.hex;
         border = colors.accent.hex;
         anchor = "top";
