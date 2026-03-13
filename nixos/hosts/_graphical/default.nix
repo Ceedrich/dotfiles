@@ -43,7 +43,7 @@ in {
       "x-scheme-handler/https" = browser;
       "x-scheme-handler/about" = browser;
       "x-scheme-handler/unknown" = browser;
-      "image/*" = "qimgv";
+      "image/*" = "qimgv.desktop";
     };
 
     environment.systemPackages = with pkgs; [
