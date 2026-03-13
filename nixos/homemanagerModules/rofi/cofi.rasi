@@ -5,9 +5,8 @@
   background-color: transparent;
   text-color: @text;
 
-  base-opaque: rgba(30, 30, 46, 0.9);
-  surface0-opaque: rgba(49, 50, 68, 0.9);
-  clr-background: @surface0-opaque;
+  base-90: rgba(30, 30, 46, 0.9);
+  clr-background: @base-90;
 }
 
 window {
@@ -24,8 +23,8 @@ mainbox {
   background-color: @clr-background;
 
   // Simulated box-shadow
-  border: 4px 2px 4px 6px;
-  border-color: rgba(0,0,1, 0.1);
+  border: 3px;
+  border-color: @mauve;
 
   children: ["inputbar", "listview"]; // TODO: add title
 }
