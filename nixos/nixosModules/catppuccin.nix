@@ -64,10 +64,16 @@
     colorsGTK = lib.mkOption {
       description = "The colors in GTK format";
       readOnly = true;
-      default = lib.pipe cfg.colors [
-        (lib.mapAttrsToList (name: value: ''@define-color ${name} ${value.hex};''))
-        (lib.concatStringsSep "\n")
-      ];
+      default = let
+        mkRGB = color:
+          if color?rgba
+          then let inherit (color.rgba) r g b a; in "rgba(${toString r}, ${toString g}, ${toString b}, ${toString a})"
+          else let inherit (color.rgb) r g b; in "rgb(${toString r}, ${toString g}, ${toString b})";
+      in
+        lib.pipe cfg.colors [
+          (lib.mapAttrsToList (name: value: ''@define-color ${name} ${mkRGB value};''))
+          (lib.concatStringsSep "\n")
+        ];
     };
   };
 in {

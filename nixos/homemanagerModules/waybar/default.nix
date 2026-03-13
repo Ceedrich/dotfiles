@@ -61,7 +61,7 @@ in {
 
         style =
           lib.mkBefore (''${config.catppuccin.colorsGTK}\n''
-          + builtins.readFile ./style.css);
+            + builtins.readFile ./style.css);
       };
     };
 }
