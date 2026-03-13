@@ -61,6 +61,14 @@
         ])
         + ''}'';
     };
+    colorsGTK = lib.mkOption {
+      description = "The colors in GTK format";
+      readOnly = true;
+      default = lib.pipe cfg.colors [
+        (lib.mapAttrsToList (name: value: ''@define-color ${name} ${value.hex};''))
+        (lib.concatStringsSep "\n")
+      ];
+    };
   };
 in {
   options.catppuccin = options;

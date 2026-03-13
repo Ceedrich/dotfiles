@@ -58,7 +58,7 @@ in {
           position = "top";
         };
 
-        style = builtins.readFile ./style.css;
+        style = config.catppuccin.colorsGTK + builtins.readFile ./style.css;
       };
     };
 }
