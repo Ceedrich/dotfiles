@@ -1,9 +1,10 @@
+@define-color clr-background alpha(@base, 0.9);
+
 * {
   font-family: "JetBrains Mono Nerdfont";
   font-size: 16px;
   min-height: 0;
   font-weight: bold;
-  clr-background: alpha(@base, 0.9);
 }
 
 window#waybar {
