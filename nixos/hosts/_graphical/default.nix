@@ -43,6 +43,7 @@ in {
       "x-scheme-handler/https" = browser;
       "x-scheme-handler/about" = browser;
       "x-scheme-handler/unknown" = browser;
+      "image/*" = "qimgv";
     };
 
     environment.systemPackages = with pkgs; [
@@ -61,6 +62,7 @@ in {
       jellyfin-desktop
       wl-clipboard
       wlrctl
+      qimgv
       keepassxc
       gh
       nsxiv
