@@ -2,6 +2,7 @@
   description = "nixos flake";
 
   inputs = {
+    musnix.url = "github:musnix/musnix";
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
     flake-parts.url = "github:hercules-ci/flake-parts";
     disko = {

@@ -14,7 +14,7 @@
     ];
     isNormalUser = true;
     description = "Cedric";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "audio"];
     packages = [];
   };
 }

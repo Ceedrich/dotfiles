@@ -1,8 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ../_graphical
+    inputs.musnix.nixosModules.musnix
   ];
+
+  musnix.enable = true;
 
   programs = {
     steam.enable = true;
