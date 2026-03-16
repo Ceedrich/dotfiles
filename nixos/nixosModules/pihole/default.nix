@@ -28,6 +28,10 @@ in {
         ];
         settings = {
           dns = {
+            rateLimit = {
+              count = 0;
+              interval = 0;
+            };
             listeningMode = "ALL";
             upstreams = [
               "1.1.1.1" # Cloudflare
