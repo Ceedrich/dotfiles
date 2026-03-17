@@ -8,7 +8,7 @@
 in {
   config = {
     programs.rofi = lib.mkIf cfg.enable {
-      plugins = with pkgs; [rofi-emoji];
+      plugins = with pkgs; [rofi-emoji rofi-nerdy];
       terminal = "${pkgs.ghostty}/bin/ghostty";
       extraConfig = {
         kb-row-down = "Down,Control+j";
