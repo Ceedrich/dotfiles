@@ -63,6 +63,11 @@ in {
             cmd = "rofi -show nerdy";
           }
           {
+            key = "g";
+            desc = "󰊖 Games";
+            cmd = "rofi -show games";
+          }
+          {
             key = "o";
             desc = "󰈙 Open Documents";
             submenu = [

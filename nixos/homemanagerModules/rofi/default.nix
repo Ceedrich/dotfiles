@@ -25,7 +25,8 @@ in {
         display-window = "Windows";
         display-emoji = "Emoji";
         display-nerdy = "Nerd Font Icons";
-        modi = "drun,emoji,window,nerdy";
+        display-games = "Games";
+        modi = "drun,emoji,window,nerdy,games";
         hide-scrollbar = true;
       };
 
