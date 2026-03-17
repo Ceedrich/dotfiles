@@ -8,7 +8,11 @@
 in {
   config = {
     programs.rofi = lib.mkIf cfg.enable {
-      plugins = with pkgs; [rofi-emoji rofi-nerdy];
+      plugins = with pkgs; [
+        rofi-emoji
+        rofi-nerdy
+        rofi-games
+      ];
       terminal = "${pkgs.ghostty}/bin/ghostty";
       extraConfig = {
         kb-row-down = "Down,Control+j";
@@ -30,6 +34,7 @@ in {
 
     xdg.dataFile = {
       "rofi/themes/catppuccin-mocha.rasi".text = config.catppuccin.colorsRasi;
+      "rofi/themes/games.rasi".source = ./games.rasi;
     };
 
     catppuccin.rofi.enable = false;

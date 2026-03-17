@@ -1,0 +1,90 @@
+@import "catppuccin-mocha"
+
+* {
+  background-color: transparent;
+  text-color: @text;
+}
+
+window {
+  fullscreen:       true;
+  width:            100.0000% ;
+  height:           100.0000% ;
+  border:           0;
+  anchor: center;
+  y-offset: 0;
+  x-offset: 0;
+  background-color: @base-90;
+}
+mainbox {
+    padding:  0px ;
+    children: [ "prompt","inputbar-box","listview" ];
+}
+prompt {
+    width:      100% ;
+    margin:     2em 0em 0em 4em;
+    font:       "Roboto Bold 27";
+    text-color: @text;
+}
+listview {
+    padding: 60px ;
+    dynamic: true;
+    layout:  vertical;
+    columns: 7;
+    spacing: 20px ;
+}
+inputbar-box {
+    orientation: horizontal;
+    expand:      false;
+    children:    [ "dummy","inputbar","dummy" ];
+}
+inputbar {
+    children:         [ "textbox-prompt","entry" ];
+    margin:           0px ;
+    border-color:     @accent;
+    border:           3px ;
+    border-radius:    0.5em ;
+}
+textbox-prompt {
+    vertical-align:   0.50;
+    expand:           false;
+    horizontal-align: 0.50;
+}
+entry {
+    cursor:           text;
+    padding:          8px ;
+    width:            300;
+    // margin:           4294967290px ;
+    border-color:     @accent;
+    expand:           false;
+    horizontal-align: 0;
+    border-radius:    8px ;
+}
+element {
+    padding:       0.5em;
+    orientation:   vertical;
+    border-color:  transparent;
+    children:      [ "element-box" ];
+    // children:      [ "dummy","element-box","dummy" ];
+    border:        3px;
+    border-radius: 1em;
+}
+
+element selected {
+    border-color: @accent;
+}
+element-box {
+    orientation: vertical;
+    expand:      false;
+    cursor:      pointer;
+    children:    [ "element-icon","element-text" ];
+}
+element-icon {
+    padding: 10px ;
+    size:    33% ;
+    cursor:  inherit;
+    margin:  10px ;
+}
+element-text {
+    cursor:           inherit;
+    horizontal-align: 0.50;
+}
