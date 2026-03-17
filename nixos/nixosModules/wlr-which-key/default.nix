@@ -65,7 +65,7 @@ in {
           {
             key = "g";
             desc = "󰊖 Games";
-            cmd = "rofi -show games";
+            cmd = "rofi -show games -theme games";
           }
           {
             key = "o";
