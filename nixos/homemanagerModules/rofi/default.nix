@@ -20,6 +20,7 @@ in {
         display-drun = "Applications";
         display-window = "Windows";
         display-emoji = "Emoji";
+        display-nerdy = "Nerd Font Icons";
         modi = "drun,emoji,window,nerdy";
         hide-scrollbar = true;
       };
