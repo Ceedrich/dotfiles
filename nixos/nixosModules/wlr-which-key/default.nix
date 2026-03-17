@@ -48,14 +48,19 @@ in {
             cmd = "rofi -modes window -show window";
           }
           {
+            key = "c";
+            desc = "󱉧 Clipboard history";
+            cmd = "cliphist list | rofi -dmenu -i -p 'Clipboard' -display-columns 2 | cliphist decode | wl-copy";
+          }
+          {
             key = "e";
             desc = " Emojis";
             cmd = "rofi -show emoji";
           }
           {
-            key = "c";
-            desc = "󱉧 Clipboard history";
-            cmd = "cliphist list | rofi -dmenu -i -p 'Clipboard' -display-columns 2 | cliphist decode | wl-copy";
+            key = "i";
+            desc = " Icons";
+            cmd = "rofi -show nerdy";
           }
           {
             key = "o";

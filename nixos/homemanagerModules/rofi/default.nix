@@ -20,7 +20,7 @@ in {
         display-drun = "Applications";
         display-window = "Windows";
         display-emoji = "Emoji";
-        modi = "drun,emoji,window";
+        modi = "drun,emoji,window,nerdy";
         hide-scrollbar = true;
       };
 
