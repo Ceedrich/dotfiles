@@ -47,6 +47,7 @@ in {
     };
 
     environment.systemPackages = with pkgs; [
+      brightnessctl
       (pass.withExtensions (ext: with ext; [pass-otp pass-update pass-audit]))
       inputs.deploy-rs.packages.${pkgs.stdenv.hostPlatform.system}.deploy-rs
       signal-desktop
