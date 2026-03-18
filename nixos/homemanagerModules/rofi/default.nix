@@ -46,7 +46,7 @@ in {
         "drawer.rasi"
       ]
       // {
-        "rofi/themes/catppuccin-mocha".text = config.catppuccin.colorsRasi;
+        "rofi/themes/catppuccin-mocha.rasi".text = config.catppuccin.colorsRasi;
       };
 
     catppuccin.rofi.enable = false;
