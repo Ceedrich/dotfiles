@@ -15,7 +15,6 @@ mainbox {
   children: [ "prompt","inputbar-box","listview" ];
 }
 prompt {
-  background-color: red;
   width: 100%;
   font: "JetBrains Mono Nerd Font 20";
   text-color: @text;
