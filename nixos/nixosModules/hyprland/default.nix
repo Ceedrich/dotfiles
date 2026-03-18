@@ -160,7 +160,7 @@ in {
         };
 
         gesture = [
-          "3, up, dispatcher, exec, rofi -show drun -theme drawer"
+          "3, up, dispatcher, exec, if pgrep rofi; then pkill rofi; else rofi -show drun -theme drawer; fi"
           "3, horizontal, workspace"
         ];
 
