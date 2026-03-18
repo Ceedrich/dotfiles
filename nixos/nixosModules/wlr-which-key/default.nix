@@ -69,7 +69,7 @@ in {
           }
           {
             key = "o";
-            desc = "󰈙 Open Documents";
+            desc = "󰈔 Open Files";
             submenu = [
               {
                 key = "p";
@@ -79,7 +79,7 @@ in {
               {
                 key = "i";
                 desc = "󰋩 Images";
-                cmd = "rofi-file-picker -e png,jpg,jpeg,webp,bmp,gif -p 'Open Image'";
+                cmd = "rofi-file-picker -i -p 'Open Image'";
               }
               {
                 key = "f";
@@ -89,7 +89,7 @@ in {
               {
                 key = "v";
                 desc = "󰕧 Videos";
-                cmd = "rofi-file-picker -e webm,mkv,vob,gifv,avi,mov,mp4,mpg,mpeg,mpv -p 'Open Videos'";
+                cmd = "rofi-file-picker -v -p 'Open Videos'";
               }
             ];
           }
