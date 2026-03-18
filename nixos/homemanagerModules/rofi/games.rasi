@@ -1,90 +1,83 @@
 @import "catppuccin-mocha"
 
 * {
+  font: "JetBrains Mono Nerd Font 14";
   background-color: transparent;
   text-color: @text;
 }
 
 window {
-  fullscreen:       true;
-  width:            100.0000% ;
-  height:           100.0000% ;
-  border:           0;
-  anchor: center;
-  y-offset: 0;
-  x-offset: 0;
+  fullscreen: true;
   background-color: @base-90;
 }
 mainbox {
-    padding:  0px ;
-    children: [ "prompt","inputbar-box","listview" ];
+  padding: 2em;
+  children: [ "prompt","inputbar-box","listview" ];
 }
 prompt {
-    width:      100% ;
-    margin:     2em 0em 0em 4em;
-    font:       "Roboto Bold 27";
-    text-color: @text;
+  background-color: red;
+  width: 100%;
+  font: "JetBrains Mono Nerd Font 20";
+  text-color: @text;
 }
 listview {
-    padding: 60px ;
-    dynamic: true;
-    layout:  vertical;
-    columns: 7;
-    spacing: 20px ;
+  layout: vertical;
+  columns: 5;
+  fixed-columns: true;
+  spacing: 1em;
 }
 inputbar-box {
-    orientation: horizontal;
-    expand:      false;
-    children:    [ "dummy","inputbar","dummy" ];
+  orientation: horizontal;
+  expand: false;
+  children: [ "dummy","inputbar","dummy" ];
 }
 inputbar {
-    children:         [ "textbox-prompt","entry" ];
-    margin:           0px ;
-    border-color:     @accent;
-    border:           3px ;
-    border-radius:    0.5em ;
+  children: [ "textbox-prompt","entry" ];
+  margin: 1em;
+  border-color: @accent;
+  border: 3px ;
+  border-radius: 0.5em ;
 }
 textbox-prompt {
-    vertical-align:   0.50;
-    expand:           false;
-    horizontal-align: 0.50;
+  vertical-align: 0.5;
+  expand: false;
+  horizontal-align: 0.5;
 }
 entry {
-    cursor:           text;
-    padding:          8px ;
-    width:            300;
-    // margin:           4294967290px ;
-    border-color:     @accent;
-    expand:           false;
-    horizontal-align: 0;
-    border-radius:    8px ;
+  cursor: text;
+  padding: 0.5em;
+  width: 300;
+  border-color: @accent;
+  expand: false;
+  horizontal-align: 0;
+  border-radius: 0.5em ;
 }
 element {
-    padding:       0.5em;
-    orientation:   vertical;
-    border-color:  transparent;
-    children:      [ "element-box" ];
-    // children:      [ "dummy","element-box","dummy" ];
-    border:        3px;
-    border-radius: 1em;
+  padding: 0.5em;
+  orientation: vertical;
+  border-color: transparent;
+  children: [ "element-box" ];
+  // children: [ "dummy","element-box","dummy" ];
+  border: 3px;
+  border-radius: 1em;
 }
 
 element selected {
-    border-color: @accent;
+  border-color: @accent;
 }
 element-box {
-    orientation: vertical;
-    expand:      false;
-    cursor:      pointer;
-    children:    [ "element-icon","element-text" ];
+  orientation: vertical;
+  expand: false;
+  cursor: pointer;
+  children: [ "element-icon","element-text" ];
 }
 element-icon {
-    padding: 10px ;
-    size:    33% ;
-    cursor:  inherit;
-    margin:  10px ;
+  padding: 10px ;
+  size: 33% ;
+  cursor: inherit;
+  margin: 10px ;
 }
 element-text {
-    cursor:           inherit;
-    horizontal-align: 0.50;
+  cursor: inherit;
+  horizontal-align: 0.50;
 }
