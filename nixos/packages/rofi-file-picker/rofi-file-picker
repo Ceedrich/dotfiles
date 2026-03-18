@@ -1,18 +1,25 @@
 #!/usr/bin/env bash
 
+shopt -s extglob
+
 fatal () {
   echo "FATAL:" "$@" >&2
   exit 1
 }
 
+IMAGE_EXTENSIONS=(png gif jpg jpeg webp bmp svg)
+VIDEO_EXTENSIONS=(webm mkv vob gifv avi mov mp4 mpg mpeg mpv)
+
+image_pat=$(IFS='|'; echo "@(${IMAGE_EXTENSIONS[*]})")
+video_pat=$(IFS='|'; echo "@(${VIDEO_EXTENSIONS[*]})")
 add_icons() {
   local icon_str ext display_str;
   while read -r -d $'\0' file; do
     ext="${file##*.}"
     case "$ext" in
       pdf) icon_str="application-pdf";;
-      png|gif|jpg|jpeg|webp|bmp|svg) icon_str="image";;
-      webm|mkv|vob|gifv|avi|mov|mp4|mpg|mpeg|mpv) icon_str="video";;
+      $image_pat) icon_str="image";;
+      $video_pat) icon_str="video";;
       doc|docx|odt) icon_str="application-vnd.oasis.opendocument.text";;
       md|markdown) icon_str="text-markdown";;
       txt) icon_str="text" ;;
@@ -42,6 +49,8 @@ Options:
   -d    Set the search directory (default '\$HOME/')
   -s    Strip the given prefix, defaults to search directory set by '-d'
   -p    Set prompt for rofi
+  -v    Find videos, shorthand for '-e $(IFS=", "; echo "${VIDEO_EXTENSIONS[*]}")'
+  -i    Find images, shorthand for '-e $(IFS=", "; echo "${IMAGE_EXTENSIONS[*]}")'
 EOF
 }
 
@@ -50,7 +59,7 @@ PROMPT=
 PREFIX=
 FOLDERS=false;
 
-while getopts "hfd:t:e:p:s:" opt; do
+while getopts "hfd:t:e:p:s:iv" opt; do
   case $opt in
     h) usage; exit ;;
     e) IFS=, read -ra EXTENSIONS <<< "$OPTARG" ;;
@@ -58,6 +67,8 @@ while getopts "hfd:t:e:p:s:" opt; do
     d) SEARCH_DIR=$OPTARG ;;
     p) PROMPT=$OPTARG ;;
     s) PREFIX=$OPTARG ;;
+    i) EXTENSIONS=( "${IMAGE_EXTENSIONS[@]}" );;
+    v) EXTENSIONS=( "${VIDEO_EXTENSIONS[@]}" );;
     *) usage; exit 1 ;;
   esac
 done

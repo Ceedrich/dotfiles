@@ -12,6 +12,7 @@
       handlr
       uutils-findutils
     ];
+    excludeShellChecks = ["SC2254"];
     text = builtins.readFile ./rofi-file-picker;
   };
 in
