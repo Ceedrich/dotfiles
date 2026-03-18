@@ -15,7 +15,6 @@ in {
   config = {
     global-hm.config = {
       programs.brave.enable = true;
-      programs.nwg-drawer.enable = true;
       programs.waybar = {
         enable = mkDefault true;
         modules = {

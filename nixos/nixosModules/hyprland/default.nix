@@ -50,7 +50,6 @@ in {
         networkmanagerapplet
         blueman
         libnotify
-        nwg-drawer
       ]
       ++ cfg.extra-packages;
 
@@ -161,7 +160,7 @@ in {
         };
 
         gesture = [
-          "3, up, dispatcher, exec, nwg-drawer -wm hyprland"
+          "3, up, dispatcher, exec, rofi -show drun -theme drawer"
           "3, horizontal, workspace"
         ];
 
