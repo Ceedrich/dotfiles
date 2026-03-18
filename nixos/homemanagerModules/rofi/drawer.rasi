@@ -1,9 +1,9 @@
 @import "fullscreen"
 
 listview {
-  columns: 5;
+  columns: 10;
 }
 
 element-icon {
-  size: 33%;
+  size: 3em;
 }

@@ -1,0 +1,90 @@
+@import "catppuccin-mocha"
+
+* {
+  font: "JetBrains Mono Nerd Font 14";
+  background-color: transparent;
+  text-color: @text;
+
+  base-opaque: rgba(30, 30, 46, 0.9);
+  surface0-opaque: rgba(49, 50, 68, 0.9);
+  clr-background: @base-opaque;
+}
+
+window {
+  fullscreen: true;
+  background-color: @clr-background;
+}
+
+mainbox {
+  padding: 2em;
+  children: ["prompt-box", "inputbar-box", "listview"];
+}
+
+prompt-box {
+  orientation: horizontal;
+  expand: false;
+  children: ["dummy", "prompt", "dummy"];
+}
+
+prompt {
+  font: "JetBrains Mono Nerd Font 20";
+}
+
+inputbar-box {
+  orientation: horizontal;
+  expand: false;
+  children: [ "dummy","inputbar","dummy" ];
+}
+
+inputbar {
+  children: [ "textbox-prompt","entry" ];
+  margin: 1em;
+  border-color: @accent;
+  border: 3px ;
+  border-radius: 0.5em ;
+}
+
+entry {
+  cursor: text;
+  padding: 0.5em;
+  width: 300;
+  border-color: @accent;
+  expand: false;
+  horizontal-align: 0;
+  border-radius: 0.5em ;
+}
+
+listview {
+  layout: vertical;
+  fixed-columns: true;
+  columns: 5;
+  spacing: 1em;
+}
+
+element {
+  padding: 0.5em;
+  orientation: vertical;
+  border-color: transparent;
+  children: [ "element-box" ];
+  border: 3px;
+  border-radius: 1em;
+}
+
+element selected {
+  border-color: @accent;
+}
+element-box {
+  orientation: vertical;
+  expand: false;
+  cursor: pointer;
+  children: [ "element-icon","element-text" ];
+}
+element-icon {
+  padding: 0.5em;
+  margin: 0.5em;
+  cursor: inherit;
+}
+element-text {
+  cursor: inherit;
+  horizontal-align: 0.5;
+}

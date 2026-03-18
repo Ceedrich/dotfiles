@@ -33,10 +33,21 @@ in {
       theme = ./cofi.rasi;
     };
 
-    xdg.dataFile = {
-      "rofi/themes/catppuccin-mocha.rasi".text = config.catppuccin.colorsRasi;
-      "rofi/themes/games.rasi".source = ./games.rasi;
-    };
+    xdg.dataFile = let
+      mkThemes = files:
+        lib.pipe files [
+          (lib.map (file: lib.nameValuePair "rofi/themes/${file}" {source = ./${file};}))
+          lib.listToAttrs
+        ];
+    in
+      mkThemes [
+        "games.rasi"
+        "fullscreen.rasi"
+        "drawer.rasi"
+      ]
+      // {
+        "rofi/themes/catppuccin-mocha".text = config.catppuccin.colorsRasi;
+      };
 
     catppuccin.rofi.enable = false;
   };
