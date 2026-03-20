@@ -1,16 +1,23 @@
 {
-  pkgs,
-  config,
-  ...
-}: {
   imports = [
     ./hardware-configuration.nix
+    ../../nasModules
   ];
 
-  fileSystems."/media-server" = {
-    device = "/dev/disk/by-label/drive1";
-    fsType = "ext4";
+  nas.drives = {
+    system = "ata-Samsung_SSD_860_EVO_M.2_500GB_S414NB0K101207L";
+    hardDrives = {
+      "hd1" = "ata-ST2000DM006-2DM164_Z4ZA8R9J";
+      # "hd2" = "ata-ST1000DM003-9YN162_W1D11LKX";
+    };
   };
+
+  systemd.tmpfiles.rules = [
+    #Type Path Mode User Group Age Argument...
+    "d /mnt/storage/media-server  0775 servarr servarr -"
+    "L /media-server              0775 servarr servarr /mnt/storage/media-server"
+  ];
+
   services.udev.enable = true;
   boot.kernelModules = ["sg"];
 
@@ -21,19 +28,19 @@
     jellyfin.openFirewall = true;
   };
 
-  systemd.services.hd-idle = {
-    description = "External HD spin down daemon";
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      ExecStart = "${pkgs.hd-idle}/bin/hd-idle -i 0 -a /dev/disk/by-label/drive1 -i 900";
-    };
-  };
+  # systemd.services.hd-idle = {
+  #   description = "External HD spin down daemon";
+  #   wantedBy = ["multi-user.target"];
+  #   serviceConfig = {
+  #     ExecStart = "${pkgs.hd-idle}/bin/hd-idle -i 0 -a /dev/disk/by-label/drive1 -i 900";
+  #   };
+  # };
 
-  homelab.backup = {
-    enable = true;
-    repository = "sftp:ceedrich@jarjar:backups-jabba";
-    paths = ["/var/lib/jellyfin"];
-  };
+  # homelab.backup = {
+  #   enable = true;
+  #   repository = "sftp:ceedrich@jarjar:backups-jabba";
+  #   paths = ["/var/lib/jellyfin"];
+  # };
 
   users.users.ceedrich.extraGroups = ["servarr"];
   users.users.deluge.extraGroups = ["servarr"];
