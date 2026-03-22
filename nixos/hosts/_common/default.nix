@@ -11,6 +11,8 @@
   };
   environment.shellAliases = {
     dev = "nix develop --command zsh";
+    v = "nvim";
+    vimdiff = "nvim -d";
   };
   # Packages / Programs
   environment.systemPackages = with pkgs; [
@@ -30,14 +32,6 @@
     neofetch
     ceedrichVim
   ];
-
-  # Neovim
-  environment.shellAliases = {
-    v = "nvim";
-    vi = "nvim";
-    vim = "nvim";
-    vimdiff = "nvim -d";
-  };
 
   programs = {
     btop.enable = true;
