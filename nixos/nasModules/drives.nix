@@ -35,7 +35,7 @@ in {
   };
 
   config = let
-    user = "ceedrich";
+    user = "servarr";
     hardDriveNames = lib.attrNames cfg.hardDrives;
   in {
     environment.systemPackages = with pkgs; [
