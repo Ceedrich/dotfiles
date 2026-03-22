@@ -28,7 +28,16 @@
     unzip
     vim
     neofetch
+    ceedrichVim
   ];
+
+  # Neovim
+  environment.shellAliases = {
+    v = "nvim";
+    vi = "nvim";
+    vim = "nvim";
+    vimdiff = "nvim -d";
+  };
 
   programs = {
     btop.enable = true;
@@ -100,7 +109,6 @@
   global-hm.config = {
     settings.theming.enable = true;
     programs = {
-      neovim.enable = true;
       # yazi.enable = true;
       tmux.enable = true;
 

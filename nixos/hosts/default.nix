@@ -42,7 +42,6 @@
                   ../nixpkgs-issue-55674.nix
                   ../homemanagerModules
                   inputs.catppuccin.homeModules.catppuccin
-                  inputs.ceedrichVim.homeModules.${system}.default
                 ];
                 home-manager.users = inputs.nixpkgs.lib.genAttrs users (user: {
                   imports = [

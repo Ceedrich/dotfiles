@@ -2,7 +2,6 @@
   imports = [
     ./git
     ./mangohud
-    ./neovim
     ./rofi
     ./theming
     ./tmux
