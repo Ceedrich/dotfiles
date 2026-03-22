@@ -13,10 +13,20 @@
   };
 
   systemd.tmpfiles.rules = [
-    #Type Path Mode User Group Age Argument...
-    "d /mnt/storage/media-server  0775 servarr servarr -"
-    "L /media-server              0775 servarr servarr /mnt/storage/media-server"
+    #Type Path                       Mode   User    Group   Age   Argument...
+    "d    /mnt/storage/media-server  0775   servarr servarr -"
+    "L+   /media-server              -      -       -       - /mnt/storage/media-server"
   ];
+
+  services.uptime-kuma = {
+    enable = true;
+    settings = {
+      PORT = "4000";
+    };
+  };
+  homelab.reverseProxies.uptime-kuma.port = 4000;
+
+  services.pihole.enable = true;
 
   services.udev.enable = true;
   boot.kernelModules = ["sg"];

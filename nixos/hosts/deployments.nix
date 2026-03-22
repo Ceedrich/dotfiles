@@ -21,7 +21,7 @@
   in {
     remoteBuild = true;
     nodes = {
-      jabba = mkDeployNode "jabba" {sshUser = "ceedrich";};
+      jabba = (mkDeployNode "jabba" {sshUser = "ceedrich";});
       jarjar = mkDeployNode "jarjar" {sshUser = "ceedrich";};
     };
   };

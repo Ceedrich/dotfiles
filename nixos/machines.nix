@@ -49,6 +49,8 @@ in {
       deluge.subdomains = ["deluge"];
       homepage-dashboard.subdomains = ["home" "dashboard"];
       jellyfin.subdomains = ["jellyfin" "cediflix" "flix"];
+      pihole.subdomains = ["pihole"];
+      uptime-kuma.subdomains = ["uptime-kuma" "uptime" "up"];
     };
   };
 
@@ -59,8 +61,6 @@ in {
       ipv6 = "fd7a:115c:a1e0::1301:a524";
     };
     services = {
-      pihole.subdomains = ["pihole"];
-      uptime-kuma.subdomains = ["uptime-kuma" "uptime" "up"];
       minecraft.subdomains = ["minecraft" "mc"];
     };
   };
