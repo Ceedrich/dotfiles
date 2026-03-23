@@ -3,7 +3,10 @@
 
   inputs = {
     musnix.url = "github:musnix/musnix";
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
+    wrappers.url = "github:Lassulus/wrappers";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
     disko = {
       url = "github:nix-community/disko";
@@ -37,6 +40,7 @@
         ./packages
         ./hosts
         ./overlay.nix
+        ./modules/foot
       ];
     });
 }

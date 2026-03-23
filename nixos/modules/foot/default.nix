@@ -1,0 +1,62 @@
+{
+  inputs,
+  self,
+  ...
+}: {
+  flake.wrapperModules.foot = {
+    lib,
+    config,
+    ...
+  }: let
+    iniFmt = config.pkgs.formats.iniWithGlobalSection {
+      # from https://github.com/NixOS/nixpkgs/blob/89f10dc1a8b59ba63f150a08f8cf67b0f6a2583e/nixos/modules/programs/foot/default.nix#L11-L29
+      listsAsDuplicateKeys = true;
+      mkKeyValue = with lib.generators;
+        mkKeyValueDefault {
+          mkValueString = v:
+            mkValueStringDefault {} (
+              if v == true
+              then "yes"
+              else if v == false
+              then "no"
+              else if v == null
+              then "none"
+              else v
+            );
+        } "=";
+    };
+  in {
+    options = {
+      extraConfig = lib.mkOption {
+        type = lib.types.lines;
+        default = '''';
+      };
+    };
+    config = {
+      "foot.ini".content =
+        (builtins.readFile (iniFmt.generate "foot.ini" {
+          globalSection = lib.filterAttrs (name: value: builtins.typeOf value != "set") config.settings;
+          sections = lib.filterAttrs (name: value: builtins.typeOf value == "set") config.settings;
+        }))
+        + config.extraConfig;
+    };
+  };
+
+  perSystem = {pkgs, ...}: {
+    packages.foot =
+      (inputs.wrappers.wrapperModules.foot.apply {
+        inherit pkgs;
+        imports = [self.wrapperModules.foot];
+        settings = {
+          main = {
+            font = "JetBrains Mono Nerd Font:size=14";
+          };
+          key-bindings = {
+            scrollback-up-half-page = "Control+Shift+k";
+            scrollback-down-half-page = "Control+Shift+j";
+          };
+        };
+        extraConfig = builtins.readFile "${inputs.catppuccin.packages.${pkgs.stdenv.hostPlatform.system}.foot}/catppuccin-mocha.ini";
+      }).wrapper;
+  };
+}
