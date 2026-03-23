@@ -11,7 +11,7 @@
     ];
     text = ''
       set -eo pipefail
-      pushd ~/dotfiles/nixos/
+      pushd ~/dotfiles
       trap popd exit
 
       alejandra . &>/dev/null || true

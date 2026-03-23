@@ -34,6 +34,7 @@
     packages.wlr-which-key =
       (self.wrapperModules.wlr-which-key.apply {
         inherit pkgs;
+        extraPackages = [self'.packages.rofi-file-picker];
         settings = {
           font = "JetBrainsMono Nerd Font 16";
           background = config.catppuccin.colors.base-90.hex;
