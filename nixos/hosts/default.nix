@@ -21,8 +21,7 @@
           };
           modules =
             [
-              {nixpkgs.overlays = [self.overlays.default];}
-              ../nixpkgs-issue-55674.nix
+              self.nixosModules.base
               ../nixosModules
               ../hosts/_common
               ../hosts/${hostname}/configuration.nix
@@ -34,9 +33,9 @@
                 home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = {inherit selfpkgs;};
                 home-manager.sharedModules = [
-                  ../nixpkgs-issue-55674.nix
-                  ../homemanagerModules
+                  self.homeModules.nixpkgs-issue-55674
                   inputs.catppuccin.homeModules.catppuccin
+                  ../homemanagerModules
                 ];
                 home-manager.users = inputs.nixpkgs.lib.genAttrs users (user: {
                   imports = [
