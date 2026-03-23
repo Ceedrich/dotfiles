@@ -26,7 +26,7 @@
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     ceedrichVim.url = "github:Ceedrich/neovim-config";
     catppuccin = {
-      url = "github:catppuccin/nix/release-25.05";
+      url = "github:catppuccin/nix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
