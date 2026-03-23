@@ -25,10 +25,7 @@ in {
     };
     launcher = lib.mkOption {
       type = types.str;
-      default =
-        if config.programs.wlr-which-key.enable
-        then "wlr-which-key"
-        else "rofi -show drun -show-icons";
+      default = "${lib.getExe selfpkgs.launcher}";
     };
     autostart = lib.mkOption {
       type = types.listOf types.str;

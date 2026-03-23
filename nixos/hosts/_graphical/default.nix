@@ -55,6 +55,7 @@ in {
       audacity
       libnotify
       selfpkgs.test-icons
+      selfpkgs.launcher
       blender-hip
       poppler-utils
       pkgs-unstable.hyprshutdown
@@ -85,7 +86,6 @@ in {
 
     programs = {
       hyprland.enable = mkDefault true;
-      wlr-which-key.enable = mkDefault true;
       hyprlock.enable = mkDefault true;
       thunderbird.enable = mkDefault true;
       zathura.enable = mkDefault true;
