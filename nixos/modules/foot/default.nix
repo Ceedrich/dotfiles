@@ -55,9 +55,6 @@
             scrollback-up-half-page = "Control+Shift+k";
             scrollback-down-half-page = "Control+Shift+j";
           };
-          cursor = {
-            style = "beam";
-          };
         };
         extraConfig = builtins.readFile "${inputs.catppuccin.packages.${pkgs.stdenv.hostPlatform.system}.foot}/catppuccin-mocha.ini";
       }).wrapper;
