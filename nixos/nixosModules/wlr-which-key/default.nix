@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  ceedrichPkgs,
+  selfpkgs,
   ...
 }: let
   cfg = config.programs.wlr-which-key;
@@ -12,7 +12,7 @@ in {
     package = lib.mkPackageOption pkgs "wlr-which-key" {};
   };
   config = {
-    environment.systemPackages = [cfg.package ceedrichPkgs.rofi-file-picker];
+    environment.systemPackages = [cfg.package selfpkgs.rofi-file-picker];
     global-hm.config.xdg.configFile."wlr-which-key/config.yaml".source = let
       yaml = pkgs.formats.yaml {};
       colors = config.catppuccin.colors;
@@ -40,7 +40,7 @@ in {
           {
             key = "p";
             desc = "󰌾 Password Menu";
-            cmd = "${lib.getExe ceedrichPkgs.passmenu}";
+            cmd = "${lib.getExe selfpkgs.passmenu}";
           }
           {
             key = "w";

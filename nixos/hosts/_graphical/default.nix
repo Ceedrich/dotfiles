@@ -1,5 +1,5 @@
 {
-  ceedrichPkgs,
+  selfpkgs,
   inputs,
   lib,
   pkgs,
@@ -53,7 +53,7 @@ in {
       vlc
       audacity
       libnotify
-      ceedrichPkgs.test-icons
+      selfpkgs.test-icons
       blender-hip
       poppler-utils
       pkgs-unstable.hyprshutdown

@@ -3,6 +3,7 @@
   self,
   ...
 }: {
+  # adapted from https://github.com/Lassulus/wrappers/blob/0fe3161f35de2f7a4c894fdbaa1b681f5a62b617/modules/foot/module.nix
   flake.wrapperModules.foot = {
     lib,
     config,

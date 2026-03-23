@@ -1,5 +1,5 @@
 {
-  ceedrichPkgs,
+  selfpkgs,
   meta,
   pkgs,
   ...
@@ -16,8 +16,9 @@
   };
   # Packages / Programs
   environment.systemPackages = with pkgs; [
+    selfpkgs.terminal
     catppuccin-cursors.mochaMauve
-    ceedrichPkgs.rebuild-system
+    selfpkgs.rebuild-system
     fd
     file
     gnugrep

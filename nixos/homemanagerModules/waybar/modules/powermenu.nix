@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  ceedrichPkgs,
+  selfpkgs,
   ...
 }: let
   poweroff = "custom/powermenu-poweroff";
@@ -10,7 +10,7 @@
   reboot = "custom/powermenu-reboot";
   suspend = "custom/powermenu-suspend";
 
-  mkConfirm = label: cmd: ''${lib.getExe ceedrichPkgs.rofi-confirm-dialogue} "${label}" "${cmd}"'';
+  mkConfirm = label: cmd: ''${lib.getExe selfpkgs.rofi-confirm-dialogue} "${label}" "${cmd}"'';
   wb = config.programs.waybar;
   cfg = wb.modules.powermenu;
 

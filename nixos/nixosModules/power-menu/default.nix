@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  ceedrichPkgs,
+  selfpkgs,
   ...
 }: let
   cfg = config.programs.power-menu;
@@ -13,7 +13,7 @@ in {
       default = let
         commands = config.logoutCommands;
       in
-        ceedrichPkgs.power-menu.override {
+        selfpkgs.power-menu.override {
           lockCommand = commands.lock;
           logoutCommand = commands.logout;
           shutdownCommand = commands.shutdown;

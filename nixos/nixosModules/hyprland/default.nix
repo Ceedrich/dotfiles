@@ -93,8 +93,6 @@ in {
 
             "${mainMod}, Space, exec, ${launcher}"
 
-            # "${mainMod}, P, exec, ${lib.getExe ceedrichPkgs.passmenu}"
-
             "${mainMod}, h, movefocus, l"
             "${mainMod}, l, movefocus, r"
             "${mainMod}, k, movefocus, u"
