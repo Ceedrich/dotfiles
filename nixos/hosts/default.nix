@@ -8,11 +8,7 @@
   flake.nixosConfigurations = let
     system = "x86_64-linux";
   in
-    withSystem system ({
-      config,
-      inputs',
-      ...
-    }: let
+    withSystem system ({inputs', ...}: let
       selfpkgs = self.packages.${system};
       mkNixos = hostname: users:
         inputs.nixpkgs.lib.nixosSystem {

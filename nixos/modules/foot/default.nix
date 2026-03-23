@@ -43,7 +43,11 @@
     };
   };
 
-  perSystem = {pkgs, ...}: {
+  perSystem = {
+    pkgs,
+    inputs',
+    ...
+  }: {
     packages.foot =
       (inputs.wrappers.wrapperModules.foot.apply {
         inherit pkgs;
@@ -57,7 +61,7 @@
             scrollback-down-half-page = "Control+Shift+j";
           };
         };
-        extraConfig = builtins.readFile "${inputs.catppuccin.packages.${pkgs.stdenv.hostPlatform.system}.foot}/catppuccin-mocha.ini";
+        extraConfig = builtins.readFile "${inputs'.catppuccin.packages.foot}/catppuccin-mocha.ini";
       }).wrapper;
   };
 }
