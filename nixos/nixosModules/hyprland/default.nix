@@ -207,11 +207,11 @@ in {
         in
           [
             # Works from 0.53
-            # "opacity 0.7 0.6, match:class com\.mitchellh\.ghostty"
+            # "opacity 0.7 0.6, match:class foot"
             # "suppress_event maximize, match:class .*"
 
             # Up until 0.52
-            "opacity 0.7 0.6, class:com\.mitchellh\.ghostty"
+            "opacity 0.7 0.6, foot"
           ]
           # Works from 0.53
           # ++ (builtins.map (regex: "float on, match:class ${regex}") floating);
