@@ -40,6 +40,10 @@
           sections = lib.filterAttrs (name: value: builtins.typeOf value == "set") config.settings;
         }))
         + config.extraConfig;
+      filesToExclude = [
+        "share/applications/foot-server.desktop"
+        "share/applications/footclient.desktop"
+      ];
     };
   };
 
