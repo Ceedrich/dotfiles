@@ -16,8 +16,18 @@ in {
       };
   };
   config = lib.mkIf cfg.enable {
-    global-hm.config.services.hyprpolkitagent = {
-      inherit (cfg) package enable;
+    systemd.user.services.polkit-gnome-authentication-agent-1 = {
+      description = "Hyprland PolicyKit Agent";
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${cfg.package}/libexec/hyprpolkitagent";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
     };
   };
 }
