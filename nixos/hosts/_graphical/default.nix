@@ -83,7 +83,6 @@ in {
     };
 
     programs = {
-      ghostty.enable = mkDefault true;
       hyprland.enable = mkDefault true;
       wlr-which-key.enable = mkDefault true;
       hyprlock.enable = mkDefault true;

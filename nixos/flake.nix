@@ -5,9 +5,11 @@
     musnix.url = "github:musnix/musnix";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
-    wrappers.url = "github:Lassulus/wrappers";
 
+    wrappers.url = "github:Lassulus/wrappers";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,13 +36,15 @@
   };
 
   outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {inherit inputs;} ({...}: {
-      systems = ["x86_64-linux"];
-      imports = [
-        ./packages
-        ./hosts
-        ./overlay.nix
-        ./modules/foot
-      ];
-    });
+    flake-parts.lib.mkFlake {inherit inputs;} (
+      {...}: {
+        systems = ["x86_64-linux"];
+        imports = [
+          ./packages
+          ./hosts
+          ./overlay.nix
+          (inputs.import-tree ./modules)
+        ];
+      }
+    );
 }

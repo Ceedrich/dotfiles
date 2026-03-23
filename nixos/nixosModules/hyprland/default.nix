@@ -1,5 +1,5 @@
 {
-  ceedrichPkgs,
+  selfpkgs,
   config,
   lib,
   pkgs,
@@ -21,7 +21,7 @@ in {
     };
     terminal = lib.mkOption {
       type = types.str;
-      default = "${config.programs.ghostty.package}/bin/ghostty";
+      default = "${lib.getExe selfpkgs.terminal}";
     };
     launcher = lib.mkOption {
       type = types.str;

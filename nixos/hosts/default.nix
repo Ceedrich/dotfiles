@@ -14,12 +14,13 @@
       ...
     }: let
       ceedrichPkgs = config.packages;
+      selfpkgs = self.packages.${system};
       mkNixos = hostname: users:
         inputs.nixpkgs.lib.nixosSystem {
           specialArgs = let
             pkgs-unstable = import inputs.nixpkgs-unstable {inherit system;};
           in {
-            inherit inputs inputs';
+            inherit inputs inputs' selfpkgs;
             inherit ceedrichPkgs;
             inherit pkgs-unstable;
             meta = {inherit hostname;};
@@ -37,7 +38,7 @@
               {
                 home-manager.useGlobalPkgs = false;
                 home-manager.useUserPackages = true;
-                home-manager.extraSpecialArgs = {inherit ceedrichPkgs;};
+                home-manager.extraSpecialArgs = {inherit ceedrichPkgs selfpkgs;};
                 home-manager.sharedModules = [
                   ../nixpkgs-issue-55674.nix
                   ../homemanagerModules

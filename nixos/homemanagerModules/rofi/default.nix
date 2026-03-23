@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  selfpkgs,
   ...
 }: let
   cfg = config.programs.rofi;
@@ -13,7 +14,7 @@ in {
         rofi-nerdy
         rofi-games
       ];
-      terminal = "${pkgs.ghostty}/bin/ghostty";
+      terminal = "${lib.getExe selfpkgs.terminal}";
       extraConfig = {
         kb-row-down = "Down,Control+j";
         kb-row-up = "Up,Control+k";
