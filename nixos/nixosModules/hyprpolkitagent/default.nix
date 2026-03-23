@@ -16,6 +16,7 @@ in {
       };
   };
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = [cfg.package];
     systemd.user.services."hyprpolkitagent".enable = true;
   };
 }
