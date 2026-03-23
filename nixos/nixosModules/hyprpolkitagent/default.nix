@@ -16,7 +16,7 @@ in {
       };
   };
   config = lib.mkIf cfg.enable {
-    systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    systemd.user.services."hyprpolkitagent" = {
       description = "Hyprland PolicyKit Agent";
       wantedBy = ["graphical-session.target"];
       wants = ["graphical-session.target"];
