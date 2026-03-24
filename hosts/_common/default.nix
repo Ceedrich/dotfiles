@@ -13,6 +13,8 @@
     dev = "nix develop --command zsh";
     v = "nvim";
     vimdiff = "nvim -d";
+    cp = "cp -vb";
+    mv = "mv -vb";
   };
   # Packages / Programs
   environment.systemPackages = with pkgs; [
