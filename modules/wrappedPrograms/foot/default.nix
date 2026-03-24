@@ -59,6 +59,7 @@
         settings = {
           main = {
             font = "JetBrains Mono Nerd Font:size=14";
+            title = "Terminal";
           };
           key-bindings = {
             scrollback-up-half-page = "Control+Shift+k";

@@ -13,26 +13,28 @@ in {
     inputs.spicetify-nix.nixosModules.default
   ];
   config = {
-    global-hm.config = {
-      programs.brave.enable = true;
-      programs.waybar = {
-        enable = mkDefault true;
-        modules = {
-          window.enable = false;
+    home-manager.sharedModules = [
+      {
+        programs.brave.enable = true;
+        programs.waybar = {
+          enable = mkDefault true;
+          modules = {
+            window.enable = false;
+          };
         };
-      };
-      vpn.epfl = true;
+        vpn.epfl = true;
 
-      services.owncloud-client.enable = true;
+        services.owncloud-client.enable = true;
 
-      xdg.userDirs = {
-        enable = true;
-        createDirectories = true;
-        desktop = null;
-        publicShare = null;
-        music = null;
-      };
-    };
+        xdg.userDirs = {
+          enable = true;
+          createDirectories = true;
+          desktop = null;
+          publicShare = null;
+          music = null;
+        };
+      }
+    ];
 
     xdg.mime.defaultApplications = let
       browser = "librewolf.desktop";

@@ -104,27 +104,29 @@
 
   console.keyMap = "sg";
 
-  global-hm.config = {
-    settings.theming.enable = true;
-    programs = {
-      # yazi.enable = true;
-      tmux.enable = true;
+  home-manager.sharedModules = [
+    {
+      settings.theming.enable = true;
+      programs = {
+        # yazi.enable = true;
+        tmux.enable = true;
 
-      bash.enable = true;
-      # zsh = {
-      #   enable = true;
-      #   integrations.enable = true;
-      # };
+        bash.enable = true;
+        # zsh = {
+        #   enable = true;
+        #   integrations.enable = true;
+        # };
 
-      git = {
-        enable = true;
-        settings.user = {
-          name = "Cedric Lehr";
-          email = "info@ceedri.ch";
+        git = {
+          enable = true;
+          settings.user = {
+            name = "Cedric Lehr";
+            email = "info@ceedri.ch";
+          };
         };
       };
-    };
-  };
+    }
+  ];
 
   services.tailscale = {
     enable = true;

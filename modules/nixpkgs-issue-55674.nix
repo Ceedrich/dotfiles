@@ -16,5 +16,4 @@
   };
 in {
   flake.nixosModules.nixpkgs-issue-55674 = module;
-  flake.homeModules.nixpkgs-issue-55674 = module;
 }

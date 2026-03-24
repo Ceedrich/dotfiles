@@ -11,10 +11,13 @@ in {
       enable = lib.mkEnableOption "Tailscale tray";
     };
   };
-  config = lib.mkIf cfg.enable {
-    global-hm.config.services.tailscale-systray = {
-      enable = tray.enable;
-      package = cfg.package;
-    };
-  };
+  config.
+    home-manager.sharedModules = lib.mkIf cfg.enable [
+    {
+      services.tailscale-systray = {
+        enable = tray.enable;
+        package = cfg.package;
+      };
+    }
+  ];
 }

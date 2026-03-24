@@ -1,5 +1,4 @@
 {
-  selfpkgs,
   config,
   lib,
   pkgs,
@@ -11,6 +10,7 @@ in {
     ./hyprbars.nix
     ./swaync.nix
     ./screenshots.nix
+    ./binds.nix
   ];
   options.programs.hyprland = let
     types = lib.types;
@@ -18,14 +18,6 @@ in {
     mainMod = lib.mkOption {
       type = types.str;
       default = "SUPER";
-    };
-    terminal = lib.mkOption {
-      type = types.str;
-      default = "${lib.getExe selfpkgs.terminal}";
-    };
-    launcher = lib.mkOption {
-      type = types.str;
-      default = "${lib.getExe selfpkgs.launcher}";
     };
     autostart = lib.mkOption {
       type = types.listOf types.str;
@@ -54,170 +46,104 @@ in {
       xwayland.enable = true;
     };
 
-    global-hm.config.wayland.windowManager.hyprland = {
-      enable = true;
-      systemd.enableXdgAutostart = true;
-      plugins = with pkgs.hyprlandPlugins; [
-        xtra-dispatchers
-      ];
-      settings = let
-        inherit
-          (cfg)
-          mainMod
-          terminal
-          launcher
-          autostart
-          ;
-      in {
-        # plugin.overview = {
-        #   showEmptyWorkspace = true;
-        #   showNewWorkspace = false;
-        # };
+    home-manager.sharedModules = [
+      {
+        wayland.windowManager.hyprland = {
+          enable = true;
+          systemd.enableXdgAutostart = true;
+          plugins = with pkgs.hyprlandPlugins; [
+            xtra-dispatchers
+          ];
+          settings = let
+            inherit (cfg) autostart;
+          in {
+            exec-once = autostart;
 
-        exec-once = autostart;
+            # Input
+            input = {
+              kb_layout = "us";
+              kb_variant = "altgr-intl";
+              follow_mouse = 1;
+              touchpad = {
+                scroll_factor = 0.2;
+                natural_scroll = true;
+              };
+            };
 
-        # Bindings
-        bind = let
-          wpctl = "${pkgs.wireplumber}/bin/wpctl";
-          brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-        in
-          [
-            "${mainMod}, return, exec, ${terminal}"
-            "${mainMod}, Q, killactive"
+            general = {
+              resize_on_border = true;
+            };
 
-            "${mainMod}, T, togglefloating"
-            "${mainMod}, F, fullscreen"
+            gestures = {
+              workspace_swipe_distance = 200;
+            };
 
-            "${mainMod}, Space, exec, ${launcher}"
+            gesture = [
+              "3, up, dispatcher, exec, if pgrep rofi; then pkill rofi; else rofi -show drun -theme drawer; fi"
+              "3, horizontal, workspace"
+            ];
 
-            "${mainMod}, h, movefocus, l"
-            "${mainMod}, l, movefocus, r"
-            "${mainMod}, k, movefocus, u"
-            "${mainMod}, j, movefocus, d"
+            # Animation
+            animation = [
+              "workspaces, 1, 2, default"
+              "windows, 1, 1, default, popin 90%"
+              "fade, 1, 0.5, default"
+            ];
 
-            "${mainMod} SHIFT, h, movewindow, l"
-            "${mainMod} SHIFT, l, movewindow, r"
-            "${mainMod} SHIFT, k, movewindow, u"
-            "${mainMod} SHIFT, j, movewindow, d"
+            decoration = {
+              rounding = 8;
+              dim_special = 0.6;
+            };
 
-            "${mainMod}, 1, workspace, 1"
-            "${mainMod}, 2, workspace, 2"
-            "${mainMod}, 3, workspace, 3"
-            "${mainMod}, 4, workspace, 4"
-            "${mainMod}, 5, workspace, 5"
-            "${mainMod}, 6, workspace, 6"
-            "${mainMod}, 7, workspace, 7"
-            "${mainMod}, 8, workspace, 8"
-            "${mainMod}, 9, workspace, 9"
-            "${mainMod}, 0, workspace, 10"
+            misc = {
+              force_default_wallpaper = false;
+              disable_hyprland_logo = true;
+            };
 
-            "${mainMod} SHIFT, 1, movetoworkspace, 1"
-            "${mainMod} SHIFT, 2, movetoworkspace, 2"
-            "${mainMod} SHIFT, 3, movetoworkspace, 3"
-            "${mainMod} SHIFT, 4, movetoworkspace, 4"
-            "${mainMod} SHIFT, 5, movetoworkspace, 5"
-            "${mainMod} SHIFT, 6, movetoworkspace, 6"
-            "${mainMod} SHIFT, 7, movetoworkspace, 7"
-            "${mainMod} SHIFT, 8, movetoworkspace, 8"
-            "${mainMod} SHIFT, 9, movetoworkspace, 9"
-            "${mainMod} SHIFT, 0, movetoworkspace, 10"
+            layerrule = [
+              "noanim, ^rofi$"
+              "animation slide, ^cshell.*$"
+            ];
+            windowrule = let
+              floatingClass = [
+                "org.pulseaudio.pavucontrol"
+                ".blueman-manager-wrapped"
+                "nm-connection-editor"
+              ];
+              floatingTitle = [
+                "Open File"
+                "Open"
+                "Save"
+                "Save File"
+                "Save As"
+                "Export"
+                "Picture-in-Picture"
+                "Import"
+                "Choose File"
+                "Rename"
+                "This page wants to save"
+              ];
+            in
+              [
+                # Works from 0.53
+                # "opacity 0.7 0.6, match:class foot"
+                # "suppress_event maximize, match:class .*"
 
-            ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
-            ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 10%+"
-            ", XF86AudioLowerVolume, exec, ${wpctl} set-volume -l 0.0 @DEFAULT_AUDIO_SINK@ 10%-"
-            ", XF86MonBrightnessDown, exec, ${brightnessctl} -q s 10%-"
-            ", XF86MonBrightnessUp, exec, ${brightnessctl} -q s +10%"
-          ]
-          ++ lib.optional config.services.clipboard.enable "${mainMod}, V, exec, cliphist list | rofi -dmenu -i -p 'Clipboard' -display-columns 2 | cliphist decode | wl-copy";
-
-        bindm = [
-          "${mainMod}, mouse:272, movewindow"
-          "${mainMod}, mouse:273, resizewindow"
-        ];
-
-        # Input
-        input = {
-          kb_layout = "us";
-          kb_variant = "altgr-intl";
-          follow_mouse = 1;
-          touchpad = {
-            scroll_factor = 0.2;
-            natural_scroll = true;
+                # Up until 0.52
+                "opacity 0.7 0.6, class:foot"
+              ]
+              # Works from 0.53
+              # ++ (builtins.map (regex: "float on, match:class ${regex}") floating);
+              # Up until 0.52
+              ++ [
+                "float, center, class:([Xx]dg-desktop-portal-[a-zA-z0-9]*)"
+              ]
+              ++ (builtins.map (regex: "float, title:^${regex}$") floatingTitle)
+              ++ (builtins.map (regex: "float, class:${regex}") floatingClass);
           };
         };
-
-        general = {
-          resize_on_border = true;
-        };
-
-        gestures = {
-          workspace_swipe_distance = 200;
-        };
-
-        gesture = [
-          "3, up, dispatcher, exec, if pgrep rofi; then pkill rofi; else rofi -show drun -theme drawer; fi"
-          "3, horizontal, workspace"
-        ];
-
-        # Animation
-        animation = [
-          "workspaces, 1, 2, default"
-          "windows, 1, 1, default, popin 90%"
-          "fade, 1, 0.5, default"
-        ];
-
-        decoration = {
-          rounding = 8;
-          dim_special = 0.6;
-        };
-
-        misc = {
-          force_default_wallpaper = false;
-          disable_hyprland_logo = true;
-        };
-
-        layerrule = [
-          "noanim, ^rofi$"
-          "animation slide, ^cshell.*$"
-        ];
-        windowrule = let
-          floatingClass = [
-            "org.pulseaudio.pavucontrol"
-            ".blueman-manager-wrapped"
-            "nm-connection-editor"
-          ];
-          floatingTitle = [
-            "Open File"
-            "Open"
-            "Save"
-            "Save File"
-            "Save As"
-            "Export"
-            "Picture-in-Picture"
-            "Import"
-            "Choose File"
-            "Rename"
-            "This page wants to save"
-          ];
-        in
-          [
-            # Works from 0.53
-            # "opacity 0.7 0.6, match:class foot"
-            # "suppress_event maximize, match:class .*"
-
-            # Up until 0.52
-            "opacity 0.7 0.6, class:foot"
-          ]
-          # Works from 0.53
-          # ++ (builtins.map (regex: "float on, match:class ${regex}") floating);
-          # Up until 0.52
-          ++ [
-            "float, center, class:([Xx]dg-desktop-portal-[a-zA-z0-9]*)"
-          ]
-          ++ (builtins.map (regex: "float, title:^${regex}$") floatingTitle)
-          ++ (builtins.map (regex: "float, class:${regex}") floatingClass);
-      };
-    };
+      }
+    ];
 
     environment.sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";

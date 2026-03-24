@@ -9,10 +9,10 @@ in {
     enable = lib.mkEnableOption "Clipboard";
   };
 
-  config = lib.mkIf cfg.enable {
-    global-hm.config = {
+  config.home-manager.sharedModules = lib.mkIf cfg.enable [
+    {
       services.cliphist.enable = true;
       services.wl-clip-persist.enable = true;
-    };
-  };
+    }
+  ];
 }

@@ -17,7 +17,11 @@
   services.mpvpaper.enable = false;
   services.hyprpaper.enable = true;
 
-  global-hm.config.wayland.windowManager.hyprland.extraConfig = "monitor = , preferred, auto, 1";
+  home-manager.sharedModules = [
+    {
+      wayland.windowManager.hyprland.extraConfig = "monitor = , preferred, auto, 1";
+    }
+  ];
 
   environment.systemPackages = with pkgs; [
     discord

@@ -29,11 +29,10 @@
               inputs.catppuccin.nixosModules.catppuccin
               inputs.nix-flatpak.nixosModules.nix-flatpak
               {
-                home-manager.useGlobalPkgs = false;
+                home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = {inherit selfpkgs;};
                 home-manager.sharedModules = [
-                  self.homeModules.nixpkgs-issue-55674
                   inputs.catppuccin.homeModules.catppuccin
                   ../homemanagerModules
                 ];
@@ -46,7 +45,6 @@
                     }
                   ];
                 });
-                global-hm.users = users;
               }
             ]
             ++ builtins.map (user: ../users/${user}) users;

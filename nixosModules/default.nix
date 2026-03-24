@@ -7,7 +7,6 @@
     ./eza
     ./firefox
     ./catppuccin.nix
-    ./globalHM.nix
     ./homelab
     ./homepage
     ./hypridle
