@@ -14,17 +14,27 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.hyprland.extra-packages = [cfg.hyprshotPackage];
-    global-hm.config.wayland.windowManager.hyprland = let
-      # TODO: replace with home-manager config `xdg.userDirs.pictures`
-      screenshotCommand = "${lib.getExe cfg.hyprshotPackage} -o ~/Pictures/Screenshots";
-    in {
-      settings.bind = [
-        ", PRINT, exec, ${screenshotCommand} -m region"
-        "${hl.mainMod}, S, exec, ${screenshotCommand} -m region"
 
-        "SHIFT, PRINT, exec, ${screenshotCommand} -m window"
-        "${hl.mainMod} SHIFT, S, exec, ${screenshotCommand} -m window"
-      ];
-    };
+    home-manager.sharedModules = [
+      (args: {
+        wayland.windowManager.hyprland = let
+          # TODO: replace with home-manager config `xdg.userDirs.pictures`
+          xdgPictures = args.config.xdg.userDirs.pictures;
+          pictureDir =
+            if xdgPictures != null
+            then xdgPictures
+            else "$HOME/Pictures/";
+          screenshotCommand = "${lib.getExe cfg.hyprshotPackage} -o ${pictureDir}/Screenshots";
+        in {
+          settings.bind = [
+            ", PRINT, exec, ${screenshotCommand} -m region"
+            "${hl.mainMod}, S, exec, ${screenshotCommand} -m region"
+
+            "SHIFT, PRINT, exec, ${screenshotCommand} -m window"
+            "${hl.mainMod} SHIFT, S, exec, ${screenshotCommand} -m window"
+          ];
+        };
+      })
+    ];
   };
 }

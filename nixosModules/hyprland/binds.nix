@@ -48,10 +48,17 @@ in {
         ", XF86MonBrightnessUp, exec, ${brightnessctl} -q s +10%"
       ])
       # Workspaces
-      ++ (lib.pipe (lib.genList (i: builtins.toString (i + 1)) 10) [
-        (lib.map (i: [
-          "${mainMod}, ${i}, workspace, ${i}"
-          "${mainMod} SHIFT, ${i}, movetoworkspace, ${i}"
+      ++ (lib.pipe (lib.genList (i: {
+          key = toString (lib.mod (i + 1) 10);
+          ws = toString (i + 1);
+        })
+        10) [
+        (lib.map ({
+          key,
+          ws,
+        }: [
+          "${mainMod}, ${key}, workspace, ${ws}"
+          "${mainMod} SHIFT, ${key}, movetoworkspace, ${ws}"
         ]))
         lib.flatten
       ]);
