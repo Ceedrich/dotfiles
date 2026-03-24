@@ -1,5 +1,4 @@
 {
-  selfpkgs,
   config,
   lib,
   pkgs,
@@ -11,6 +10,7 @@ in {
     ./hyprbars.nix
     ./swaync.nix
     ./screenshots.nix
+    ./binds.nix
   ];
   options.programs.hyprland = let
     types = lib.types;
@@ -18,14 +18,6 @@ in {
     mainMod = lib.mkOption {
       type = types.str;
       default = "SUPER";
-    };
-    terminal = lib.mkOption {
-      type = types.str;
-      default = "${lib.getExe selfpkgs.terminal}";
-    };
-    launcher = lib.mkOption {
-      type = types.str;
-      default = "${lib.getExe selfpkgs.launcher}";
     };
     autostart = lib.mkOption {
       type = types.listOf types.str;
@@ -61,79 +53,9 @@ in {
         xtra-dispatchers
       ];
       settings = let
-        inherit
-          (cfg)
-          mainMod
-          terminal
-          launcher
-          autostart
-          ;
+        inherit (cfg) autostart;
       in {
-        # plugin.overview = {
-        #   showEmptyWorkspace = true;
-        #   showNewWorkspace = false;
-        # };
-
         exec-once = autostart;
-
-        # Bindings
-        bind = let
-          wpctl = "${pkgs.wireplumber}/bin/wpctl";
-          brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-        in
-          [
-            "${mainMod}, return, exec, ${terminal}"
-            "${mainMod}, Q, killactive"
-
-            "${mainMod}, T, togglefloating"
-            "${mainMod}, F, fullscreen"
-
-            "${mainMod}, Space, exec, ${launcher}"
-
-            "${mainMod}, h, movefocus, l"
-            "${mainMod}, l, movefocus, r"
-            "${mainMod}, k, movefocus, u"
-            "${mainMod}, j, movefocus, d"
-
-            "${mainMod} SHIFT, h, movewindow, l"
-            "${mainMod} SHIFT, l, movewindow, r"
-            "${mainMod} SHIFT, k, movewindow, u"
-            "${mainMod} SHIFT, j, movewindow, d"
-
-            "${mainMod}, 1, workspace, 1"
-            "${mainMod}, 2, workspace, 2"
-            "${mainMod}, 3, workspace, 3"
-            "${mainMod}, 4, workspace, 4"
-            "${mainMod}, 5, workspace, 5"
-            "${mainMod}, 6, workspace, 6"
-            "${mainMod}, 7, workspace, 7"
-            "${mainMod}, 8, workspace, 8"
-            "${mainMod}, 9, workspace, 9"
-            "${mainMod}, 0, workspace, 10"
-
-            "${mainMod} SHIFT, 1, movetoworkspace, 1"
-            "${mainMod} SHIFT, 2, movetoworkspace, 2"
-            "${mainMod} SHIFT, 3, movetoworkspace, 3"
-            "${mainMod} SHIFT, 4, movetoworkspace, 4"
-            "${mainMod} SHIFT, 5, movetoworkspace, 5"
-            "${mainMod} SHIFT, 6, movetoworkspace, 6"
-            "${mainMod} SHIFT, 7, movetoworkspace, 7"
-            "${mainMod} SHIFT, 8, movetoworkspace, 8"
-            "${mainMod} SHIFT, 9, movetoworkspace, 9"
-            "${mainMod} SHIFT, 0, movetoworkspace, 10"
-
-            ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
-            ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 10%+"
-            ", XF86AudioLowerVolume, exec, ${wpctl} set-volume -l 0.0 @DEFAULT_AUDIO_SINK@ 10%-"
-            ", XF86MonBrightnessDown, exec, ${brightnessctl} -q s 10%-"
-            ", XF86MonBrightnessUp, exec, ${brightnessctl} -q s +10%"
-          ]
-          ++ lib.optional config.services.clipboard.enable "${mainMod}, V, exec, cliphist list | rofi -dmenu -i -p 'Clipboard' -display-columns 2 | cliphist decode | wl-copy";
-
-        bindm = [
-          "${mainMod}, mouse:272, movewindow"
-          "${mainMod}, mouse:273, resizewindow"
-        ];
 
         # Input
         input = {
