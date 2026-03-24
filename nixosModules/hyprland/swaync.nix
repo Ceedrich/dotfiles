@@ -24,10 +24,14 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.hyprland.extra-packages = [cfg.package];
-    global-hm.config.wayland.windowManager.hyprland = {
-      settings.bind = [
-        "${hl.mainMod}, N, exec, swaync-client -t"
-      ];
-    };
+    home-manager.sharedModules = [
+      {
+        wayland.windowManager.hyprland = {
+          settings.bind = [
+            "${hl.mainMod}, N, exec, swaync-client -t"
+          ];
+        };
+      }
+    ];
   };
 }
