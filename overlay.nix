@@ -12,5 +12,6 @@
           ln -s $out/bin/rofi $out/bin/dmenu
         '';
     });
+    hyprshutdown = inputs.nixpkgs-unstable.legacyPackages.${system}.hyprshutdown;
   };
 }

@@ -4,7 +4,6 @@
   inputs',
   lib,
   pkgs,
-  pkgs-unstable,
   config,
   ...
 }: let
@@ -58,7 +57,7 @@ in {
       selfpkgs.launcher
       blender-hip
       poppler-utils
-      pkgs-unstable.hyprshutdown
+      hyprshutdown
       jellyfin-desktop
       wl-clipboard
       wlrctl
