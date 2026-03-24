@@ -53,7 +53,7 @@
             {
               key = "q";
               desc = "󰐥 Power Menu";
-              cmd = "${lib.getExe self'.packages.power-menu}";
+              cmd = "power-menu";
             }
             {
               key = "p";
