@@ -18,6 +18,7 @@
   };
   # Packages / Programs
   environment.systemPackages = with pkgs; [
+    cmatrix
     selfpkgs.terminal
     catppuccin-cursors.mochaMauve
     selfpkgs.rebuild-system
