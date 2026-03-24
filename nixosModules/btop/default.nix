@@ -14,11 +14,14 @@ in {
   in
     lib.mkIf cfg.enable {
       environment.systemPackages = [package];
-      global-hm.config.programs.btop = let
-      in {
-        enable = true;
-        package = null;
-        settings.vim_keys = true;
-      };
+      home-manager.sharedModules = [
+        {
+          programs.btop = {
+            enable = true;
+            package = null;
+            settings.vim_keys = true;
+          };
+        }
+      ];
     };
 }

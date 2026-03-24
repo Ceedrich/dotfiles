@@ -24,100 +24,105 @@ in {
     services.gvfs.enable = true; # See <https://github.com/NixOS/nixpkgs/issues/340623>
     environment.systemPackages = cfg.extraPackages;
 
-    global-hm.config.catppuccin.swaync.enable = false; # We set our custom theme
-    global-hm.config.services.swaync = {
-      enable = true;
-      package = cfg.package;
-      settings = let
-        close-swaync = "swaync-client -cp";
-      in {
-        "$schema" = "https://raw.githubusercontent.com/ErikReider/SwayNotificationCenter/refs/heads/main/src/configSchema.json";
-        control-center-height = -1;
-        control-center-margin-right = 16;
-        control-center-margin-top = 16;
-        control-center-positionY = "top";
-        fit-to-screen = false;
-        positionX = "right";
-        positionY = "top";
-        widget-config = {
-          backlight = {label = "󰛩";};
-          dnd = {text = "Do Not Disturb";};
-          buttons-grid = {
-            actions = [
-              {
-                label = "󰋽";
-                command = "${close-swaync}; ${lib.getExe pkgs.hyprsysteminfo}";
-              }
-              {
-                label = "󰈊";
-                command = "hyprpicker -aq";
-              }
-              {
-                label = "󰖩";
-                command = "${close-swaync}; nm-connection-editor";
-              }
-              {
-                label = "󰂯";
-                command = "${close-swaync}; blueman-manager";
-              }
+    home-manager.sharedModules = [
+      {
+        catppuccin.swaync.enable = false; # We set our custom theme
+
+        services.swaync = {
+          enable = true;
+          package = cfg.package;
+          settings = let
+            close-swaync = "swaync-client -cp";
+          in {
+            "$schema" = "https://raw.githubusercontent.com/ErikReider/SwayNotificationCenter/refs/heads/main/src/configSchema.json";
+            control-center-height = -1;
+            control-center-margin-right = 16;
+            control-center-margin-top = 16;
+            control-center-positionY = "top";
+            fit-to-screen = false;
+            positionX = "right";
+            positionY = "top";
+            widget-config = {
+              backlight = {label = "󰛩";};
+              dnd = {text = "Do Not Disturb";};
+              buttons-grid = {
+                actions = [
+                  {
+                    label = "󰋽";
+                    command = "${close-swaync}; ${lib.getExe pkgs.hyprsysteminfo}";
+                  }
+                  {
+                    label = "󰈊";
+                    command = "hyprpicker -aq";
+                  }
+                  {
+                    label = "󰖩";
+                    command = "${close-swaync}; nm-connection-editor";
+                  }
+                  {
+                    label = "󰂯";
+                    command = "${close-swaync}; blueman-manager";
+                  }
+                ];
+              };
+              menubar = {
+                "menu#power-buttons" = {
+                  actions = [
+                    {
+                      command = commands.reboot;
+                      label = "   Reboot";
+                    }
+                    {
+                      command = "${close-swaync}; ${commands.lock}";
+                      label = "   Lock";
+                    }
+                    {
+                      command = commands.logout;
+                      label = "   Logout";
+                    }
+                    {
+                      command = commands.shutdown;
+                      label = "   Shut down";
+                    }
+                  ];
+                  label = "";
+                  position = "right";
+                };
+              };
+              mpris = {
+                autohide = true;
+                blacklist = ["brave"];
+                loop-carousel = false;
+                show-album-art = "when-available";
+              };
+              title = {text = "Notifications";};
+              volume = {
+                empty-list-label = "No active apps";
+                label = "󰕾";
+                show-per-app = true;
+                show-per-app-label = true;
+              };
+            };
+            widgets = [
+              "menubar"
+              "buttons-grid"
+              "inhibitors"
+              "mpris"
+              "volume"
+              "backlight"
+              "title"
+              "dnd"
+              "notifications"
             ];
           };
-          menubar = {
-            "menu#power-buttons" = {
-              actions = [
-                {
-                  command = commands.reboot;
-                  label = "   Reboot";
-                }
-                {
-                  command = "${close-swaync}; ${commands.lock}";
-                  label = "   Lock";
-                }
-                {
-                  command = commands.logout;
-                  label = "   Logout";
-                }
-                {
-                  command = commands.shutdown;
-                  label = "   Shut down";
-                }
-              ];
-              label = "";
-              position = "right";
-            };
-          };
-          mpris = {
-            autohide = true;
-            blacklist = ["brave"];
-            loop-carousel = false;
-            show-album-art = "when-available";
-          };
-          title = {text = "Notifications";};
-          volume = {
-            empty-list-label = "No active apps";
-            label = "󰕾";
-            show-per-app = true;
-            show-per-app-label = true;
-          };
+          style = let
+            colors = lib.concatStringsSep "\n" (lib.mapAttrsToList (color: value: "@define-color ${color} ${value.hex};") config.catppuccin.colors);
+          in ''
+            ${colors}
+            ${lib.readFile ./style.css}
+          '';
         };
-        widgets = [
-          "menubar"
-          "buttons-grid"
-          "inhibitors"
-          "mpris"
-          "volume"
-          "backlight"
-          "title"
-          "dnd"
-          "notifications"
-        ];
-      };
-      style = let
-        colors = lib.concatStringsSep "\n" (lib.mapAttrsToList (color: value: "@define-color ${color} ${value.hex};") config.catppuccin.colors);
-      in ''
-        ${colors}
-        ${lib.readFile ./style.css}
-      '';
-    };
+      }
+    ];
   };
 }

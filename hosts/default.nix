@@ -46,7 +46,6 @@
                     }
                   ];
                 });
-                global-hm.users = users;
               }
             ]
             ++ builtins.map (user: ../users/${user}) users;
