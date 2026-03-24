@@ -9,8 +9,8 @@ in {
     enable = lib.mkEnableOption "Hyprpaper";
   };
 
-  config = lib.mkIf cfg.enable {
-    global-hm.config = {
+  config.home-manager.sharedModules = lib.mkIf cfg.enable [
+    {
       services.hyprpaper = {
         enable = true;
         settings = {
@@ -24,6 +24,6 @@ in {
           ];
         };
       };
-    };
-  };
+    }
+  ];
 }

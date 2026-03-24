@@ -10,9 +10,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    global-hm.config = {
-      services.cliphist.enable = true;
-      services.wl-clip-persist.enable = true;
-    };
+    home-manager.sharedModules = [
+      {
+        services.cliphist.enable = true;
+        services.wl-clip-persist.enable = true;
+      }
+    ];
   };
 }

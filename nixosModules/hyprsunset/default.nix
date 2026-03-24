@@ -11,20 +11,24 @@ in {
     package = lib.mkPackageOption pkgs "hyprsunset";
   };
   config = lib.mkIf cfg.enable {
-    global-hm.config.services.hyprsunset = {
-      enable = true;
-      settings = {
-        profile = [
-          {
-            time = "7:30";
-            identity = true;
-          }
-          {
-            time = "21:00";
-            temperature = 5000;
-          }
-        ];
-      };
-    };
+    home-manager.sharedModules = [
+      {
+        services.hyprsunset = {
+          enable = true;
+          settings = {
+            profile = [
+              {
+                time = "7:30";
+                identity = true;
+              }
+              {
+                time = "21:00";
+                temperature = 5000;
+              }
+            ];
+          };
+        };
+      }
+    ];
   };
 }

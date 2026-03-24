@@ -4,9 +4,11 @@
   pkgs,
   ...
 }: {
-  global-hm.config = {
-    xdg.mimeApps.defaultApplications = config.xdg.mime.defaultApplications;
-  };
+  home-manager.sharedModules = [
+    {
+      xdg.mimeApps.defaultApplications = config.xdg.mime.defaultApplications;
+    }
+  ];
 
   system.userActivationScripts = {
     xdg-setup = let

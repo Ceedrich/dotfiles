@@ -12,9 +12,13 @@ in {
     };
   };
   config = lib.mkIf cfg.enable {
-    global-hm.config.services.tailscale-systray = {
-      enable = tray.enable;
-      package = cfg.package;
-    };
+    home-manager.sharedModules = [
+      {
+        services.tailscale-systray = {
+          enable = tray.enable;
+          package = cfg.package;
+        };
+      }
+    ];
   };
 }
