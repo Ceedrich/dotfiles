@@ -39,7 +39,7 @@ info() {
 }
 
 rebuild() {
-  local host_branch gen
+  local current_branch host_branch gen
 
   pushd "$REPO" || fatal "Changing direcotry failed"
 
