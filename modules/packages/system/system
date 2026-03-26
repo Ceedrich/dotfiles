@@ -39,13 +39,14 @@ info() {
 }
 
 rebuild() {
-  local branch_name gen
+  local host_branch gen
 
   pushd "$REPO" || fatal "Changing direcotry failed"
 
-  branch_name="host/$(hostname)"
+  host_branch="host/$(hostname)"
+  current_branch="$(git branch --show-current)"
 
-  [[ "$(git branch --show-current)" =~ ^host\/[a-zA-Z]+$ ]] && fatal "You must not make changes on a host branch!"
+  [[ $current_branch =~ ^host\/[a-zA-Z]+$ ]] && fatal "You must not make changes on a host branch!"
 
   info "Fromatting..."
   format || fatal "Fromatting failed"
@@ -53,9 +54,12 @@ rebuild() {
   [[ -z "$(git diff --name-only)" ]] && [ -z "$(git diff --staged --name-only)" ] \
     || fatal "Commit your changes before rebuilding"
 
-  info "Changing to branch '$branch_name'"
-  git show-ref --verify --quiet "refs/heads/$branch_name" || git branch "$branch_name" # Make sure branch exists
-  git checkout --no-guess "$branch_name"
+  info "Changing to branch '$host_branch'"
+  git show-ref --verify --quiet "refs/heads/$host_branch" || git branch "$host_branch" # Make sure branch exists
+  git checkout --no-guess "$host_branch"
+
+  info "Merging $current_branch into $host_branch"
+  git merge "$current_branch"
 
   info "Building nix configuration"
   nixos-rebuild switch --flake . "$@" 2>&1 | tee nixos-switch.log >&2 || {
@@ -69,7 +73,7 @@ rebuild() {
   git add nixos-switch.log
   git commit -em "$gen"
   info "Pushing to remote repository"
-  git push -u origin "$branch_name"
+  git push -u origin "$host_branch"
 }
 
 format() {
