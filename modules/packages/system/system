@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -o pipefail
+
 PROGRAM_NAME=$(basename "$0")
 REPO=$HOME/dotfiles
 
