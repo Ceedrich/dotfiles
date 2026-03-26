@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+PROGRAM_NAME=$(basename "$0")
+REPO=$HOME/dotfiles
+
+BOLD=$'\e[1m'
+RED=$'\e[31m'
+RST=$'\e[0m'
+MAGENTA=$'\e[35m'
+
+main() {
+  case "$1" in 
+    rebuild) shift 1; rebuild "$@";;
+    *) usage; exit 1 ;;
+  esac
+}
+
+usage() {
+  cat << EOF
+usage: $PROGRAM_NAME <command>
+
+${BOLD}${MAGENTA}rebuild${RST}: $PROGRAM_NAME rebuild [options] -- [nixos-rebuild options]
+
+nixos-rebuild options: See ${MAGENTA}nixos-rebuild(8)${RST}
+
+EOF
+}
+
+fatal() {
+  echo "${RED}[FATAL]${RST}" "$@" >&2
+  exit 1
+}
+
+rebuild() {
+  local branch_name gen
+
+  branch_name="host/$(hostname)"
+  pushd "$REPO" || fatal "Changing direcotry failed"
+
+  format || fatal "Fromatting failed"
+
+  [[ -z "$(git diff --name-only)" ]] && [ -z "$(git diff --staged --name-only)" ] \
+    || fatal "Commit your changes before rebuilding"
+
+
+
+  git show-ref --verify --quiet "refs/heads/$branch_name" || git branch "$branch_name" # Make sure branch exists
+  git checkout --no-guess "$branch_name"
+
+  nixos-rebuild switch --flake . "$@" 2>&1 | tee nixos-switch.log >&2 || {
+    echo "Build failed!";
+    cat nixos-switch.log | grep --color -C 3 -E "error|warning"
+    exit 1
+  }
+
+  gen=$(nixos-rebuild list-generations | awk '$8 == "True" {print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 }')
+
+  git add nixos-switch.log
+  git commit -em "$gen"
+  git push -u origin "$branch_name"
+}
+
+format() {
+  alejandra . &>/dev/null
+}
+
+main "$@"
