@@ -57,6 +57,7 @@ in {
       libnotify
       selfpkgs.test-icons
       selfpkgs.launcher
+      selfpkgs.system
       blender-hip
       poppler-utils
       hyprshutdown
