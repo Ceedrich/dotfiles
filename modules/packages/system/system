@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+set -o pipefail
+
+PROGRAM_NAME=$(basename "$0")
+REPO=$HOME/dotfiles
+
+RST=$'\e[0m'
+BOLD=$'\e[1m'
+RED=$'\e[31m'
+GREEN=$'\e[32m'
+MAGENTA=$'\e[35m'
+
+main() {
+  case "$1" in 
+    rebuild) shift 1; rebuild "$@";;
+    *) usage; exit 1 ;;
+  esac
+}
+
+usage() {
+  cat << EOF
+usage: $PROGRAM_NAME <command>
+
+${BOLD}${MAGENTA}rebuild${RST}: $PROGRAM_NAME rebuild [options] -- [nixos-rebuild options]
+
+nixos-rebuild options: See ${MAGENTA}nixos-rebuild(8)${RST}
+
+EOF
+}
+
+fatal() {
+  echo "${RED}[FATAL]${RST}" "$@" >&2
+  exit 1
+}
+
+info() {
+  echo "${GREEN}[INFO]${RST}" "$@" >&2
+}
+
+rebuild() {
+  local current_branch host_branch gen
+
+  pushd "$REPO" || fatal "Changing direcotry failed"
+
+  host_branch="host/$(hostname)"
+  current_branch="$(git branch --show-current)"
+
+  [[ $current_branch =~ ^host\/[a-zA-Z]+$ ]] && fatal "You must not make changes on a host branch!"
+
+  info "Fromatting..."
+  format || fatal "Fromatting failed"
+
+  [[ -z "$(git diff --name-only)" ]] && [ -z "$(git diff --staged --name-only)" ] \
+    || fatal "Commit your changes before rebuilding"
+
+  info "Changing to branch '$host_branch'"
+  git show-ref --verify --quiet "refs/heads/$host_branch" || git branch "$host_branch" # Make sure branch exists
+  git checkout --no-guess "$host_branch"
+
+  #shellcheck disable=2064
+  trap "git checkout $current_branch" EXIT 
+
+  info "Merging $current_branch into $host_branch"
+  git merge --no-edit "$current_branch"
+
+  info "Building nix configuration"
+  nixos-rebuild switch --flake . "$@" 2>&1 | tee nixos-switch.log >&2 || {
+    echo "Build failed!";
+    cat nixos-switch.log | grep --color -C 3 -E "error|warning"
+    exit 1
+  }
+
+  gen=$(nixos-rebuild list-generations | awk '$8 == "True" {print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 }')
+
+  git add nixos-switch.log
+  git commit -em "$gen"
+  info "Pushing to remote repository"
+  git push -u origin "$host_branch"
+}
+
+format() {
+  alejandra . &>/dev/null
+}
+
+main "$@"
