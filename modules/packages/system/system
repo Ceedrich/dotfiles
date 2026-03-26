@@ -5,9 +5,10 @@ set -o pipefail
 PROGRAM_NAME=$(basename "$0")
 REPO=$HOME/dotfiles
 
+RST=$'\e[0m'
 BOLD=$'\e[1m'
 RED=$'\e[31m'
-RST=$'\e[0m'
+GREEN=$'\e[32m'
 MAGENTA=$'\e[35m'
 
 main() {
@@ -33,12 +34,17 @@ fatal() {
   exit 1
 }
 
+info() {
+  echo "${GREEN}[INFO]${RST}" "$@" >&2
+}
+
 rebuild() {
   local branch_name gen
 
   branch_name="host/$(hostname)"
   pushd "$REPO" || fatal "Changing direcotry failed"
 
+  info "Fromatting..."
   format || fatal "Fromatting failed"
 
   [[ -z "$(git diff --name-only)" ]] && [ -z "$(git diff --staged --name-only)" ] \
@@ -46,9 +52,11 @@ rebuild() {
 
 
 
+  info "Changing to branch '$branch_name'"
   git show-ref --verify --quiet "refs/heads/$branch_name" || git branch "$branch_name" # Make sure branch exists
   git checkout --no-guess "$branch_name"
 
+  info "Building nix configuration"
   nixos-rebuild switch --flake . "$@" 2>&1 | tee nixos-switch.log >&2 || {
     echo "Build failed!";
     cat nixos-switch.log | grep --color -C 3 -E "error|warning"
@@ -59,6 +67,7 @@ rebuild() {
 
   git add nixos-switch.log
   git commit -em "$gen"
+  info "Pushing to remote repository"
   git push -u origin "$branch_name"
 }
 
