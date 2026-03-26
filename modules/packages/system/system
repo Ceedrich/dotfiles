@@ -22,7 +22,9 @@ usage() {
   cat << EOF
 usage: $PROGRAM_NAME <command>
 
-${BOLD}${MAGENTA}rebuild${RST}: $PROGRAM_NAME rebuild [options] -- [nixos-rebuild options]
+${BOLD}COMMANDS${RST}:
+
+${BOLD}${MAGENTA}rebuild${RST}: $PROGRAM_NAME rebuild [nixos-rebuild options]
 
 nixos-rebuild options: See ${MAGENTA}nixos-rebuild(8)${RST}
 
