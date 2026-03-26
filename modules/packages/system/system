@@ -41,16 +41,17 @@ info() {
 rebuild() {
   local branch_name gen
 
-  branch_name="host/$(hostname)"
   pushd "$REPO" || fatal "Changing direcotry failed"
+
+  branch_name="host/$(hostname)"
+
+  [[ "$(git branch --show-current)" =~ ^host\/[a-zA-Z]+$ ]] && fatal "You must not make changes on a host branch!"
 
   info "Fromatting..."
   format || fatal "Fromatting failed"
 
   [[ -z "$(git diff --name-only)" ]] && [ -z "$(git diff --staged --name-only)" ] \
     || fatal "Commit your changes before rebuilding"
-
-
 
   info "Changing to branch '$branch_name'"
   git show-ref --verify --quiet "refs/heads/$branch_name" || git branch "$branch_name" # Make sure branch exists
