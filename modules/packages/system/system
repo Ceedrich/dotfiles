@@ -72,7 +72,6 @@ rebuild() {
 
   gen=$(nixos-rebuild list-generations | awk '$8 == "True" {print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 }')
 
-  git add nixos-switch.log
   git commit -em "$gen"
   info "Pushing to remote repository"
   git push -u origin "$host_branch"
