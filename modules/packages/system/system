@@ -58,8 +58,8 @@ rebuild() {
   git show-ref --verify --quiet "refs/heads/$host_branch" || git branch "$host_branch" # Make sure branch exists
   git checkout --no-guess "$host_branch"
 
-  #shellcheck disable=2064
-  trap "git checkout $current_branch" EXIT 
+  # #shellcheck disable=2064
+  # trap "git checkout $current_branch" EXIT 
 
   info "Merging $current_branch into $host_branch"
   git merge --no-edit "$current_branch"
