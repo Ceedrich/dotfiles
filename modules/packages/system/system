@@ -58,17 +58,16 @@ rebuild() {
   git show-ref --verify --quiet "refs/heads/$host_branch" || git branch "$host_branch" # Make sure branch exists
   git checkout --no-guess "$host_branch"
 
-  # #shellcheck disable=2064
-  # trap "git checkout $current_branch" EXIT 
+  #shellcheck disable=2064
+  trap "git checkout $current_branch" EXIT 
 
   info "Merging $current_branch into $host_branch"
   git merge --no-edit "$current_branch"
 
   info "Building nix configuration"
   nixos-rebuild switch --flake . "$@" 2>&1 | tee nixos-switch.log >&2 || {
-    echo "Build failed!";
     cat nixos-switch.log | grep --color -C 3 -E "error|warning"
-    exit 1
+    fatal "Build failed!" $'\n'"inspect the file nixos-switch.log for further information";
   }
 
   gen=$(nixos-rebuild list-generations | awk '$8 == "True" {print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 }')
