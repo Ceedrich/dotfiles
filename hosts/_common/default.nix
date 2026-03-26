@@ -21,7 +21,6 @@
     cmatrix
     selfpkgs.terminal
     catppuccin-cursors.mochaMauve
-    selfpkgs.rebuild-system
     dysk
     fd
     file
