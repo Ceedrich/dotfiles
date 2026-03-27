@@ -60,7 +60,7 @@
               segments = [
                 {
                   foreground = "p:blue";
-                  properties = {
+                  options = {
                     style = "full";
                     home_icon = "󰋜";
                   };
@@ -80,7 +80,7 @@
                 {
                   type = "git";
                   foreground = "p:subtext0";
-                  properties = {
+                  options = {
                     branch_icon = "";
                     fetch_status = true;
                   };
@@ -128,11 +128,11 @@
                 {
                   type = "text";
                   template = " ❯";
+                  style = "plain";
                   foreground_templates = [
                     "{{if gt .Code 0}}p:red{{end}}"
                     "{{if eq .Code 0}}p:blue{{end}}"
                   ];
-                  style = "plain";
                 }
               ];
             }
@@ -142,6 +142,7 @@
               final_space = true;
               segments = [
                 {
+                  style = "plain";
                   type = "status";
                   foreground = "p:red";
                   template = "<b>ERR{{ .Code }}</b> ";
@@ -149,11 +150,12 @@
                 {
                   type = "executiontime";
                   foreground = "p:yellow";
-                  properties = {threshold = 5000;};
+                  options = {threshold = 5000;};
                   style = "plain";
                   template = "<b>󰔟{{ .FormattedMs }}</b> ";
                 }
                 {
+                  style = "plain";
                   type = "text";
                   template = "{{ if .Env.IN_NIX_SHELL }}(<b><p:blue> nix-shell</></b>) {{end}}";
                 }
