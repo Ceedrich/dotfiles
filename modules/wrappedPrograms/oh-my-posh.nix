@@ -37,8 +37,8 @@
     };
     config = lib.mkIf cfg.enable {
       environment.systemPackages = [selfpkgs.oh-my-posh];
-      programs.bash.shellInit = "eval $(oh-my-posh init bash)";
-      programs.zsh.shellInit = "eval $(oh-my-posh init zsh)";
+      programs.bash.promptInit = "eval $(oh-my-posh init bash)";
+      programs.zsh.promptInit = "eval $(oh-my-posh init zsh)";
     };
   };
 
