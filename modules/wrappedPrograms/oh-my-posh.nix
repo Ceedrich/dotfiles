@@ -59,6 +59,12 @@
               alignment = "left";
               segments = [
                 {
+                  type = "session";
+                  style = "plain";
+                  foreground = "green";
+                  template = "{{ if .SSHSession }}{{ .UserName }}@{{ .HostName }} in {{ end }}";
+                }
+                {
                   foreground = "p:blue";
                   options = {
                     style = "full";
