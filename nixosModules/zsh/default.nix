@@ -39,7 +39,6 @@ in {
     };
 
     programs.starship = {
-      enable = mkDefault true;
       interactiveOnly = true;
       settings =
         lib.importTOML ./starship.toml

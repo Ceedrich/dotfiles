@@ -21,6 +21,7 @@
           };
           modules =
             [
+              self.nixosModules.oh-my-posh
               self.nixosModules.base
               ../nixosModules
               ../hosts/_common
