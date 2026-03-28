@@ -20,6 +20,19 @@ in {
 
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
           zstyle ':completion:*' menu select
+
+          function zle-keymap-select {
+            if [[ $KEYMAP == vicmd ]] ||
+              [[ $1 = 'block' ]]; then
+              echo -ne '\e[1 q'
+            elif [[ $KEYMAP == main ]] ||
+              [[ $KEYMAP == viins ]] ||
+              [[ $KEYMAP = "" ]] ||
+              [[ $1 = 'beam' ]]; then
+              echo -ne '\e[5 qd'
+            fi
+          }
+          zle -N zle-keymap-select
         '';
     };
 
