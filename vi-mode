@@ -1,0 +1,27 @@
+SHELL_VI_MODE=INSERT
+
+function set_poshcontext() {
+  export SHELL_VI_MODE
+}
+
+function update_vi_vars() {
+  notify-send "$KEYMAP"
+  case "$KEYMAP" in
+    vicmd) SHELL_VI_MODE=COMMAND ;;
+    viins|main) SHELL_VI_MODE=NORMAL ;;
+    visual) SHELL_VI_MODE=VISUAL ;;
+  esac
+}
+
+
+function update_posh_prompt() {
+  update_vi_vars
+
+  _omp_preexec
+  _omp_precmd
+}
+
+zle -N update_posh_prompt
+bindkey '^B' update_posh_prompt
+
+zle -N zle-keymap-select update_posh_prompt

@@ -38,13 +38,7 @@
     config = lib.mkIf cfg.enable {
       environment.systemPackages = [selfpkgs.oh-my-posh];
       programs.bash.promptInit = "eval $(oh-my-posh init bash)";
-      programs.zsh.promptInit = ''
-        eval $(oh-my-posh init zsh)
-        function set_poshcontext() {
-          export ZVM_MODE
-        }
-
-      '';
+      programs.zsh.promptInit = "eval $(oh-my-posh init zsh)";
     };
   };
 
@@ -136,11 +130,6 @@
                       {{ end }}
                       </>
                     '';
-                }
-                {
-                  type = "text";
-                  style = "plain";
-                  template = "{{ .Env.ZVM_MODE }}";
                 }
                 {
                   type = "text";
