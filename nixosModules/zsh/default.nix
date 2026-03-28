@@ -12,7 +12,7 @@ in {
       syntaxHighlighting.enable = mkDefault true;
       autosuggestions.enable = mkDefault true;
 
-      interactiveShellInit =
+      shellInit =
         # sh
         ''
           bindkey -v
