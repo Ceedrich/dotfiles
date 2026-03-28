@@ -63,8 +63,9 @@ rebuild() {
   #shellcheck disable=2064
   trap "git checkout $current_branch" EXIT 
 
-  info "Merging $current_branch into $host_branch"
-  git merge --no-edit "$current_branch"
+  info "Updating $host_branch from $current_branch"
+  git restore --source="$current_branch" --worktree --staged .
+  git commit -m "Update $host_branch from $current_branch"
 
   info "Building nix configuration"
   nixos-rebuild switch --flake . "$@" 2>&1 | tee nixos-switch.log >&2 || {
