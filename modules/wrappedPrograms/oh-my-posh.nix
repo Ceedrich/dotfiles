@@ -133,6 +133,11 @@
                 }
                 {
                   type = "text";
+                  style = "plain";
+                  template = "{{ .Env.ZVM_MODE }}";
+                }
+                {
+                  type = "text";
                   template = " ❯";
                   style = "plain";
                   foreground_templates = [
