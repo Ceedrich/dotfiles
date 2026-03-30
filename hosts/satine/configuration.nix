@@ -26,6 +26,7 @@
   environment.systemPackages = with pkgs; [
     discord
     snapshot
+    jetbrains.idea-oss
 
     # unity
     unityhub

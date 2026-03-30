@@ -22,6 +22,7 @@
   environment.systemPackages = with pkgs; [
     lact
     clinfo
+    jetbrains.idea-oss
 
     unityhub
     jetbrains.rider
