@@ -23,6 +23,7 @@
     lact
     clinfo
     jetbrains.idea-oss
+    jdk25
 
     unityhub
     jetbrains.rider
