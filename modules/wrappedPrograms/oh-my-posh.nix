@@ -82,6 +82,13 @@
                     {{ end }}
                   '';
                   type = "path";
+                  options."mapped_locations" = {
+                    "~/Downloads" = "󰉍";
+                    "~/Pictures" = "󰈟";
+                    "~/Videos" = "󰕧";
+                    "~/Repos" = "󰳐";
+                    "~/repos" = "󰳐";
+                  };
                 }
                 {
                   type = "git";
