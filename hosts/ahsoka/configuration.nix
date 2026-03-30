@@ -24,6 +24,7 @@
     clinfo
     jetbrains.idea-oss
     jdk25
+    prismlauncher
 
     unityhub
     jetbrains.rider
