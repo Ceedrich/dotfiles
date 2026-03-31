@@ -68,6 +68,7 @@ in {
       keepassxc
       gh
       nsxiv
+      inkscape
 
       # libreoffice
       libreoffice-qt
