@@ -61,8 +61,7 @@
                 {
                   type = "session";
                   style = "plain";
-                  foreground = "green";
-                  template = "{{ if .SSHSession }}{{ .UserName }}@{{ .HostName }} in {{ end }}";
+                  template = "{{ if .SSHSession }}<b><p:yellow>{{ .UserName }}@{{ .HostName }}</></b> in {{ end }}";
                 }
                 {
                   foreground = "p:blue";
