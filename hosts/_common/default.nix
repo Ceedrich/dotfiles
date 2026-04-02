@@ -111,6 +111,7 @@
       programs = {
         # yazi.enable = true;
         tmux.enable = true;
+        sesh.enable = true;
 
         bash.enable = true;
         # zsh = {

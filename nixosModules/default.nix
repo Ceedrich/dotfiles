@@ -4,6 +4,7 @@
     # ./waybar
     ./backup.nix
     ./bluetooth.nix
+    ./sesh
     ./btop
     ./catppuccin.nix
     ./clipboard
