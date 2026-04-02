@@ -1,15 +1,15 @@
 {
-  config,
   lib,
+  pkgs,
   ...
-}: let
-  cfg = config.programs.fzf;
-in
-  lib.mkIf cfg.enable {
+}: {
+  config = {
     programs.fzf = {
       fuzzyCompletion = lib.mkDefault true;
       # keybindings = mkDefault true; # customize this
     };
+
+    environment.systemPackages = [pkgs.fzf];
 
     programs.bash.interactiveShellInit = ''
       FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= eval "$(fzf --bash)"
@@ -17,4 +17,5 @@ in
     programs.zsh.interactiveShellInit = ''
       FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= source <(fzf --zsh)
     '';
-  }
+  };
+}
