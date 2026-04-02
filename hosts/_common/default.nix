@@ -16,6 +16,7 @@
     cp = "cp -v";
     mv = "mv -v";
   };
+  programs.sesh.enable = true;
   # Packages / Programs
   environment.systemPackages = with pkgs; [
     cmatrix
@@ -111,7 +112,6 @@
       programs = {
         # yazi.enable = true;
         tmux.enable = true;
-        sesh.enable = true;
 
         bash.enable = true;
         # zsh = {
