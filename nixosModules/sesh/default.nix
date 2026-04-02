@@ -22,6 +22,9 @@ in {
           enable = true;
         };
         programs.fzf.tmux.enableShellIntegration = true;
+        settings = {
+          sort_order = ["config"];
+        };
       })
     ];
   };
