@@ -20,8 +20,6 @@ in {
 
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
           zstyle ':completion:*' menu select
-
-          FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= source <(fzf --zsh)
         '';
     };
 
@@ -38,21 +36,6 @@ in {
       gst = "git status";
       v = "nvim";
       vimdiff = "nvim -d";
-    };
-
-    programs.starship = {
-      interactiveOnly = true;
-      settings =
-        lib.importTOML ./starship.toml
-        // rec {
-          palette = "catppuccin_${config.catppuccin.flavor}";
-          palettes.${palette} = lib.mapAttrs (n: clr: clr.hex) config.catppuccin.colors;
-        };
-    };
-
-    programs.fzf = {
-      # keybindings = mkDefault true;
-      fuzzyCompletion = mkDefault true;
     };
 
     programs.eza.enable = mkDefault true;
