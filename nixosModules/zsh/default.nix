@@ -20,6 +20,8 @@ in {
 
           zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
           zstyle ':completion:*' menu select
+
+          FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= source <(fzf --zsh)
         '';
     };
 
@@ -52,9 +54,6 @@ in {
       # keybindings = mkDefault true;
       fuzzyCompletion = mkDefault true;
     };
-    zsh.interactiveShellInit = "
-      FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= source <(fzf --zsh)
-    ";
 
     programs.eza.enable = mkDefault true;
 
