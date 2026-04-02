@@ -20,11 +20,11 @@ in {
       ({...}: {
         programs.sesh = {
           enable = true;
+          settings = {
+            sort_order = ["config"];
+          };
         };
         programs.fzf.tmux.enableShellIntegration = true;
-        settings = {
-          sort_order = ["config"];
-        };
       })
     ];
   };
