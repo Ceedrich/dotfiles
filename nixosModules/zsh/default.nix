@@ -49,9 +49,12 @@ in {
     };
 
     programs.fzf = {
-      keybindings = mkDefault true;
+      # keybindings = mkDefault true;
       fuzzyCompletion = mkDefault true;
     };
+    zsh.interactiveShellInit = "
+      FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= source <(fzf --zsh)
+    ";
 
     programs.eza.enable = mkDefault true;
 
