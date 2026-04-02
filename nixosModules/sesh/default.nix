@@ -12,6 +12,10 @@ in {
   };
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [cfg.package];
+    environment.shellAliases = {
+      "s" = "sesh connect $(sesh list | fzf)";
+    };
+
     home-manager.sharedModules = [
       ({...}: {
         programs.sesh = {
