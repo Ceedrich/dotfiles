@@ -5,22 +5,16 @@
   lib,
   pkgs,
   config,
+  selfnixosmodules,
   ...
 }: let
   inherit (lib) mkDefault;
 in {
   imports = [
     inputs.spicetify-nix.nixosModules.default
+    selfnixosmodules.gdm
   ];
   config = {
-    programs.dconf.profiles.gdm.databases = [
-      {
-        settings."org/gnome/login-screen" = {
-          logo = "${../../assets/EPFL.png}";
-        };
-      }
-    ];
-
     home-manager.sharedModules = [
       {
         programs.brave.enable = true;

@@ -14,8 +14,9 @@
         inputs.nixpkgs.lib.nixosSystem {
           specialArgs = let
             pkgs-unstable = import inputs.nixpkgs-unstable {inherit system;};
+            selfnixosmodules = self.nixosModules;
           in {
-            inherit inputs inputs' selfpkgs;
+            inherit inputs inputs' selfpkgs selfnixosmodules; # Pass in until fully migrated to dendritic pattern
             inherit pkgs-unstable;
             meta = {inherit hostname;};
           };
