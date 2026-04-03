@@ -13,6 +13,10 @@ in {
     inputs.spicetify-nix.nixosModules.default
   ];
   config = {
+    services.displayManager.gdm.banner = ''
+      Ceedrich Systems
+      Moin Moin
+    '';
     programs.dconf.profiles.gdm.databases = [
       {
         settings."org/gnome/login-screen" = {
