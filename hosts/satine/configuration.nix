@@ -9,12 +9,6 @@
     inputs.musnix.nixosModules.musnix
   ];
 
-  services.fprintd.enable = true;
-  services.fprintd.tod = {
-    enable = true;
-    driver = pkgs.libfprint-2-tod1-goodix;
-  };
-
   boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 
   musnix.enable = true;
@@ -42,7 +36,6 @@
   ];
 
   allowedUnfree = [
-    "libfprint-2-tod1-goodix"
     "discord"
     # unity
     "unityhub"
