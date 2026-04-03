@@ -9,6 +9,8 @@
     inputs.musnix.nixosModules.musnix
   ];
 
+  boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
+
   musnix.enable = true;
 
   programs = {
