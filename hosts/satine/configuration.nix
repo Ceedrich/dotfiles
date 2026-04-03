@@ -12,6 +12,7 @@
   services.fprintd.enable = true;
   services.fprintd.tod = {
     enable = true;
+    driver = pkgs.libfprint;
   };
 
   boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
