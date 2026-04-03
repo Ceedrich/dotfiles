@@ -33,8 +33,12 @@ EOF
 }
 
 fatal() {
-  echo "${RED}[FATAL]${RST}" "$@" >&2
+  fatal-noexit "$@"
   exit 1
+}
+
+fatal-noexit() {
+  echo "${RED}[FATAL]${RST}" "$@" >&2
 }
 
 info() {
@@ -79,7 +83,10 @@ rebuild() {
   info "Building nix configuration"
   nixos-rebuild switch --flake . "$@" 2>&1 | tee nixos-switch.log >&2 || {
     cat nixos-switch.log | grep --color -C 3 -E "error|warning"
-    fatal "Build failed!" $'\n'"inspect the file nixos-switch.log for further information";
+    fatal-noexit "Build failed!" $'\n'"inspect the file nixos-switch.log for further information";
+    info "resetting HEAD"
+    git reset --hard HEAD~ 
+    exit 1
   }
 
   gen=$(nixos-rebuild list-generations | awk '$8 == "True" {print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 }')
