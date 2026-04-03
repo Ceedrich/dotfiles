@@ -13,6 +13,14 @@ in {
     inputs.spicetify-nix.nixosModules.default
   ];
   config = {
+    programs.dconf.profiles.gdm.databases = [
+      {
+        settings."org/gnome/login-screen" = {
+          logo = "${../../assets/EPFL.png}";
+        };
+      }
+    ];
+
     home-manager.sharedModules = [
       {
         programs.brave.enable = true;
