@@ -19,6 +19,7 @@
   programs.sesh.enable = true;
   # Packages / Programs
   environment.systemPackages = with pkgs; [
+    usbutils
     cmatrix
     selfpkgs.terminal
     catppuccin-cursors.mochaMauve
