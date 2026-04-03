@@ -4,6 +4,7 @@
   pkgs,
   ...
 }: {
+  boot.loader.generationsDir.enable = true;
   environment.sessionVariables = {
     GTK_IM_MODULE = "gtk-im-context-simple";
     MANPAGER = "nvim +Man!";
