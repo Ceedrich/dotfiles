@@ -4,7 +4,6 @@
   pkgs,
   ...
 }: {
-  boot.loader.generationsDir.enable = true;
   environment.sessionVariables = {
     GTK_IM_MODULE = "gtk-im-context-simple";
     MANPAGER = "nvim +Man!";
@@ -54,7 +53,7 @@
   };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.grub.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Networking
