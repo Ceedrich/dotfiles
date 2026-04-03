@@ -9,6 +9,8 @@
     inputs.musnix.nixosModules.musnix
   ];
 
+  services.fprintd.enable = true;
+
   boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 
   musnix.enable = true;
