@@ -39,6 +39,15 @@
       environment.systemPackages = [selfpkgs.oh-my-posh];
       programs.bash.promptInit = "eval $(oh-my-posh init bash)";
       programs.zsh.promptInit = "eval $(oh-my-posh init zsh)";
+      programs.zsh.shellInit = ''
+        function _update_sudo_cache() {
+          sudo -n true &>/dev/null
+          export SUDO_CACHE=$(( ! $? ))
+        }
+
+        autoload -Uz add-zsh-hook
+        add-zsh-hook precmd _update_sudo_cache
+      '';
     };
   };
 
@@ -136,6 +145,12 @@
                       {{ end }}
                       </>
                     '';
+                }
+                {
+                  type = "text";
+                  style = "plain";
+                  template = ''{{ if eq .Env.SUDO_CACHE "1" }} 󰒓{{ end }}'';
+                  foreground = "p:red";
                 }
                 {
                   type = "text";

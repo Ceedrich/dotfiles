@@ -1,24 +1,15 @@
 {
   pkgs,
   inputs,
-  selfpkgs,
+  selfnixosmodules,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
     ../_graphical
     inputs.musnix.nixosModules.musnix
+    selfnixosmodules.fingerprint-sensor
   ];
-
-  services.fprintd.enable = true;
-  services.dbus.packages = [selfpkgs.libfprint-2-tod1-synatudor];
-  systemd.packages = [selfpkgs.libfprint-2-tod1-synatudor];
-  systemd.units."fprintd.service".wantedBy = ["multi-user.target"];
-  services.fprintd.tod = {
-    enable = true;
-    driver = selfpkgs.libfprint-2-tod1-synatudor;
-  };
-
   boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 
   musnix.enable = true;
@@ -36,7 +27,6 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    selfpkgs.libfprint-2-tod1-synatudor
     discord
     snapshot
     jetbrains.idea-oss
