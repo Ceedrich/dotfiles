@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  selfpkgs,
   ...
 }: {
   imports = [
@@ -8,6 +9,15 @@
     ../_graphical
     inputs.musnix.nixosModules.musnix
   ];
+
+  services.fprintd.enable = true;
+  services.dbus.packages = [selfpkgs.libfprint-2-tod1-synatudor];
+  systemd.packages = [selfpkgs.libfprint-2-tod1-synatudor];
+  systemd.units."fprintd.service".wantedBy = ["multi-user.target"];
+  services.fprintd.tod = {
+    enable = true;
+    driver = selfpkgs.libfprint-2-tod1-synatudor;
+  };
 
   boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 
@@ -26,6 +36,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    selfpkgs.libfprint-2-tod1-synatudor
     discord
     snapshot
     jetbrains.idea-oss

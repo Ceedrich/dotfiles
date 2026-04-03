@@ -72,7 +72,7 @@
                   style = "plain";
                   template = removeNewlines ''
                     {{ if .Segments.Contains "Git" }}
-                    <b><p:sapphire>󰳏 {{ .Segments.Git.RepoName }}</></b>
+                    <b><p:sapphire>../{{ .Segments.Git.RepoName }}</></b>
                     {{ if .Segments.Git.RelativeDir }}
                     /{{ .Segments.Git.RelativeDir }}
                     {{ end }}
