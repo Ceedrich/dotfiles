@@ -74,9 +74,9 @@ rebuild() {
   git checkout --no-guess "$host_branch"
 
   #shellcheck disable=2064
-  trap "git checkout $current_branch; popd" EXIT 
+  trap "git checkout '$current_branch'; popd" EXIT 
 
-  info "Updating $host_branch from $current_branch"
+  info "Updating '$host_branch' from '$current_branch'"
   git restore --source="$current_branch" --worktree --staged .
   git commit -m "Update $host_branch from $current_branch"
 
