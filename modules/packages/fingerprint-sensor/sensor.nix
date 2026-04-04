@@ -4,14 +4,18 @@
   };
 
   flake.nixosModules.fingerprint-sensor = {selfpkgs, ...}: {
-    services.fprintd.enable = true;
+    environment.systemPackages = [selfpkgs.libfprint-2-tod1-synatudor];
     services.dbus.packages = [selfpkgs.libfprint-2-tod1-synatudor];
     systemd.packages = [selfpkgs.libfprint-2-tod1-synatudor];
+
+    # By default fprintd is activated on the first use.
+    # But libfprint-2-tod1-synatudor takes a long time to startup which causes big delays on first authentication attempt.
+    # Startup fprintd on boot instead.
     systemd.units."fprintd.service".wantedBy = ["multi-user.target"];
-    services.fprintd.tod = {
+    services.fprintd = {
       enable = true;
-      driver = selfpkgs.libfprint-2-tod1-synatudor;
+      tod.enable = true;
+      tod.driver = selfpkgs.libfprint-2-tod1-synatudor;
     };
-    environment.systemPackages = [selfpkgs.libfprint-2-tod1-synatudor];
   };
 }

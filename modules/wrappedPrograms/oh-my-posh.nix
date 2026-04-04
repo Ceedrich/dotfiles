@@ -186,6 +186,12 @@
                   type = "text";
                   template = "{{ if .Env.IN_NIX_SHELL }}(<b><p:blue> nix-shell</></b>) {{end}}";
                 }
+                {
+                  type = "text";
+                  style = "plain";
+                  foreground = "p:yellow";
+                  template = "{{ if gt .SHLVL 1 }}({{.SHLVL}}) {{ end }}";
+                }
               ];
             }
           ];
