@@ -2,8 +2,12 @@
   selfpkgs,
   meta,
   pkgs,
+  selfnixosmodules,
   ...
 }: {
+  imports = [
+    selfnixosmodules.grub
+  ];
   environment.sessionVariables = {
     GTK_IM_MODULE = "gtk-im-context-simple";
     MANPAGER = "nvim +Man!";
@@ -54,11 +58,6 @@
   };
 
   # Bootloader.
-  boot.loader.grub = {
-    enable = true;
-    device = "nodev";
-    efiSupport = true;
-  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Networking
