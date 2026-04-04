@@ -17,6 +17,10 @@ in {
             ignore_empty_input = true;
             hide_cursor = true;
           };
+          auth = {
+            pam.enabled = true;
+            fingerprint.enabled = true;
+          };
           # TODO: look into authenticaton methods
           background = [
             {
