@@ -41,7 +41,7 @@
       programs.zsh.promptInit = "eval $(oh-my-posh init zsh)";
       programs.zsh.shellInit = ''
         function _update_sudo_cache() {
-          sudo -n true &>/dev/null
+          sudo -Nnv &>/dev/null # detect whether credentials are valid
           export SUDO_CACHE=$(( ! $? ))
         }
 
