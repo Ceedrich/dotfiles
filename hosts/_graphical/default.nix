@@ -67,6 +67,7 @@ in {
       wl-clipboard
       wlrctl
       qimgv
+      imagemagick
       keepassxc
       gh
       nsxiv
