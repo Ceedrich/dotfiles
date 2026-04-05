@@ -7,7 +7,7 @@
     boot.loader.grub = let
       catppuccinGrub = config.catppuccin.sources.grub.overrideAttrs {
         patchPhase = ''
-          cp ${../../assets/EPFL.png} src/catppuccin-${config.catppuccin.flavor}-grub-theme/logo.png
+          cp ${../../assets/Ceedrich/Ceedrich-100x100.png} src/catppuccin-${config.catppuccin.flavor}-grub-theme/logo.png
         '';
       };
     in {
