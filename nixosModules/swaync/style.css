@@ -185,6 +185,7 @@
 
 .widget-buttons-grid {
   margin-bottom: 1rem;
+  font: 14px "JetBrains Mono Nerd Font";
 }
 
 /* dnd */
@@ -212,11 +213,15 @@
 
 /* menubar */
 
+.widget-menubar button.toggle {
+  padding: 0.5rem 0.75rem;
+  font: 14px "JetBrains Mono Nerd Font";
+}
+
 .widget-menubar > box {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-
 .widget-menubar button {
   background: transparent;
   border: none;

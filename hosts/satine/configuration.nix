@@ -9,6 +9,8 @@
     ../_graphical
     inputs.musnix.nixosModules.musnix
     selfnixosmodules.fingerprint-sensor
+    selfnixosmodules.kanata
+    selfnixosmodules.hyprpaper
   ];
   boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 
@@ -17,7 +19,6 @@
   programs = {
     steam.enable = true;
   };
-  services.mpvpaper.enable = false;
   services.hyprpaper.enable = true;
 
   home-manager.sharedModules = [
@@ -44,7 +45,6 @@
     "rider"
   ];
 
-  settings.kanata.enable = true;
   settings.bluetooth.enable = true;
 
   hardware.graphics = {
