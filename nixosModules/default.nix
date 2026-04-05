@@ -16,14 +16,10 @@
     ./hypridle
     ./hyprland
     ./hyprlock
-    ./hyprpaper
     ./hyprpolkitagent
     ./hyprsunset
     ./jellyfin
-    ./kanata
     ./logoutCommands.nix
-    ./modrinth
-    ./mpvpaper
     ./pihole
     ./power-menu
     ./servarr
