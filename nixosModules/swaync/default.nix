@@ -70,22 +70,22 @@ in {
                   actions = [
                     {
                       command = commands.reboot;
-                      label = "   Reboot";
+                      label = "󰜉 Reboot";
                     }
                     {
                       command = "${close-swaync}; ${commands.lock}";
-                      label = "   Lock";
+                      label = "󰌾 Lock";
                     }
                     {
                       command = commands.logout;
-                      label = "   Logout";
+                      label = "󰍃 Logout";
                     }
                     {
                       command = commands.shutdown;
-                      label = "   Shut down";
+                      label = "󰐥 Shut down";
                     }
                   ];
-                  label = "";
+                  label = "󰐥";
                   position = "right";
                 };
               };
