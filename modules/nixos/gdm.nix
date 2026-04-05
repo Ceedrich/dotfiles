@@ -3,7 +3,7 @@
     programs.dconf.profiles.gdm.databases = [
       {
         settings."org/gnome/login-screen" = {
-          logo = "${../../assets/EPFL.png}";
+          logo = "${../../assets/Ceedrich/Ceedrich.webp}";
         };
       }
     ];
