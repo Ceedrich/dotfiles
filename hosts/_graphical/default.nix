@@ -13,6 +13,7 @@ in {
   imports = [
     inputs.spicetify-nix.nixosModules.default
     selfnixosmodules.gdm
+    selfnixosmodules.hypr
   ];
   config = {
     home-manager.sharedModules = [
