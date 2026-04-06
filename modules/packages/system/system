@@ -15,6 +15,7 @@ main() {
   case "$1" in 
     rebuild) shift 1; rebuild "$@";;
     build) shift 1; build "$@";;
+    rollback) shift 1; rollback "$@";;
     *) usage; exit 1 ;;
   esac
 }
@@ -24,6 +25,10 @@ usage() {
 usage: $PROGRAM_NAME <command>
 
 ${BOLD}COMMANDS${RST}:
+
+${BOLD}${MAGENTA}build${RST}: $PROGRAM_NAME build [nixos-rebuild options]
+
+${BOLD}${MAGENTA}rollback${RST}: $PROGRAM_NAME rollback [nixos-rebuild options]
 
 ${BOLD}${MAGENTA}rebuild${RST}: $PROGRAM_NAME rebuild [nixos-rebuild options]
 
@@ -47,10 +52,19 @@ info() {
 
 build() {
   pushd "$REPO" || fatal "Changing direcotry failed"
+  trap popd EXIT
 
   nixos-rebuild build --flake . "$@"
+}
 
+rollback() {
+  local current last
+  pushd "$REPO" || fatal "Changing direcotry failed"
   trap popd EXIT
+
+  read -r current last <<< "$(parse_generations)"
+
+  nixos-rebuild --rollback --flake . "$@"
 }
 
 rebuild() {
@@ -78,7 +92,7 @@ rebuild() {
 
   info "Updating '$host_branch' from '$current_branch'"
   git restore --source="$current_branch" --worktree --staged .
-  git commit -m "Update $host_branch from $current_branch"
+  git commit --allow-empty -m "Update $host_branch from $current_branch"
 
   info "Building nix configuration"
   nixos-rebuild switch --flake . "$@" 2>&1 | tee nixos-switch.log >&2 || {
@@ -91,9 +105,23 @@ rebuild() {
 
   gen=$(nixos-rebuild list-generations | awk '$8 == "True" {print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 }')
 
-  git commit -em "$gen"
+  git commit --amend -m $"Update $host_branch from $current_branch\n$gen"
   info "Pushing to remote repository"
   git push -u origin "$host_branch"
+}
+
+parse_generations() {
+  local current last
+  local generation is_current
+  while read -r generation _ _ _ _ _ _ is_current; do
+    [[ $generation == "Generation" ]] && continue
+    if [[ -n $current ]]; then 
+      last=$generation; 
+      break
+    fi
+    [[ $is_current == "True" ]] && current=$generation
+  done <<< "$(nixos-rebuild list-generations)"
+  echo "$current $last"
 }
 
 format() {
