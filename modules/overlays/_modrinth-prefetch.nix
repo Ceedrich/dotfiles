@@ -1,13 +1,14 @@
 {
   lib,
-  loader ? "fabric", # TODO: make similar as buildRustPackage or similar
-  version ? "26.1",
-  name ? null,
-  mods ? [],
   writeShellScriptBin,
   curl,
   jq,
   gnused,
+}: {
+  loader,
+  version,
+  name ? null,
+  mods ? [],
 }:
 writeShellScriptBin
 ("fetch-mods" + lib.optionalString (!isNull name) "-${name}")

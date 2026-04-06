@@ -3,4 +3,3 @@
     packages.serve-dir = pkgs.callPackage ./_package.nix {};
   };
 }
-

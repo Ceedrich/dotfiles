@@ -32,7 +32,7 @@
   server-name = "vanillaish";
 in {
   environment.systemPackages = [
-    (selfpkgs.modrinth-prefetch.override {
+    (pkgs.makeModrinthPrefetcher {
       name = server-name;
       inherit loader version mods;
     })

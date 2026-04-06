@@ -41,7 +41,6 @@
         systems = ["x86_64-linux"];
         imports = [
           ./hosts
-          ./overlay.nix
           (inputs.import-tree ./modules)
         ];
       }
