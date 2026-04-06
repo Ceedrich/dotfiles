@@ -105,7 +105,7 @@ rebuild() {
 
   gen=$(nixos-rebuild list-generations | awk '$8 == "True" {print $1 "\t" $2 "\t" $3 "\t" $4 "\t" $5 "\t" $6 "\t" $7 }')
 
-  git commit --amend -m $"Update $host_branch from $current_branch\n$gen"
+  git commit --amend -m "Update $host_branch from $current_branch"$'\n'"$gen"
   info "Pushing to remote repository"
   git push -u origin "$host_branch"
 }
