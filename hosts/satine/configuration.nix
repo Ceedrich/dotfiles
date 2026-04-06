@@ -10,7 +10,6 @@
     inputs.musnix.nixosModules.musnix
     selfnixosmodules.fingerprint-sensor
     selfnixosmodules.kanata
-    selfnixosmodules.hyprpaper
   ];
   boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 

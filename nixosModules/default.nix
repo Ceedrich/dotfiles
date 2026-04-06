@@ -13,11 +13,7 @@
     ./fzf
     ./homelab
     ./homepage
-    ./hypridle
     ./hyprland
-    ./hyprlock
-    ./hyprpolkitagent
-    ./hyprsunset
     ./jellyfin
     ./logoutCommands.nix
     ./pihole

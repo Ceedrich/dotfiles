@@ -18,10 +18,10 @@
             ipc = "on";
             splash = false;
 
-            preload = ["${../../assets/wallpaper.png}"];
+            preload = ["${../../../assets/wallpaper.png}"];
 
             wallpaper = [
-              ",${../../assets/wallpaper.png}"
+              ",${../../../assets/wallpaper.png}"
             ];
           };
         };
