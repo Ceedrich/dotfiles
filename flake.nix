@@ -43,6 +43,9 @@
           ./hosts
           (inputs.import-tree ./modules)
         ];
+        perSystem = {pkgs, ...}: {
+          formatter = pkgs.alejandra;
+        };
       }
     );
 }
