@@ -13,7 +13,7 @@
       };
     in [
       ({...}: {
-        xdg.configFile."hypr/hyprtoolkit.confg".source = "${catppuccin-hyprtoolkit}/themes/${config.catppuccin.flavor}/catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}";
+        xdg.configFile."hypr/hyprtoolkit.conf".source = "${catppuccin-hyprtoolkit}/themes/${config.catppuccin.flavor}/catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}.conf";
       })
     ];
   };
