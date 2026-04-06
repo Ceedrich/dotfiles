@@ -6,6 +6,7 @@
       hypridle
       hyprpolkitagent
       hyprsunset
+      hyprtoolkit
     ];
   };
 }
