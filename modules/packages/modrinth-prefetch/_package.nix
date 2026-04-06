@@ -1,7 +1,7 @@
 {
   lib,
-  loader,
-  version,
+  loader ? "fabric", # TODO: make similar as buildRustPackage or similar
+  version ? "26.1",
   name ? null,
   mods ? [],
   writeShellScriptBin,

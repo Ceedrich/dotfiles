@@ -40,7 +40,6 @@
       {...}: {
         systems = ["x86_64-linux"];
         imports = [
-          ./packages
           ./hosts
           ./overlay.nix
           (inputs.import-tree ./modules)
