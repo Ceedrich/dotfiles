@@ -21,7 +21,6 @@ in {
             pam.enabled = true;
             fingerprint.enabled = true;
           };
-          # TODO: look into authenticaton methods
           background = [
             {
               monitor = "";
@@ -35,7 +34,7 @@ in {
             # Time
             {
               monitor = "";
-              text = ''cmd[update:30000] echo "$(date +"%R")"'';
+              text = "$TIME";
               color = "$text";
               font_size = 90;
               font_family = "$font";
@@ -44,7 +43,6 @@ in {
               valign = "top";
             }
             # Date
-
             {
               monitor = "";
               text = ''cmd[update:43200000] echo "$(date +"%A, %d %B %Y")"'';
@@ -54,6 +52,16 @@ in {
               position = "-50, -170";
               halign = "right";
               valign = "top";
+            }
+            # Fingerprint Prompt
+            {
+              monitor = "";
+              color = "$subtext0";
+              font_family = "$font";
+              font_size = 10;
+              halign = "center";
+              position = "0, -85";
+              text = "$FPRINTPROMPT";
             }
           ];
 
@@ -74,6 +82,7 @@ in {
               check_color = "$accent";
               fail_color = "$red";
               fail_text = ''<i>$FAIL <b>($ATTEMPTS)</b></i>'';
+              fail_timeout = 800;
               capslock_color = "$yellow";
               position = "0, -35";
               halign = "center";
