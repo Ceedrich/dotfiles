@@ -16,6 +16,7 @@ in {
           general = {
             ignore_empty_input = true;
             hide_cursor = true;
+            fail_timeout = 800;
           };
           auth = {
             pam.enabled = true;
@@ -34,7 +35,7 @@ in {
             # Time
             {
               monitor = "";
-              text = ''cmd[update:30000] echo "$(date +"%R")"'';
+              text = "$TIME";
               color = "$text";
               font_size = 90;
               font_family = "$font";
