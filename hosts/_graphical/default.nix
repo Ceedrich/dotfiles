@@ -14,6 +14,7 @@ in {
     inputs.spicetify-nix.nixosModules.default
     selfnixosmodules.gdm
     selfnixosmodules.hypr
+    selfnixosmodules.gtk
   ];
   config = {
     home-manager.sharedModules = [
