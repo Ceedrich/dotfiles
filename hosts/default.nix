@@ -14,28 +14,23 @@
         inputs.nixpkgs.lib.nixosSystem {
           specialArgs = let
             pkgs-unstable = import inputs.nixpkgs-unstable {inherit system;};
+            selfnixosmodules = self.nixosModules;
           in {
-            inherit inputs inputs' selfpkgs;
+            inherit inputs inputs' selfpkgs selfnixosmodules; # Pass in until fully migrated to dendritic pattern
             inherit pkgs-unstable;
             meta = {inherit hostname;};
           };
           modules =
             [
-              self.nixosModules.oh-my-posh
-              self.nixosModules.base
               ../nixosModules
               ../hosts/_common
               ../hosts/${hostname}/configuration.nix
-              inputs.home-manager.nixosModules.home-manager
-              inputs.catppuccin.nixosModules.catppuccin
-              inputs.nix-flatpak.nixosModules.nix-flatpak
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.extraSpecialArgs = {inherit selfpkgs;};
                 home-manager.sharedModules = [
                   inputs.catppuccin.homeModules.catppuccin
-                  ../homemanagerModules
                 ];
                 home-manager.users = inputs.nixpkgs.lib.genAttrs users (user: {
                   imports = [
@@ -48,7 +43,7 @@
                 });
               }
             ]
-            ++ builtins.map (user: ../users/${user}) users;
+            ++ builtins.map (user: self.nixosModules."user-${user}") users;
         };
     in {
       jabba = mkNixos "jabba" ["ceedrich"];

@@ -38,21 +38,6 @@ in {
       vimdiff = "nvim -d";
     };
 
-    programs.starship = {
-      interactiveOnly = true;
-      settings =
-        lib.importTOML ./starship.toml
-        // rec {
-          palette = "catppuccin_${config.catppuccin.flavor}";
-          palettes.${palette} = lib.mapAttrs (n: clr: clr.hex) config.catppuccin.colors;
-        };
-    };
-
-    programs.fzf = {
-      keybindings = mkDefault true;
-      fuzzyCompletion = mkDefault true;
-    };
-
     programs.eza.enable = mkDefault true;
 
     programs.zoxide = {

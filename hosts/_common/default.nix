@@ -2,22 +2,30 @@
   selfpkgs,
   meta,
   pkgs,
+  selfnixosmodules,
+  inputs,
   ...
 }: {
-  environment.sessionVariables = {
-    GTK_IM_MODULE = "gtk-im-context-simple";
-    MANPAGER = "nvim +Man!";
-    EDITOR = "nvim";
-  };
+  imports = with selfnixosmodules; [
+    grub
+    tmux
+    oh-my-posh
+    base
+    neovim
+    catppuccin
+    inputs.home-manager.nixosModules.home-manager
+    inputs.catppuccin.nixosModules.catppuccin
+    inputs.nix-flatpak.nixosModules.nix-flatpak
+  ];
   environment.shellAliases = {
     dev = "nix develop --command zsh";
-    v = "nvim";
-    vimdiff = "nvim -d";
     cp = "cp -v";
     mv = "mv -v";
   };
+  programs.sesh.enable = true;
   # Packages / Programs
   environment.systemPackages = with pkgs; [
+    usbutils
     cmatrix
     selfpkgs.terminal
     catppuccin-cursors.mochaMauve
@@ -52,7 +60,6 @@
   };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Networking
@@ -107,8 +114,8 @@
 
   home-manager.sharedModules = [
     {
-      settings.theming.enable = true;
       programs = {
+        home-manager.enable = true;
         # yazi.enable = true;
         tmux.enable = true;
 

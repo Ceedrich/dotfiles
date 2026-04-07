@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  selfpkgs,
   ...
 }: let
   loader = "fabric";
@@ -31,7 +32,7 @@
   server-name = "vanillaish";
 in {
   environment.systemPackages = [
-    (pkgs.ceedrichLib.makeModFetcher {
+    (pkgs.makeModrinthPrefetcher {
       name = server-name;
       inherit loader version mods;
     })

@@ -39,6 +39,15 @@
       environment.systemPackages = [selfpkgs.oh-my-posh];
       programs.bash.promptInit = "eval $(oh-my-posh init bash)";
       programs.zsh.promptInit = "eval $(oh-my-posh init zsh)";
+      programs.zsh.shellInit = ''
+        function _update_sudo_cache() {
+          sudo -Nnv &>/dev/null # detect whether credentials are valid
+          export SUDO_CACHE=$(( ! $? ))
+        }
+
+        autoload -Uz add-zsh-hook
+        add-zsh-hook precmd _update_sudo_cache
+      '';
     };
   };
 
@@ -61,8 +70,7 @@
                 {
                   type = "session";
                   style = "plain";
-                  foreground = "green";
-                  template = "{{ if .SSHSession }}{{ .UserName }}@{{ .HostName }} in {{ end }}";
+                  template = "{{ if .SSHSession }}<b><p:yellow>{{ .UserName }}@{{ .HostName }}</></b> in {{ end }}";
                 }
                 {
                   foreground = "p:blue";
@@ -73,7 +81,7 @@
                   style = "plain";
                   template = removeNewlines ''
                     {{ if .Segments.Contains "Git" }}
-                    <b><p:sapphire>../{{ .Segments.Git.RepoName }}</></b>
+                    <b><p:sapphire>󰳏 {{ .Segments.Git.RepoName }}</></b>
                     {{ if .Segments.Git.RelativeDir }}
                     /{{ .Segments.Git.RelativeDir }}
                     {{ end }}
@@ -140,6 +148,12 @@
                 }
                 {
                   type = "text";
+                  style = "plain";
+                  template = ''{{ if eq .Env.SUDO_CACHE "1" }} 󰒓{{ end }}'';
+                  foreground = "p:red";
+                }
+                {
+                  type = "text";
                   template = " ❯";
                   style = "plain";
                   foreground_templates = [
@@ -171,6 +185,12 @@
                   style = "plain";
                   type = "text";
                   template = "{{ if .Env.IN_NIX_SHELL }}(<b><p:blue> nix-shell</></b>) {{end}}";
+                }
+                {
+                  type = "text";
+                  style = "plain";
+                  foreground = "p:yellow";
+                  template = "{{ if gt .SHLVL 1 }}({{.SHLVL}}) {{ end }}";
                 }
               ];
             }

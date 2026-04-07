@@ -1,8 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  selfnixosmodules,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     # ../jarjar/minecraft-servers
     ../_graphical
+    selfnixosmodules.mpvpaper
+    selfnixosmodules.mangohud
   ];
 
   home-manager.sharedModules = [
@@ -14,6 +20,8 @@
       };
     }
   ];
+
+  services.mpvpaper.enable = true;
 
   programs = {
     coolercontrol.enable = true;

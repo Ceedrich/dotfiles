@@ -1,20 +1,23 @@
 {
   pkgs,
   inputs,
+  selfnixosmodules,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
     ../_graphical
     inputs.musnix.nixosModules.musnix
+    selfnixosmodules.fingerprint-sensor
+    selfnixosmodules.kanata
   ];
+  boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 
   musnix.enable = true;
 
   programs = {
     steam.enable = true;
   };
-  services.mpvpaper.enable = false;
   services.hyprpaper.enable = true;
 
   home-manager.sharedModules = [
@@ -41,7 +44,6 @@
     "rider"
   ];
 
-  settings.kanata.enable = true;
   settings.bluetooth.enable = true;
 
   hardware.graphics = {
