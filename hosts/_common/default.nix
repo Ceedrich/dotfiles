@@ -7,6 +7,7 @@
 }: {
   imports = [
     selfnixosmodules.grub
+    selfnixosmodules.tmux
   ];
   environment.sessionVariables = {
     GTK_IM_MODULE = "gtk-im-context-simple";
@@ -113,6 +114,7 @@
   home-manager.sharedModules = [
     {
       programs = {
+        home-manager.enable = true;
         # yazi.enable = true;
         tmux.enable = true;
 

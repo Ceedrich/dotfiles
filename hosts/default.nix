@@ -36,7 +36,6 @@
                 home-manager.extraSpecialArgs = {inherit selfpkgs;};
                 home-manager.sharedModules = [
                   inputs.catppuccin.homeModules.catppuccin
-                  ../homemanagerModules
                 ];
                 home-manager.users = inputs.nixpkgs.lib.genAttrs users (user: {
                   imports = [

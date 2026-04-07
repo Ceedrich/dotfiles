@@ -8,6 +8,7 @@
     # ../jarjar/minecraft-servers
     ../_graphical
     selfnixosmodules.mpvpaper
+    selfnixosmodules.mangohud
   ];
 
   home-manager.sharedModules = [

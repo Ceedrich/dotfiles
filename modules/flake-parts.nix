@@ -11,6 +11,9 @@
       wrapperModules = inputs.nixpkgs.lib.mkOption {
         default = {};
       };
+      homemanagerModules = inputs.nixpkgs.lib.mkOption {
+        default = {};
+      };
     };
   };
 }

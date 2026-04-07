@@ -15,6 +15,9 @@ in {
     selfnixosmodules.gdm
     selfnixosmodules.hypr
     selfnixosmodules.gtk
+    selfnixosmodules.rofi
+    selfnixosmodules.waybar
+    selfnixosmodules.vpn
   ];
   config = {
     home-manager.sharedModules = [
