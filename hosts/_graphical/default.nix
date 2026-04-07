@@ -18,6 +18,11 @@ in {
     flatpak
     spotify
     hyprland
+    zathura
+    swaync
+    power-menu
+    firefox
+    clipboard
   ];
   config = {
     home-manager.sharedModules = [

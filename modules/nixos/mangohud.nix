@@ -1,10 +1,10 @@
 {self, ...}: {
   flake.nixosModules.mangohud = {
-    home-manager.sharedModules = with self.homemanagerModules; [
+    home-manager.sharedModules = with self.homeModules; [
       mangohud
     ];
   };
-  flake.homemanagerModules.mangohud = {
+  flake.homeModules.mangohud = {
     lib,
     config,
     ...

@@ -1,0 +1,25 @@
+{...}: {
+  flake.nixosModules.tailscale = {
+    lib,
+    config,
+    ...
+  }: let
+    cfg = config.services.tailscale;
+    tray = cfg.tray;
+  in {
+    options.services.tailscale = {
+      tray = {
+        enable = lib.mkEnableOption "Tailscale tray";
+      };
+    };
+    config.
+    home-manager.sharedModules = lib.mkIf cfg.enable [
+      {
+        services.tailscale-systray = {
+          enable = tray.enable;
+          package = cfg.package;
+        };
+      }
+    ];
+  };
+}

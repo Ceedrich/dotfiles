@@ -1,9 +1,9 @@
 {self, ...}: {
   flake.nixosModules.git = {...}: {
-    home-manager.sharedModules = with self.homemanagerModules; [git];
+    home-manager.sharedModules = with self.homeModules; [git];
   };
 
-  flake.homemanagerModules.git = {
+  flake.homeModules.git = {
     config,
     lib,
     ...

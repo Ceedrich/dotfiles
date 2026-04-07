@@ -4,6 +4,7 @@
   pkgs,
   selfnixosmodules,
   inputs,
+  lib,
   ...
 }: {
   imports = with selfnixosmodules; [
@@ -13,6 +14,13 @@
     base
     neovim
     catppuccin
+    sesh
+    zsh
+    yazi
+    btop
+    eza
+    fzf
+    tailscale
     inputs.home-manager.nixosModules.home-manager
     inputs.catppuccin.nixosModules.catppuccin
     inputs.nix-flatpak.nixosModules.nix-flatpak
@@ -46,6 +54,7 @@
   ];
 
   programs = {
+    eza.enable = lib.mkDefault true;
     btop.enable = true;
     yazi.enable = true;
     oh-my-posh.enable = true;

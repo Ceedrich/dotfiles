@@ -9,6 +9,8 @@
     ../_graphical
     selfnixosmodules.mpvpaper
     selfnixosmodules.mangohud
+    selfnixosmodules.steam
+    selfnixosmodules.bluetooth
   ];
 
   home-manager.sharedModules = [
@@ -54,8 +56,6 @@
     "aseprite"
     "discord"
   ];
-
-  settings.bluetooth.enable = true;
 
   hardware.graphics = {
     enable32Bit = true;
