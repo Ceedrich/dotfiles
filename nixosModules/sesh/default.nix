@@ -22,6 +22,16 @@ in {
           enable = true;
           settings = {
             sort_order = ["config"];
+            default_session = {
+              preview_command = "eza --all --git --icons --color=always {}";
+              windows = ["nvim"];
+            };
+            window = [
+              {
+                name = "nvim";
+                startup_script = "nvim";
+              }
+            ];
           };
         };
         programs.fzf.tmux.enableShellIntegration = true;
