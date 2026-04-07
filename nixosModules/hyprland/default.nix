@@ -39,11 +39,24 @@ in {
         networkmanagerapplet
         blueman
         libnotify
+        hyprshutdown
       ]
       ++ cfg.extra-packages;
 
     programs.hyprland = {
       xwayland.enable = true;
+    };
+
+    logoutCommands = {
+      shutdown = ''hyprctl dispatch exec "hyprshutdown -t 'Shutting down...' --post-cmd 'systemctl poweroff'"'';
+      reboot = ''hyprctl dispatch exec "hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"'';
+      logout = ''hyprctl dispatch exec "hyprshutdown -t 'Logging out...'"'';
+    };
+
+    nix.settings = {
+      substituters = ["https://hyprland.cachix.org"];
+      trusted-substituters = ["https://hyprland.cachix.org"];
+      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
 
     home-manager.sharedModules = [

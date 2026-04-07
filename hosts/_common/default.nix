@@ -3,21 +3,21 @@
   meta,
   pkgs,
   selfnixosmodules,
+  inputs,
   ...
 }: {
-  imports = [
-    selfnixosmodules.grub
-    selfnixosmodules.tmux
+  imports = with selfnixosmodules; [
+    grub
+    tmux
+    oh-my-posh
+    base
+    neovim
+    inputs.home-manager.nixosModules.home-manager
+    inputs.catppuccin.nixosModules.catppuccin
+    inputs.nix-flatpak.nixosModules.nix-flatpak
   ];
-  environment.sessionVariables = {
-    GTK_IM_MODULE = "gtk-im-context-simple";
-    MANPAGER = "nvim +Man!";
-    EDITOR = "nvim";
-  };
   environment.shellAliases = {
     dev = "nix develop --command zsh";
-    v = "nvim";
-    vimdiff = "nvim -d";
     cp = "cp -v";
     mv = "mv -v";
   };

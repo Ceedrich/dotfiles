@@ -1,5 +1,8 @@
 {self, ...}: {
   flake.nixosModules.gtk = {...}: {
+    environment.sessionVariables = {
+      GTK_IM_MODULE = "gtk-im-context-simple";
+    };
     home-manager.sharedModules = with self.homemanagerModules; [
       gtk
     ];
