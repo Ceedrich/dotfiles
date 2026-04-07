@@ -27,11 +27,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1774207079,
-        "narHash": "sha256-KDkmZwvkwsP4h0wuqh33gkoaErMg2c1BCoBYHZ3cW8I=",
+        "lastModified": 1775553062,
+        "narHash": "sha256-KXCJl6RJZgtFWogm1dYIYQFGZ5moPWYwAk6HlaKyoA4=",
         "owner": "Ceedrich",
         "repo": "neovim-config",
-        "rev": "3e786d474bda4ef779dfe56e7fcf0e56b36bc1fe",
+        "rev": "92a15d138c9c0a690fe19c9aa1bf4c81b44061c7",
         "type": "github"
       },
       "original": {
