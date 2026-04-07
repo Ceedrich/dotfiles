@@ -10,7 +10,6 @@
     ./firefox
     ./fzf
     ./homelab
-    ./homepage
     ./logoutCommands.nix
     ./power-menu
     ./shortcuts

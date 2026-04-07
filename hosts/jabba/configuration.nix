@@ -5,6 +5,7 @@
     selfnixosmodules.jellyfin
     selfnixosmodules.pihole
     selfnixosmodules.servarr
+    selfnixosmodules.homepage
   ];
 
   nas.drives = {
