@@ -13,6 +13,8 @@
     base
     neovim
     catppuccin
+    sesh
+    zsh
     inputs.home-manager.nixosModules.home-manager
     inputs.catppuccin.nixosModules.catppuccin
     inputs.nix-flatpak.nixosModules.nix-flatpak

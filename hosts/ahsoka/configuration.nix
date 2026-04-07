@@ -9,6 +9,7 @@
     ../_graphical
     selfnixosmodules.mpvpaper
     selfnixosmodules.mangohud
+    selfnixosmodules.steam
   ];
 
   home-manager.sharedModules = [

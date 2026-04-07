@@ -18,6 +18,8 @@ in {
     flatpak
     spotify
     hyprland
+    zathura
+    swaync
   ];
   config = {
     home-manager.sharedModules = [
