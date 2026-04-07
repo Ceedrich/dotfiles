@@ -1,23 +1,22 @@
 {
   selfpkgs,
-  inputs,
   inputs',
   lib,
   pkgs,
-  config,
   selfnixosmodules,
   ...
 }: let
   inherit (lib) mkDefault;
 in {
-  imports = [
-    inputs.spicetify-nix.nixosModules.default
-    selfnixosmodules.gdm
-    selfnixosmodules.hypr
-    selfnixosmodules.gtk
-    selfnixosmodules.rofi
-    selfnixosmodules.waybar
-    selfnixosmodules.vpn
+  imports = with selfnixosmodules; [
+    gdm
+    hypr
+    gtk
+    rofi
+    waybar
+    vpn
+    flatpak
+    spotify
   ];
   config = {
     home-manager.sharedModules = [
@@ -67,7 +66,6 @@ in {
       selfpkgs.system
       blender-hip
       poppler-utils
-      hyprshutdown
       jellyfin-desktop
       wl-clipboard
       wlrctl
@@ -85,30 +83,12 @@ in {
       hunspellDicts.fr-moderne
       hunspellDicts.en-us
     ];
-    allowedUnfree = [
-      "spotify"
-    ];
-
-    logoutCommands = {
-      shutdown = ''hyprctl dispatch exec "hyprshutdown -t 'Shutting down...' --post-cmd 'systemctl poweroff'"'';
-      reboot = ''hyprctl dispatch exec "hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"'';
-      logout = ''hyprctl dispatch exec "hyprshutdown -t 'Logging out...'"'';
-    };
-
     programs = {
       hyprland.enable = mkDefault true;
       hyprlock.enable = mkDefault true;
       thunderbird.enable = mkDefault true;
       zathura.enable = mkDefault true;
       firefox.enable = mkDefault true;
-
-      spicetify = let
-        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-      in {
-        enable = true;
-        theme = spicePkgs.themes.catppuccin;
-        colorScheme = config.catppuccin.flavor;
-      };
     };
     # environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
     services = {
@@ -119,23 +99,6 @@ in {
       tailscale.tray.enable = mkDefault true;
       playerctld.enable = mkDefault true;
       printing.enable = mkDefault true;
-    };
-
-    services.flatpak = {
-      enable = true;
-      update.auto.enable = true;
-      packages = [
-        "com.modrinth.ModrinthApp"
-      ];
-    };
-    environment.profileRelativeEnvVars = {
-      XDG_DATA_DIRS = ["/var/lib/flatpak/exports/share"];
-    };
-
-    nix.settings = {
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
   };
 }
