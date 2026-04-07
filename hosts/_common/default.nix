@@ -112,7 +112,6 @@
 
   home-manager.sharedModules = [
     {
-      settings.theming.enable = true;
       programs = {
         # yazi.enable = true;
         tmux.enable = true;

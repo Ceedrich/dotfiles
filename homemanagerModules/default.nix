@@ -3,7 +3,6 @@
     ./git
     ./mangohud
     ./rofi
-    ./theming
     ./tmux
     ./vpn
     ./waybar
