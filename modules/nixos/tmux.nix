@@ -19,11 +19,23 @@
         baseIndex = 1;
         prefix = "C-space";
         mouse = true;
+        keyMode = "vi";
 
-        extraConfig = ''
-          unbind r
-          bind X { confirm-before -p "kill-session? (y/n)" kill-session }
-        '';
+        extraConfig =
+          #tmux
+          ''
+            # Enable 256 color support
+            set -g default-terminal "tmux-256color"
+            set -ga terminal-overrides ",*:RGB"
+            set -g set-clipboard on
+
+            unbind %
+            bind h split-window -h -c "#{pane_current_path}"
+            unbind '"'
+            bind v split-window -v -c "#{pane_current_path}"
+
+            bind X { confirm-before -p "kill-session? (y/n)" kill-session }
+          '';
 
         plugins = with pkgs.tmuxPlugins; [
           vim-tmux-navigator
