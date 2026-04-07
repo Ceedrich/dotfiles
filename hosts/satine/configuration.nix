@@ -11,6 +11,7 @@
     selfnixosmodules.fingerprint-sensor
     selfnixosmodules.kanata
     selfnixosmodules.steam
+    selfnixosmodules.bluetooth
   ];
   boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 
@@ -44,8 +45,6 @@
     "corefonts"
     "rider"
   ];
-
-  settings.bluetooth.enable = true;
 
   hardware.graphics = {
     enable32Bit = true;

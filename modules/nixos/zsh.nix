@@ -38,8 +38,6 @@
         vimdiff = "nvim -d";
       };
 
-      programs.eza.enable = mkDefault true;
-
       programs.zoxide = {
         enable = mkDefault true;
         flags = ["--cmd cd"];
