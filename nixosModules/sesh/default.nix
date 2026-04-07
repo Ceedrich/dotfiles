@@ -22,6 +22,10 @@ in {
           enable = true;
           settings = {
             sort_order = ["config"];
+            default_session = {
+              preview_command = "eza --all --git --icons --color=always {}";
+              startup_command = "tmux split-window -h; nvim";
+            };
           };
         };
         programs.fzf.tmux.enableShellIntegration = true;
