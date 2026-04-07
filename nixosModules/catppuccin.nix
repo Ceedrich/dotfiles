@@ -64,9 +64,11 @@
   };
 in {
   options.catppuccin = options;
+  config.catppuccin.enable = lib.mkDefault true;
   config.home-manager.sharedModules = [
     {
       options.catppuccin = options;
+      config.catppuccin.enable = lib.mkDefault true;
     }
   ];
 }
