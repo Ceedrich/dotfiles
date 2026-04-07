@@ -24,7 +24,7 @@ in {
             sort_order = ["config"];
             default_session = {
               preview_command = "eza --all --git --icons --color=always {}";
-              windows = ["nvim"];
+              startup_command = "nvim";
             };
             window = [
               {
