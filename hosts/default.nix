@@ -22,14 +22,9 @@
           };
           modules =
             [
-              self.nixosModules.oh-my-posh
-              self.nixosModules.base
               ../nixosModules
               ../hosts/_common
               ../hosts/${hostname}/configuration.nix
-              inputs.home-manager.nixosModules.home-manager
-              inputs.catppuccin.nixosModules.catppuccin
-              inputs.nix-flatpak.nixosModules.nix-flatpak
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;

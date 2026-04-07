@@ -17,6 +17,7 @@ in {
     vpn
     flatpak
     spotify
+    hyprland
   ];
   config = {
     home-manager.sharedModules = [
