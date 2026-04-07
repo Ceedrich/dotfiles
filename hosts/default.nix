@@ -48,7 +48,7 @@
                 });
               }
             ]
-            ++ builtins.map (user: ../users/${user}) users;
+            ++ builtins.map (user: self.nixosModules."user-${user}") users;
         };
     in {
       jabba = mkNixos "jabba" ["ceedrich"];
