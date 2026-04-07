@@ -15,6 +15,7 @@ in {
     selfnixosmodules.gdm
     selfnixosmodules.hypr
     selfnixosmodules.gtk
+    selfnixosmodules.rofi
   ];
   config = {
     home-manager.sharedModules = [
