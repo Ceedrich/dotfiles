@@ -24,15 +24,8 @@ in {
             sort_order = ["config"];
             default_session = {
               preview_command = "eza --all --git --icons --color=always {}";
-              startup_command = "nvim";
-              windows = ["nvim"];
+              startup_command = "tmux split-window -h; nvim";
             };
-            window = [
-              {
-                name = "nvim";
-                startup_script = "nvim";
-              }
-            ];
           };
         };
         programs.fzf.tmux.enableShellIntegration = true;
