@@ -25,6 +25,7 @@ in {
             default_session = {
               preview_command = "eza --all --git --icons --color=always {}";
               startup_command = "nvim";
+              windows = ["nvim"];
             };
             window = [
               {
