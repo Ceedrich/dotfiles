@@ -1,9 +1,9 @@
 {self, ...}: {
   flake.nixosModules.waybar = {
-    home-manager.sharedModules = with self.homemanagerModules; [waybar];
+    home-manager.sharedModules = with self.homeModules; [waybar];
   };
 
-  flake.homemanagerModules.waybar = {
+  flake.homeModules.waybar = {
     lib,
     config,
     ...

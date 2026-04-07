@@ -1,11 +1,11 @@
 {self, ...}: {
   flake.nixosModules.tmux = {
-    home-manager.sharedModules = with self.homemanagerModules; [
+    home-manager.sharedModules = with self.homeModules; [
       tmux
     ];
   };
 
-  flake.homemanagerModules.tmux = {
+  flake.homeModules.tmux = {
     pkgs,
     lib,
     config,

@@ -1,9 +1,9 @@
 {self, ...}: {
   flake.nixosModules.vpn = {
-    home-manager.sharedModules = with self.homemanagerModules; [vpn];
+    home-manager.sharedModules = with self.homeModules; [vpn];
   };
 
-  flake.homemanagerModules.vpn = {
+  flake.homeModules.vpn = {
     lib,
     config,
     pkgs,

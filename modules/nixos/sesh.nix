@@ -17,11 +17,11 @@
         "s" = "sesh connect $(sesh list | fzf)";
       };
 
-      home-manager.sharedModules = with self.homemanagerModules; [sesh];
+      home-manager.sharedModules = with self.homeModules; [sesh];
     };
   };
 
-  flake.homemanagerModules.sesh = {
+  flake.homeModules.sesh = {
     programs.sesh = {
       enable = true;
       settings = {
