@@ -1,7 +1,10 @@
-{
+{selfnixosmodules, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../../nasModules
+    selfnixosmodules.jellyfin
+    selfnixosmodules.pihole
+    selfnixosmodules.servarr
   ];
 
   nas.drives = {

@@ -12,6 +12,7 @@
     oh-my-posh
     base
     neovim
+    catppuccin
     inputs.home-manager.nixosModules.home-manager
     inputs.catppuccin.nixosModules.catppuccin
     inputs.nix-flatpak.nixosModules.nix-flatpak
