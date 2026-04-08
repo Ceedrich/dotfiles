@@ -95,7 +95,7 @@ rebuild() {
   git commit --allow-empty -m "Update $host_branch from $current_branch"
 
   info "Building nix configuration"
-  nixos-rebuild switch --flake . "$@" 2>&1 | tee nixos-switch.log >&2 || {
+  nixos-rebuild switch --flake . --no-update-lock-file "$@" 2>&1 | tee nixos-switch.log >&2 || {
     cat nixos-switch.log | grep --color -C 3 -E "error|warning"
     fatal-noexit "Build failed!" $'\n'"inspect the file nixos-switch.log for further information";
     info "resetting HEAD"
