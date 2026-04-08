@@ -4,6 +4,7 @@
 
     imports = [
       self.nixosModules.nixpkgs-issue-55674
+      self.inputs.determinate.nixosModules.default
     ];
   };
 }
