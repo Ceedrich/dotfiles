@@ -57,12 +57,14 @@
         type = mkProgramModule name;
         default = {};
       };
-  in {
-    options.ceedrich.standardPrograms = {
+
+    standardProgramsOptions = {
       terminal = mkProgramOption "Terminal";
       browser = mkProgramOption "Browser";
       launcher = mkProgramOption "Launcher";
     };
+  in {
+    options.ceedrich.standardPrograms = standardProgramsOptions;
 
     config = let
       cfg = config.ceedrich.standardPrograms;
@@ -70,6 +72,13 @@
       environment.systemPackages = lib.pipe cfg [
         (lib.filterAttrs (program: programConfig: programConfig.package != null && programConfig.installPackage))
         (lib.mapAttrsToList (program: programConfig: programConfig.package))
+      ];
+
+      home-manager.sharedModules = [
+        {
+          options.ceedrich.standardPrograms = standardProgramsOptions;
+          config.ceedrich.standardPrograms = cfg;
+        }
       ];
     };
   };

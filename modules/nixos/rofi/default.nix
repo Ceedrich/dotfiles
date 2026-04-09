@@ -10,7 +10,6 @@
     pkgs,
     lib,
     config,
-    selfpkgs,
     ...
   }: let
     cfg = config.programs.rofi;
@@ -22,7 +21,7 @@
           rofi-nerdy
           rofi-games
         ];
-        terminal = "${lib.getExe selfpkgs.terminal}";
+        terminal = with config.ceedrich.standardPrograms.terminal; lib.mkIf (command != null) command;
         extraConfig = {
           kb-row-down = "Down,Control+j";
           kb-row-up = "Up,Control+k";
