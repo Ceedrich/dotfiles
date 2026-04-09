@@ -99,10 +99,12 @@ rebuild() {
   git restore --source="$current_branch" --worktree --staged .
   git commit --allow-empty -m "Update $host_branch from $current_branch"
 
+
+  #shellcheck disable=SC2064
+  trap "cp nixos-switch.log '$REPO'" EXIT
   info "Building nix configuration"
   nixos-rebuild switch --flake . --no-update-lock-file "$@" 2>&1 | tee nixos-switch.log >&2 || {
     cat nixos-switch.log | grep --color -C 3 -E "error|warning"
-    cp nixos-switch.log "$REPO"
     fatal-noexit "Build failed!" $'\n'"inspect the file ${BOLD}nixos-switch.log${RST} for further information";
     info "resetting HEAD"
     git reset --hard HEAD~ 
