@@ -89,7 +89,9 @@ rebuild() {
 
   info "Changing from branch '$current_branch' to '$host_branch'"
   git show-ref --verify --quiet "refs/heads/$host_branch" || git branch "$host_branch" # Make sure branch exists
-  git worktree add "$worktree_dir" "$host_branch"
+  git worktree add "$worktree_dir" "$host_branch" || exit
+  #shellcheck disable=SC2064
+  trap "git worktree remove $worktree_dir"
   cd "$worktree_dir" || fatal "Could not change to the worktree directory"
 
   info "Updating '$host_branch' from '$current_branch'"
