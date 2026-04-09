@@ -1,5 +1,4 @@
 {
-  selfpkgs,
   meta,
   pkgs,
   selfnixosmodules,
@@ -36,7 +35,6 @@
   environment.systemPackages = with pkgs; [
     usbutils
     cmatrix
-    selfpkgs.terminal
     catppuccin-cursors.mochaMauve
     dysk
     fd
