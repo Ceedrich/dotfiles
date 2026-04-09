@@ -24,7 +24,6 @@ in {
             "${mainMod}, F, fullscreen"
 
             # Launchers
-            "${mainMod}, b, exec, ${lib.getExe pkgs.librewolf}"
             "${mainMod}, return, exec, ${lib.getExe selfpkgs.terminal}"
             "${mainMod}, Space, exec, ${lib.getExe selfpkgs.launcher}"
 
@@ -39,6 +38,11 @@ in {
             "${mainMod} SHIFT, k, movewindow, u"
             "${mainMod} SHIFT, j, movewindow, d"
           ]
+          ++ (
+            with config.ceedrich.standardPrograms.browser;
+              lib.optional (command != null)
+              "${mainMod}, b, exec, ${command}"
+          )
           # Special buttons
           ++ (let
             wpctl = "${lib.getExe' pkgs.wireplumber "wpctl"}";
