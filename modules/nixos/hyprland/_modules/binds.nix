@@ -16,16 +16,14 @@ in {
           "${mainMod}, mouse:273, resizewindow"
         ];
 
-        bind =
+        bind = let
+          programOptional = key: strFn: with config.ceedrich.standardPrograms.${key}; lib.optional (command != null) (strFn command);
+        in
           [
             # Main binds
             "${mainMod}, Q, killactive"
             "${mainMod}, T, togglefloating"
             "${mainMod}, F, fullscreen"
-
-            # Launchers
-            "${mainMod}, return, exec, ${lib.getExe selfpkgs.terminal}"
-            "${mainMod}, Space, exec, ${lib.getExe selfpkgs.launcher}"
 
             # Window binds
             "${mainMod}, h, movefocus, l"
@@ -38,11 +36,9 @@ in {
             "${mainMod} SHIFT, k, movewindow, u"
             "${mainMod} SHIFT, j, movewindow, d"
           ]
-          ++ (
-            with config.ceedrich.standardPrograms.browser;
-              lib.optional (command != null)
-              "${mainMod}, b, exec, ${command}"
-          )
+          ++ (programOptional "browser" (command: "${mainMod}, b, exec, ${command}"))
+          ++ (programOptional "terminal" (command: "${mainMod}, return, exec, ${command}"))
+          ++ (programOptional "launcher" (command: "${mainMod}, Space, exec, ${command}"))
           # Special buttons
           ++ (let
             wpctl = "${lib.getExe' pkgs.wireplumber "wpctl"}";
