@@ -24,6 +24,7 @@ in {
             "${mainMod}, F, fullscreen"
 
             # Launchers
+            "${mainMod}, b, exec, ${lib.getExe pkgs.librewolf}"
             "${mainMod}, return, exec, ${lib.getExe selfpkgs.terminal}"
             "${mainMod}, Space, exec, ${lib.getExe selfpkgs.launcher}"
 
