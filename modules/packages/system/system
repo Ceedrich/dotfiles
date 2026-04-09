@@ -91,17 +91,19 @@ rebuild() {
   git show-ref --verify --quiet "refs/heads/$host_branch" || git branch "$host_branch" # Make sure branch exists
   git worktree add "$worktree_dir" "$host_branch" || exit
   #shellcheck disable=SC2064
-  trap "git worktree remove $worktree_dir"
+  trap "git worktree remove $worktree_dir" EXIT
+  info "Changing to worktree in '$worktree_dir'"
   cd "$worktree_dir" || fatal "Could not change to the worktree directory"
 
   info "Updating '$host_branch' from '$current_branch'"
   git restore --source="$current_branch" --worktree --staged .
   git commit --allow-empty -m "Update $host_branch from $current_branch"
 
+
   info "Building nix configuration"
-  nixos-rebuild switch --flake . --no-update-lock-file "$@" 2>&1 | tee nixos-switch.log >&2 || {
+  nixos-rebuild switch --flake . --no-update-lock-file "$@" 2>&1 | tee "$REPO/nixos-switch.log" >&2 || {
     cat nixos-switch.log | grep --color -C 3 -E "error|warning"
-    fatal-noexit "Build failed!" $'\n'"inspect the file ${BOLD}${worktree_dir}/nixos-switch.log${RST} for further information";
+    fatal-noexit "Build failed!" $'\n'"inspect the file ${BOLD}nixos-switch.log${RST} for further information";
     info "resetting HEAD"
     git reset --hard HEAD~ 
     exit 1
