@@ -20,6 +20,7 @@
     btop
     eza
     fzf
+    git
     tailscale
     inputs.home-manager.nixosModules.home-manager
     inputs.catppuccin.nixosModules.catppuccin

@@ -15,11 +15,11 @@
     in
       lib.mkIf cfg.enable {
         environment.systemPackages = [package];
-        home-manager.sharedModules = with self.homemanagerModules; [btop];
+        home-manager.sharedModules = with self.homeModules; [btop];
       };
   };
 
-  flake.homemanagerModules.btop = {
+  flake.homeModules.btop = {
     programs.btop = {
       enable = true;
       package = null;

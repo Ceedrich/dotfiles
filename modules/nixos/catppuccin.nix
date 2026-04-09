@@ -72,5 +72,5 @@ in {
     imports = [module];
     config.home-manager.sharedModules = [module];
   };
-  flake.homemanagerModules.catppuccin = module;
+  flake.homeModules.catppuccin = module;
 }

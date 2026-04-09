@@ -12,11 +12,11 @@
     config = lib.mkIf cfg.enable {
       xdg.mime.defaultApplications."application/pdf" = ["org.pwmt.zathura-pdf-mupdf.desktop"];
 
-      home-manager.sharedModules = with self.homemanagerModules; [zathura];
+      home-manager.sharedModules = with self.homeModules; [zathura];
     };
   };
 
-  flake.homemanagerModules.zathura = {
+  flake.homeModules.zathura = {
     programs.zathura = {
       enable = true;
       extraConfig = ''
