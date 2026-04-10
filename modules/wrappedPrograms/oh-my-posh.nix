@@ -118,12 +118,25 @@
                       ${icon}{{ ${mkAddedGit [key]} }}
                       {{end}}
                     '';
+                    # in ''
+                    #   Working.Added: {{ .Working.Added }}
+                    #   Staging.Added: {{ .Staging.Added }}
+                    #   Working.Modified: {{ .Working.Modified }}
+                    #   Staging.Modified: {{ .Staging.Modified }}
+                    #   Working.Untracked: {{ .Working.Untracked }}
+                    #   Staging.Untracked: {{ .Staging.Untracked }}
+                    #   Working.Deleted: {{ .Working.Deleted }}
+                    #   Staging.Deleted: {{ .Staging.Deleted }}
+                    # '';
                   in
                     removeNewlines ''
                        {{ .HEAD }}
                       <p:green>
-                      {{ if gt (${mkAddedGit ["Added" "Modified"]}) 0}}
-                       ${mkGitLine "Added" "+"}
+                      {{ if gt (${mkAddedGit ["Added" "Modified"]}) 0}} {{ end }}
+                      {{ if gt (${mkAddedGit ["Added"]}) 0}}
+                      {{ .Staging.Added }}+
+                      {{ end }}
+                      {{ if gt (${mkAddedGit ["Modified"]}) 0}}
                       ${mkGitLine "Modified" "~"}
                       {{end}}
                       </>
