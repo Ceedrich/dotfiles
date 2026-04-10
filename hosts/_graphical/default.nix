@@ -59,6 +59,12 @@ in {
       "image/*" = "qimgv.desktop";
     };
 
+    ceedrich.standardPrograms = {
+      terminal.package = selfpkgs.foot;
+      browser.command = "librewolf";
+      launcher.package = selfpkgs.wlr-which-key;
+    };
+
     environment.systemPackages = with pkgs; [
       brightnessctl
       (pass.withExtensions (ext: with ext; [pass-otp pass-update pass-audit]))
@@ -68,7 +74,6 @@ in {
       audacity
       libnotify
       selfpkgs.test-icons
-      selfpkgs.launcher
       selfpkgs.system
       blender-hip
       poppler-utils

@@ -8,6 +8,8 @@
     cfg = config.programs.firefox;
   in
     lib.mkIf cfg.enable {
+      ceedrich.standardPrograms.browser.command = "librewolf";
+
       programs.firefox = {
         package = lib.mkDefault pkgs.librewolf;
         policies = {
