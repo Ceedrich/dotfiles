@@ -21,6 +21,7 @@
     steam.enable = true;
   };
   services.hyprpaper.enable = true;
+  services.upower.enable = true;
 
   home-manager.sharedModules = [
     {
