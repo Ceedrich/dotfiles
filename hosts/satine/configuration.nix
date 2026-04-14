@@ -30,21 +30,17 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    discord
     snapshot
     jetbrains.idea-oss
 
     # unity
     unityhub
-    jetbrains.rider
   ];
 
   allowedUnfree = [
-    "discord"
     # unity
     "unityhub"
     "corefonts"
-    "rider"
   ];
 
   hardware.graphics = {
