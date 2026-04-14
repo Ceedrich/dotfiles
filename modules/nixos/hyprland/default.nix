@@ -142,6 +142,7 @@
 
                   # Up until 0.52
                   "opacity 0.7 0.6, class:foot"
+                  "plugin:hyprbars:no_bar, class:foot"
                 ]
                 # Works from 0.53
                 # ++ (builtins.map (regex: "float on, match:class ${regex}") floating);
