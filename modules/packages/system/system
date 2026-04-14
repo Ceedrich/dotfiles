@@ -16,12 +16,13 @@ main() {
     rebuild) shift 1; rebuild "$@";;
     build) shift 1; build "$@";;
     rollback) shift 1; rollback "$@";;
+    list-unfree) shift 1; list-unfree "$@";;
     *) usage; exit 1 ;;
   esac
 }
 
 usage() {
-  cat << EOF
+  cat >&2 << EOF
 usage: $PROGRAM_NAME <command>
 
 ${BOLD}COMMANDS${RST}:
@@ -32,6 +33,8 @@ ${BOLD}${MAGENTA}rollback${RST}: $PROGRAM_NAME rollback [nixos-rebuild options]
 
 ${BOLD}${MAGENTA}rebuild${RST}: $PROGRAM_NAME rebuild [nixos-rebuild options]
 
+${BOLD}${MAGENTA}list-unfree${RST}: $PROGRAM_NAME list-unfree [-h <hostname>]
+
 nixos-rebuild options: See ${MAGENTA}nixos-rebuild(8)${RST}
 
 EOF
@@ -39,6 +42,12 @@ EOF
 
 fatal() {
   fatal-noexit "$@"
+  exit 1
+}
+
+fatal-usage() {
+  fatal-noexit "$@"
+  usage;
   exit 1
 }
 
@@ -114,6 +123,25 @@ rebuild() {
   git commit --amend -m "Update $host_branch from $current_branch"$'\n'"$gen"
   info "Pushing to remote repository"
   git push -u origin "$host_branch"
+}
+
+list-unfree() {
+  local host opt
+  while getopts "h:" opt; do
+    case $opt in 
+      h) host=$OPTARG;;
+      *) fatal-usage "Invalid flag: '$opt'"
+    esac
+  done
+  [[ -z $host ]] && host=$(hostname)
+  nix eval --json --expr "$(get-unfree-host "$host")"
+}
+
+get-unfree-host() {
+  local host=$1
+  info "Listing unfree packages for host ${BOLD}${MAGENTA}$host${RST}"
+  nix eval "$REPO"#nixosConfigurations."$host".config.allowedUnfree \
+    --apply 'builtins.sort (a: b: a < b)'
 }
 
 parse_generations() {
