@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+
+QUIET=false
+CONFIG_DIR=${XDG_STATE_HOME:-$HOME/.local/state}
+CONFIG_FILE=$CONFIG_DIR/power-mode
+
+ON_FLAG=1
+OFF_FLAG=0
+
+RST=$'\e[0m'
+RED=$'\e[31m'
+
+fatal() {
+  echo "[${RED}FATAL${RST}]:" "$@"
+}
+
+create_config_dir() {
+  if [[ ! -d $CONFIG_DIR ]]; then
+    command mkdir -p "$CONFIG_DIR" \
+      || fatal "Configuration directory '$CONFIG_DIR' could not be created"
+  fi
+}
+
+is_on() {
+  local flag
+  [[ ! -d $CONFIG_DIR ]] && return 1
+  [[ ! -f $CONFIG_FILE ]] && return 1
+  read -r flag < "$CONFIG_FILE";
+  case "$flag" in
+    "$OFF_FLAG") return 1 ;;
+    "$ON_FLAG") return 0 ;;
+    *) fatal "Config file '$CONFIG_FILE' is malformed"
+  esac
+}
+
+toggle() {
+  create_config_dir
+  if is_on; then
+    set_off
+  else
+    set_on
+  fi
+}
+
+query() {
+  if is_on; then
+    $QUIET || echo "Focus mode is on";
+    return 0
+  else
+    $QUIET || echo "Focus mode is off"
+    return 1
+  fi
+}
+
+reload() {
+  if is_on; then
+    set_on
+  else
+    set_off
+  fi
+}
+
+set_on() {
+  create_config_dir
+  echo $ON_FLAG > "$CONFIG_FILE"
+
+  hyprctl --batch "
+    keyword windowrule plugin:hyprbars:nobar, class:.* ; 
+    keyword animations:enabled false ;
+    keyword general:gaps_in 0 ;
+    keyword general:gaps_out 0 ;
+    keyword decoration:rounding 0
+  "
+}
+
+set_off() {
+  create_config_dir
+  echo $OFF_FLAG > "$CONFIG_FILE"
+
+  hyprctl reload
+}
+
+usage() {
+  cat >&2 <<- EOF
+Usage: power-mode [command]
+
+Commands:
+  toggle      Toggle focus mode
+  on          Turn focus mode on
+  off         Turn focus mode off
+  query       Query current mode: returns 0 if focus is on and 1 if focus is off
+  reload      Reload the focus mode, useful for restoring an old state after reloading compositor
+EOF
+}
+
+main() {
+  case "$1" in
+    toggle) toggle;;
+    query) query;;
+    on) set_on;;
+    off) set_off;;
+    reload) reload;;
+    *) usage; exit 1;;
+  esac
+}
+
+main "$@"
