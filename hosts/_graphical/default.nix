@@ -9,20 +9,21 @@
   inherit (lib) mkDefault;
 in {
   imports = with selfnixosmodules; [
-    gdm
-    hypr
-    gtk
-    rofi
-    waybar
-    vpn
-    flatpak
-    spotify
-    hyprland
-    zathura
-    swaync
-    power-menu
-    firefox
     clipboard
+    firefox
+    flatpak
+    gdm
+    gtk
+    hypr
+    hyprland
+    power-menu
+    rofi
+    spotify
+    swaync
+    vpn
+    waybar
+    wlr-which-key
+    zathura
   ];
   config = {
     home-manager.sharedModules = [
