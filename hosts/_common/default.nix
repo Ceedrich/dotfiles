@@ -35,6 +35,8 @@
   environment.systemPackages = with pkgs; [
     usbutils
     cmatrix
+    man-pages
+    man-pages-posix
     catppuccin-cursors.mochaMauve
     dysk
     fd
