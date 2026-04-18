@@ -81,6 +81,8 @@
                 };
               };
 
+              dwindle.preserve_split = true;
+
               general = {
                 resize_on_border = true;
               };

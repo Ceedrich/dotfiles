@@ -35,6 +35,10 @@ in {
             "${mainMod} SHIFT, l, movewindow, r"
             "${mainMod} SHIFT, k, movewindow, u"
             "${mainMod} SHIFT, j, movewindow, d"
+
+            # Layout binds
+            "${mainMod}, z, resizeactive, exact 66% 66%"
+            "${mainMod}, =, splitratio, 0.5"
           ]
           ++ (programOptional "browser" (command: "${mainMod}, b, exec, ${command}"))
           ++ (programOptional "terminal" (command: "${mainMod}, return, exec, ${command}"))
