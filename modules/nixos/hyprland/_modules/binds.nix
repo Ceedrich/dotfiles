@@ -38,7 +38,7 @@ in {
 
             # Layout binds
             "${mainMod}, z, resizeactive, exact 66% 66%"
-            "${mainMod}, =, splitratio, 0.5"
+            "${mainMod}, equal, resizeactive, exact 50% 50%"
           ]
           ++ (programOptional "browser" (command: "${mainMod}, b, exec, ${command}"))
           ++ (programOptional "terminal" (command: "${mainMod}, return, exec, ${command}"))
