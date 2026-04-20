@@ -58,7 +58,7 @@
         imports = [self.wrapperModules.foot];
         settings = {
           main = {
-            font = "JetBrains Mono Nerd Font:size=11";
+            font = "JetBrains Mono Nerd Font:size=12";
             title = "Terminal";
           };
           key-bindings = {
