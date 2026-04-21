@@ -85,7 +85,7 @@
 
               general = {
                 resize_on_border = true;
-                border_size = 4;
+                border_size = 2;
               };
 
               gestures = {
