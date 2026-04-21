@@ -12,6 +12,7 @@
     selfnixosmodules.kanata
     selfnixosmodules.steam
     selfnixosmodules.bluetooth
+    selfnixosmodules.mangowm
   ];
   boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 
