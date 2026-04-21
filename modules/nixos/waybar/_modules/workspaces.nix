@@ -9,7 +9,7 @@ in {
   options.programs.waybar.modules.workspaces = {
     name = lib.mkOption {
       type = lib.types.str;
-      default = "hyprland/workspaces";
+      default = "ext/workspaces";
       readOnly = true;
     };
     enable = lib.mkOption {
