@@ -62,9 +62,9 @@
           wayland.windowManager.hyprland = {
             enable = true;
             systemd.enableXdgAutostart = true;
-            plugins = with pkgs.hyprlandPlugins; [
-              xtra-dispatchers
-            ];
+            # plugins = with pkgs.hyprlandPlugins; [
+            #   xtra-dispatchers
+            # ];
             settings = let
               inherit (cfg) autostart;
             in {
