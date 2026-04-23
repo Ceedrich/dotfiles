@@ -8,7 +8,7 @@
     ./hardware-configuration.nix
     ../_graphical
     inputs.musnix.nixosModules.musnix
-    selfnixosmodules.fingerprint-sensor
+    # selfnixosmodules.fingerprint-sensor
     selfnixosmodules.kanata
     selfnixosmodules.steam
     selfnixosmodules.bluetooth
