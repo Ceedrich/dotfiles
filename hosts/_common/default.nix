@@ -33,6 +33,7 @@
   programs.sesh.enable = true;
   # Packages / Programs
   environment.systemPackages = with pkgs; [
+    hwinfo
     usbutils
     cmatrix
     man-pages
