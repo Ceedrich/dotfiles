@@ -167,7 +167,16 @@
                 }
                 {
                   type = "text";
-                  template = " ❯";
+                  template = " {{ if .Segments.Contains \"Root\" }}{{else}}❯{{end}}";
+                  style = "plain";
+                  foreground_templates = [
+                    "{{if gt .Code 0}}p:red{{end}}"
+                    "{{if eq .Code 0}}p:blue{{end}}"
+                  ];
+                }
+                {
+                  type = "root";
+                  template = " #";
                   style = "plain";
                   foreground_templates = [
                     "{{if gt .Code 0}}p:red{{end}}"
