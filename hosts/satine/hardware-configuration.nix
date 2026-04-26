@@ -38,7 +38,7 @@
     }
   ];
 
-  boot.resumeDevice = "/dev/disk/by-uuid/b4574d9d-6681-420e-bd2e-ec7e24d1b65b";
+  boot.initrd.systemd.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
