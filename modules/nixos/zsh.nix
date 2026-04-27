@@ -15,10 +15,10 @@
         shellInit =
           #zsh
           ''
-            ZDOTDIR=''${XDG_CONFIG_HOME:-$HOME/.config}
+            ZDOTDIR="''${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
           '';
 
-        histFile = "$ZDOTDIR/zsh_history";
+        histFile = "$ZDOTDIR/.zsh_history";
 
         interactiveShellInit =
           # sh
