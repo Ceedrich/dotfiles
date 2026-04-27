@@ -12,6 +12,14 @@
         syntaxHighlighting.enable = mkDefault true;
         autosuggestions.enable = mkDefault true;
 
+        shellInit =
+          #zsh
+          ''
+            ZDOTDIR=''${XDG_CONFIG_HOME:-$HOME/.config}
+          '';
+
+        histFile = "$ZDOTDIR/zsh_history";
+
         interactiveShellInit =
           # sh
           ''
