@@ -13,7 +13,6 @@
     selfnixosmodules.steam
     selfnixosmodules.bluetooth
     selfnixosmodules.mangowm
-    selfnixosmodules.cosmic
   ];
   boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 
