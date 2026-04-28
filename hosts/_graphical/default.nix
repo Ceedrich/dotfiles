@@ -26,7 +26,7 @@ in {
     zathura
   ];
   config = {
-    services.greetd.enable = true;
+    services.displayManager.ly.enable = true;
     home-manager.sharedModules = [
       {
         programs.brave.enable = true;
