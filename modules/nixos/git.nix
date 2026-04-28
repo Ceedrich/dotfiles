@@ -27,6 +27,7 @@
         ga = "git add";
         gc = "git commit";
         gp = "git push";
+        gl = "git log";
         gco = "git checkout";
       };
     };
