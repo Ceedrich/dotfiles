@@ -82,7 +82,7 @@
                         label = "󰍃 Logout";
                       }
                       {
-                        command = commands.lock;
+                        command = "${close-swaync}; ${commands.lock}";
                         label = "󰌾 Lock";
                       }
                       {
