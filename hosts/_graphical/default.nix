@@ -12,7 +12,7 @@ in {
     clipboard
     firefox
     flatpak
-    gdm
+    # gdm
     gtk
     hypr
     hyprland
@@ -26,6 +26,8 @@ in {
     zathura
   ];
   config = {
+    services.displayManager.cosmic-greeter.enable = true;
+
     home-manager.sharedModules = [
       {
         programs.brave.enable = true;
