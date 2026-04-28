@@ -10,6 +10,12 @@
     lib.mkIf cfg.enable {
       ceedrich.standardPrograms.browser.command = "librewolf";
 
+      home-manager.sharedModules = [
+        {
+          programs.firefox.enable = true;
+        }
+      ];
+
       programs.firefox = {
         package = lib.mkDefault pkgs.librewolf;
         policies = {
