@@ -87,6 +87,7 @@ in {
       gh
       nsxiv
       inkscape
+      zotero
 
       # libreoffice
       libreoffice-qt
