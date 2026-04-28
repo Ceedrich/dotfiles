@@ -26,8 +26,7 @@ in {
     zathura
   ];
   config = {
-    services.displayManager.cosmic-greeter.enable = true;
-
+    services.greetd.enable = true;
     home-manager.sharedModules = [
       {
         programs.brave.enable = true;
