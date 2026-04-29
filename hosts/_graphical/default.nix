@@ -76,6 +76,7 @@ in {
       libnotify
       selfpkgs.test-icons
       selfpkgs.system
+      selfpkgs.open
       blender-hip
       poppler-utils
       jellyfin-desktop
