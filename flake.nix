@@ -2,6 +2,10 @@
   description = "nixos flake";
 
   inputs = {
+    pdfcat = {
+      url = "github:pdfcat/pdfcat";
+      flake = false;
+    };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {

@@ -433,6 +433,22 @@
         "type": "github"
       }
     },
+    "pdfcat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1773215454,
+        "narHash": "sha256-Rl1yiMMKOkbozy6YAyabTUqqnvEna3O0tJKk2Zpthjc=",
+        "owner": "pdfcat",
+        "repo": "pdfcat",
+        "rev": "574ea51b5b2ba9948d8ea0f704feb8ee6e80ce60",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pdfcat",
+        "repo": "pdfcat",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
@@ -448,6 +464,7 @@
         "nix-minecraft": "nix-minecraft",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "pdfcat": "pdfcat",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
         "wrappers": "wrappers"

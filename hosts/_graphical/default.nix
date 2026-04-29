@@ -79,6 +79,7 @@ in {
       selfpkgs.open
       blender-hip
       poppler-utils
+      selfpkgs.pdfcat
       jellyfin-desktop
       wl-clipboard
       wlrctl
