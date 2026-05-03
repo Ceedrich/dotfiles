@@ -82,6 +82,10 @@
                         label = "󰍃 Logout";
                       }
                       {
+                        command = "${close-swaync}; ${commands.lock}";
+                        label = "󰌾 Lock";
+                      }
+                      {
                         command = commands.shutdown;
                         label = "󰐥 Shut down";
                       }

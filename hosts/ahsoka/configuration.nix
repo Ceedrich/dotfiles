@@ -37,9 +37,6 @@
     prismlauncher
 
     unityhub
-    jetbrains.rider
-
-    discord
 
     aseprite
     handbrake
@@ -51,10 +48,8 @@
     # Unity
     "unityhub"
     "corefonts"
-    "rider"
 
     "aseprite"
-    "discord"
   ];
 
   hardware.graphics = {

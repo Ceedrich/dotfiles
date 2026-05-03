@@ -8,10 +8,11 @@
     ./hardware-configuration.nix
     ../_graphical
     inputs.musnix.nixosModules.musnix
-    selfnixosmodules.fingerprint-sensor
+    # selfnixosmodules.fingerprint-sensor
     selfnixosmodules.kanata
     selfnixosmodules.steam
     selfnixosmodules.bluetooth
+    selfnixosmodules.mangowm
   ];
   boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 
@@ -21,6 +22,7 @@
     steam.enable = true;
   };
   services.hyprpaper.enable = true;
+  services.upower.enable = true;
 
   home-manager.sharedModules = [
     {
@@ -29,21 +31,17 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    discord
     snapshot
     jetbrains.idea-oss
 
     # unity
     unityhub
-    jetbrains.rider
   ];
 
   allowedUnfree = [
-    "discord"
     # unity
     "unityhub"
     "corefonts"
-    "rider"
   ];
 
   hardware.graphics = {

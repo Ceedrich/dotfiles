@@ -62,9 +62,9 @@
           wayland.windowManager.hyprland = {
             enable = true;
             systemd.enableXdgAutostart = true;
-            plugins = with pkgs.hyprlandPlugins; [
-              xtra-dispatchers
-            ];
+            # plugins = with pkgs.hyprlandPlugins; [
+            #   xtra-dispatchers
+            # ];
             settings = let
               inherit (cfg) autostart;
             in {
@@ -81,8 +81,11 @@
                 };
               };
 
+              dwindle.preserve_split = true;
+
               general = {
                 resize_on_border = true;
+                border_size = 2;
               };
 
               gestures = {

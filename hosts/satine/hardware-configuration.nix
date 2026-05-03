@@ -31,7 +31,14 @@
     options = ["fmask=0077" "dmask=0077"];
   };
 
-  swapDevices = [];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 1028 * 8; # 8 GiB
+    }
+  ];
+
+  boot.initrd.systemd.enable = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

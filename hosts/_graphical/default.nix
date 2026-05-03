@@ -9,20 +9,21 @@
   inherit (lib) mkDefault;
 in {
   imports = with selfnixosmodules; [
-    gdm
-    hypr
-    gtk
-    rofi
-    waybar
-    vpn
-    flatpak
-    spotify
-    hyprland
-    zathura
-    swaync
-    power-menu
-    firefox
     clipboard
+    firefox
+    flatpak
+    gdm
+    gtk
+    hypr
+    hyprland
+    power-menu
+    rofi
+    spotify
+    swaync
+    vpn
+    waybar
+    wlr-which-key
+    zathura
   ];
   config = {
     home-manager.sharedModules = [
@@ -75,8 +76,10 @@ in {
       libnotify
       selfpkgs.test-icons
       selfpkgs.system
+      selfpkgs.open
       blender-hip
       poppler-utils
+      selfpkgs.pdfcat
       jellyfin-desktop
       wl-clipboard
       wlrctl
@@ -107,6 +110,7 @@ in {
       swaync.enable = mkDefault true;
       hypridle.enable = mkDefault true;
       hyprsunset.enable = mkDefault true;
+      hyprpolkitagent.enable = mkDefault true;
       tailscale.tray.enable = mkDefault true;
       playerctld.enable = mkDefault true;
       printing.enable = mkDefault true;

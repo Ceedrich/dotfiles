@@ -17,7 +17,7 @@
             general = {
               ignore_empty_input = true;
               hide_cursor = true;
-              fail_timeout = 800;
+              fail_timeout = 300;
             };
             auth = {
               pam.enabled = true;

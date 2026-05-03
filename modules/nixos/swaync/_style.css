@@ -2,8 +2,6 @@
   all: unset;
 }
 
-@define-color base-90 alpha(@base, 0.9);
-
 /* notifications */
 
 /* .notification-background { */
@@ -54,6 +52,7 @@
 
 .notification-content .summary {
   color: @text;
+  font-weight: bold;
 }
 
 .notification-content .time {
@@ -69,19 +68,20 @@
 }
 
 .notification-background .close-button {
-  margin: 7px;
-  padding: 2px;
-  border-radius: 6.3px;
+  margin: 0.5rem;
+  padding: 0.1rem;
+  border-radius: 1000rem;
   color: @base;
-  background-color: @red;
+  background-color: @mauve-80;
 }
 
 .notification-background .close-button:hover {
-  background-color: @maroon;
+  cursor: pointer;
+  background-color: @mauve;
 }
 
 .notification-background .close-button:active {
-  background-color: @pink;
+  background-color: @mauve-80;
 }
 
 .notification .notification-action {

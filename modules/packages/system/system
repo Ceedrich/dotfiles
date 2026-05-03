@@ -16,29 +16,54 @@ main() {
     rebuild) shift 1; rebuild "$@";;
     build) shift 1; build "$@";;
     rollback) shift 1; rollback "$@";;
+    list-unfree) shift 1; list-unfree "$@";;
     *) usage; exit 1 ;;
   esac
 }
 
 usage() {
-  cat << EOF
+  cat >&2 << EOF
 usage: $PROGRAM_NAME <command>
 
 ${BOLD}COMMANDS${RST}:
 
-${BOLD}${MAGENTA}build${RST}: $PROGRAM_NAME build [nixos-rebuild options]
+${BOLD}${MAGENTA}build${RST}: 
+$PROGRAM_NAME build [nixos-rebuild options]
 
-${BOLD}${MAGENTA}rollback${RST}: $PROGRAM_NAME rollback [nixos-rebuild options]
+Builds the default system configuration
 
-${BOLD}${MAGENTA}rebuild${RST}: $PROGRAM_NAME rebuild [nixos-rebuild options]
+${BOLD}${MAGENTA}rollback${RST}: 
+$PROGRAM_NAME rollback [nixos-rebuild options]
+
+Rolls back to the previous system configuration
+
+${BOLD}${MAGENTA}rebuild${RST}: 
+$PROGRAM_NAME rebuild [nixos-rebuild options]
+
+Rebuilds and switches to the current system configuration. 
+Also tracks the config in a new git branch.
+
+${BOLD}${MAGENTA}list-unfree${RST}: 
+$PROGRAM_NAME list-unfree [-h <hostname>]
+
+Lists all the unfree packages for the given hostnames
+
+Options:
+  -h <hostname>   Hostname to list unfree packages for. Can be given multiple 
+                  times. If not given, defaults to the current hostname
 
 nixos-rebuild options: See ${MAGENTA}nixos-rebuild(8)${RST}
-
 EOF
 }
 
 fatal() {
   fatal-noexit "$@"
+  exit 1
+}
+
+fatal-usage() {
+  fatal-noexit "$@"
+  usage;
   exit 1
 }
 
@@ -114,6 +139,28 @@ rebuild() {
   git commit --amend -m "Update $host_branch from $current_branch"$'\n'"$gen"
   info "Pushing to remote repository"
   git push -u origin "$host_branch"
+}
+
+list-unfree() {
+  local host opt
+  local hosts=()
+  while getopts "h:" opt; do
+    case $opt in 
+      h) hosts+=("$OPTARG");;
+      *) fatal-usage "Invalid flag: '$opt'"
+    esac
+  done
+  (( ${#hosts} == 0 )) && hosts+=( "$(hostname)" )
+  for host in "${hosts[@]}"; do
+    nix eval --json --expr "$(get-unfree-host "$host")"
+  done
+}
+
+get-unfree-host() {
+  local host=$1
+  info "Listing unfree packages for host ${BOLD}${MAGENTA}$host${RST}"
+  nix eval "$REPO"#nixosConfigurations."$host".config.allowedUnfree \
+    --apply 'builtins.sort (a: b: a < b)'
 }
 
 parse_generations() {
