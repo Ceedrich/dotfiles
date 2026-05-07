@@ -30,6 +30,7 @@ in {
     home-manager.sharedModules = [
       {
         programs.brave.enable = true;
+        programs.waybar.enable = true;
         vpn.epfl = true;
 
         services.owncloud-client.enable = true;
