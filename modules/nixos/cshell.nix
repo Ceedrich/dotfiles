@@ -11,10 +11,10 @@
     systemd.user.services."cshell" = {
       enable = true;
       wantedBy = ["graphical-session.target"];
+      description = "Cshell, MY graphical shell";
 
       serviceConfig = {
         Type = "simple";
-        description = "Cshell, MY graphical shell";
         ExecStart = lib.getExe package;
       };
     };
