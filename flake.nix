@@ -37,6 +37,7 @@
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    cshell.url = "github:Ceedrich/cshell-qs";
     ceedrichVim.url = "github:Ceedrich/neovim-config";
     sops-nix = {
       url = "github:Mic92/sops-nix";
