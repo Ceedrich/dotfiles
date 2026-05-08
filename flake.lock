@@ -46,11 +46,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1778187459,
-        "narHash": "sha256-ysSYdkQpR7ORQqVYLRNH/Lxm5JDM+BsT5QRxt/Mej5o=",
+        "lastModified": 1778230579,
+        "narHash": "sha256-qzlt2t1U/jysLFMi5xbYp75pA5AqOMhas6uWRDFrAOo=",
         "owner": "Ceedrich",
         "repo": "cshell-qs",
-        "rev": "90e92fa43f58498f4d4c4ce6445bce9ded276b70",
+        "rev": "d8cd04d6af0b5597b9f03a4a841f9230f25271af",
         "type": "github"
       },
       "original": {
@@ -394,11 +394,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1777268161,
-        "narHash": "sha256-bxrdOn8SCOv8tN4JbTF/TXq7kjo9ag4M+C8yzzIRYbE=",
+        "lastModified": 1777954456,
+        "narHash": "sha256-hGdgeU2Nk87RAuZyYjyDjFL6LK7dAZN5RE9+hrDTkDU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "1c3fe55ad329cbcb28471bb30f05c9827f724c76",
+        "rev": "549bd84d6279f9852cae6225e372cc67fb91a4c1",
         "type": "github"
       },
       "original": {
