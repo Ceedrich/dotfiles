@@ -20,6 +20,7 @@
     eza
     fzf
     git
+    CVEs
     tailscale
     inputs.home-manager.nixosModules.home-manager
     inputs.catppuccin.nixosModules.catppuccin
