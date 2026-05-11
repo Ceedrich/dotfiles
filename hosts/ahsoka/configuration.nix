@@ -16,10 +16,6 @@
   home-manager.sharedModules = [
     {
       programs.mangohud.enable = true;
-      programs.waybar.modules = {
-        battery.enable = false;
-        backlight.enable = false;
-      };
     }
   ];
 
