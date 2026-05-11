@@ -115,8 +115,8 @@
               };
 
               layerrule = [
-                "noanim, ^rofi$"
-                "animation slide, ^cshell.*$"
+                "noanim, match:namespace ^rofi$"
+                "animation slide, match:namespace ^cshell.*$"
               ];
               windowrule = let
                 floatingClass = [
@@ -141,7 +141,7 @@
                 [
                   "match:class foot, opacity 0.7 0.6"
                   "match:class .*, suppress_event maximize"
-                  "match:class [Xx]dg-desktop-portal-[a-zA-z0-9]*, float, center"
+                  "match:class [Xx]dg-desktop-portal-[a-zA-z0-9]*, float on, center"
                 ]
                 ++ (builtins.map (regex: "float on, match:title ^${regex}$") floatingTitle)
                 ++ (builtins.map (regex: "float on, match:class ${regex}") floatingClass);
