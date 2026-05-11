@@ -26,7 +26,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 
-    hyprland.url = "github:hyprwm/hyprland/v0.54.3";
+    hyprland.url = "github:hyprwm/hyprland/v0.55.0";
 
     musnix.url = "github:musnix/musnix";
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
