@@ -115,8 +115,8 @@
               };
 
               layerrule = [
-                "no_anim on, match:namespace ^rofi$"
-                "animation slide, match:namespace ^cshell.*$"
+                "noanim, ^rofi$"
+                "animation slide, ^cshell.*$"
               ];
               windowrule = let
                 floatingClass = [
@@ -139,12 +139,21 @@
                 ];
               in
                 [
-                  "match:class foot, opacity 0.7 0.6"
-                  "match:class .*, suppress_event maximize"
-                  "match:class [Xx]dg-desktop-portal-[a-zA-z0-9]*, float on, center on"
+                  # Works from 0.53
+                  # "opacity 0.7 0.6, match:class foot"
+                  # "suppress_event maximize, match:class .*"
+
+                  # Up until 0.52
+                  "opacity 0.7 0.6, class:foot"
                 ]
-                ++ (builtins.map (regex: "float on, match:title ^${regex}$") floatingTitle)
-                ++ (builtins.map (regex: "float on, match:class ${regex}") floatingClass);
+                # Works from 0.53
+                # ++ (builtins.map (regex: "float on, match:class ${regex}") floating);
+                # Up until 0.52
+                ++ [
+                  "float, center, class:([Xx]dg-desktop-portal-[a-zA-z0-9]*)"
+                ]
+                ++ (builtins.map (regex: "float, title:^${regex}$") floatingTitle)
+                ++ (builtins.map (regex: "float, class:${regex}") floatingClass);
             };
           };
         }
