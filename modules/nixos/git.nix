@@ -17,6 +17,9 @@
           core.editor = lib.mkDefault "nvim";
           init.defaultBranch = lib.mkDefault "main";
           pull.rebase = lib.mkDefault true;
+          alias = {
+            logg = "log --all --graph --abbrev-commit --decorate";
+          };
         };
       };
 
