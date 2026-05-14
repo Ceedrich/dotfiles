@@ -54,7 +54,7 @@
 
       icon="$(find-icons)"
       [[ -n "$icon" ]] || exit 1
-      notify-send "test-icon" --icon="$icon"
+      notify-send "$icon" --icon="$icon"
 
       if [[ -n $CLIPBOARD ]]; then
         copy "$icon"
