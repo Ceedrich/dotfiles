@@ -110,6 +110,7 @@
               };
 
               misc = {
+                focus_on_activate = true;
                 force_default_wallpaper = false;
                 disable_hyprland_logo = true;
               };
