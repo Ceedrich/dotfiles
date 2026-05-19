@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   config,
   lib,
@@ -14,15 +15,15 @@ in {
   config.home-manager.sharedModules = lib.mkIf cfg.enable [
     {
       wayland.windowManager.hyprland = {
-        plugins = with pkgs; [hyprlandPlugins.hyprbars];
+        plugins = [inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars];
 
         settings.plugin.hyprbars = {
           bar_height = 28;
           bar_button_padding = 8;
-          bar_blur = false;
+          bar_blur = true;
           bar_color = "$crust";
           col.text = "$overlay0";
-          bar_text_size = 12;
+          bar_text_size = 14;
           bar_text_font = "JetBrains Mono Nerdfont";
           bar_part_of_window = true;
           bar_precedence_over_border = true;
