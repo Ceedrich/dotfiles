@@ -43,17 +43,6 @@ in {
           ++ (programOptional "browser" (command: "${mainMod}, b, exec, ${command}"))
           ++ (programOptional "terminal" (command: "${mainMod}, return, exec, ${command}"))
           ++ (programOptional "launcher" (command: "${mainMod}, Space, exec, ${command}"))
-          # Special buttons
-          ++ (let
-            wpctl = "${lib.getExe' pkgs.wireplumber "wpctl"}";
-            brightnessctl = "${lib.getExe pkgs.brightnessctl}";
-          in [
-            ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
-            ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
-            ", XF86AudioLowerVolume, exec, ${wpctl} set-volume -l 0.0 @DEFAULT_AUDIO_SINK@ 5%-"
-            ", XF86MonBrightnessDown, exec, ${brightnessctl} -q s 10%-"
-            ", XF86MonBrightnessUp, exec, ${brightnessctl} -q s +10%"
-          ])
           # Workspaces
           ++ (lib.pipe (lib.genList (i: {
               key = toString (lib.mod (i + 1) 10);
@@ -69,6 +58,17 @@ in {
             ]))
             lib.flatten
           ]);
+        # Special buttons
+        bindr = let
+          wpctl = "${lib.getExe' pkgs.wireplumber "wpctl"}";
+          brightnessctl = "${lib.getExe pkgs.brightnessctl}";
+        in [
+          ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
+          ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
+          ", XF86AudioLowerVolume, exec, ${wpctl} set-volume -l 0.0 @DEFAULT_AUDIO_SINK@ 5%-"
+          ", XF86MonBrightnessDown, exec, ${brightnessctl} -q s 10%-"
+          ", XF86MonBrightnessUp, exec, ${brightnessctl} -q s +10%"
+        ];
       };
     }
   ];
