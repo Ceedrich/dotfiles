@@ -97,6 +97,10 @@
                 "3, horizontal, workspace"
               ];
 
+              workspace = [
+                "1, layout:scrolling"
+              ];
+
               # Animation
               animation = [
                 "workspaces, 1, 2, default"
