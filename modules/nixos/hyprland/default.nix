@@ -97,6 +97,12 @@
                 "3, horizontal, workspace"
               ];
 
+              workspace = [
+                "1, layout:scrolling"
+              ];
+
+              scrolling.column_width = 0.95;
+
               # Animation
               animation = [
                 "workspaces, 1, 2, default"
