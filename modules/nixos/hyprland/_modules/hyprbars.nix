@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   config,
   lib,
@@ -14,7 +15,7 @@ in {
   config.home-manager.sharedModules = lib.mkIf cfg.enable [
     {
       wayland.windowManager.hyprland = {
-        plugins = with pkgs; [hyprlandPlugins.hyprbars];
+        plugins = [inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars];
 
         settings.plugin.hyprbars = {
           bar_height = 28;
