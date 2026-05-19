@@ -59,7 +59,7 @@ in {
             lib.flatten
           ]);
         # Special buttons
-        bindr = let
+        bindl = let
           wpctl = "${lib.getExe' pkgs.wireplumber "wpctl"}";
           brightnessctl = "${lib.getExe pkgs.brightnessctl}";
         in [
