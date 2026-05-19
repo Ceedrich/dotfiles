@@ -101,7 +101,7 @@
                 "1, layout:scrolling"
               ];
 
-              scrolling.column_width = 0.9;
+              scrolling.column_width = 0.95;
 
               # Animation
               animation = [
