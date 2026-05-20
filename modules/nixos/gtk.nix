@@ -64,8 +64,8 @@
     in {
       enable = true;
       platformTheme.name = "qtct";
-      qt5ctSettings = settings;
-      qt6ctSettings = settings;
+      # qt5ctSettings = settings;
+      # qt6ctSettings = settings;
     };
   };
 }
