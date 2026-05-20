@@ -1,8 +1,4 @@
-{
-  self,
-  inputs,
-  ...
-}: {
+{self, ...}: {
   flake.nixosModules.gtk = {...}: {
     environment.sessionVariables = {
       GTK_IM_MODULE = "gtk-im-context-simple";
@@ -15,6 +11,7 @@
   flake.homeModules.gtk = {
     config,
     pkgs,
+    lib,
     ...
   }: {
     gtk = let
@@ -66,6 +63,19 @@
       platformTheme.name = "qtct";
       # qt5ctSettings = settings;
       # qt6ctSettings = settings;
+    };
+
+    xdg.configFile = let
+      cfg = config.catppuccin.kvantum;
+      themeName = "catppuccin-${cfg.flavor}-${cfg.accent}";
+    in {
+      "Kvantum/${themeName}".source = "${config.catppuccin.sources.kvantum}/share/Kvantum/${themeName}";
+      "Kvantum/kvantum.kvconfig" = lib.mkIf cfg.apply {
+        text = ''
+          [General]
+          theme=${themeName}
+        '';
+      };
     };
   };
 }
