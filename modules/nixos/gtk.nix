@@ -43,6 +43,10 @@
 
     catppuccin.kvantum.enable = false;
 
+    home.packages = [
+      pkgs.catppuccin-qt5ct
+    ];
+
     qt = {
       enable = true;
       platformTheme.name = "qt5ct";
