@@ -93,7 +93,7 @@
               };
 
               gesture = [
-                "3, up, dispatcher, exec, if pgrep rofi; then pkill rofi; else rofi -show drun -theme drawer; fi"
+                "3, up, dispatcher, exec, cshell ipc call overview toggle"
                 "3, horizontal, workspace"
               ];
 
