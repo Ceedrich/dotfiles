@@ -49,6 +49,9 @@
 
     home.packages = [
       pkgs.catppuccin-qt5ct
+      pkgs.kdePackages.qtstyleplugin-kvantum
+      pkgs.libsForQt5.qtstyleplugin-kvantum
+      pkgs.catppuccin-kvantum
     ];
     qt = let
       ccfg = config.catppuccin;
