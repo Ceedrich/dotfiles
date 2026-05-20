@@ -11,7 +11,6 @@
   flake.homeModules.gtk = {
     config,
     pkgs,
-    lib,
     ...
   }: {
     gtk = let
@@ -42,40 +41,10 @@
       };
     };
 
-    catppuccin.kvantum.enable = false;
-
-    home.packages = [
-      pkgs.catppuccin-qt5ct
-      pkgs.kdePackages.qtstyleplugin-kvantum
-      pkgs.libsForQt5.qtstyleplugin-kvantum
-      pkgs.catppuccin-kvantum
-    ];
-    qt = let
-      ccfg = config.catppuccin;
-      settings = {
-        Appearance = {
-          custom_palette = true;
-          color_scheme_path = "${pkgs.catppuccin-qt5ct}/share/qt5ct/colors/catppuccin-${ccfg.flavor}-${ccfg.accent}.conf";
-        };
-      };
-    in {
+    qt = {
       enable = true;
-      platformTheme.name = "qtct";
-      # qt5ctSettings = settings;
-      # qt6ctSettings = settings;
-    };
-
-    xdg.configFile = let
-      cfg = config.catppuccin.kvantum;
-      themeName = "catppuccin-${cfg.flavor}-${cfg.accent}";
-    in {
-      "Kvantum/${themeName}".source = "${config.catppuccin.sources.kvantum}/share/Kvantum/${themeName}";
-      "Kvantum/kvantum.kvconfig" = lib.mkIf cfg.apply {
-        text = ''
-          [General]
-          theme=${themeName}
-        '';
-      };
+      style.name = "kvantum";
+      platformTheme.name = "kvantum";
     };
   };
 }
