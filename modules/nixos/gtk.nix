@@ -1,4 +1,8 @@
-{self, ...}: {
+{
+  self,
+  inputs,
+  ...
+}: {
   flake.nixosModules.gtk = {...}: {
     environment.sessionVariables = {
       GTK_IM_MODULE = "gtk-im-context-simple";
@@ -46,10 +50,19 @@
     home.packages = [
       pkgs.catppuccin-qt5ct
     ];
-
-    qt = {
+    qt = let
+      ccfg = config.catppuccin;
+      settings = {
+        Appearance = {
+          custom_palette = true;
+          color_scheme_path = "${pkgs.catppuccin-qt5ct}/share/qt5ct/colors/catppuccin-${ccfg.flavor}-${ccfg.accent}.conf";
+        };
+      };
+    in {
       enable = true;
-      platformTheme.name = "qt5ct";
+      platformTheme.name = "qtct";
+      qt5ctSettings = settings;
+      qt6ctSettings = settings;
     };
   };
 }
