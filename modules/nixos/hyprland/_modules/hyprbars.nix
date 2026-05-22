@@ -33,7 +33,7 @@ in {
           in [
             "$red, ${size},, hyprctl dispatch killactive"
             "$yellow, ${size},, hyprctl dispatch togglefloating"
-            "$green, ${size},, hyprctl dispatch fullscreen toggle"
+            "$green, ${size},, hyprctl --batch 'dispatch movetoworkspace emptyn ; dispatch fullscreen toggle'"
           ];
         };
       };
