@@ -50,6 +50,7 @@
     just
     pdfgrep
     ripgrep
+    zip
     unzip
     vim
     neofetch
