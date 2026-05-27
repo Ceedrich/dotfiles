@@ -26,6 +26,8 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 
+    hyprland.url = "github:hyprwm/hyprland/v0.55.0";
+
     musnix.url = "github:musnix/musnix";
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
 
@@ -37,6 +39,7 @@
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    cshell.url = "github:Ceedrich/cshell-qs";
     ceedrichVim.url = "github:Ceedrich/neovim-config";
     sops-nix = {
       url = "github:Mic92/sops-nix";

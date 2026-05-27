@@ -21,7 +21,7 @@ in {
     spotify
     swaync
     vpn
-    waybar
+    cshell
     wlr-which-key
     zathura
   ];
@@ -29,12 +29,6 @@ in {
     home-manager.sharedModules = [
       {
         programs.brave.enable = true;
-        programs.waybar = {
-          enable = mkDefault true;
-          modules = {
-            window.enable = false;
-          };
-        };
         vpn.epfl = true;
 
         services.owncloud-client.enable = true;
@@ -112,7 +106,6 @@ in {
       hyprsunset.enable = mkDefault true;
       hyprpolkitagent.enable = mkDefault true;
       tailscale.tray.enable = mkDefault true;
-      playerctld.enable = mkDefault true;
       printing.enable = mkDefault true;
     };
   };

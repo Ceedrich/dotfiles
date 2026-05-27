@@ -1,0 +1,4 @@
+{...}: {
+  flake.nixosModules.CVEs = {pkgs, ...}: {
+  };
+}
