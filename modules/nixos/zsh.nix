@@ -28,6 +28,14 @@
 
             zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
             zstyle ':completion:*' menu select
+
+            # pres ^a to insert date
+            currentDate() {
+              zle -U -- "$(date +'%Y%m%d_')"
+            }
+            zle -N currentDate
+            bindkey '^A' currentDate
+
           '';
       };
 
