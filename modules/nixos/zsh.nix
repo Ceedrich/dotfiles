@@ -10,7 +10,6 @@
   in {
     config = {
       programs.zsh = lib.mkIf cfg.enable {
-        syntaxHighlighting.enable = mkDefault true;
         autosuggestions.enable = mkDefault true;
 
         shellInit =
@@ -35,11 +34,14 @@
         interactiveShellInit =
           # sh
           ''
+            source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
             function zvm_config() {
               ZVM_VI_HIGHLIGHT_FOREGROUND=none
               ZVM_VI_HIGHLIGHT_BACKGROUND=none
               ZVM_VI_HIGHLIGHT_EXTRASTYLE=none
               ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+              ZVM_INIT_MODE=sourcing
             }
             source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
