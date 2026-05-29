@@ -2,6 +2,7 @@
   flake.nixosModules.zsh = {
     config,
     lib,
+    pkgs,
     ...
   }: let
     cfg = config.programs.zsh;
@@ -23,6 +24,11 @@
         interactiveShellInit =
           # sh
           ''
+            function zvm_config() {
+              ZVM_CURSOR_STYLE_ENABLED=false
+            }
+            source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
             bindkey -v
             setopt correct
 
