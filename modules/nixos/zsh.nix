@@ -20,6 +20,17 @@
           '';
 
         histFile = "$ZDOTDIR/.zsh_history";
+        histSize = 100000;
+
+        setOptions = [
+          "APPEND_HISTORY"
+          "HIST_EXPIRE_DUPS_FIRST"
+          "HIST_FCNTL_LOCK"
+          "HIST_FIND_NO_DUPS"
+          "HIST_IGNORE_DUPS"
+          "HIST_IGNORE_SPACE"
+          "SHARE_HISTORY"
+        ];
 
         interactiveShellInit =
           # sh
