@@ -2,6 +2,7 @@
   flake.nixosModules.zsh = {
     config,
     lib,
+    pkgs,
     ...
   }: let
     cfg = config.programs.zsh;
@@ -19,10 +20,29 @@
           '';
 
         histFile = "$ZDOTDIR/.zsh_history";
+        histSize = 100000;
+
+        setOptions = [
+          "APPEND_HISTORY"
+          "HIST_EXPIRE_DUPS_FIRST"
+          "HIST_FCNTL_LOCK"
+          "HIST_FIND_NO_DUPS"
+          "HIST_IGNORE_DUPS"
+          "HIST_IGNORE_SPACE"
+          "SHARE_HISTORY"
+        ];
 
         interactiveShellInit =
           # sh
           ''
+            function zvm_config() {
+              ZVM_VI_HIGHLIGHT_FOREGROUND=none
+              ZVM_VI_HIGHLIGHT_BACKGROUND=none
+              ZVM_VI_HIGHLIGHT_EXTRASTYLE=none
+              ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+            }
+            source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
             bindkey -v
             setopt correct
 

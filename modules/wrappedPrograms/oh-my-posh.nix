@@ -223,14 +223,14 @@
             foreground = "p:blue";
             template = "❯❯ ";
           };
-          transient_prompt = {
-            background = "transparent";
-            foreground_templates = [
-              "{{if gt .Code 0}}p:red{{end}}"
-              "{{if eq .Code 0}}p:blue{{end}}"
-            ];
-            template = "❯ ";
-          };
+          # transient_prompt = {
+          #   background = "transparent";
+          #   foreground_templates = [
+          #     "{{if gt .Code 0}}p:red{{end}}"
+          #     "{{if eq .Code 0}}p:blue{{end}}"
+          #   ];
+          #   template = "❯ ";
+          # };
           version = 2;
         };
       }).wrapper;
