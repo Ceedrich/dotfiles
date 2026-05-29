@@ -25,7 +25,6 @@
           # sh
           ''
             function zvm_config() {
-              ZVM_CURSOR_STYLE_ENABLED=false
               ZVM_VI_HIGHLIGHT_FOREGROUND=none
               ZVM_VI_HIGHLIGHT_BACKGROUND=none
               ZVM_VI_HIGHLIGHT_EXTRASTYLE=none
