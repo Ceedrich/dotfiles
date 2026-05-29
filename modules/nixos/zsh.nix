@@ -26,6 +26,10 @@
           ''
             function zvm_config() {
               ZVM_CURSOR_STYLE_ENABLED=false
+              ZVM_VI_HIGHLIGHT_FOREGROUND=none
+              ZVM_VI_HIGHLIGHT_BACKGROUND=none
+              ZVM_VI_HIGHLIGHT_EXTRASTYLE=none
+              ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
             }
             source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
