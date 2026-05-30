@@ -41,7 +41,13 @@
               ZVM_VI_HIGHLIGHT_BACKGROUND=none
               ZVM_VI_HIGHLIGHT_EXTRASTYLE=none
               ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-              ZVM_NORMAL_MODE_CURSOR=$(zvm_cursor_style $ZVM_NORMAL_MODE_CURSOR)'\e\e]12;green\a'
+
+              local ncur=$(zvm_cursor_style $ZVM_NORMAL_MODE_CURSOR)
+              local icur=$(zvm_cursor_style $ZVM_INSERT_MODE_CURSOR)
+
+              # Append your custom color for your cursor
+              ZVM_INSERT_MODE_CURSOR=$icur'\e\e]12;red\a'
+              ZVM_NORMAL_MODE_CURSOR=$ncur'\e\e]12;#008800\a'
 
               ZVM_INIT_MODE=sourcing
             }
