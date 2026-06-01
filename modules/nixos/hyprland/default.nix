@@ -30,7 +30,7 @@
     config = lib.mkIf cfg.enable {
       services.xserver.enable = true;
       services.xserver.excludePackages = [pkgs.xterm];
-      services.displayManager.gdm.enable = true;
+      services.greetd.enable = true;
 
       environment.systemPackages = with pkgs;
         [

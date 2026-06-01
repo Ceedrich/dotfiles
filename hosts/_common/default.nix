@@ -34,28 +34,27 @@
   programs.sesh.enable = true;
   # Packages / Programs
   environment.systemPackages = with pkgs; [
-    catppuccin-cursors.mochaMauve
-    ceedrichVim
+    hwinfo
+    usbutils
     cmatrix
+    man-pages
+    man-pages-posix
+    catppuccin-cursors.mochaMauve
     dysk
     fd
     file
     gnugrep
     gnupg
     gnutar
-    hwinfo
     jq
     just
-    man-pages
-    man-pages-posix
-    fastfetch
     pdfgrep
-    python3
     ripgrep
-    unzip
-    usbutils
-    vim
     zip
+    unzip
+    vim
+    neofetch
+    ceedrichVim
   ];
 
   programs = {
