@@ -12,10 +12,12 @@
       enable = true;
       wantedBy = ["graphical-session.target"];
       description = "Cshell, MY graphical shell";
+      after = ["graphical-session.target"];
 
       serviceConfig = {
         Type = "simple";
         ExecStart = lib.getExe package;
+        Restart = "on-failure";
       };
     };
   };
