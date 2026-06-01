@@ -59,6 +59,7 @@
 
       home-manager.sharedModules = [
         {
+          catppuccin.hyprland.enable = false;
           wayland.windowManager.hyprland = {
             enable = true;
             systemd.enableXdgAutostart = true;
