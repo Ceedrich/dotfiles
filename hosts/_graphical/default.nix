@@ -71,7 +71,7 @@ in {
       selfpkgs.test-icons
       selfpkgs.system
       selfpkgs.open
-      blender
+      blender-hip
       poppler-utils
       selfpkgs.pdfcat
       jellyfin-desktop
