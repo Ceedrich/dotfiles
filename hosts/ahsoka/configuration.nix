@@ -11,6 +11,7 @@
     selfnixosmodules.mangohud
     selfnixosmodules.steam
     selfnixosmodules.bluetooth
+    selfnixosmodules.piper
   ];
 
   home-manager.sharedModules = [
