@@ -16,6 +16,7 @@ in {
     gtk
     hypr
     hyprland
+    ly
     power-menu
     rofi
     spotify
