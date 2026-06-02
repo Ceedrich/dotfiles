@@ -139,6 +139,8 @@ rebuild() {
   git commit --amend -m "Update $host_branch from $current_branch"$'\n'"$gen"
   info "Pushing to remote repository"
   git push -u origin "$host_branch"
+
+  notify-send "Rebuilt system" "$(hostname): $gen" -a "System Rebuild"
 }
 
 list-unfree() {
