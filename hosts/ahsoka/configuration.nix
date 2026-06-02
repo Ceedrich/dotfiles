@@ -7,7 +7,6 @@
     ./hardware-configuration.nix
     # ../jarjar/minecraft-servers
     ../_graphical
-    selfnixosmodules.mpvpaper
     selfnixosmodules.mangohud
     selfnixosmodules.steam
     selfnixosmodules.bluetooth
@@ -18,8 +17,6 @@
       programs.mangohud.enable = true;
     }
   ];
-
-  services.mpvpaper.enable = true;
 
   programs = {
     coolercontrol.enable = true;
