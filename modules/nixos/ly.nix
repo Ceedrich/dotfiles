@@ -4,7 +4,7 @@
       enable = true;
       settings = {
         allow_empty_password = false;
-        asterisk = "#";
+        asterisk = "\\#";
         box_title = "Ceedrich on ${config.networking.hostName}";
         clear_password = true;
         vi_default_mode = "insert";
