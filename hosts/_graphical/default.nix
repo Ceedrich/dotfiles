@@ -20,6 +20,7 @@ in {
     power-menu
     rofi
     spotify
+    solaar
     swaync
     vpn
     cshell
