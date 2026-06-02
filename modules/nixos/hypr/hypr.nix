@@ -2,7 +2,6 @@
   flake.nixosModules.hypr = {inputs', ...}: {
     imports = with self.nixosModules; [
       hyprlock
-      hyprpaper
       hypridle
       hyprpolkitagent
       hyprsunset

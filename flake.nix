@@ -7,10 +7,6 @@
       flake = false;
     };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    solaar = {
-      url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";

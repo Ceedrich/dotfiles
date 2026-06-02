@@ -7,11 +7,9 @@
     ./hardware-configuration.nix
     # ../jarjar/minecraft-servers
     ../_graphical
-    selfnixosmodules.mpvpaper
     selfnixosmodules.mangohud
     selfnixosmodules.steam
     selfnixosmodules.bluetooth
-    selfnixosmodules.piper
   ];
 
   home-manager.sharedModules = [
@@ -19,8 +17,6 @@
       programs.mangohud.enable = true;
     }
   ];
-
-  services.mpvpaper.enable = true;
 
   programs = {
     coolercontrol.enable = true;
