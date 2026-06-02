@@ -41,6 +41,9 @@
               ZVM_VI_HIGHLIGHT_BACKGROUND=none
               ZVM_VI_HIGHLIGHT_EXTRASTYLE=none
               ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+
+              ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+
               ZVM_INIT_MODE=sourcing
             }
             source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
