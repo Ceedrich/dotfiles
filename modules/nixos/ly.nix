@@ -7,7 +7,7 @@
         asterisk = "\\#";
         box_title = "Ceedrich on ${config.networking.hostName}";
         clear_password = true;
-        animation = "gameoflife";
+        animation = "matrix";
       };
     };
   };
