@@ -6,7 +6,8 @@
   }: let
     cfg = config.services.hypridle;
   in {
-    config.home-manager.sharedModules = lib.mkIf cfg.enable [
+    systemd.user.services.hypridle.serviceConfig.WantedBy = lib.mkForce ["hyprland-session.target"];
+    home-manager.sharedModules = lib.mkIf cfg.enable [
       {
         services.hypridle = {
           enable = true;
