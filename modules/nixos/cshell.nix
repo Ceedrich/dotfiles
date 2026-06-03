@@ -19,23 +19,15 @@
     systemd.user.services."cshell" = {
       Unit = {
         Description = "Cshell, MY graphical shell";
-        After = [
-          config.wayland.systemd.target
-        ];
-        PartOf = [
-          config.wayland.systemd.target
-          "tray.target"
-        ];
+        After = [config.wayland.systemd.target];
+        PartOf = [config.wayland.systemd.target];
       };
       Service = {
         Type = "simple";
         ExecStart = lib.getExe package;
         Restart = "on-failure";
       };
-      Install.WantedBy = [
-        config.wayland.systemd.target
-        "tray.target"
-      ];
+      Install.WantedBy = [config.wayland.systemd.target];
     };
   };
 }
