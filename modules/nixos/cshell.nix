@@ -10,9 +10,9 @@
 
     systemd.user.services."cshell" = {
       enable = true;
-      wantedBy = ["graphical-session.target"];
+      wantedBy = ["hyprland-session.target"];
       description = "Cshell, MY graphical shell";
-      after = ["graphical-session.target"];
+      after = ["hyprland-session.target"];
 
       serviceConfig = {
         Type = "simple";
