@@ -79,11 +79,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1780410974,
-        "narHash": "sha256-ZcysNaN1tPqdaaDD6NOYJPKoEMSm12MTKFDs0nSkrnw=",
+        "lastModified": 1779973279,
+        "narHash": "sha256-y+QZHdJp01ZbClFH0JtYgcytyjJqhaxkaFWxK4MxDyI=",
         "owner": "Ceedrich",
         "repo": "cshell-qs",
-        "rev": "49f18ce96415a480cdc7e3a82fd619ea49ae7faa",
+        "rev": "2d5d939f71809d84085d5452083496fa27d930d7",
         "type": "github"
       },
       "original": {
