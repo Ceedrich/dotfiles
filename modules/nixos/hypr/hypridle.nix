@@ -4,7 +4,6 @@
       {
         services.hypridle = {
           enable = true;
-          package = null;
           settings = {
             general = {
               lock_cmd = "pidof hyprlock || hyprlock"; # avoid starting multiple hyprlock instances.
