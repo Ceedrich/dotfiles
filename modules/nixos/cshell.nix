@@ -19,7 +19,9 @@
     systemd.user.services."cshell" = {
       Unit = {
         Description = "Cshell, MY graphical shell";
-        After = [config.wayland.systemd.target "tray.target"];
+        After = [
+          config.wayland.systemd.target
+        ];
         PartOf = [
           config.wayland.systemd.target
           "tray.target"
