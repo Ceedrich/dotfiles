@@ -1,13 +1,6 @@
 {...}: {
   flake.nixosModules.hypridle = {
-    lib,
-    config,
-    ...
-  }: let
-    cfg = config.services.hypridle;
-  in {
-    systemd.user.services.hypridle.wantedBy = lib.mkForce ["hyprland-session.target"];
-    home-manager.sharedModules = lib.mkIf cfg.enable [
+    home-manager.sharedModules = [
       {
         services.hypridle = {
           enable = true;
