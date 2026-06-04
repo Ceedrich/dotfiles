@@ -1,16 +1,9 @@
 {...}: {
   flake.nixosModules.hypridle = {
-    lib,
-    config,
-    ...
-  }: let
-    cfg = config.services.hypridle;
-  in {
-    config.home-manager.sharedModules = lib.mkIf cfg.enable [
+    home-manager.sharedModules = [
       {
         services.hypridle = {
           enable = true;
-          package = null;
           settings = {
             general = {
               lock_cmd = "pidof hyprlock || hyprlock"; # avoid starting multiple hyprlock instances.

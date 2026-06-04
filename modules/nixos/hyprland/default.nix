@@ -58,6 +58,7 @@
 
       home-manager.sharedModules = [
         {
+          wayland.systemd.target = "hyprland-session.target";
           wayland.windowManager.hyprland = {
             enable = true;
             systemd.enableXdgAutostart = true;
