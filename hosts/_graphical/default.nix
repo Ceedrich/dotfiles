@@ -86,6 +86,9 @@ in {
       nsxiv
       inkscape
 
+      gimp
+      nautilus
+
       # libreoffice
       libreoffice-qt
       hunspell
