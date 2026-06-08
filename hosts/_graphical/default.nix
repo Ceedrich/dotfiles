@@ -45,6 +45,8 @@ in {
       }
     ];
 
+    services.udisks2.enable = true;
+
     xdg.mime.defaultApplications = let
       browser = "librewolf.desktop";
     in {
