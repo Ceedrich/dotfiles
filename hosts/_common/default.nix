@@ -127,7 +127,6 @@
 
   home-manager.sharedModules = [
     {
-      xdg.mime.enable = false;
       programs = {
         home-manager.enable = true;
         # yazi.enable = true;
