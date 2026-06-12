@@ -53,7 +53,7 @@
     zip
     unzip
     vim
-    neofetch
+    fastfetch
     ceedrichVim
   ];
 

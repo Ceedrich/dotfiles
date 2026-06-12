@@ -58,6 +58,8 @@
 
       home-manager.sharedModules = [
         {
+          catppuccin.hyprland.enable = false;
+
           wayland.systemd.target = "hyprland-session.target";
           wayland.windowManager.hyprland = {
             enable = true;
@@ -69,6 +71,7 @@
               inherit (cfg) autostart;
             in {
               exec-once = autostart;
+              source = ["${inputs.catppuccin-hyprland}/themes/mocha.conf"];
 
               # Input
               input = {
