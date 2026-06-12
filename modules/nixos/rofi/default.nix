@@ -41,6 +41,9 @@
         theme = ./_themes/cofi.rasi;
       };
 
+      xdg.configFile."rofi-games/config.toml".text = ''
+      '';
+
       xdg.dataFile = let
         mkThemes = files:
           lib.pipe files [
