@@ -1,7 +1,8 @@
 {...}: {
   flake.nixosModules.hypridle = {
     home-manager.sharedModules = [
-      {
+      ({lib, ...}: {
+        systemd.user.services.hypridle.Unit.After = lib.mkForce [];
         services.hypridle = {
           enable = true;
           settings = {
@@ -28,7 +29,7 @@
             ];
           };
         };
-      }
+      })
     ];
   };
 }
