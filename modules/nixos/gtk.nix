@@ -41,14 +41,12 @@
       };
     };
 
-    catppuccin.kvantum = {
-      assertStyle = false;
-    };
+    catppuccin.kvantum.enable = false;
+    catppuccin.qt5ct.enable = true;
 
     qt = {
       enable = true;
-      platformTheme.name = "adwaita";
-      style.name = "adwaita-dark";
+      platformTheme.name = "qtct";
     };
   };
 }
