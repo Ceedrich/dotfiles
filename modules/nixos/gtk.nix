@@ -47,6 +47,7 @@
     };
 
     qt = {
+      kvantum.enable = true;
       enable = true;
       platformTheme.name = "qtct";
     };
