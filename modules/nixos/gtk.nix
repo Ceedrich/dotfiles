@@ -46,10 +46,8 @@
     };
 
     qt = {
-      kvantum.enable = true;
       enable = true;
-      platformTheme.name = "qtct";
-      style.name = "kvantum";
+      platformTheme.name = "adwaita-dark";
     };
   };
 }
