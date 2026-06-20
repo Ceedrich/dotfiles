@@ -41,12 +41,10 @@
       };
     };
 
-    home.sessionVariables."QT_QPA_PLATFORMTHEME" = "qt5ct";
-
-    # qt = {
-    #   enable = false;
-    #   style.name = "kvantum";
-    #   platformTheme.name = "kvantum";
-    # };
+    qt = {
+      enable = false;
+      style.name = "adwaita-dark";
+      platformTheme.name = "adwaita";
+    };
   };
 }
