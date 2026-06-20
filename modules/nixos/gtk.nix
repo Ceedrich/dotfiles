@@ -41,8 +41,13 @@
       };
     };
 
+    catppuccin.kvantum = {
+      apply = false;
+      assertStyle = false;
+    };
+
     qt = {
-      enable = false;
+      enable = true;
       style.name = "adwaita-dark";
       platformTheme.name = "adwaita";
     };
