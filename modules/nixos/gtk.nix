@@ -42,7 +42,6 @@
     };
 
     catppuccin.kvantum = {
-      apply = false;
       assertStyle = false;
     };
 
