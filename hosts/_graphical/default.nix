@@ -87,6 +87,7 @@ in {
       gh
       nsxiv
       inkscape
+      playerctl
 
       gimp
       nautilus
