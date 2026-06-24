@@ -119,6 +119,7 @@
 
               layerrule = [
                 "no_anim on, match:namespace ^rofi$"
+                "no_anim on, match:namespace ^cshell"
               ];
               windowrule = let
                 floatingClass = [
