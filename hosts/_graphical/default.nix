@@ -20,7 +20,6 @@ in {
     power-menu
     rofi
     spotify
-    swaync
     vpn
     cshell
     hypridle
@@ -109,7 +108,6 @@ in {
     # environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
     services = {
       clipboard.enable = mkDefault true;
-      swaync.enable = mkDefault true;
       hyprsunset.enable = mkDefault true;
       hyprpolkitagent.enable = mkDefault true;
       tailscale.tray.enable = mkDefault true;
