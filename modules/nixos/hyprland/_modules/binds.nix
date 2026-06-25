@@ -35,6 +35,7 @@ in {
             "${mainMod} SHIFT, l, movewindow, r"
             "${mainMod} SHIFT, k, movewindow, u"
             "${mainMod} SHIFT, j, movewindow, d"
+            "${mainMod}, N, exec, cshell ipc call control-center toggle"
 
             # Layout binds
             "${mainMod}, z, resizeactive, exact 66% 66%"
