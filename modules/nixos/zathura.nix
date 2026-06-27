@@ -21,6 +21,8 @@
       enable = true;
       extraConfig = ''
         set selection-clipboard clipboard
+        set scroll-step 80
+        set scroll-page-aware true
       '';
     };
   };
