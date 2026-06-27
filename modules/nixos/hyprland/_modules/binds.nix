@@ -31,6 +31,12 @@ in {
             "${mainMod}, k, movefocus, u"
             "${mainMod}, j, movefocus, d"
 
+            # So floating windows are put to the front
+            "${mainMod}, h, alterzorder, top"
+            "${mainMod}, j, alterzorder, top"
+            "${mainMod}, k, alterzorder, top"
+            "${mainMod}, l, alterzorder, top"
+
             "${mainMod} SHIFT, h, movewindow, l"
             "${mainMod} SHIFT, l, movewindow, r"
             "${mainMod} SHIFT, k, movewindow, u"
@@ -40,6 +46,12 @@ in {
             # Layout binds
             "${mainMod}, z, resizeactive, exact 66% 66%"
             "${mainMod}, equal, resizeactive, exact 50% 50%"
+
+            # Alt-tab behavior
+            "${mainMod}, Tab, cyclenext"
+            "${mainMod}, Tab, alterzorder, top"
+            "${mainMod} SHIFT, Tab, cyclenext, prev"
+            "${mainMod} SHIFT, Tab, alterzorder, top"
           ]
           ++ (programOptional "browser" (command: "${mainMod}, b, exec, ${command}"))
           ++ (programOptional "terminal" (command: "${mainMod}, return, exec, ${command}"))
