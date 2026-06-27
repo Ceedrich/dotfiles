@@ -40,6 +40,12 @@ in {
             # Layout binds
             "${mainMod}, z, resizeactive, exact 66% 66%"
             "${mainMod}, equal, resizeactive, exact 50% 50%"
+
+            # Alt-tab behavior
+            "${mainMod}, Tab, cyclenext"
+            "${mainMod}, Tab, alterzorder, top"
+            "${mainMod}, SHIFT, Tab, cyclenext, prev"
+            "${mainMod}, SHIFT, Tab, alterzorder, top"
           ]
           ++ (programOptional "browser" (command: "${mainMod}, b, exec, ${command}"))
           ++ (programOptional "terminal" (command: "${mainMod}, return, exec, ${command}"))
