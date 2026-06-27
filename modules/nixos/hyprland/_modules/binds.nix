@@ -44,8 +44,8 @@ in {
             # Alt-tab behavior
             "${mainMod}, Tab, cyclenext"
             "${mainMod}, Tab, alterzorder, top"
-            "${mainMod}, SHIFT, Tab, cyclenext, prev"
-            "${mainMod}, SHIFT, Tab, alterzorder, top"
+            "${mainMod} SHIFT, Tab, cyclenext, prev"
+            "${mainMod} SHIFT, Tab, alterzorder, top"
           ]
           ++ (programOptional "browser" (command: "${mainMod}, b, exec, ${command}"))
           ++ (programOptional "terminal" (command: "${mainMod}, return, exec, ${command}"))
