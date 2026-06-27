@@ -31,7 +31,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
 
-    hyprland.url = "github:hyprwm/hyprland/v0.55.0";
+    hyprland.url = "github:hyprwm/hyprland/v0.55.4";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins/v0.55.0";
       inputs.hyprland.follows = "hyprland";
