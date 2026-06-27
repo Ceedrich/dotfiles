@@ -31,6 +31,12 @@ in {
             "${mainMod}, k, movefocus, u"
             "${mainMod}, j, movefocus, d"
 
+            # So floating windows are put to the front
+            "${mainMod}, h, alterzorder, top"
+            "${mainMod}, j, alterzorder, top"
+            "${mainMod}, k, alterzorder, top"
+            "${mainMod}, l, alterzorder, top"
+
             "${mainMod} SHIFT, h, movewindow, l"
             "${mainMod} SHIFT, l, movewindow, r"
             "${mainMod} SHIFT, k, movewindow, u"
