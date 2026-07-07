@@ -87,6 +87,7 @@ in {
       nsxiv
       inkscape
       playerctl
+      pavucontrol
 
       gimp
       nautilus
