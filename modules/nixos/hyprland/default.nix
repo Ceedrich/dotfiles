@@ -60,6 +60,8 @@
         {
           catppuccin.hyprland.enable = false;
 
+          services.hyprpolkitagent.enable = true;
+
           wayland.systemd.target = "hyprland-session.target";
           wayland.windowManager.hyprland = {
             enable = true;
