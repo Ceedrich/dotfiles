@@ -1,4 +1,8 @@
-{selfnixosmodules, ...}: {
+{
+  selfnixosmodules,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ../../nasModules
@@ -6,6 +10,11 @@
     selfnixosmodules.pihole
     selfnixosmodules.servarr
     selfnixosmodules.homepage
+  ];
+
+  environment.systemPackages = with pkgs; [
+    ffmpeg-full
+    mediainfo
   ];
 
   nas.drives = {
