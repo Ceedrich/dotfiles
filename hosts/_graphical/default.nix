@@ -25,7 +25,6 @@ in {
     hypridle
     wlr-which-key
     zathura
-    fcitx5
   ];
   config = {
     home-manager.sharedModules = [
