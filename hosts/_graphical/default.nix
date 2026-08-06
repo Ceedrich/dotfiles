@@ -44,6 +44,11 @@ in {
       }
     ];
 
+    virtualisation.waydroid = {
+      enable = true;
+      package = pkgs.waydroid-nftables;
+    };
+
     services.udisks2.enable = true;
 
     xdg.mime.defaultApplications = let
