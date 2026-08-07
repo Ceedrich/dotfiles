@@ -7,9 +7,9 @@
   }: let
     cfg = config.programs.hyprland;
   in {
-    imports = [
-      (inputs.import-tree ./_modules)
-    ];
+    # imports = [
+    #   (inputs.import-tree ./_modules)
+    # ];
     options.programs.hyprland = let
       types = lib.types;
     in {
