@@ -22,9 +22,9 @@ if hl.plugin.hyprbars ~= nil then
 		hl.plugin.hyprbars.add_button({
 			icon = "",
 			size = 14,
-			bg_color,
+			bg_color = bg_color,
 			fg_color = colors.text,
-			action,
+			action = action,
 		})
 	end
 
