@@ -23,11 +23,11 @@
   };
   services.upower.enable = true;
 
-  home-manager.sharedModules = [
-    {
-      wayland.windowManager.hyprland.extraConfig = "monitor = , preferred, auto, 1";
-    }
-  ];
+  # home-manager.sharedModules = [
+  #   {
+  #     wayland.windowManager.hyprland.extraConfig = "monitor = , preferred, auto, 1";
+  #   }
+  # ];
 
   environment.systemPackages = with pkgs; [
     snapshot
