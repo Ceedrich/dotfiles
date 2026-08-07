@@ -58,7 +58,10 @@
 
       home-manager.sharedModules = [
         {
-          catppuccin.hyprland.enable = false;
+          xdg.configFile."hypr" = {
+            source = ./_hypr;
+            recursive = true;
+          };
 
           services.hyprpolkitagent.enable = true;
 
@@ -66,91 +69,26 @@
           wayland.windowManager.hyprland = {
             enable = true;
             systemd.enableXdgAutostart = true;
-            # plugins = with pkgs.hyprlandPlugins; [
-            #   xtra-dispatchers
-            # ];
-            settings = let
-              inherit (cfg) autostart;
-            in {
-              exec-once = autostart;
-              source = ["${inputs.catppuccin-hyprland}/themes/mocha.conf"];
+            configType = "lua";
+            extraConfig =
+              # lua
+              ''
+                require("animations")
+                require("binds")
+                require("gestures")
+                require("globals")
+                require("input")
+                require("layerrules")
+                require("misc")
+                require("monitors")
 
-              # Input
-              input = {
-                kb_layout = "us";
-                kb_variant = "altgr-intl";
-                follow_mouse = 1;
-                touchpad = {
-                  scroll_factor = 0.2;
-                  natural_scroll = true;
-                };
-              };
-
-              dwindle.preserve_split = true;
-
-              general = {
-                resize_on_border = true;
-                border_size = 2;
-              };
-
-              gestures = {
-                workspace_swipe_distance = 200;
-              };
-
-              gesture = [
-                "3, up, dispatcher, exec, cshell ipc call overview toggle"
-                "3, horizontal, workspace"
-              ];
-
-              # Animation
-              animation = [
-                "workspaces, 1, 2, default"
-                "windows, 1, 1, default, popin 90%"
-                "fade, 1, 0.5, default"
-              ];
-
-              decoration = {
-                rounding = 8;
-                dim_special = 0.6;
-              };
-
-              misc = {
-                force_default_wallpaper = false;
-                disable_hyprland_logo = true;
-              };
-
-              layerrule = [
-                "no_anim on, match:namespace ^rofi$"
-                "no_anim on, match:namespace ^cshell"
-              ];
-              windowrule = let
-                floatingClass = [
-                  "org.pulseaudio.pavucontrol"
-                  ".blueman-manager-wrapped"
-                  "nm-connection-editor"
-                ];
-                floatingTitle = [
-                  "Open File"
-                  "Open"
-                  "Save"
-                  "Save File"
-                  "Save As"
-                  "Export"
-                  "Picture-in-Picture"
-                  "Import"
-                  "Choose File"
-                  "Rename"
-                  "This page wants to save"
-                ];
-              in
-                [
-                  "match:class foot, opacity 0.7 0.6"
-                  "match:class .*, suppress_event maximize"
-                  "match:class [Xx]dg-desktop-portal-[a-zA-z0-9]*, float on, center on"
-                ]
-                ++ (builtins.map (regex: "float on, match:title ^${regex}$") floatingTitle)
-                ++ (builtins.map (regex: "float on, match:class ${regex}") floatingClass);
-            };
+                hl.on("hyprland.start", function()
+                  ${lib.pipe cfg.autostart [
+                  (lib.map (prog: ''hl.exec_cmd(${prog})''))
+                  (lib.concatStringsSep "\n")
+                ]}
+                end)
+              '';
           };
         }
       ];
