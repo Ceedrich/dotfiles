@@ -26,5 +26,5 @@ if hl.plugin.hyprbars ~= nil then
 		})
 	end
 
-	addBtn(colors.red, hl.notification.create({ text = "hello there", timeout = 5000 }))
+	addBtn(colors.red, hl.notification.create({ text = colors.red, timeout = 5000 }))
 end
