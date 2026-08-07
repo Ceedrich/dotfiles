@@ -18,15 +18,15 @@ if hl.plugin.hyprbars ~= nil then
 		},
 	})
 
-	local function addBtn(bg_color, action)
+	local function addBtn(bg_color, dsp)
 		hl.plugin.hyprbars.add_button({
 			icon = "",
 			size = 14,
 			bg_color = bg_color,
 			fg_color = colors.text,
-			action = action,
+			action = "hyprctl dispatch '" .. dsp .. "'",
 		})
 	end
 
-	addBtn(colors.red, hl.notification.create({ text = colors.red, timeout = 5000 }))
+	addBtn(colors.red, "hyprctl dispatch 'hl.dsp.window.close()'")
 end
