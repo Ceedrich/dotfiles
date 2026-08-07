@@ -8,7 +8,7 @@ if hl.plugin.hyprbars ~= nil then
 				bar_button_padding = 8,
 				bar_blur = true,
 				bar_color = colors.crust,
-				col = { text = colors.overlay0 },
+				col = { text = colors.overlay2 },
 				bar_text_size = 14,
 				bar_text_font = "JetBrains Mono Nerdfont",
 				bar_part_of_window = true,
@@ -22,6 +22,7 @@ if hl.plugin.hyprbars ~= nil then
 		hl.plugin.hyprbars.add_button({
 			size = 14,
 			bg_color = bg_color,
+			fg_color = colors.text,
 			action = action,
 		})
 	end
