@@ -45,9 +45,9 @@
       };
 
       logoutCommands = {
-        shutdown = ''hyprctl dispatch exec "hyprshutdown -t 'Shutting down...' --post-cmd 'systemctl poweroff'"'';
-        reboot = ''hyprctl dispatch exec "hyprshutdown -t 'Restarting...' --post-cmd 'reboot'"'';
-        logout = ''hyprctl dispatch exec "hyprshutdown -t 'Logging out...'"'';
+        shutdown = ''hyprshutdown -t "Shutting down..." --post-cmd "systemctl poweroff"'';
+        reboot = ''hyprshutdown -t "Restarting..." --post-cmd "reboot"'';
+        logout = ''hyprshutdown -t "Logging out..."'';
       };
 
       nix.settings = {
