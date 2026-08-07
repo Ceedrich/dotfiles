@@ -20,6 +20,7 @@ if hl.plugin.hyprbars ~= nil then
 
 	local function addBtn(bg_color, action)
 		hl.plugin.hyprbars.add_button({
+			icon = "",
 			size = 14,
 			bg_color = bg_color,
 			fg_color = colors.text,
