@@ -25,7 +25,7 @@
   environment.systemPackages = with pkgs; [
     lact
     clinfo
-    jetbrains.idea-oss
+    # jetbrains.idea-oss
     jdk25
     prismlauncher
 
