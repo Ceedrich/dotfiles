@@ -31,7 +31,7 @@
 
   environment.systemPackages = with pkgs; [
     snapshot
-    jetbrains.idea-oss
+    # jetbrains.idea-oss
 
     # unity
     unityhub

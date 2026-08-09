@@ -4,10 +4,10 @@ hl.gesture({
 	action = "workspace",
 })
 
-hl.gesture({
-	fingers = 3,
-	direction = "up",
-	action = function()
-		hl.exec_cmd("cshell ipc call overview toggle")
-	end,
-})
+-- hl.gesture({
+-- 	fingers = 3,
+-- 	direction = "up",
+-- 	action = function()
+-- 		hl.exec_cmd("cshell ipc call overview toggle")
+-- 	end,
+-- })
