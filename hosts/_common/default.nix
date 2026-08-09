@@ -75,6 +75,7 @@
 
   # Bootloader.
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = ["sg"];
 
   # Networking
   networking.hostName = meta.hostname; # Define your hostname.
