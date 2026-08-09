@@ -25,13 +25,13 @@
 
   home-manager.sharedModules = [
     {
-      wayland.windowManager.hyprland.extraConfig = "monitor = , preferred, auto, 1";
+      wayland.windowManager.hyprland.extraConfig = ''hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })'';
     }
   ];
 
   environment.systemPackages = with pkgs; [
     snapshot
-    jetbrains.idea-oss
+    # jetbrains.idea-oss
 
     # unity
     unityhub
