@@ -16,6 +16,6 @@ if hl.plugin.scrolloverview ~= nil then
 		hl.plugin.scrolloverview.overview("toggle all")
 	end)
 
-	hl.plugin.scrolloverview.gesture({ fingers = 3, direction = "vertical" })
+	hl.plugin.scrolloverview.gesture({ fingers = 3, direction = "vertical", action = "overview" })
 	hl.plugin.scrolloverview.gesture({ fingers = 3, direction = "vertical", action = "unset" })
 end
