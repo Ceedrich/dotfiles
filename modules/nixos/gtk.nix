@@ -41,10 +41,12 @@
       };
     };
 
-    # qt = {
-    #   enable = false;
-    #   style.name = "kvantum";
-    #   platformTheme.name = "kvantum";
-    # };
+    catppuccin.kvantum.enable = false;
+    catppuccin.qt5ct.enable = true;
+
+    qt = {
+      enable = true;
+      platformTheme.name = "qtct";
+    };
   };
 }
