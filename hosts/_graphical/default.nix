@@ -69,7 +69,6 @@ in {
       inputs'.deploy-rs.packages.deploy-rs
       signal-desktop
       vlc
-      devenv
       audacity
       libnotify
       selfpkgs.test-icons
