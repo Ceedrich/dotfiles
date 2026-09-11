@@ -16,6 +16,8 @@
   ];
   boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 
+  services.seerr.enable = true;
+
   musnix.enable = true;
 
   programs = {
