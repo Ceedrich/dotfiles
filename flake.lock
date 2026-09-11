@@ -1076,6 +1076,7 @@
         "pdfcat": "pdfcat",
         "sops-nix": "sops-nix",
         "spicetify-nix": "spicetify-nix",
+        "subtitler": "subtitler",
         "wrappers": "wrappers"
       }
     },
@@ -1138,6 +1139,22 @@
       "original": {
         "owner": "Gerg-L",
         "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
+    "subtitler": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784604088,
+        "narHash": "sha256-J2oBm+6OPD8gz2J6M629Jvmz8bnTjAuF7rQJBcUx3e8=",
+        "owner": "subtitle-rs",
+        "repo": "subtitler",
+        "rev": "8241748e46e6b16aa3ff43cb38c4997e75e6dce2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "subtitle-rs",
+        "repo": "subtitler",
         "type": "github"
       }
     },
