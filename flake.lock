@@ -949,16 +949,16 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1787498568,
-        "narHash": "sha256-9i/VTdusq/+NM/tz+J1Re+ojkMB8MBf0QshnYfzHz30=",
+        "lastModified": 1788431191,
+        "narHash": "sha256-MFClkboDeW56feBCAeAV3Z3J2quGSZFlAOXQ4JjIlIA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "56c02bc00adcf003215cc4bd996d6efaf4cff188",
+        "rev": "9b9402b959a2276982ddd5ad3652a38b97f7c40b",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -1219,16 +1219,16 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1789546006,
-        "narHash": "sha256-hv8Y2AcOGuCoI/5fVjPZzCAOygTbL9wvvY9HKXvvLEk=",
-        "owner": "Lassulus",
-        "repo": "wrappers",
-        "rev": "e6676c0f59edd80dc1afb6a00047f5578095e4cb",
+        "lastModified": 1788981141,
+        "narHash": "sha256-7xWS16u13YGlRNKWaAPzRbEyh4OLOXJe31k7h4AnXNU=",
+        "owner": "nix-community",
+        "repo": "nix-wrapper-modules",
+        "rev": "1db3c116a6aa61823f8d8f3c47c306846428fc54",
         "type": "github"
       },
       "original": {
-        "owner": "Lassulus",
-        "repo": "wrappers",
+        "owner": "nix-community",
+        "repo": "nix-wrapper-modules",
         "type": "github"
       }
     },

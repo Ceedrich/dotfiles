@@ -1,29 +1,9 @@
 {
-  self,
   inputs,
   lib,
   config,
   ...
 }: {
-  flake.wrapperModules.oh-my-posh = inputs.wrappers.lib.wrapModule ({config, ...}: let
-    jsonFmt = config.pkgs.formats.json {};
-  in {
-    options = {
-      settings = lib.mkOption {
-        type = jsonFmt.type;
-        default = {};
-      };
-    };
-    config = let
-      settings = config.settings // {"$schema" = "${config.package.src}/themes/schema.json";};
-    in {
-      package = config.pkgs.oh-my-posh;
-      flags = {
-        "--config" = "${jsonFmt.generate "oh-my-posh.json" settings}";
-      };
-    };
-  });
-
   flake.nixosModules.oh-my-posh = {
     config,
     lib,
@@ -55,7 +35,7 @@
     packages.oh-my-posh = let
       removeNewlines = lib.replaceString "\n" "";
     in
-      (self.wrapperModules.oh-my-posh.apply {
+      inputs.wrappers.wrappers.oh-my-posh.wrap {
         pkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
         settings = {
           palette = lib.pipe config.catppuccin.colors [
@@ -66,6 +46,7 @@
             {
               type = "prompt";
               alignment = "left";
+              newline = true;
               segments = [
                 {
                   type = "session";
@@ -162,12 +143,12 @@
                 {
                   type = "text";
                   style = "plain";
-                  template = ''{{ if eq .Env.SUDO_CACHE "1" }} 󰒓{{ end }}'';
+                  template = ''{{ if eq .Env.SUDO_CACHE "1" }} 󰒓{{ end }}'' + "\n";
                   foreground = "p:red";
                 }
                 {
                   type = "text";
-                  template = " {{ if .Segments.Contains \"Root\" }}{{else}}❯{{end}}";
+                  template = "{{ if .Segments.Contains \"Root\" }}{{else}}❯{{end}}";
                   style = "plain";
                   foreground_templates = [
                     "{{if gt .Code 0}}p:red{{end}}"
@@ -176,7 +157,7 @@
                 }
                 {
                   type = "root";
-                  template = " #";
+                  template = "#";
                   style = "plain";
                   foreground_templates = [
                     "{{if gt .Code 0}}p:red{{end}}"
@@ -223,16 +204,16 @@
             foreground = "p:blue";
             template = "❯❯ ";
           };
-          # transient_prompt = {
-          #   background = "transparent";
-          #   foreground_templates = [
-          #     "{{if gt .Code 0}}p:red{{end}}"
-          #     "{{if eq .Code 0}}p:blue{{end}}"
-          #   ];
-          #   template = "❯ ";
-          # };
+          transient_prompt = {
+            background = "transparent";
+            foreground_templates = [
+              "{{if gt .Code 0}}p:red{{end}}"
+              "{{if eq .Code 0}}p:blue{{end}}"
+            ];
+            template = "❯ ";
+          };
           version = 2;
         };
-      }).wrapper;
+      };
   };
 }
