@@ -106,11 +106,10 @@
     self',
     ...
   }: {
-    packages.wlr-which-key =
-      (inputs.wrappers.lib.wrapModule {
-        inherit pkgs;
-        package = pkgs.wlr-which-key;
-        extraPackages = [self'.packages.rofi-file-picker];
-      }).wrapper;
+    packages.wlr-which-key = inputs.wrappers.lib.wrapPackage {
+      inherit pkgs;
+      package = pkgs.wlr-which-key;
+      runtimePkgs = [self'.packages.rofi-file-picker];
+    };
   };
 }
