@@ -15,6 +15,8 @@
     package = inputs.wrappers.lib.wrapPackage {
       inherit pkgs;
       package = pkgs.quickshell;
+      binName = "qs";
+      aliases = ["quickshell"];
       flags = {
         "-p" = "${inputs.cshell}";
       };
