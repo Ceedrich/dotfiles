@@ -6,6 +6,10 @@
       url = "github:pdfcat/pdfcat";
       flake = false;
     };
+    subtitler = {
+      url = "github:subtitle-rs/subtitler";
+      flake = false;
+    };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {

@@ -1,6 +1,7 @@
 {
   selfnixosmodules,
   pkgs,
+  selfpkgs,
   ...
 }: {
   imports = [
@@ -15,6 +16,7 @@
   environment.systemPackages = with pkgs; [
     ffmpeg-full
     mediainfo
+    selfpkgs.subtitler
   ];
 
   nas.drives = {
