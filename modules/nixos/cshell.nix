@@ -12,7 +12,13 @@
     config,
     ...
   }: let
-    package = inputs.cshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    package = inputs.wrappers.lib.wrapPackage {
+      inherit pkgs;
+      package = pkgs.quickshell;
+      flags = {
+        "-p" = "${inputs.cshell}";
+      };
+    };
   in {
     home.packages = [package];
 
