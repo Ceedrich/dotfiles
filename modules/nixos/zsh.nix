@@ -84,6 +84,7 @@
         flags = ["--cmd cd"];
       };
 
+      environment.sessionVariables."BAT_THEME" = "Catppuccin Mocha";
       programs.bat = {
         enable = mkDefault true;
       };
