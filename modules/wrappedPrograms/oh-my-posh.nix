@@ -46,7 +46,6 @@
             {
               type = "prompt";
               alignment = "left";
-              newline = true;
               segments = [
                 {
                   type = "session";
@@ -143,12 +142,12 @@
                 {
                   type = "text";
                   style = "plain";
-                  template = ''{{ if eq .Env.SUDO_CACHE "1" }} 󰒓{{ end }}'' + "\n";
+                  template = ''{{ if eq .Env.SUDO_CACHE "1" }} 󰒓{{ end }}'';
                   foreground = "p:red";
                 }
                 {
                   type = "text";
-                  template = "{{ if .Segments.Contains \"Root\" }}{{else}}❯{{end}}";
+                  template = " {{ if .Segments.Contains \"Root\" }}{{else}}❯{{end}}";
                   style = "plain";
                   foreground_templates = [
                     "{{if gt .Code 0}}p:red{{end}}"
@@ -157,7 +156,7 @@
                 }
                 {
                   type = "root";
-                  template = "#";
+                  template = " #";
                   style = "plain";
                   foreground_templates = [
                     "{{if gt .Code 0}}p:red{{end}}"
@@ -204,14 +203,14 @@
             foreground = "p:blue";
             template = "❯❯ ";
           };
-          transient_prompt = {
-            background = "transparent";
-            foreground_templates = [
-              "{{if gt .Code 0}}p:red{{end}}"
-              "{{if eq .Code 0}}p:blue{{end}}"
-            ];
-            template = "❯ ";
-          };
+          # transient_prompt = {
+          #   background = "transparent";
+          #   foreground_templates = [
+          #     "{{if gt .Code 0}}p:red{{end}}"
+          #     "{{if eq .Code 0}}p:blue{{end}}"
+          #   ];
+          #   template = "❯ ";
+          # };
           version = 2;
         };
       };
