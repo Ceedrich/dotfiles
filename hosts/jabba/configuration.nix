@@ -17,6 +17,7 @@
     ffmpeg-full
     mediainfo
     selfpkgs.subtitler
+    selfpkgs.mkvedit
   ];
 
   nas.drives = {
