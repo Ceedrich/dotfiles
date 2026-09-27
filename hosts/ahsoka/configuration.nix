@@ -29,8 +29,6 @@
     jdk25
     prismlauncher
 
-    unityhub
-
     aseprite
     handbrake
     ldtk
@@ -38,10 +36,6 @@
   ];
 
   allowedUnfree = [
-    # Unity
-    "unityhub"
-    "corefonts"
-
     "aseprite"
   ];
 

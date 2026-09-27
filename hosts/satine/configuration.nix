@@ -32,15 +32,6 @@
   environment.systemPackages = with pkgs; [
     snapshot
     # jetbrains.idea-oss
-
-    # unity
-    unityhub
-  ];
-
-  allowedUnfree = [
-    # unity
-    "unityhub"
-    "corefonts"
   ];
 
   hardware.graphics = {
