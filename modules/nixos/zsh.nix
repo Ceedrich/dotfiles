@@ -38,32 +38,6 @@
         interactiveShellInit =
           # sh
           ''
-            source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-
-            function zvm_config() {
-              ZVM_VI_HIGHLIGHT_FOREGROUND=none
-              ZVM_VI_HIGHLIGHT_BACKGROUND=none
-              ZVM_VI_HIGHLIGHT_EXTRASTYLE=none
-              ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
-
-              ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-
-              ZVM_INIT_MODE=sourcing
-            }
-            source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
-            bindkey -v
-            setopt correct
-
-            zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-            zstyle ':completion:*' menu select
-
-            # pres ^a to insert date
-            currentDate() {
-              zle -U -- "$(date +'%Y%m%d_')"
-            }
-            zle -N currentDate
-            bindkey '^A' currentDate
 
           '';
       };
@@ -135,6 +109,17 @@
       zshrc.content =
         # sh
         ''
+          setopt APPEND_HISTORY HIST_EXPIRE_DUPS_FIRST HIST_FCNTL_LOCK HIST_FIND_NO_DUPS HIST_IGNORE_DUPS HIST_IGNORE_SPACE SHARE_HISTORY
+
+          # Setup command line history.
+          # Don't export these, otherwise other shells (bash) will try to use same HISTFILE.
+          SAVEHIST=100000
+          HISTSIZE=100000
+          HISTFILE=''${ZDOTDIR:-''${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/.zsh_history
+
+          # Enable autocompletion.
+          autoload -U compinit && compinit
+
           # Fzf
           FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= source <(fzf --zsh)
 
@@ -150,6 +135,35 @@
           autoload -Uz add-zsh-hook
           add-zsh-hook precmd _update_sudo_cache
           eval "$(oh-my-posh init zsh)"
+
+          # Syntax Highlighting
+          source ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+          # Vi mode
+          function zvm_config() {
+            ZVM_VI_HIGHLIGHT_FOREGROUND=none
+            ZVM_VI_HIGHLIGHT_BACKGROUND=none
+            ZVM_VI_HIGHLIGHT_EXTRASTYLE=none
+            ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+
+            ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+
+            ZVM_INIT_MODE=sourcing
+          }
+          source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+          bindkey -v
+          setopt correct
+
+          zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+          zstyle ':completion:*' menu select
+
+          # pres ^a to insert date
+          currentDate() {
+            zle -U -- "$(date +'%Y%m%d_')"
+          }
+          zle -N currentDate
+          bindkey '^A' currentDate
         '';
     };
   };
