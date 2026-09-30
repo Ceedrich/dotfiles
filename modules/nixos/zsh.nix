@@ -80,15 +80,6 @@
         ''
           setopt APPEND_HISTORY HIST_EXPIRE_DUPS_FIRST HIST_FCNTL_LOCK HIST_FIND_NO_DUPS HIST_IGNORE_DUPS HIST_IGNORE_SPACE SHARE_HISTORY
 
-          # Setup command line history.
-          # Don't export these, otherwise other shells (bash) will try to use same HISTFILE.
-          SAVEHIST=100000
-          HISTSIZE=100000
-          HISTFILE=''${ZDOTDIR:-''${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/.zsh_history
-
-          # Enable autocompletion.
-          autoload -U compinit && compinit
-
           # Fzf
           FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= source <(fzf --zsh)
 
