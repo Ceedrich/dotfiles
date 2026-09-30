@@ -8,7 +8,6 @@
   imports = with selfnixosmodules; [
     grub
     tmux
-    oh-my-posh
     base
     neovim
     catppuccin
@@ -57,7 +56,6 @@
   programs = {
     btop.enable = true;
     yazi.enable = true;
-    oh-my-posh.enable = true;
   };
 
   services.gnome.gnome-keyring.enable = true;

@@ -96,11 +96,21 @@
     };
   };
 
-  perSystem = {pkgs, ...}: {
+  perSystem = {
+    pkgs,
+    self',
+    ...
+  }: {
     packages.zsh = inputs.wrappers.wrappers.zsh.wrap {
       inherit pkgs;
-      runtimePkgs = with pkgs; [lsd devenv fzf zoxide eza];
-      zdotdir = "/home/ceedrich/blub";
+      runtimePkgs = [
+        pkgs.lsd
+        pkgs.devenv
+        pkgs.fzf
+        pkgs.zoxide
+        pkgs.eza
+        self'.packages.oh-my-posh
+      ];
       zshAliases = {
         blub = "echo 'hello from nix'";
         ls = "eza";
@@ -114,7 +124,18 @@
       zshrc.content =
         # sh
         ''
+          # Fzf
           FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= source <(fzf --zsh)
+
+          # Oh My Posh
+          function _update_sudo_cache() {
+            sudo -Nnv &>/dev/null # detect whether credentials are valid
+            export SUDO_CACHE=$(( ! $? ))
+          }
+
+          autoload -Uz add-zsh-hook
+          add-zsh-hook precmd _update_sudo_cache
+          eval "$(oh-my-posh init zsh)"
         '';
     };
   };
