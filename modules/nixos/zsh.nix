@@ -113,6 +113,17 @@
       ];
       zshAliases = {
         blub = "echo 'hello from nix'";
+
+        # git
+        gst = "git status";
+        gd = "git diff";
+        ga = "git add";
+        gc = "git commit";
+        gp = "git push";
+        gl = "git log";
+        gco = "git checkout";
+
+        # ls
         ls = "eza";
         ll = "eza -l";
         la = "eza -a";
@@ -126,6 +137,9 @@
         ''
           # Fzf
           FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= source <(fzf --zsh)
+
+          # Zoxide
+          eval "$(zoxide init --cmd cd zsh)"
 
           # Oh My Posh
           function _update_sudo_cache() {

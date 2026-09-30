@@ -22,17 +22,6 @@
           };
         };
       };
-
-      home.shellAliases = {
-        # Git Aliases
-        gst = "git status";
-        gd = "git diff";
-        ga = "git add";
-        gc = "git commit";
-        gp = "git push";
-        gl = "git log";
-        gco = "git checkout";
-      };
     };
   };
 }
