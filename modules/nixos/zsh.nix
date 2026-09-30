@@ -3,72 +3,34 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.zsh = {
-    config,
-    lib,
-    pkgs,
-    ...
-  }: let
-    cfg = config.programs.zsh;
-    inherit (lib) mkDefault;
-  in {
-    config = {
-      programs.zsh = lib.mkIf cfg.enable {
-        autosuggestions.enable = mkDefault true;
+  flake.nixosModules.zsh = moduleWithSystem ({self', ...}: {
+    nixpkgs.overlays = [
+      (final: prev: {
+        zsh = self'.packages.zsh;
+      })
+    ];
+    programs.zsh = {
+      enable = true;
+      enableCompletion = true;
+      enableBashCompletion = true;
+      autosuggestions.enable = true;
 
-        shellInit =
-          #zsh
-          ''
-            ZDOTDIR="''${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-          '';
+      histSize = 100000;
+      histFile = "$ZDOTDIR/.zsh_history";
 
-        histFile = "$ZDOTDIR/.zsh_history";
-        histSize = 100000;
-
-        setOptions = [
-          "APPEND_HISTORY"
-          "HIST_EXPIRE_DUPS_FIRST"
-          "HIST_FCNTL_LOCK"
-          "HIST_FIND_NO_DUPS"
-          "HIST_IGNORE_DUPS"
-          "HIST_IGNORE_SPACE"
-          "SHARE_HISTORY"
-        ];
-
-        interactiveShellInit =
-          # sh
-          ''
-
-          '';
-      };
-
-      environment.shellAliases = {
-        ".." = "cd ..";
-        "..." = "cd ../..";
-        "...." = "cd ../../..";
-        "....." = "cd ../../../..";
-        ga = "git add";
-        gc = "git commit";
-        gco = "git checkout";
-        gd = "git diff";
-        gp = "git push";
-        gst = "git status";
-        v = "nvim";
-        vimdiff = "nvim -d";
-      };
-
-      programs.zoxide = {
-        enable = mkDefault true;
-        flags = ["--cmd cd"];
-      };
-
-      environment.sessionVariables."BAT_THEME" = "Catppuccin Mocha";
-      programs.bat = {
-        enable = mkDefault true;
-      };
-      environment.shellAliases.cat = "bat -pp";
+      shellInit =
+        #sh
+        ''
+          ZDOTDIR="''${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+        '';
     };
-  };
+
+    # environment.sessionVariables."BAT_THEME" = "Catppuccin Mocha";
+    # programs.bat = {
+    #   enable = mkDefault true;
+    # };
+    # environment.shellAliases.cat = "bat -pp";
+  });
 
   perSystem = {
     pkgs,
@@ -96,6 +58,13 @@
         gp = "git push";
         gl = "git log";
         gco = "git checkout";
+
+        ".." = "cd ..";
+        "..." = "cd ../..";
+        "...." = "cd ../../..";
+        "....." = "cd ../../../..";
+        v = "nvim";
+        vimdiff = "nvim -d";
 
         # ls
         ls = "eza";
