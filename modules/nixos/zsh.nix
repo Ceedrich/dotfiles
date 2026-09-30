@@ -86,6 +86,9 @@
           # Zoxide
           eval "$(zoxide init --cmd cd zsh)"
 
+          # Devenv
+          eval "$(devenv hook zsh)"
+
           # Oh My Posh
           function _update_sudo_cache() {
             sudo -Nnv &>/dev/null # detect whether credentials are valid
