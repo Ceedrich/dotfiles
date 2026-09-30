@@ -1,9 +1,9 @@
-{...}: {
-  flake.nixosModules.user-ceedrich = {pkgs, ...}: {
+{moduleWithSystem, ...}: {
+  flake.nixosModules.user-ceedrich = moduleWithSystem ({self', ...}: {
     programs.zsh.enable = true;
     users.users.ceedrich = {
       initialPassword = "password";
-      shell = pkgs.zsh;
+      shell = self'.packages.zsh;
       openssh.authorizedKeys.keys = [
         # Laptop
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICuBEOPD9FWQSesLFFfNEDlU7xoT8fEL+EGJJIluzSmO ceedrich@satine"
@@ -18,5 +18,5 @@
       extraGroups = ["networkmanager" "wheel" "audio"];
       packages = [];
     };
-  };
+  });
 }

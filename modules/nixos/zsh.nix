@@ -106,6 +106,7 @@
         lla = "eza -la";
       };
       hmSessionVariables = null;
+      zdotdir = "\${XDG_CONFIG_HOME:-$HOME/.config}/zsh}";
       zshrc.content =
         # sh
         ''
