@@ -14,7 +14,7 @@
     neovim
     catppuccin
     sesh
-    zsh
+    # zsh
     yazi
     btop
     eza

@@ -1,4 +1,8 @@
-{...}: {
+{
+  inputs,
+  moduleWithSystem,
+  ...
+}: {
   flake.nixosModules.zsh = {
     config,
     lib,
@@ -89,6 +93,17 @@
         enable = mkDefault true;
       };
       environment.shellAliases.cat = "bat -pp";
+    };
+  };
+
+  perSystem = {pkgs, ...}: {
+    packages.zsh = inputs.wrappers.wrappers.zsh.wrap {
+      inherit pkgs;
+      runtimePkgs = with pkgs; [lsd devenv fzf zoxide eza];
+      zdotdir = "/home/ceedrich/blub";
+      zshAliases = {
+        blub = "echo 'hello from nix'";
+      };
     };
   };
 }
