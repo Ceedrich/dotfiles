@@ -103,7 +103,19 @@
       zdotdir = "/home/ceedrich/blub";
       zshAliases = {
         blub = "echo 'hello from nix'";
+        ls = "eza";
+        ll = "eza -l";
+        la = "eza -a";
+        lt = "eza --tree";
+        llt = "eza --tree -l";
+        lla = "eza -la";
       };
+      hmSessionVariables = null;
+      zshrc.content =
+        # sh
+        ''
+          FZF_CTRL_T_COMMAND= FZF_ALT_C_COMMAND= source <(fzf --zsh)
+        '';
     };
   };
 }

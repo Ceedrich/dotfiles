@@ -3,7 +3,6 @@
   pkgs,
   selfnixosmodules,
   inputs,
-  lib,
   ...
 }: {
   imports = with selfnixosmodules; [
@@ -14,11 +13,8 @@
     neovim
     catppuccin
     sesh
-    # zsh
     yazi
     btop
-    eza
-    fzf
     git
     CVEs
     tailscale
@@ -59,7 +55,6 @@
   ];
 
   programs = {
-    eza.enable = lib.mkDefault true;
     btop.enable = true;
     yazi.enable = true;
     oh-my-posh.enable = true;
