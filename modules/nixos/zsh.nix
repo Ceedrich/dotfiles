@@ -16,13 +16,13 @@
       autosuggestions.enable = true;
 
       histSize = 100000;
-      histFile = "$ZDOTDIR/.zsh_history";
+      # histFile = "$ZDOTDIR/.zsh_history";
 
-      shellInit =
-        #sh
-        ''
-          ZDOTDIR="''${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-        '';
+      # shellInit =
+      #   #sh
+      #   ''
+      #     ZDOTDIR="''${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+      #   '';
     };
 
     # environment.sessionVariables."BAT_THEME" = "Catppuccin Mocha";
@@ -75,7 +75,6 @@
         lla = "eza -la";
       };
       hmSessionVariables = null;
-      zdotdir = "\${XDG_CONFIG_HOME:-$HOME/.config}/zsh}";
       zshrc.content =
         # sh
         ''
