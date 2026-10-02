@@ -1,29 +1,9 @@
 {
-  self,
   inputs,
   lib,
   config,
   ...
 }: {
-  flake.wrapperModules.oh-my-posh = inputs.wrappers.lib.wrapModule ({config, ...}: let
-    jsonFmt = config.pkgs.formats.json {};
-  in {
-    options = {
-      settings = lib.mkOption {
-        type = jsonFmt.type;
-        default = {};
-      };
-    };
-    config = let
-      settings = config.settings // {"$schema" = "${config.package.src}/themes/schema.json";};
-    in {
-      package = config.pkgs.oh-my-posh;
-      flags = {
-        "--config" = "${jsonFmt.generate "oh-my-posh.json" settings}";
-      };
-    };
-  });
-
   flake.nixosModules.oh-my-posh = {
     config,
     lib,
@@ -55,7 +35,7 @@
     packages.oh-my-posh = let
       removeNewlines = lib.replaceString "\n" "";
     in
-      (self.wrapperModules.oh-my-posh.apply {
+      inputs.wrappers.wrappers.oh-my-posh.wrap {
         pkgs = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
         settings = {
           palette = lib.pipe config.catppuccin.colors [
@@ -233,6 +213,6 @@
           # };
           version = 2;
         };
-      }).wrapper;
+      };
   };
 }

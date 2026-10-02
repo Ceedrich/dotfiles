@@ -8,9 +8,6 @@
       modules = inputs.nixpkgs.lib.mkOption {
         default = {};
       };
-      wrapperModules = inputs.nixpkgs.lib.mkOption {
-        default = {};
-      };
     };
   };
 }

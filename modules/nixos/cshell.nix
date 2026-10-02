@@ -1,18 +1,18 @@
 {
   inputs,
   self,
+  moduleWithSystem,
   ...
 }: {
   flake.nixosModules.cshell = {
     home-manager.sharedModules = [self.homeModules.cshell];
   };
-  flake.homeModules.cshell = {
-    pkgs,
+  flake.homeModules.cshell = moduleWithSystem ({self', ...}: {
     lib,
     config,
     ...
   }: let
-    package = inputs.cshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    package = self'.packages.cshell;
   in {
     home.packages = [package];
 
@@ -28,6 +28,18 @@
         Restart = "on-failure";
       };
       Install.WantedBy = [config.wayland.systemd.target];
+    };
+  });
+
+  perSystem = {pkgs, ...}: {
+    packages.cshell = inputs.wrappers.lib.wrapPackage {
+      inherit pkgs;
+      package = pkgs.quickshell;
+      binName = "cshell";
+      filesToExclude = ["bin/qs" "bin/quickshell"];
+      flags = {
+        "-p" = "${inputs.cshell}";
+      };
     };
   };
 }
