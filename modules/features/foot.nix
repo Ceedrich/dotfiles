@@ -1,8 +1,4 @@
-{
-  inputs,
-  self,
-  ...
-}: {
+{inputs, ...}: {
   perSystem = {
     pkgs,
     inputs',
@@ -21,8 +17,6 @@
         };
       };
       constructFiles.generatedConfig.content = builtins.readFile "${inputs'.catppuccin.packages.foot}/catppuccin-mocha.ini";
-      # buildCommand.xxx = "cat ${inputs'.catppuccin.packages.foot}/catppuccin-mocha.ini >> foot.ini";
-      # extraConfig = builtins.readFile "${inputs'.catppuccin.packages.foot}/catppuccin-mocha.ini";
     };
   };
 }

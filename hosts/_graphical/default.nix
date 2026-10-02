@@ -101,7 +101,6 @@ in {
     ];
     programs = {
       hyprland.enable = mkDefault true;
-      hyprlock.enable = mkDefault true;
       thunderbird.enable = mkDefault true;
       zathura.enable = mkDefault true;
       firefox.enable = mkDefault true;

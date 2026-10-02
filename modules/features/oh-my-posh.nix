@@ -2,34 +2,23 @@
   inputs,
   lib,
   config,
+  moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.oh-my-posh = {
-    config,
-    lib,
-    selfpkgs,
-    ...
-  }: let
-    cfg = config.programs.oh-my-posh;
-  in {
-    options.programs.oh-my-posh = {
-      enable = lib.mkEnableOption "oh-my-posh";
-    };
-    config = lib.mkIf cfg.enable {
-      environment.systemPackages = [selfpkgs.oh-my-posh];
-      programs.bash.promptInit = "eval $(oh-my-posh init bash)";
-      programs.zsh.promptInit = "eval $(oh-my-posh init zsh)";
-      programs.zsh.shellInit = ''
-        function _update_sudo_cache() {
-          sudo -Nnv &>/dev/null # detect whether credentials are valid
-          export SUDO_CACHE=$(( ! $? ))
-        }
+  flake.nixosModules.oh-my-posh = moduleWithSystem ({self', ...}: {
+    environment.systemPackages = [self'.packages.oh-my-posh];
+    programs.bash.promptInit = "eval $(oh-my-posh init bash)";
+    programs.zsh.promptInit = "eval $(oh-my-posh init zsh)";
+    programs.zsh.shellInit = ''
+      function _update_sudo_cache() {
+        sudo -Nnv &>/dev/null # detect whether credentials are valid
+        export SUDO_CACHE=$(( ! $? ))
+      }
 
-        autoload -Uz add-zsh-hook
-        add-zsh-hook precmd _update_sudo_cache
-      '';
-    };
-  };
+      autoload -Uz add-zsh-hook
+      add-zsh-hook precmd _update_sudo_cache
+    '';
+  });
 
   perSystem = {pkgs, ...}: {
     packages.oh-my-posh = let
