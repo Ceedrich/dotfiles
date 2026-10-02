@@ -57,10 +57,6 @@
     selfpkgs.btop
   ];
 
-  programs = {
-    yazi.enable = true;
-  };
-
   services.gnome.gnome-keyring.enable = true;
 
   # Theming
@@ -127,7 +123,6 @@
     {
       programs = {
         home-manager.enable = true;
-        # yazi.enable = true;
         tmux.enable = true;
 
         bash.enable = true;

@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  moduleWithSystem,
   ...
 }: {
   perSystem = {
@@ -20,7 +21,7 @@
     };
   };
 
-  flake.nixosModules.yazi = {...}: let
+  flake.nixosModules.yazi = moduleWithSystem ({self', ...}: let
     bash-zsh-wrapper = ''
       function yy() {
       	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -31,8 +32,9 @@
       }
     '';
   in {
+    environment.systemPackages = [self'.packages.yazi];
     xdg.mime.defaultApplications = {"inode/directory" = "yazi.desktop";};
     programs.bash.interactiveShellInit = bash-zsh-wrapper;
     programs.zsh.interactiveShellInit = bash-zsh-wrapper;
-  };
+  });
 }
