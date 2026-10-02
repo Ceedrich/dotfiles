@@ -16,20 +16,7 @@
       autosuggestions.enable = true;
 
       histSize = 100000;
-      # histFile = "$ZDOTDIR/.zsh_history";
-
-      # shellInit =
-      #   #sh
-      #   ''
-      #     ZDOTDIR="''${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
-      #   '';
     };
-
-    # environment.sessionVariables."BAT_THEME" = "Catppuccin Mocha";
-    # programs.bat = {
-    #   enable = mkDefault true;
-    # };
-    # environment.shellAliases.cat = "bat -pp";
   });
 
   perSystem = {
