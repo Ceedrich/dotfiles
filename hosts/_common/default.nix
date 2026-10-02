@@ -2,10 +2,12 @@
   meta,
   pkgs,
   selfnixosmodules,
+  selfpkgs,
   inputs,
   ...
 }: {
   imports = with selfnixosmodules; [
+    bat
     grub
     tmux
     base
@@ -13,7 +15,6 @@
     catppuccin
     sesh
     yazi
-    btop
     git
     CVEs
     tailscale
@@ -52,12 +53,9 @@
     usbutils
     vim
     zip
-  ];
 
-  programs = {
-    btop.enable = true;
-    yazi.enable = true;
-  };
+    selfpkgs.btop
+  ];
 
   services.gnome.gnome-keyring.enable = true;
 
@@ -125,7 +123,6 @@
     {
       programs = {
         home-manager.enable = true;
-        # yazi.enable = true;
         tmux.enable = true;
 
         bash.enable = true;
