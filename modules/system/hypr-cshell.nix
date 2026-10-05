@@ -1,11 +1,14 @@
 {self, ...}: {
-  flake.nixosModules.hypr = {inputs', ...}: {
+  flake.nixosModules.hypr-cshell = {inputs', ...}: {
     imports = with self.nixosModules; [
-      hyprlock
       hypridle
+      hyprland
+      hyprlock
       hyprpolkitagent
       hyprsunset
       hyprtoolkit
+
+      cshell
     ];
 
     programs.hyprland = {

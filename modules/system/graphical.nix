@@ -17,14 +17,12 @@
       flatpak
       gdm
       gtk
-      hypr
-      hyprland
+      hypr-cshell
       ly
       power-menu
       rofi
       spotify
       vpn
-      cshell
       hypridle
       wlr-which-key
       zathura
