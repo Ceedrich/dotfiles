@@ -4,12 +4,15 @@
   inputs,
   ...
 }: {
-  imports = [./deployments.nix];
   flake.nixosConfigurations = let
     system = "x86_64-linux";
   in
-    withSystem system ({inputs', ...}: let
-      selfpkgs = self.packages.${system};
+    withSystem system ({
+      self',
+      inputs',
+      ...
+    }: let
+      selfpkgs = self'.packages;
       mkNixos = hostname: users:
         inputs.nixpkgs.lib.nixosSystem {
           specialArgs = let
@@ -22,9 +25,9 @@
           };
           modules =
             [
-              ../nixosModules
-              ../hosts/_common
-              ../hosts/${hostname}/configuration.nix
+              ../../nixosModules
+              self.nixosModules.system-core
+              self.nixosModules."host-${hostname}"
               {
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;

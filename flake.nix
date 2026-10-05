@@ -72,7 +72,6 @@
       {...}: {
         systems = ["x86_64-linux"];
         imports = [
-          ./hosts
           inputs.home-manager.flakeModules.home-manager
           (inputs.import-tree ./modules)
         ];
