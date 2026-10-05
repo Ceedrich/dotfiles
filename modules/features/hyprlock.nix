@@ -1,20 +1,25 @@
 {
   inputs,
   moduleWithSystem,
+  lib,
   ...
 }: {
-  perSystem = {pkgs, ...}: {
+  perSystem = {
+    pkgs,
+    inputs',
+    ...
+  }: {
     packages.hyprlock = inputs.wrappers.wrappers.hyprlock.wrap {
       inherit pkgs;
+      constructFiles.generatedConfig.content = lib.mkBefore "source = ${inputs'.catppuccin.packages.hyprlock}/mocha.conf";
       settings = {
         general = {
           ignore_empty_input = true;
           hide_cursor = true;
-          fail_timeout = 300;
+          fail_timeout = 2000;
         };
         auth = {
           pam.enabled = true;
-          fingerprint.enabled = true;
         };
         background = [
           {
@@ -48,16 +53,6 @@
             halign = "right";
             valign = "top";
           }
-          # Fingerprint Prompt
-          {
-            monitor = "";
-            color = "$subtext0";
-            font_family = "$font";
-            font_size = 10;
-            halign = "center";
-            position = "0, -85";
-            text = "$FPRINTPROMPT";
-          }
         ];
 
         input-field = [
@@ -70,9 +65,9 @@
             dots_center = true;
             outer_color = "$accent";
             inner_color = "$surface0";
-            font_color = "$text";
+            font_color = "$mauve";
             fade_on_empty = false;
-            placeholder_text = ''<span foreground="##$textAlpha"><i>󰌾 Logged in as </i><span foreground="##$accentAlpha">$USER</span></span>'';
+            placeholder_text = ''󰌾 Logged in as <i>$USER</i>'';
             hide_input = false;
             check_color = "$accent";
             fail_color = "$red";
