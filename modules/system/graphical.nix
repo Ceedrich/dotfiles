@@ -17,15 +17,12 @@
       flatpak
       gdm
       gtk
-      hypr
-      hyprland
+      hypr-cshell
       ly
       power-menu
       rofi
       spotify
       vpn
-      cshell
-      hypridle
       wlr-which-key
       zathura
     ];
@@ -111,9 +108,6 @@
       };
       # environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
       services = {
-        clipboard.enable = mkDefault true;
-        hyprsunset.enable = mkDefault true;
-        hyprpolkitagent.enable = mkDefault true;
         tailscale.tray.enable = mkDefault true;
         printing.enable = mkDefault true;
       };
