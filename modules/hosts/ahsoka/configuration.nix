@@ -9,12 +9,6 @@
       bluetooth
     ];
 
-    home-manager.sharedModules = [
-      {
-        programs.mangohud.enable = true;
-      }
-    ];
-
     programs = {
       coolercontrol.enable = true;
       steam.enable = true;

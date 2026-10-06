@@ -1,4 +1,4 @@
-{...}: {
+{
   flake.nixosModules.hypridle = {
     home-manager.sharedModules = [
       ({lib, ...}: {
