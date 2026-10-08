@@ -33,7 +33,6 @@
       cp = "cp -v";
       mv = "mv -v";
     };
-    programs.sesh.enable = true;
     # Packages / Programs
     environment.systemPackages = with pkgs; [
       catppuccin-cursors.mochaMauve
