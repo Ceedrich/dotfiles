@@ -93,11 +93,11 @@
     "cshell": {
       "flake": false,
       "locked": {
-        "lastModified": 1791478589,
-        "narHash": "sha256-ojytz7nca5N1qss3UeLFJwF/zq3kRRXYKOlkuITHjXA=",
+        "lastModified": 1791481320,
+        "narHash": "sha256-v7rbT0J0ajwYTimIsg8gmmPBPvAL8Cx8F8CYuKQp5ew=",
         "owner": "Ceedrich",
         "repo": "cshell-qs",
-        "rev": "85f15cf8ef0dc5730ce6143fadf96072300421cb",
+        "rev": "70f69b72d510a65c84adaf39449a108e5e9c539a",
         "type": "github"
       },
       "original": {
