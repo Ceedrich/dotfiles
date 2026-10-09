@@ -102,6 +102,7 @@
       programs = {
         hyprland.enable = mkDefault true;
         thunderbird.enable = mkDefault true;
+        firefox.enable = mkDefault true;
       };
       # environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
       services = {
