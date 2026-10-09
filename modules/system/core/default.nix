@@ -43,7 +43,6 @@
       fd
       file
       gnugrep
-      gnupg
       gnutar
       hwinfo
       jq
@@ -77,9 +76,6 @@
     # Networking
     networking.hostName = meta.hostname; # Define your hostname.
     networking.networkmanager.enable = true;
-
-    # GPG
-    programs.gnupg.agent.enable = true;
 
     # Audio
     services.pulseaudio.enable = false;

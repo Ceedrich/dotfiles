@@ -12,7 +12,6 @@
       kanata
       steam
       bluetooth
-      mangowm
     ];
     boot.loader.grub.useOSProber = true; # Needed for grub to detect windows
 

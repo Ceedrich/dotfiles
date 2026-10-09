@@ -15,7 +15,6 @@
       clipboard
       firefox
       flatpak
-      gdm
       gtk
       hypr-cshell
       ly
@@ -103,8 +102,6 @@
       programs = {
         hyprland.enable = mkDefault true;
         thunderbird.enable = mkDefault true;
-        zathura.enable = mkDefault true;
-        firefox.enable = mkDefault true;
       };
       # environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
       services = {
