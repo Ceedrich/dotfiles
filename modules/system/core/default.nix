@@ -59,6 +59,7 @@
       zip
 
       self'.packages.btop
+      self'.packages.delta
     ];
 
     services.gnome.gnome-keyring.enable = true;
