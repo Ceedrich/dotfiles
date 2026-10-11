@@ -9,6 +9,19 @@ local function andTop(dsp)
 	end
 end
 
+local function moveWindowsCurrentWorkspace(ws, follow)
+	local cws = hl.get_active_workspace()
+	local windows = hl.get_windows({ workspace = cws })
+
+	for _, w in pairs(windows) do
+		hl.dispatch(hl.dsp.window.move({
+			window = w,
+			workspace = ws,
+			follow = follow,
+		}))
+	end
+end
+
 hl.bind(mod .. " + Q", hl.dsp.window.close())
 hl.bind(mod .. " + T", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
@@ -38,6 +51,10 @@ hl.bind(mod .. " + SPACE", hl.dsp.exec_cmd("wlr-which-key"))
 for i = 1, 9, 1 do
 	hl.bind(mod .. " + " .. i, hl.dsp.focus({ workspace = i }))
 	hl.bind(mod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
+
+	hl.bind(mod .. " + SHIFT + CONTROL + " .. i, function()
+		moveWindowsCurrentWorkspace(i, true)
+	end)
 end
 
 -- Misc
