@@ -1,33 +1,33 @@
 {
   inputs,
-  self,
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.cshell = {
-    home-manager.sharedModules = [self.homeModules.cshell];
-  };
-  flake.homeModules.cshell = moduleWithSystem ({self', ...}: {
+  flake.nixosModules.cshell = moduleWithSystem ({self'}: {
     lib,
     config,
     ...
-  }: let
-    package = self'.packages.cshell;
-  in {
-    home.packages = [package];
-
-    systemd.user.services."cshell" = {
-      Unit = {
-        Description = "Cshell, MY graphical shell";
-        After = [config.wayland.systemd.target];
-        PartOf = [config.wayland.systemd.target];
+  }: {
+    options.services.cshell = {
+      systemd.target = lib.mkOption {
+        default = "graphical-session.target";
       };
-      Service = {
-        Type = "simple";
-        ExecStart = lib.getExe package;
-        Restart = "on-failure";
+    };
+    config = let
+      cfg = config.services.cshell;
+      package = self'.packages.cshell;
+    in {
+      systemd.user.services."cshell" = {
+        description = "CShell, My graphical shell";
+        after = [cfg.systemd.target];
+        partOf = [cfg.systemd.target];
+        wantedBy = [cfg.systemd.target];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = lib.getExe package;
+          Restart = "on-failure";
+        };
       };
-      Install.WantedBy = [config.wayland.systemd.target];
     };
   });
 
