@@ -13,7 +13,6 @@
       [
         bat
         grub
-        tmux
         base
         neovim
         catppuccin
@@ -59,6 +58,7 @@
 
       self'.packages.btop
       self'.packages.delta
+      self'.packages.tmux
     ];
 
     services.gnome.gnome-keyring.enable = true;

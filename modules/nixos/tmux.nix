@@ -1,73 +1,61 @@
-{self, ...}: {
-  flake.nixosModules.tmux = {
-    home-manager.sharedModules = with self.homeModules; [
-      tmux
-    ];
-  };
+{inputs, ...}: {
+  perSystem = {pkgs, ...}: {
+    packages.tmux = inputs.wrappers.wrappers.tmux.wrap {
+      inherit pkgs;
 
-  flake.homeModules.tmux = {
-    pkgs,
-    lib,
-    config,
-    ...
-  }: let
-    cfg = config.programs.tmux;
-  in {
-    config = lib.mkIf cfg.enable {
-      programs.tmux = {
-        clock24 = true;
-        baseIndex = 1;
-        prefix = "C-space";
-        mouse = true;
-        keyMode = "vi";
+      clock24 = true;
+      baseIndex = 1;
+      prefix = "C-space";
+      mouse = true;
+      modeKeys = "vi";
+      statusKeys = "vi";
 
-        extraConfig =
-          #tmux
-          ''
-            # Enable 256 color support
-            set -g default-terminal "tmux-256color"
-            set -ga terminal-overrides ",*:RGB"
-            set -g set-clipboard on
+      configBefore =
+        #tmux
+        ''
+          # Enable 256 color support
+          set -g default-terminal "tmux-256color"
+          set -ga terminal-overrides ",*:RGB"
+          set -g set-clipboard on
 
-            unbind %
-            bind h split-window -h -c "#{pane_current_path}"
-            unbind '"'
-            bind v split-window -v -c "#{pane_current_path}"
+          unbind %
+          bind h split-window -h -c "#{pane_current_path}"
+          unbind '"'
+          bind v split-window -v -c "#{pane_current_path}"
 
-            bind X { confirm-before -p "kill-session? (y/n)" kill-session }
+          bind X { confirm-before -p "kill-session? (y/n)" kill-session }
+        '';
+
+      plugins = with pkgs.tmuxPlugins; [
+        vim-tmux-navigator
+        {
+          plugin = catppuccin;
+          configAfter = ''
+            set -g status-position top
+            set -g @catppuccin_flavor "mocha"
+
+            set -g @catppuccin_window_left_separator ""
+            set -g @catppuccin_window_right_separator " "
+            set -g @catppuccin_window_middle_separator " █"
+            set -g @catppuccin_window_number_position "right"
+            set -g @catppuccin_window_status_enable "yes"
+
+            set -g @catppuccin_window_default_fill "number"
+            set -g @catppuccin_window_default_text "#W"
+
+            set -g @catppuccin_window_current_fill "number"
+            set -g @catppuccin_window_current_text "#W"
+
+            set -g @catppuccin_status_modules_right "directory session"
+            set -g @catppuccin_status_left_separator  " "
+            set -g @catppuccin_status_right_separator ""
+            set -g @catppuccin_status_fill "icon"
+            set -g @catppuccin_status_connect_separator "no"
+
+            set -g @catppuccin_directory_text "#{pane_current_path}"
           '';
-
-        plugins = with pkgs.tmuxPlugins; [
-          vim-tmux-navigator
-          {
-            plugin = catppuccin;
-            extraConfig = ''
-              set -g status-position top
-              set -g @catppuccin_flavor "mocha"
-
-              set -g @catppuccin_window_left_separator ""
-              set -g @catppuccin_window_right_separator " "
-              set -g @catppuccin_window_middle_separator " █"
-              set -g @catppuccin_window_number_position "right"
-              set -g @catppuccin_window_status_enable "yes"
-
-              set -g @catppuccin_window_default_fill "number"
-              set -g @catppuccin_window_default_text "#W"
-
-              set -g @catppuccin_window_current_fill "number"
-              set -g @catppuccin_window_current_text "#W"
-
-              set -g @catppuccin_status_modules_right "directory session"
-              set -g @catppuccin_status_left_separator  " "
-              set -g @catppuccin_status_right_separator ""
-              set -g @catppuccin_status_fill "icon"
-              set -g @catppuccin_status_connect_separator "no"
-
-              set -g @catppuccin_directory_text "#{pane_current_path}"
-            '';
-          }
-        ];
-      };
+        }
+      ];
     };
   };
 }
