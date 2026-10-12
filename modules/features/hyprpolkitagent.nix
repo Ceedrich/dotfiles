@@ -8,7 +8,7 @@
     systemd.packages = [pkgs.hyprpolkitagent];
     systemd.user.services."hyprpolkitagent" = {
       enable = true;
-      after = lib.mkForce [];
+      after = lib.mkForce ["graphical-session.target"];
     };
   };
 }
