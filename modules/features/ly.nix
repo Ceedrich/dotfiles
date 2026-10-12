@@ -9,5 +9,6 @@
         clear_password = true;
       };
     };
+    security.pam.services.ly.nodelay = true;
   };
 }
