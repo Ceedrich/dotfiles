@@ -143,6 +143,10 @@
       }
     ];
 
+    services.tailscale = {
+      enable = true;
+      package = pkgs.tailscale;
+    };
     programs.dconf.enable = true;
 
     # Nix settings
