@@ -84,5 +84,8 @@
   };
   flake.nixosModules.hyprlock = moduleWithSystem ({self', ...}: {
     environment.systemPackages = [self'.packages.hyprlock];
+    security.pam.services.hyprlock = {
+      nodelay = true;
+    };
   });
 }
