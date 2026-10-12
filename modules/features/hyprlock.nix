@@ -11,7 +11,10 @@
   }: {
     packages.hyprlock = inputs.wrappers.wrappers.hyprlock.wrap {
       inherit pkgs;
-      constructFiles.generatedConfig.content = lib.mkBefore "source = ${inputs'.catppuccin.packages.hyprlock}/mocha.conf";
+      constructFiles.generatedConfig.content = lib.mkBefore ''
+        source = ${inputs'.catppuccin.packages.hyprlock}/mocha.conf
+        $accent = $mauve
+      '';
       settings = {
         general = {
           ignore_empty_input = true;
@@ -59,7 +62,7 @@
           {
             monitor = "";
             size = "300, 60";
-            outline_thickness = 4;
+            outline_thickness = 2;
             dots_size = 0.2;
             dots_spacing = 0.2;
             dots_center = true;
@@ -72,7 +75,6 @@
             check_color = "$accent";
             fail_color = "$red";
             fail_text = ''<i>$FAIL <b>($ATTEMPTS)</b></i>'';
-            fail_timeout = 800;
             capslock_color = "$yellow";
             position = "0, -35";
             halign = "center";
