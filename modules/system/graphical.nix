@@ -21,7 +21,6 @@
       power-menu
       rofi
       spotify
-      vpn
       wlr-which-key
       zathura
     ];
@@ -29,7 +28,6 @@
       home-manager.sharedModules = [
         {
           programs.brave.enable = true;
-          vpn.epfl = true;
 
           services.owncloud-client.enable = true;
 

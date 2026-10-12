@@ -4,7 +4,6 @@
       ./_hardware-configuration.nix
       # ../jarjar/minecraft-servers
       system-graphical
-      mangohud
       steam
       bluetooth
     ];
