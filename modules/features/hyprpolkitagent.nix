@@ -1,6 +1,13 @@
 {
-  flake.nixosModules.hyprpolkitagent = {pkgs, ...}: {
+  flake.nixosModules.hyprpolkitagent = {
+    pkgs,
+    lib,
+    ...
+  }: {
     environment.systemPackages = [pkgs.hyprpolkitagent];
-    systemd.user.services."hyprpolkitagent".enable = true;
+    systemd.user.services."hyprpolkitagent" = {
+      enable = true;
+      after = lib.mkForce [];
+    };
   };
 }
