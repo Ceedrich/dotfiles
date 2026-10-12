@@ -28,8 +28,6 @@
         {
           programs.brave.enable = true;
 
-          services.owncloud-client.enable = true;
-
           xdg.userDirs = {
             enable = true;
             createDirectories = true;
@@ -65,6 +63,7 @@
         inputs'.deploy-rs.packages.deploy-rs
         signal-desktop
         vlc
+        nextcloud-client
         audacity
         libnotify
         blender
