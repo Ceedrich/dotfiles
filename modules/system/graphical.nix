@@ -21,7 +21,6 @@
       power-menu
       rofi
       spotify
-      wlr-which-key
       zathura
     ];
     config = {
@@ -92,6 +91,7 @@
         hunspellDicts.fr-moderne
         hunspellDicts.en-us
 
+        self'.packages.wlr-which-key
         self'.packages.test-icons
         self'.packages.system
         self'.packages.open

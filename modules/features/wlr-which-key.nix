@@ -1,18 +1,9 @@
 {
   inputs,
-  moduleWithSystem,
   config,
   lib,
   ...
 }: {
-  flake.nixosModules.wlr-which-key = moduleWithSystem ({self', ...}: {
-    home-manager.sharedModules = [
-      {
-        home.packages = [self'.packages.wlr-which-key];
-      }
-    ];
-  });
-
   perSystem = {
     pkgs,
     self',
