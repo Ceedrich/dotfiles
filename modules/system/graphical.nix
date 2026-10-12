@@ -63,7 +63,6 @@
         inputs'.deploy-rs.packages.deploy-rs
         signal-desktop
         vlc
-        nextcloud-client
         audacity
         libnotify
         blender
