@@ -16,6 +16,7 @@
       firefox
       flatpak
       gtk
+      nextcloud-client
       hypr-cshell
       ly
       power-menu
