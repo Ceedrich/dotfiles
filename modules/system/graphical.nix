@@ -16,6 +16,7 @@
       firefox
       flatpak
       gtk
+      nextcloud-client
       hypr-cshell
       ly
       power-menu
@@ -27,8 +28,6 @@
       home-manager.sharedModules = [
         {
           programs.brave.enable = true;
-
-          services.owncloud-client.enable = true;
 
           xdg.userDirs = {
             enable = true;
