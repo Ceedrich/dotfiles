@@ -63,8 +63,6 @@
             recursive = true;
           };
 
-          services.hyprpolkitagent.enable = true;
-
           wayland.systemd.target = "hyprland-session.target";
           wayland.windowManager.hyprland = {
             enable = true;
