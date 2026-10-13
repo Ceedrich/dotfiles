@@ -118,7 +118,7 @@
       variant = "altgr-intl";
     };
 
-    console.keyMap = "sg";
+    console.keyMap = "us";
 
     home-manager.sharedModules = [
       {
