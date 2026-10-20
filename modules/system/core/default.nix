@@ -131,14 +131,6 @@
           #   enable = true;
           #   integrations.enable = true;
           # };
-
-          git = {
-            enable = true;
-            settings.user = {
-              name = "Cedric Lehr";
-              email = "info@ceedri.ch";
-            };
-          };
         };
       }
     ];
