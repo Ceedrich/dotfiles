@@ -134,6 +134,7 @@
 
           git = {
             enable = true;
+            package = null;
             settings.user = {
               name = "Cedric Lehr";
               email = "info@ceedri.ch";
