@@ -17,6 +17,11 @@
           pager = "delta";
         };
 
+        user = {
+          email = "info@ceedri.ch";
+          name = "Cedric Lehr";
+        };
+
         interactive.diffFilter = "delta --color-only";
 
         delta.navigate = true;

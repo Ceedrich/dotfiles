@@ -124,22 +124,12 @@
       {
         programs = {
           home-manager.enable = true;
-          tmux.enable = true;
 
           bash.enable = true;
           # zsh = {
           #   enable = true;
           #   integrations.enable = true;
           # };
-
-          git = {
-            enable = true;
-            package = null;
-            settings.user = {
-              name = "Cedric Lehr";
-              email = "info@ceedri.ch";
-            };
-          };
         };
       }
     ];
