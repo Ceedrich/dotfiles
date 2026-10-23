@@ -124,7 +124,6 @@
       {
         programs = {
           home-manager.enable = true;
-          tmux.enable = true;
 
           bash.enable = true;
           # zsh = {
