@@ -12,7 +12,6 @@
     inherit (lib) mkDefault;
   in {
     imports = with self.nixosModules; [
-      clipboard
       firefox
       flatpak
       gtk
@@ -27,8 +26,6 @@
     config = {
       home-manager.sharedModules = [
         {
-          programs.brave.enable = true;
-
           xdg.userDirs = {
             enable = true;
             createDirectories = true;
@@ -67,6 +64,7 @@
         audacity
         libnotify
         blender
+        brave
         poppler-utils
         jellyfin-desktop
         wl-clipboard
