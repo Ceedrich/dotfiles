@@ -120,19 +120,7 @@
 
     console.keyMap = "us";
 
-    home-manager.sharedModules = [
-      {
-        programs = {
-          home-manager.enable = true;
-
-          bash.enable = true;
-          # zsh = {
-          #   enable = true;
-          #   integrations.enable = true;
-          # };
-        };
-      }
-    ];
+    home-manager.sharedModules = [{programs. home-manager.enable = true;}];
 
     services.tailscale = {
       enable = true;

@@ -27,8 +27,6 @@
     config = {
       home-manager.sharedModules = [
         {
-          programs.brave.enable = true;
-
           xdg.userDirs = {
             enable = true;
             createDirectories = true;
@@ -67,6 +65,7 @@
         audacity
         libnotify
         blender
+        brave
         poppler-utils
         jellyfin-desktop
         wl-clipboard
