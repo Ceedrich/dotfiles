@@ -14,7 +14,10 @@
         default = ["graphical-session.target"];
       };
     };
-    config.services.hypridle.package = self'.packages.hypridle;
+    config.services.hypridle = {
+      enable = true;
+      package = self'.packages.hypridle;
+    };
     config.systemd.user.services.hypridle.wantedBy = let
       cfg = config.services.hypridle;
     in
