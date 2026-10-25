@@ -22,6 +22,7 @@
       cfg = config.services.hypridle;
     in
       lib.mkForce {
+        enable = true;
         wantedBy = cfg.systemdTargets;
         after = cfg.systemdTargets;
         partOf = cfg.systemdTargets;
