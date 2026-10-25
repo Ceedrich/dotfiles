@@ -13,13 +13,24 @@
       default = ["graphical-session.target"];
     };
     config.services.hypridle = {
-      enable = true;
+      enable = false;
       package = self'.packages.hypridle;
     };
-    config.systemd.user.services.hypridle.wantedBy = let
+    config.systemd.user.services.hypridle = let
       cfg = config.services.hypridle;
     in
-      lib.mkForce cfg.systemdTargets;
+      lib.mkForce {
+        wantedBy = cfg.systemdTargets;
+        description = "hypridle";
+        after = cfg.systemdTargets;
+        partOf = cfg.systemdTargets;
+
+        serviceConfig = {
+          ExecStart = "${lib.getExe cfg.package}";
+          Restart = "always";
+          RestartSec = "10";
+        };
+      };
   });
 
   perSystem = {inputs', ...}: {
