@@ -26,7 +26,7 @@
 
         serviceConfig = {
           Type = "simple";
-          ExecStart = "${lib.getExe' cfg.clipboardPackage "wl-copy"} --watch ${lib.getExe cfg.package} store";
+          ExecStart = "${lib.getExe' cfg.clipboardPackage "wl-paste"} --watch ${lib.getExe cfg.package} store";
           Restart = "on-failure";
         };
       };
