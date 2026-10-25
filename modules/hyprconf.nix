@@ -67,7 +67,6 @@
         + mkFields fields;
     in
       toHyprconf' initialIndent attrs;
-
     # from: https://github.com/nix-community/home-manager/blob/8a423e444b17dde406097328604a64fc7429e34e/modules/programs/hyprlock.nix
     hyprconfType = with lib.types; let
       valueType =
@@ -81,7 +80,7 @@
           (listOf valueType)
         ])
         // {
-          description = "Hyprlock configuration value";
+          description = "hypridle configuration value";
         };
     in
       valueType;

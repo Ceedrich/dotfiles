@@ -3,42 +3,28 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.hypridle = moduleWithSystem ({self'}: {
+  flake.nixosModules.hypridle = moduleWithSystem ({self', ...}: {
     lib,
     config,
     ...
   }: {
-    options.services.hypridle = {
-      systemdTargets = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = ["graphical-session.target"];
-      };
+    options.services.hypridle.systemdTargets = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = ["graphical-session.target"];
     };
     config.services.hypridle = {
-      enable = false;
+      enable = true;
       package = self'.packages.hypridle;
     };
-    config.systemd.user.services.hypridle = let
+    config.systemd.user.services.hypridle.wantedBy = let
       cfg = config.services.hypridle;
     in
-      lib.mkForce {
-        enable = true;
-        wantedBy = cfg.systemdTargets;
-        after = cfg.systemdTargets;
-        partOf = cfg.systemdTargets;
-        description = "hypridle";
-
-        serviceConfig = {
-          ExecStart = "${lib.getExe cfg.package}";
-          Restart = "always";
-          RestartSec = "10";
-        };
-      };
+      lib.mkForce cfg.systemdTargets;
   });
 
-  perSystem = {pkgs, ...}: {
+  perSystem = {inputs', ...}: {
     packages.hypridle = self.wrappers.hypridle.wrap {
-      inherit pkgs;
+      pkgs = inputs'.nixpkgs-unstable.legacyPackages;
       settings = {
         general = {
           lock_cmd = "pidof hyprlock || hyprlock"; # avoid starting multiple hyprlock instances.
@@ -71,7 +57,8 @@
     lib,
     pkgs,
     ...
-  }: {
+  }: let
+  in {
     imports = [wlib.modules.default];
 
     options = {
@@ -79,7 +66,7 @@
         type = self.lib.hyprconfType;
         default = {};
         description = ''
-          Configuration for Hypridle.
+          Configuration for hypridle.
           See <https://wiki.hypr.land/Hypr-Ecosystem/hypridle>
         '';
       };
@@ -97,7 +84,7 @@
         };
         default = {};
         description = ''
-          Hypridle configuration file.
+          hypridle configuration file.
         '';
       };
 
@@ -109,7 +96,7 @@
         '';
         description = ''
           Extra configuration lines appended to the end of
-          the Hypridle configuration file.
+          the hypridle configuration file.
         '';
       };
 
@@ -138,6 +125,11 @@
     config.constructFiles.generatedConfig = {
       content = config."hypridle.conf".content;
       relPath = "${config.binName}.conf";
+    };
+
+    config.meta = {
+      maintainers = [wlib.maintainers.nouritsu];
+      platforms = lib.platforms.linux;
     };
   };
 }
