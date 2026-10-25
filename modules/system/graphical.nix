@@ -12,7 +12,6 @@
     inherit (lib) mkDefault;
   in {
     imports = with self.nixosModules; [
-      clipboard
       firefox
       flatpak
       gtk

@@ -1,5 +1,7 @@
 {self, ...}: {
-  flake.nixosModules.hypr-cshell = {inputs', ...}: {
+  flake.nixosModules.hypr-cshell = {inputs', ...}: let
+    systemdTarget = "hyprland-session.target";
+  in {
     imports = with self.nixosModules; [
       hypridle
       hyprland
@@ -8,6 +10,7 @@
       hyprsunset
       hyprtoolkit
 
+      clipboard
       cshell
     ];
 
@@ -16,6 +19,11 @@
       package = inputs'.hyprland.packages.hyprland;
       # make sure to also set the portal package, so that they are in sync
       portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
+    };
+
+    services = {
+      cliphist.systemdTargets = [systemdTarget];
+      wl-clip-persist.systemdTargets = [systemdTarget];
     };
 
     home-manager.sharedModules = [
