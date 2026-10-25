@@ -22,6 +22,7 @@
     };
 
     services = {
+      hypridle.systemdTargets = [systemdTarget];
       cliphist.systemdTargets = [systemdTarget];
       wl-clip-persist.systemdTargets = [systemdTarget];
     };
