@@ -26,6 +26,9 @@
       flake = false;
     };
 
+    # Wrapper requires commit b5c0b33e78a7a625d858edb0c7f6e3fd127579ba
+    hyprsunset.url = "github:hyprwm/hyprsunset";
+
     mangowm = {
       url = "github:mangowm/mango";
       inputs.nixpkgs.follows = "nixpkgs";
