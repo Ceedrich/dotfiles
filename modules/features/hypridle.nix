@@ -25,6 +25,11 @@
         after = cfg.systemdTargets;
         partOf = cfg.systemdTargets;
 
+        path = with config.programs; [
+          hyprland.package
+          hyprlock.package
+        ];
+
         serviceConfig = {
           ExecStart = "${lib.getExe cfg.package}";
           Restart = "always";
