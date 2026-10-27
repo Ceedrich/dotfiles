@@ -84,8 +84,11 @@
       };
     };
   };
-  flake.nixosModules.hyprlock = moduleWithSystem ({self', ...}: {
-    environment.systemPackages = [self'.packages.hyprlock];
+  flake.nixosModules.hyprlock = moduleWithSystem ({self', ...}: let
+    package = self'.packages.hyprlock;
+  in {
+    programs.hyprlock.package = package;
+    environment.systemPackages = [package];
     security.pam.services.hyprlock = {
       nodelay = true;
     };
