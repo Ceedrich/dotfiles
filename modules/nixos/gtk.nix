@@ -1,35 +1,11 @@
-{
-  flake.nixosModules.gtk = {
-    pkgs,
-    lib,
-    config,
-    ...
-  }: let
-    inherit (config.catppuccin) flavor accent;
-    theme = "catppuccin-${flavor}-${accent}-standard";
-  in {
+{self, ...}: {
+  flake.nixosModules.gtk = {...}: {
     environment.sessionVariables = {
       GTK_IM_MODULE = "gtk-im-context-simple";
-      GTK_THEME = theme;
     };
-    environment.systemPackages = [
-      (pkgs.catppuccin-gtk.override {
-        variant = flavor;
-        accents = [accent];
-      })
+    home-manager.sharedModules = with self.homeModules; [
+      gtk
     ];
-    environment.etc = let
-      gtkconfig = ''
-        [Settings]
-        gtk-application-prefer-dark-theme=1
-        gtk-icon-theme-name=Papirus-Dark
-        gtk-theme-name=${theme}
-      '';
-    in
-      lib.genAttrs [
-        "gtk-3.0/settings.ini"
-        "gtk-4.0/settings.ini"
-      ] (_: {text = gtkconfig;});
   };
 
   flake.homeModules.gtk = {
