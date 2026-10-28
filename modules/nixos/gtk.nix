@@ -6,9 +6,11 @@
     ...
   }: let
     inherit (config.catppuccin) flavor accent;
+    theme = "catppuccin-${flavor}-${accent}-standard";
   in {
     environment.sessionVariables = {
       GTK_IM_MODULE = "gtk-im-context-simple";
+      GTK_THEME = theme;
     };
     environment.systemPackages = [
       (pkgs.catppuccin-gtk.override {
@@ -21,7 +23,7 @@
         [Settings]
         gtk-application-prefer-dark-theme=1
         gtk-icon-theme-name=Papirus-Dark
-        gtk-theme-name=catppuccin-${flavor}-${accent}-standard
+        gtk-theme-name=${theme}
       '';
     in
       lib.genAttrs [
