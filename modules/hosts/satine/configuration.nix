@@ -1,9 +1,11 @@
 {
   self,
+  lib,
   inputs,
+  moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.host-satine = {pkgs, ...}: {
+  flake.nixosModules.host-satine = moduleWithSystem ({self'}: {pkgs, ...}: {
     imports = with self.nixosModules; [
       ./_hardware-configuration.nix
       inputs.musnix.nixosModules.musnix
@@ -22,11 +24,9 @@
     };
     services.upower.enable = true;
 
-    home-manager.sharedModules = [
-      {
-        wayland.windowManager.hyprland.extraConfig = ''hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })'';
-      }
-    ];
+    programs.hyprland.package = lib.mkForce (self'.packages.hyprland.wrap {
+      extraConfig = ''hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })'';
+    });
 
     environment.systemPackages = with pkgs; [
       snapshot
@@ -41,5 +41,5 @@
     networking.networkmanager.wifi.powersave = false;
 
     system.stateVersion = "24.11";
-  };
+  });
 }

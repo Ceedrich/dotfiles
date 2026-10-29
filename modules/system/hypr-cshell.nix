@@ -1,5 +1,5 @@
 {self, ...}: {
-  flake.nixosModules.hypr-cshell = {inputs', ...}: let
+  flake.nixosModules.hypr-cshell = let
     systemdTarget = "hyprland-session.target";
   in {
     imports = with self.nixosModules; [
@@ -14,27 +14,10 @@
       cshell
     ];
 
-    programs.hyprland = {
-      # set the flake package
-      package = inputs'.hyprland.packages.hyprland;
-      # make sure to also set the portal package, so that they are in sync
-      portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
-    };
-
     services = {
       hypridle.systemdTargets = [systemdTarget];
       cliphist.systemdTargets = [systemdTarget];
       wl-clip-persist.systemdTargets = [systemdTarget];
     };
-
-    home-manager.sharedModules = [
-      {
-        wayland.windowManager.hyprland = {
-          package = inputs'.hyprland.packages.hyprland;
-          # make sure to also set the portal package, so that they are in sync
-          portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
-        };
-      }
-    ];
   };
 }

@@ -1,4 +1,4 @@
-local colors = require("themes.catppuccin")
+local colors = require("catppuccin-mocha")
 
 if hl.plugin.hyprbars ~= nil then
 	hl.config({
