@@ -14,13 +14,6 @@
       cshell
     ];
 
-    programs.hyprland = {
-      # set the flake package
-      package = inputs'.hyprland.packages.hyprland;
-      # make sure to also set the portal package, so that they are in sync
-      portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
-    };
-
     services = {
       hypridle.systemdTargets = [systemdTarget];
       cliphist.systemdTargets = [systemdTarget];

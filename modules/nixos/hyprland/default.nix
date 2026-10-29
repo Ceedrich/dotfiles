@@ -23,6 +23,8 @@
       ];
 
       programs.hyprland = {
+        package = inputs'.hyprland.packages.hyprland;
+        portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
         xwayland.enable = true;
       };
 
