@@ -15,7 +15,6 @@
         grub
         base
         neovim
-        catppuccin
         sesh
         yazi
         git
