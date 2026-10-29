@@ -4,8 +4,6 @@
   ...
 }: {
   flake.nixosModules.zathura = moduleWithSystem ({self', ...}: {
-    xdg.mime.defaultApplications."application/pdf" = ["org.pwmt.zathura-pdf-mupdf.desktop"];
-
     environment.systemPackages = [self'.packages.zathura];
   });
 

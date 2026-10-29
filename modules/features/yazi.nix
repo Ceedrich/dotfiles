@@ -33,7 +33,6 @@
     '';
   in {
     environment.systemPackages = [self'.packages.yazi];
-    xdg.mime.defaultApplications = {"inode/directory" = "yazi.desktop";};
     programs.bash.interactiveShellInit = bash-zsh-wrapper;
     programs.zsh.interactiveShellInit = bash-zsh-wrapper;
   });
