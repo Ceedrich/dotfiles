@@ -3,7 +3,11 @@
   moduleWithSystem,
   ...
 }: {
-  flake.nixosModules.hyprland = moduleWithSystem ({inputs'}: {
+  flake.nixosModules.hyprland = moduleWithSystem ({
+    inputs',
+    self',
+    ...
+  }: {
     config,
     lib,
     pkgs,
@@ -23,7 +27,7 @@
       ];
 
       programs.hyprland = {
-        package = inputs'.hyprland.packages.hyprland;
+        package = self'.packages.hyprland;
         portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
         xwayland.enable = true;
       };
