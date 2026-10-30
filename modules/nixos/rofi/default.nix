@@ -1,4 +1,10 @@
-{self, config, ...}: let config' = config; in{
+{
+  self,
+  config,
+  ...
+}: let
+  config' = config;
+in {
   flake.nixosModules.rofi = {
     home-manager.sharedModules = with self.homeModules; [
       rofi
