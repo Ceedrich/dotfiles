@@ -18,6 +18,7 @@
       cfg = config.services.cshell;
       package = self'.packages.cshell;
     in {
+      environment.systemPackages = [package];
       systemd.user.services."cshell" = {
         description = "CShell, My graphical shell";
         after = cfg.systemdTargets;
