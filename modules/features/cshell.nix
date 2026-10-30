@@ -9,8 +9,9 @@
     ...
   }: {
     options.services.cshell = {
-      systemd.target = lib.mkOption {
-        default = "graphical-session.target";
+      systemdTargets = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = ["graphical-session.target"];
       };
     };
     config = let
@@ -19,9 +20,9 @@
     in {
       systemd.user.services."cshell" = {
         description = "CShell, My graphical shell";
-        after = [cfg.systemd.target];
-        partOf = [cfg.systemd.target];
-        wantedBy = [cfg.systemd.target];
+        after = cfg.systemdTargets;
+        partOf = cfg.systemdTargets;
+        wantedBy = cfg.systemdTargets;
         serviceConfig = {
           Type = "simple";
           ExecStart = lib.getExe package;

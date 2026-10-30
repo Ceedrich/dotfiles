@@ -1,4 +1,10 @@
-{self, ...}: {
+{
+  self,
+  config,
+  ...
+}: let
+  config' = config;
+in {
   flake.nixosModules.rofi = {
     home-manager.sharedModules = with self.homeModules; [
       rofi
@@ -57,7 +63,7 @@
           "drawer.rasi"
         ]
         // {
-          "rofi/themes/catppuccin-mocha.rasi".text = config.catppuccin.colorsRasi;
+          "rofi/themes/catppuccin-mocha.rasi".text = config'.flake.catppuccin.colorsRasi;
         };
 
       catppuccin.rofi.enable = false;
