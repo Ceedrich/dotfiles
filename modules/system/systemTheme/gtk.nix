@@ -21,7 +21,7 @@
           {
             lockAll = false;
             settings = {
-              "org/gnome/destkop/interface" = {
+              "org/gnome/desktop/interface" = {
                 gtk-theme = "catppuccin-${cfg.flavor}-${cfg.accent}-standard";
                 icon-theme = "Papirus";
                 color-scheme = "prefer-dark";
