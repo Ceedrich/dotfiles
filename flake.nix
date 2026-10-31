@@ -21,6 +21,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    catppuccin-palette = {
+      url = "github:catppuccin/palette";
+      flake = false;
+    };
+
     catppuccin-hyprland = {
       url = "github:catppuccin/hyprland/v1.3";
       flake = false;

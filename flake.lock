@@ -71,6 +71,22 @@
         "type": "github"
       }
     },
+    "catppuccin-palette": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774131488,
+        "narHash": "sha256-hsy+GhuM4MSjnwGq1YJSLBFIbVm67SSdPRgObP00mxw=",
+        "owner": "catppuccin",
+        "repo": "palette",
+        "rev": "07d02aa110ef9eb7e7427afca5c73ba9cf7f8ebd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "palette",
+        "type": "github"
+      }
+    },
     "ceedrichVim": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -1148,6 +1164,7 @@
       "inputs": {
         "catppuccin": "catppuccin",
         "catppuccin-hyprland": "catppuccin-hyprland",
+        "catppuccin-palette": "catppuccin-palette",
         "ceedrichVim": "ceedrichVim",
         "cshell": "cshell",
         "deploy-rs": "deploy-rs",

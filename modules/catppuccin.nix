@@ -1,18 +1,43 @@
 {
   config,
   lib,
+  inputs,
   ...
 }: let
-  paletteSource = lib.importJSON "${config.catppuccin.sources.palette}/palette.json";
+  paletteSource = lib.importJSON "${inputs.catppuccin-palette}/palette.json";
 
   catppuccinColors = lib.pipe paletteSource [
     (lib.filterAttrs (n: v: n != "version"))
     (lib.mapAttrs (n: v: v.colors))
   ];
 
-  cfg = config.catppuccin;
+  cfg = config.flake.catppuccin;
 
   options = {
+    # From <https://github.com/catppuccin/nix/blob/feac189528d08ca7c46bf1605d84b78ea5fe8263/modules/lib/default.nix#L28-L52>
+    flavor = lib.mkOption {
+      type = lib.types.enum ["latte" "frappe" "macchiato" "mocha"];
+      default = "mocha";
+    };
+    accent = lib.mkOption {
+      type = lib.types.enum [
+        "blue"
+        "flamingo"
+        "green"
+        "lavender"
+        "maroon"
+        "mauve"
+        "peach"
+        "pink"
+        "red"
+        "rosewater"
+        "sapphire"
+        "sky"
+        "teal"
+        "yellow"
+      ];
+      default = "mauve";
+    };
     palette = lib.mkOption {
       default = catppuccinColors;
       description = "The complete catppuccin palette";
