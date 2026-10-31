@@ -77,6 +77,7 @@
         inkscape
         playerctl
         pavucontrol
+        papirus-icon-theme
 
         gimp
         nautilus
