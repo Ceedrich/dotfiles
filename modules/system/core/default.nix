@@ -55,6 +55,7 @@
       vim
       zip
 
+      self'.packages.hello
       self'.packages.btop
       self'.packages.delta
       self'.packages.tmux
