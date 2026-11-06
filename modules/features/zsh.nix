@@ -57,8 +57,8 @@
         ls = "eza";
         ll = "eza -l";
         la = "eza -a";
-        lt = "eza --tree";
-        llt = "eza --tree -l";
+        lt = "eza --tree --git-ignore";
+        llt = "eza --tree --git-ignore -l";
         lla = "eza -la";
       };
       hmSessionVariables = null;
