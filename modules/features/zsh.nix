@@ -27,7 +27,6 @@
     packages.zsh = inputs.wrappers.wrappers.zsh.wrap {
       inherit pkgs;
       runtimePkgs = [
-        pkgs.lsd
         pkgs.devenv
         pkgs.fzf
         pkgs.zoxide
@@ -54,11 +53,12 @@
         vimdiff = "nvim -d";
 
         # ls
+        eza = "eza --icons=always";
         ls = "eza";
         ll = "eza -l";
         la = "eza -a";
-        lt = "eza --tree";
-        llt = "eza --tree -l";
+        lt = "eza --tree --git-ignore";
+        llt = "eza --tree --git-ignore -l";
         lla = "eza -la";
       };
       hmSessionVariables = null;

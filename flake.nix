@@ -21,10 +21,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    catppuccin-palette = {
+      url = "github:catppuccin/palette";
+      flake = false;
+    };
+
     catppuccin-hyprland = {
       url = "github:catppuccin/hyprland/v1.3";
       flake = false;
     };
+
+    # Wrapper requires commit b5c0b33e78a7a625d858edb0c7f6e3fd127579ba
+    hyprsunset.url = "github:hyprwm/hyprsunset";
 
     mangowm = {
       url = "github:mangowm/mango";
@@ -72,8 +80,9 @@
       {...}: {
         systems = ["x86_64-linux"];
         imports = [
-          ./hosts
           inputs.home-manager.flakeModules.home-manager
+          inputs.wrappers.flakeModules.wrappers
+          {perSystem.wrappers.control_type = "build";}
           (inputs.import-tree ./modules)
         ];
         perSystem = {pkgs, ...}: {
