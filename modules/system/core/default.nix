@@ -28,8 +28,8 @@
         inputs.nix-flatpak.nixosModules.nix-flatpak
       ];
     environment.shellAliases = {
-      cp = "cp -v";
-      mv = "mv -v";
+      cp = "cp -vi";
+      mv = "mv -vi";
     };
     # Packages / Programs
     environment.systemPackages = with pkgs; [
